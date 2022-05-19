@@ -1,6 +1,7 @@
 var substr="강의명을 입력하세요.";
 var constr="강의 내용을 입력하세요.";
 var intrstr="강의 내용 요약을 입력하세요.";
+var catestr="카테고리를 선택하세요.";
 var idstr = "아이디를 입력하세요";
 var passwdstr = "비밀번호를 입력하세요";
 var iderror ="입력하신 아이디가 없습니다.\n다시 확인하세요";
@@ -19,6 +20,10 @@ function createcheck(){
 	}else if(!createform.lec_intr.value){
 		alert(intrstr);
 		createform.lec_intr.focus();
+		return false;
+	}else if(createform.category.value==0){
+		alert(catestr);
+		createform.category.focus();
 		return false;
 	}
 }
