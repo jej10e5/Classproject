@@ -19,6 +19,6 @@
  		  select * from lecmem where id = #{id}	
  	</select>
  	<select id="getClassList" resultType="lecture.LectureDataBean">
- 		select * from lecture where id='aaa'
+ 		select img,sub,con,lec_num from lecture where id='aaa'
  	</select>
   </mapper>

@@ -79,14 +79,14 @@
 <!-- main lecture list section --> 
 	<div class="container mg_zero" style="max-width:fit-content;"> 
 		<div class="row">   
+		<c:set var="imagepath" value="/ClassProject/classImage/"/>
 		<c:forEach var="dto" items="${dtos}">
-			<div class="col-lg-3 col-md-6" style="margin:2% 0;">
-				<div class="card"> 
-				  <img src="C:\Java\Workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ClassProject\classImage
-				  ${dto.img}" class="card-img-top" alt="...">
+			<div class="col-lg-3 col-md-6" style="margin:2% 0; ">
+				<div class="card" style="height:500px"> 
+				  <img src="${imagepath}${dto.img}" class="card-img-top" style="margin:auto; "alt="...">
 				  <div class="card-body">
 				    <h5 class="card-title">${dto.sub}</h5>
-				    <span class="card-text">${dto.con}</span>
+				    <span class="card-text" style="display:block;">${dto.con}</span>
 				    <a href="#"><i class="fa-regular fa-heart cc_pink" style="padding:5px 10px; inline"></i></a>
 				    <a href="classForm.do?lec_num=${dto.lec_num}" class="btn btn-primary">상세정보</a>
 
