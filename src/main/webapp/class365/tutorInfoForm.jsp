@@ -17,14 +17,18 @@ body{
 }
 </style>
 <script type="text/javascript">
-$('#file_btn').click(function(e){
-	e.preventDefault();
-	$('#file').click();
-});
-function uploadFile(e){
-	console.log("File Name : ", e.value);
-	
-}
+//사진미리보기
+function setImagePreview(event) {
+    var reader = new FileReader();
+
+    reader.onload = function(event) {
+      var img = document.createElement("img");
+      img.setAttribute("src", event.target.result);
+      document.querySelector("div#image_container").appendChild(img);
+    };
+
+    reader.readAsDataURL(event.target.files[0]);
+  }
 
 </script>
 <body>
@@ -41,15 +45,16 @@ function uploadFile(e){
             <div class="e-profile">
               <div class="row">
                 <div class="col-12 col-sm-auto mb-3">
-                  <div class="mx-auto" style="width: 200px;">
+                  <div  class="mx-auto"  style="width: 200px;">
+        
                   <c:if test ="${dto.pro eq null or dto.pro eq ''}">
-                    <div class="d-flex justify-content-center align-items-center rounded" style="height: 200px; background-color: rgb(233, 236, 239);">
+                    <div id="image_container"class="d-flex justify-content-center align-items-center rounded" style="height: 200px; background-color: rgb(233, 236, 239);">
                       <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">200x200</span>
                       </div>
                    </c:if>
                    <c:if test ="${dto.pro ne null and  dto.pro ne ''}">
                    		<img src="${dto.pro}">
-                   </c:if>
+                   </c:if>    
                     </div>
                   </div>
                 </div>
@@ -58,13 +63,12 @@ function uploadFile(e){
                     <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">${dto.id}</h4>
                     
                     <div class="mt-2">
-                      <input type="file" id="file"name="pro" onchange="uploadFile(this)">
-                     <!-- 
-                      <button id="file_btn" class="btn btn-primary" type="button">
-                        <i class="fa fa-fw fa-camera"></i>
+                    
+                     <label class="btn btn-primary" for="file">             
+                        <i class="fa fa-fw fa-camera"></i>               
                         <span>프로필 사진 업로드</span>
-                      </button>
-                       -->
+                     </label>
+                      <input style="visibility:hidden;" accept="image/*" type="file" id="file"name="pro" onchange="setImagePreview(event);">
                     </div>
                   </div>
                  
