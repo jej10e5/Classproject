@@ -15,7 +15,7 @@
 body{
     background:#f8f8f8
 }
-</style>
+</style>  
 <body>
 <jsp:include page="header.jsp"/>
 

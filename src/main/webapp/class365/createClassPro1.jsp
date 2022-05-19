@@ -13,3 +13,4 @@
 <c:if test="${result ne 0}">
 	<c:redirect url="mainForm.do"/>
 </c:if>
+ 

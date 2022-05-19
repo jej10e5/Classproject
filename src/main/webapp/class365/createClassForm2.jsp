@@ -112,7 +112,7 @@ color: #9b9ca1;
 									</select>
 									
 								</div>
-								<!-- 최대최소인원 어떻게 해야할지? -->
+					 			<!-- 최대최소인원 어떻게 해야할지? -->
 								<div class="col-md-6">
 									<label class="form-label">최소인원*</label>
 									<input type="text" class="form-control" placeholder="">
