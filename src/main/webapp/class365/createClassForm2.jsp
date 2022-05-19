@@ -1,3 +1,4 @@
+  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -132,7 +133,11 @@ color: #9b9ca1;
 								</div>
 								<div class="col-md-8">
 									<label class="form-label">주소 *</label>
-									<input type="text" class="form-control" placeholder="">
+									<div class="d-flex justify-content-end">
+										<button type="button" class="btn btn-info" onClick="goPopup();">주소검색</button>
+									</div>
+									<input type="text" id="address" class="form-control" placeholder="주소를 검색하세요" required readonly>
+							
 								</div>
 							</div> <!-- Row END -->
 						</div>
@@ -149,6 +154,23 @@ color: #9b9ca1;
 
 </div>
 					<!-- Row END -->
+					
+<script>
+// opener관련 오류가 발생하는 경우 아래 주석을 해지하고, 사용자의 도메인정보를 입력합니다. ("팝업API 호출 소스"도 동일하게 적용시켜야 합니다.)
+//document.domain = "abc.go.kr";
+
+function goPopup(){
+	var pop = window.open("${project}/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	
+}
+
+
+function jusoCallBack(roadFullAddr){
+	var addressEl = document.querySelector("#address")
+		addressEl.value=roadFullAddr;
+}
+
+</script>
 <!-- bootstrap ver4.6 JS -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
