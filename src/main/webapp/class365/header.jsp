@@ -10,7 +10,7 @@
 	</div> 
 	 
 <nav class="navbar navbar-expand-xl navbar-light bg-white">
-  <a class="navbar-brand c_font_main" href="${project}/mainForm.do" style="margin-right:30px;"> 
+  <a class="navbar-brand c_font_main" href="mainForm.do" style="margin-right:30px;"> 
   	<span class="cc_main">${page_main1}</span>
   	<span class="cc_orange">${page_main2}</span> 
   	</a>     

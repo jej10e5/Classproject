@@ -79,15 +79,16 @@
 <!-- main lecture list section --> 
 	<div class="container mg_zero" style="max-width:fit-content;"> 
 		<div class="row">   
-		<c:forEach begin="1" end="10">
+		<c:forEach var="dto" items="${dtos}">
 			<div class="col-lg-3 col-md-6" style="margin:2% 0;">
 				<div class="card"> 
-				  <img src="${class_image}/bear1.png" class="card-img-top" alt="...">
+				  <img src="C:\Java\Workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ClassProject\classImage
+				  ${dto.img}" class="card-img-top" alt="...">
 				  <div class="card-body">
-				    <h5 class="card-title">Card title</h5>
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    <h5 class="card-title">${dto.sub}</h5>
+				    <span class="card-text">${dto.con}</span>
 				    <a href="#"><i class="fa-regular fa-heart cc_pink" style="padding:5px 10px; inline"></i></a>
-				    <a href="classForm.jsp" class="btn btn-primary">Go somewhere</a>
+				    <a href="classForm.do?lec_num=${dto.lec_num}" class="btn btn-primary">상세정보</a>
 
 				    <!-- classForm.jsp?classNum=${classNum} -->
 				  </div>

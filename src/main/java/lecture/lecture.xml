@@ -18,4 +18,7 @@
  	<select id="getMember" parameterType="String" resultType="lecmem.LecmemDataBean">
  		  select * from lecmem where id = #{id}	
  	</select>
+ 	<select id="getClassList" resultType="lecture.LectureDataBean">
+ 		select * from lecture where id='aaa'
+ 	</select>
   </mapper>

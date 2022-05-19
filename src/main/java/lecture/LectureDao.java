@@ -1,5 +1,7 @@
 package lecture;
 
+import java.util.List;
+
 import lecmem.LecmemDataBean;
 public interface LectureDao {
 	public int createClass(LectureDataBean dto);
@@ -7,4 +9,5 @@ public interface LectureDao {
 	public int check(String id,String passwd);
 	public int check(String id);
 	public LecmemDataBean getMember(String id);
+	public List<LectureDataBean> getClassList();
 }

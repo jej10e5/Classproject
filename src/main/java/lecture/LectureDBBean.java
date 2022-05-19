@@ -1,5 +1,7 @@
 package lecture;
 
+import java.util.List;
+
 import lecmem.LecmemDataBean;
 
 public class LectureDBBean implements LectureDao{
@@ -45,4 +47,10 @@ public class LectureDBBean implements LectureDao{
 	public LecmemDataBean getMember(String id) {	
 		return SqlMapClient.getSession().selectOne("Lecture.getMember",id);	
 	  }
+	
+	@Override
+	public List<LectureDataBean> getClassList() {
+		// TODO Auto-generated method stub
+		return SqlMapClient.getSession().selectList("Lecture.getClassList");
+	}
 }
