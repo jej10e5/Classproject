@@ -8,7 +8,7 @@
 <!-- bootstrap ver4.6 css -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
  <title>강의 만들기2</title>
-  <%@include file="setting.jsp"%>
+<%@include file="setting.jsp"%>
 <link href="${project}/style.css" rel="stylesheet" type="text/css"> 
 </head>
 <style>

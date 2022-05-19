@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-     
+ <%@include file="setting.jsp" %>    
 <!-- font awesome -->
 <script src="https://kit.fontawesome.com/811e29d39a.js" crossorigin="anonymous"></script>
 <!-- bootstrap ver4.6 css -->
@@ -10,7 +10,7 @@
 <link href="${project}/style.css" rel="stylesheet" type="text/css"> 
 <script src="${project}/script.js"></script>
 
-<%@include file="setting.jsp" %>
+
 
 <title>${title_main_result}</title>
  

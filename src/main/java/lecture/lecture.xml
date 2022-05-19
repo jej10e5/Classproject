@@ -12,4 +12,10 @@
   		insert into lecmem values(
   			#{id},#{passwd},#{email},#{tel})
   	</insert>
+  	<select id="check" parameterType="String" resultType="int">
+   		select count(*) from lecmem where id= #{id}
+ 	</select>
+ 	<select id="getMember" parameterType="String" resultType="lecmem.LecmemDataBean">
+ 		  select * from lecmem where id = #{id}	
+ 	</select>
   </mapper>

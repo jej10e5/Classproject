@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/class365/setting.jsp" %>    
-<link href="style.css" rel="stylesheet" type="text/css">   
-<link href="class_style.css" rel="stylesheet" type="text/css"> 
+<%@include file="setting.jsp" %>    
+<link href="${project}/style.css" rel="stylesheet" type="text/css">   
+<link href="${project}/class_style.css" rel="stylesheet" type="text/css"> 
 <!-- bootstrap ver4.6 css -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
  
