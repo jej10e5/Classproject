@@ -33,7 +33,7 @@ function uploadFile(e){
 <h2>튜터 정보</h2>
 <div class="row flex-lg-nowrap">
   <div class="col">
-    <form class="form"  action="tutorInfoPro.do" method="post" enctype="multipart/form-data">
+    <form class="form" action="tutorInfoPro.do" method="post" enctype="multipart/form-data">
     <div class="row">
       <div class="col mb-3">
         <div class="card">

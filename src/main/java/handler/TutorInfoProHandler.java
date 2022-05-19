@@ -26,7 +26,7 @@ public class TutorInfoProHandler implements CommandHandler{
 	@Resource
 	private LectureDao lectureDao;
 	
-	@RequestMapping("/modifyPro")
+	@RequestMapping("/tutorInfoPro")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		TutorDataBean dto = new TutorDataBean();
@@ -46,24 +46,26 @@ public class TutorInfoProHandler implements CommandHandler{
 		
 		if(compare ==0) {
 			dto.setId(id);
+			dto.setPro(systempro);
 			dto.setInfo(multi.getParameter("info"));
 			dto.setAcc(multi.getParameter("acc"));		
-			dto.setPro(systempro);
+			
 			
 			 result = lectureDao.insertTutor(dto);
 			
 		}else {
 			
 			dto.setId(id);
+			dto.setPro(systempro);
 			dto.setInfo(multi.getParameter("info"));
 			dto.setAcc(multi.getParameter("acc"));		
-			dto.setPro(systempro);
+			
 			
 			result = lectureDao.modifyTutor(dto);
 		}
 		 
 			request.setAttribute("result", result);
-			return new ModelAndView("class365/TutorInfoPro");
+			return new ModelAndView("class365/tutorInfoPro");
 	}
 
 	

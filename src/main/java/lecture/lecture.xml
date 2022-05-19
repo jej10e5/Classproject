@@ -25,6 +25,9 @@
  		select * from tutor where id = #{id}
  	</select>
  	<update id="modifyTutor" parameterType="tutor.TutorDataBean">
- 		update tutor set pro=#{pro}, info=#{info}, acc=#{acc} where id=#{id}
+ 		update tutor set pro=#{pro, jdbcType=VARCHAR}, info=#{info, jdbcType=VARCHAR}, acc=#{acc, jdbcType=VARCHAR} where id=#{id}
  	</update>
+ 	<insert id="insertTutor" parameterType="tutor.TutorDataBean">
+ 		insert into tutor values(#{id}, #{pro, jdbcType=VARCHAR}, #{info, jdbcType=VARCHAR},#{acc, jdbcType=VARCHAR})
+ 	</insert>
   </mapper>
