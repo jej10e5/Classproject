@@ -8,4 +8,8 @@
   		insert into lecture values(LEC_NUM_SEQ.nextval,
   			#{id},#{sub},#{cate},#{con},#{img},#{intr},#{thu},default)
   	</insert>
+  	<insert id="insertMember" parameterType="lecmem.LecmemDataBean">
+  		insert into lecmem values(
+  			#{id},#{passwd},#{email},#{tel})
+  	</insert>
   </mapper>
