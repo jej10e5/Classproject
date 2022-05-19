@@ -1,3 +1,4 @@
+  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -43,6 +44,7 @@ body{
  										<option value="초급자">초급자</option>
   										<option value="중급자">중급자</option>
 									</select>
+
 							</div>
                          </div>
                         <div class="row">
@@ -68,6 +70,7 @@ body{
                         	<label>강의 열리는 곳*</label>
 							<input class="form-control" type="date" name="begin" placeholder="강의시작일" required>
 							</div>
+
 						</div>
                          <div class="row">
                          	<div class="col">
@@ -102,9 +105,6 @@ body{
 			</div>				
 		</div>
 	</div>
-
-
-
 
 <!-- bootstrap ver4.6 JS -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

@@ -20,3 +20,4 @@
 %>
 	<c:redirect url="createClassForm2.do"/>
 </c:if>
+ 
