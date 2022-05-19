@@ -165,9 +165,9 @@ function goPopup(){
 }
 
 
-function jusoCallBack(roadFullAddr){
+function jusoCallBack(roadAddrPart1){
 	var addressEl = document.querySelector("#address")
-		addressEl.value=roadFullAddr;
+		addressEl.value=roadAddrPart1;
 }
 
 </script>
