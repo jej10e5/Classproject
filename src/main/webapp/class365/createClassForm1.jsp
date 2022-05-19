@@ -70,10 +70,24 @@ body{
                         	<div class="col">
 	                        	<div class="form-group">
 	                        		<label>Class 사진</label>
-	                        		<input style="display:block;" type="file" name="img">
+	                        		<input style="display:block;"accept="image/*" type="file" name="img" onchange="setImagePreview(event);" required>
+	                        		<div id="image_container"></div>
 	                        	</div>
+	                        	
                         	</div>
                         </div>
+                         <!-- 썸네일업로드 --> 
+                        <div class="row">
+                        	<div class="col">
+	                        	<div class="form-group">
+	                        		<label>Thumb 사진</label>
+	                        		<input style="display:block;"accept="image/*" type="file" name="thumb" onchange="setThumbPreview(event);" required>
+	                        		<div id="thumb_container"></div>
+	                        	</div>
+	                        	
+                        	</div>
+                        </div>
+                        
                         
 						<div class="row">
                       			<div class="col d-flex justify-content-end">

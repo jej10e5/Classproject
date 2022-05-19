@@ -1,8 +1,13 @@
 package handler;
 
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
+import javax.media.jai.JAI;
+import javax.media.jai.RenderedOp;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -27,31 +32,31 @@ public class CreateClassProHandler implements CommandHandler{
 		String id = (String)request.getSession().getAttribute("memid");		
 		LectureDataBean dto = new LectureDataBean();
 
-		String path = request.getSession().getServletContext().getRealPath("/classImage");
+		String path= request.getSession().getServletContext().getRealPath("/classImage");
 		new File( path ).mkdir();
+
 		
 		MultipartRequest multi = new MultipartRequest(
 				request, path, 1024*1024*5, "utf-8", new DefaultFileRenamePolicy());
-		
+			
 		String sub = multi.getParameter("lec_sub");
 		String con = multi.getParameter("lec_con");
 		String intr = multi.getParameter("lec_intr");
 		String category = multi.getParameter("category");
-		String img = multi.getFilesystemName("img");
-		
-		
+		String imgname = multi.getFilesystemName("img");
+		String thumbname=multi.getFilesystemName("thumb");
+		//origin_name저장할 필요 없어서 안함.
 		dto.setId(id);
 		dto.setSub(sub);
 		dto.setCon(con);
 		dto.setIntr(intr);
 		dto.setCate(category);
-		dto.setImg(img);
-		dto.setThu("bear1.png");
+		dto.setImg(imgname);
+		dto.setThu(thumbname);
 		
 		int result = lectureDao.createClass(dto);
 		request.setAttribute("result", result);
 		
-	
 		return new ModelAndView("class365/createClassPro1");
 	}
 	

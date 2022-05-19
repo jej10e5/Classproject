@@ -26,6 +26,8 @@ function createcheck(){
 		createform.category.focus();
 		return false;
 	}
+	
+	
 }
 //로그인
 function erroralert(msg){
@@ -45,3 +47,26 @@ function logincheck(){
 	}
 }
 //--로그인
+//사진미리보기
+function setImagePreview(event) {
+    var reader = new FileReader();
+
+    reader.onload = function(event) {
+      var img = document.createElement("img");
+      img.setAttribute("src", event.target.result);
+      document.querySelector("div#image_container").appendChild(img);
+    };
+
+    reader.readAsDataURL(event.target.files[0]);
+  }
+function setThumbPreview(event) {
+    var reader = new FileReader();
+
+    reader.onload = function(event) {
+      var img = document.createElement("img");
+      img.setAttribute("src", event.target.result);
+      document.querySelector("div#thumb_container").appendChild(img);
+    };
+
+    reader.readAsDataURL(event.target.files[0]);
+  }
