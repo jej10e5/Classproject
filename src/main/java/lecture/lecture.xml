@@ -15,7 +15,16 @@
   	<select id="check" parameterType="String" resultType="int">
    		select count(*) from lecmem where id= #{id}
  	</select>
+ 	<select id="tutorCheck" parameterType="String" resultType="int">
+ 		select count(*) from tutor where id= #{id}
+ 	</select>
  	<select id="getMember" parameterType="String" resultType="lecmem.LecmemDataBean">
  		  select * from lecmem where id = #{id}	
  	</select>
+ 	<select id="getTutor" parameterType="String" resultType="tutor.TutorDataBean">
+ 		select * from tutor where id = #{id}
+ 	</select>
+ 	<update id="modifyTutor" parameterType="tutor.TutorDataBean">
+ 		update tutor set pro=#{pro}, info=#{info}, acc=#{acc} where id=#{id}
+ 	</update>
   </mapper>
