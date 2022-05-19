@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class LecdeDataBean {
 	private int lec_num;
-	private int lv;
+	private String lv;
 	private int pri;
 	private int cap;
 	private String adr;
@@ -16,10 +16,11 @@ public class LecdeDataBean {
 	public void setLec_num(int lec_num) {
 		this.lec_num = lec_num;
 	}
-	public int getLv() {
+	
+	public String getLv() {
 		return lv;
 	}
-	public void setLv(int lv) {
+	public void setLv(String lv) {
 		this.lv = lv;
 	}
 	public int getPri() {
