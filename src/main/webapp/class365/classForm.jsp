@@ -50,8 +50,8 @@ $(document).ready(function($) {
  				<!-- 아티클 파트 나누는 블록 -->
 	 			<div id="class_info">
 	 				<div id="class_pic"> 		
-						<c:if test="${dto.img ne null and dto.img ne ''}">			 				
-	 					<img src="${dto.img}" >
+						<c:if test="${dto.img ne null and dto.img ne ''}">			  				
+	 					<img src="${imagepath}${dto.img}" >
 	 					</c:if>
 	 					<c:if test="${dto.img eq null or dto.img eq ''}">
 	 				 	<img src="/ClassProject/classImage/img1.jpg">
@@ -65,16 +65,19 @@ $(document).ready(function($) {
 	 					<!--  강좌이름, 강좌설명, 강의사진 -->
 	 					<dl class= class_dl>
 	 						<dt class= "class_dt">클래스 분량 </dt>
+	 						<!-- 
 	 						<c:if test="${month gt 1}">
 	 						<dd class="class_dd">"${month}"</dd>
 	 						</c:if>
 	 						<c:if test="${month le 1}">
 	 						<dd class="class_dd">1개월 미만</dd>
 	 						</c:if>
+	 						 -->
 	 						<dt class="class_dt">최대 인원 </dt>
 	 						<dd class="class_dd">"${dcd.cap}"</dd>
 	 						<dt class= "class_dt">강의 난이도 </dt>
-	 						<dd class="class_dd">"${level}" </dd>	 					
+	 						<!-- 
+	 						<dd class="class_dd">"${level}" </dd>	 --> 					
 	 					</dl>
 	 				</section>
 	 			<!-- 강의 소개, 강사 소개 , 후기 -->
@@ -93,7 +96,7 @@ $(document).ready(function($) {
 	 				  		 	 	<c:if test="${dtt.pro eq null or dtt.pro eq ''}">
 	 				  		 		<img class ="profile_img" src="${profile_image}/img2.jpg">	 				  		 		
 	 				  		 		</c:if>
-	 				  		 		<c:if test=${dtt.pro ne null and dtt.pro ne '' }">
+	 				  		 		<c:if test="${dtt.pro ne null and dtt.pro ne '' }">
 	 				  		 		<img class= "profile_img" src="${profile_image}/${dtt.pro}">
 	 				  		 		</c:if>
 	 				  		 	</div>
@@ -138,7 +141,7 @@ $(document).ready(function($) {
 								좋은 음악으로 좋은 인연 이어가고 싶습니다. 감사합니다.
 	 				  			</p>
 	 				  			</c:if>
-	 				  			<c:if test="${dto.info ne null and dto.info ne ''}">
+	 				  			<c:if test="${dtt.info ne null and dtt.info ne ''}">
 	 				  				${dtt.info}
 	 				  			</c:if>
 	 				  		</div>

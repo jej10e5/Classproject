@@ -61,22 +61,22 @@ public class LectureDBBean implements LectureDao{
 	}
 	
 	@Override
-<<<<<<< HEAD
+
 	public int deleteMember(String id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	
-=======
+
 	public String classLevel(int Lv) {
 		String Level = "";
 		if(Lv==1) {
-			Level = "�ʱ���";
+			Level = "초급자";
 			
 		}else if(Lv==2) {
-			Level = "�߱���";
+			Level = "중급자";
 		}else if(Lv==3) {
-			Level = "�����";
+			Level = "상급자";
 		}
 		
 		
@@ -89,8 +89,8 @@ public class LectureDBBean implements LectureDao{
 		int month = (int)SqlMapClient.getSession().selectOne("Lecture.calcMonth",lec_num);
 		
 		return month;
-	}// fin-be �ؼ� �� ����� ��� �Լ�
->>>>>>> 0204025ece6d2bf237a0f6d27cae6d69c3729e3b
+	}// fin-be 占쌔쇽옙 占쏙옙 占쏙옙占쏙옙占� 占쏙옙占� 占쌉쇽옙
+
 	public LecmemDataBean getMember(String id) {	
 		return SqlMapClient.getSession().selectOne("Lecture.getMember",id);	
 	  }

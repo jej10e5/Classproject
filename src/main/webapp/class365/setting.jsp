@@ -36,3 +36,4 @@
 
 
 <c:set var="btn_search" value="검색"/>
+<c:set var="imagepath" value="/ClassProject/classImage/"/>

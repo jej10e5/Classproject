@@ -28,16 +28,16 @@ public class ClassFormHandler implements CommandHandler{
 		TutorDataBean dtt = lectureDao.getTutor(id);
 		LecmemDataBean dtl = lectureDao.getMember(id);
 		
-		int month = lectureDao.calcMonth(lec_num);
-		String level =lectureDao.classLevel(Integer.parseInt(dcd.getLv()));
+		//int month = lectureDao.calcMonth(lec_num);
+		//String level =lectureDao.classLevel(Integer.parseInt(dcd.getLv()));
 		
 		
 		request.setAttribute("dto", dto);
 		request.setAttribute("dtt", dtt);
 		request.setAttribute("dtl", dtl);
 		request.setAttribute("dcd", dcd);
-		request.setAttribute("month", month);
-		request.setAttribute("level", level);
+		//request.setAttribute("month", month);
+		//request.setAttribute("level", level);
 		return new ModelAndView("class365/classForm");
 	}
 
