@@ -46,14 +46,14 @@ function setImagePreview(event) {
               <div class="row">
                 <div class="col-12 col-sm-auto mb-3">
                   <div  class="mx-auto"  style="width: 200px;">
-        
+        		<c:set var="imagepath" value="/ClassProject/classImage/"/>
                   <c:if test ="${dto.pro eq null or dto.pro eq ''}">
                     <div id="image_container"class="d-flex justify-content-center align-items-center rounded" style="height: 200px; background-color: rgb(233, 236, 239);">
                       <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">200x200</span>
                       </div>
                    </c:if>
                    <c:if test ="${dto.pro ne null and  dto.pro ne ''}">
-                   		<img src="${dto.pro}">
+                   		<img src="${imagepath}${dto.pro}">
                    </c:if>    
                     </div>
                   </div>
@@ -87,7 +87,7 @@ function setImagePreview(event) {
                               <c:if test = "${dto.info eq null or dto.info eq ''}">
                               <textarea class="form-control"name="info" rows="5" placeholder="튜터님의 소개를 입력해주세요"></textarea>
                               </c:if>
-                              <c:if test = "${dto.info ne null anddto.info ne''}">
+                              <c:if test = "${dto.info ne null and dto.info ne''}">
                               <textarea class="form-control"name="info" rows="5" placeholder="튜터님의 소개를 입력해주세요">${dto.info}</textarea>
                               </c:if>
                             </div>
@@ -111,6 +111,7 @@ function setImagePreview(event) {
                    
                     <div class="row">
                       <div class="col d-flex justify-content-end">
+                      	<button class="btn btn-primary" type="reset">변경사항 취소하기</button>
                         <button class="btn btn-primary" type="submit">변경사항 저장하기</button>
                       </div>
                     </div>
