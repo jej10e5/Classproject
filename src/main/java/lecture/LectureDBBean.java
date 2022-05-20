@@ -2,6 +2,7 @@ package lecture;
 
 import java.util.List;
 
+import lecde.LecdeDataBean;
 import lecmem.LecmemDataBean;
 import tutor.TutorDataBean;
 
@@ -60,11 +61,36 @@ public class LectureDBBean implements LectureDao{
 	}
 	
 	@Override
+<<<<<<< HEAD
 	public int deleteMember(String id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	
+=======
+	public String classLevel(int Lv) {
+		String Level = "";
+		if(Lv==1) {
+			Level = "�ʱ���";
+			
+		}else if(Lv==2) {
+			Level = "�߱���";
+		}else if(Lv==3) {
+			Level = "�����";
+		}
+		
+		
+		
+		return Level;
+	}
+	
+	
+	public int calcMonth(int lec_num) {	
+		int month = (int)SqlMapClient.getSession().selectOne("Lecture.calcMonth",lec_num);
+		
+		return month;
+	}// fin-be �ؼ� �� ����� ��� �Լ�
+>>>>>>> 0204025ece6d2bf237a0f6d27cae6d69c3729e3b
 	public LecmemDataBean getMember(String id) {	
 		return SqlMapClient.getSession().selectOne("Lecture.getMember",id);	
 	  }
@@ -83,12 +109,23 @@ public class LectureDBBean implements LectureDao{
 	}
 	@Override
 	public List<LectureDataBean> getClassList() {
-		// TODO Auto-generated method stub
 		return SqlMapClient.getSession().selectList("Lecture.getClassList");
 
 	}
 	@Override
+
+	public LectureDataBean getLecture(int lec_num) {
+		return SqlMapClient.getSession().selectOne("Lecture.getLecture",lec_num);
+	}
+	@Override
+	public LecdeDataBean getLecde(int lec_num) {
+		return SqlMapClient.getSession().selectOne("Lecture.getLecde",lec_num);
+	}
+	
+
+
 	public int getCreateTutor(String id) {
 		return SqlMapClient.getSession().selectOne("Lecture.getTutorClassCount",id);
 	}
+
 }

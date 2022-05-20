@@ -53,7 +53,12 @@ function setImagePreview(event) {
                       </div>
                    </c:if>
                    <c:if test ="${dto.pro ne null and  dto.pro ne ''}">
-                   		<img src="${imagepath}${dto.pro}">
+
+                   <div id="image_container">
+                   		<img src="${dto.pro}">
+                   	</div>
+
+
                    </c:if>    
                     </div>
                   </div>
