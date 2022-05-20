@@ -8,6 +8,10 @@
   			#{id},#{sub},#{cate},#{con},#{img},#{intr},#{thu},default)
   	
   	</insert>
+  	<select id="getLecNum" resultType="int">
+  		select last_number from user_sequences 
+			where sequence_name='LEC_NUM_SEQ';
+  	</select>
 
 	<delete id="deleteMember" parameterType="String">
 		delete from member where id=#{id}

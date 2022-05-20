@@ -57,6 +57,7 @@ public class CreateClassProHandler implements CommandHandler{
 		int result = lectureDao.createClass(dto);
 		request.setAttribute("result", result);
 		
+		
 		return new ModelAndView("class365/createClassPro1");
 	}
 	

@@ -4,8 +4,7 @@
  
 <c:set var="project" value="/ClassProject/class365"/>
 <c:set var="ads" value="/ClassProject/adsImage"/>
-<c:set var="class_image" value="/ClassProject/classImage"/>
-<c:set var="profile_image" value="/ClassProject/profileImage"/>
+
 
 <c:set var="page_main1" value="Class"/>
 <c:set var="page_main2" value="365"/>
@@ -36,3 +35,5 @@
 
 
 <c:set var="btn_search" value="검색"/>
+
+<c:set var="imagepath" value="/ClassProject/classImage/"/>
