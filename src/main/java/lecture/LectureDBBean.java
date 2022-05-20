@@ -1,5 +1,7 @@
 package lecture;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import lecde.LecdeDataBean;
@@ -67,7 +69,7 @@ public class LectureDBBean implements LectureDao{
 		return 0;
 	}
 	
-
+/*
 	public String classLevel(int Lv) {
 		String Level = "";
 		if(Lv==1) {
@@ -83,14 +85,21 @@ public class LectureDBBean implements LectureDao{
 		
 		return Level;
 	}
-	
-	
+	*/
+	/*
 	public int calcMonth(int lec_num) {	
-		int month = (int)SqlMapClient.getSession().selectOne("Lecture.calcMonth",lec_num);
+		LecdeDataBean dto = getLecde(lec_num);
 		
+		Date  bdate = dto.getBe();
+		Date  fdate = dto.getFin();
+		long diff = bdate.getTime() - fdate.getTime();
+		long diffDays = diff / (24 * 60 * 60 * 1000) ;
+		long difMonth = (diffDays+1)/30;
+		
+		int month =(int)difMonth;
 		return month;
 	}// fin-be 占쌔쇽옙 占쏙옙 占쏙옙占쏙옙占� 占쏙옙占� 占쌉쇽옙
-
+*/
 	public LecmemDataBean getMember(String id) {	
 		return SqlMapClient.getSession().selectOne("Lecture.getMember",id);	
 	  }
@@ -127,5 +136,6 @@ public class LectureDBBean implements LectureDao{
 	public int getCreateTutor(String id) {
 		return SqlMapClient.getSession().selectOne("Lecture.getTutorClassCount",id);
 	}
+	
 
 }

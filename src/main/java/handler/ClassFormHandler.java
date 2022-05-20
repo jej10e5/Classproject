@@ -16,7 +16,8 @@ import tutor.TutorDataBean;
 
 @Controller
 public class ClassFormHandler implements CommandHandler{
-	@Resource LectureDao lectureDao;
+	@Resource 
+	LectureDao lectureDao;
 	
 	@RequestMapping("/classForm")
 	@Override
@@ -29,7 +30,6 @@ public class ClassFormHandler implements CommandHandler{
 		LecmemDataBean dtl = lectureDao.getMember(id);
 		
 		//int month = lectureDao.calcMonth(lec_num);
-		//String level =lectureDao.classLevel(Integer.parseInt(dcd.getLv()));
 		
 		
 		request.setAttribute("dto", dto);
@@ -37,7 +37,6 @@ public class ClassFormHandler implements CommandHandler{
 		request.setAttribute("dtl", dtl);
 		request.setAttribute("dcd", dcd);
 		//request.setAttribute("month", month);
-		//request.setAttribute("level", level);
 		return new ModelAndView("class365/classForm");
 	}
 
