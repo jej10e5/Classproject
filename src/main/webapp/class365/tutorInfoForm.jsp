@@ -111,8 +111,8 @@ function setImagePreview(event) {
                    
                     <div class="row">
                       <div class="col d-flex justify-content-end">
-                      	<button class="btn btn-primary" type="reset">취소하기</button>
-                        <button class="btn btn-primary" type="submit">저장하기</button>
+                      	<button class="btn btn-primary" style="margin:10px;"type="reset">취소하기</button>
+                        <button class="btn btn-primary" style="margin:10px;" type="submit">저장하기</button>
                       </div>
                     </div>
                   
