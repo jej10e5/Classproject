@@ -46,11 +46,11 @@
  	<select id="getLecture" parameterType="int" resultType="lecture.LectureDataBean">
  	 	select * from lecture where lec_num=#{lec_num}
  	</select>
- 	<select id="getLecde" resultType="lecde.LecdeDataBean">
+ 	<select id="getLecde" resultType="lecde.LecdeDataBean" parameterType="int">
  		select *from lecde where lec_num=#{lec_num}
  	</select>
  	<select id="calcMonth" resultType="int" parameterType="int">
- 		select months_between(fin,be) from lecde where lec_num=#{lec_num}
+ 		select round (months_between(fin,be)) from lecde where lec_num=#{lec_num}
  	</select>
 
  	

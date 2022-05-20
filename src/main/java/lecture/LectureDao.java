@@ -22,8 +22,8 @@ public interface LectureDao {
 	public List<LectureDataBean> getClassList();
 
 	public LecdeDataBean getLecde(int lec_num);
-	public int calcMonth(int lec_num);
-	public String classLevel(int Lv);
+	//public int calcMonth(int lec_num);
+	//public String classLevel(int Lv);
 
 	
 	public int getCreateTutor(String id);

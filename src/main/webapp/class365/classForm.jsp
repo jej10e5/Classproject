@@ -3,6 +3,7 @@
 <%@page import="lecture.LectureDBBean"%>
 <%@page import="tutor.TutorDataBean" %>
 <%@page import="lecture.LectureDataBean" %>
+<%@page import="lecde.LecdeDataBean" %>
 <%@include file="setting.jsp" %>    
 <link href="${project}/style.css" rel="stylesheet" type="text/css">   
 <link href="${project}/class_style.css" rel="stylesheet" type="text/css"> 
@@ -64,7 +65,7 @@ $(document).ready(function($) {
 	 					<h2 id="section_name">클래스 정보</h2>
 	 					<!--  강좌이름, 강좌설명, 강의사진 -->
 	 					<dl class= class_dl>
-	 						<dt class= "class_dt">클래스 분량 </dt>
+	 						<dt class= "class_dt">강의 기간 </dt>
 	 						<!-- 
 	 						<c:if test="${month gt 1}">
 	 						<dd class="class_dd">"${month}"</dd>
@@ -74,10 +75,9 @@ $(document).ready(function($) {
 	 						</c:if>
 	 						 -->
 	 						<dt class="class_dt">최대 인원 </dt>
-	 						<dd class="class_dd">"${dcd.cap}"</dd>
+	 						<dd class="class_dd">${dcd.cap}</dd>
 	 						<dt class= "class_dt">강의 난이도 </dt>
-	 						<!-- 
-	 						<dd class="class_dd">"${level}" </dd>	 --> 					
+	 						<dd class="class_dd">${dcd.lv} </dd>	 					
 	 					</dl>
 	 				</section>
 	 			<!-- 강의 소개, 강사 소개 , 후기 -->
@@ -302,7 +302,11 @@ $(document).ready(function($) {
 	 						</div>	
 	 						
 	 						<section id="buy_sec">
-	 							<button type="button" id="buy_btn">결제하기</button>
+	 							<button type="button" id="buy_btn" onclick="location='loginCheckForm.do?id=${dtl.id}'">
+	 							결제하기
+	 						
+	 							</button>
+	 							
 	 						</section>
  						</div>
  					</div>
