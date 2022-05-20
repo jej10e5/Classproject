@@ -2,6 +2,7 @@ package lecture;
 
 import java.util.List;
 
+import lecde.LecdeDataBean;
 import lecmem.LecmemDataBean;
 import tutor.TutorDataBean;
 
@@ -59,6 +60,30 @@ public class LectureDBBean implements LectureDao{
 	
 	}
 	
+	@Override
+	public String classLevel(int Lv) {
+		String Level = "";
+		if(Lv==1) {
+			Level = "초급자";
+			
+		}else if(Lv==2) {
+			Level = "중급자";
+		}else if(Lv==3) {
+			Level = "상급자";
+		}
+		
+		
+		
+		return Level;
+	}
+	
+	
+	public int calcMonth(int lec_num) {	
+		LecdeDataBean dto = getLecde(lec_num);
+		int month = (int)SqlMapClient.getSession().selectOne("Lecture.calcMonth",lec_num);
+		
+		return month;
+	}// fin-be 해서 총 개월수 계싼 함수
 	public LecmemDataBean getMember(String id) {	
 		return SqlMapClient.getSession().selectOne("Lecture.getMember",id);	
 	  }
@@ -73,11 +98,20 @@ public class LectureDBBean implements LectureDao{
 	@Override
 	public int insertTutor(TutorDataBean dto) {
 		return SqlMapClient.getSession().insert("Lecture.insertTutor",dto);
-
+	}
 	@Override
 	public List<LectureDataBean> getClassList() {
-		// TODO Auto-generated method stub
 		return SqlMapClient.getSession().selectList("Lecture.getClassList");
 
 	}
+	@Override
+	public LectureDataBean getLecture(int lec_num) {
+		return SqlMapClient.getSession().selectOne("Lecture.getLecture",lec_num);
+	}
+	@Override
+	public LecdeDataBean getLecde(int lec_num) {
+		return SqlMapClient.getSession().selectOne("Lecture.getLecde",lec_num);
+	}
+	
+
 }

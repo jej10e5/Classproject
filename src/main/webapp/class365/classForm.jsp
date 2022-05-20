@@ -65,9 +65,14 @@ $(document).ready(function($) {
 	 					<!--  강좌이름, 강좌설명, 강의사진 -->
 	 					<dl class= class_dl>
 	 						<dt class= "class_dt">클래스 분량 </dt>
+	 						<c:if test="${month gt 1}">
 	 						<dd class="class_dd">"${month}"</dd>
+	 						</c:if>
+	 						<c:if test="${month le 1}">
+	 						<dd class="class_dd">1개월 미만</dd>
+	 						</c:if>
 	 						<dt class="class_dt">최대 인원 </dt>
-	 						<dd class="class_dd">"${dto.cap}"</dd>
+	 						<dd class="class_dd">"${dcd.cap}"</dd>
 	 						<dt class= "class_dt">강의 난이도 </dt>
 	 						<dd class="class_dd">"${level}" </dd>	 					
 	 					</dl>
@@ -77,7 +82,7 @@ $(document).ready(function($) {
 	 				<div id="tut_div" style="padding-top:150px;">
 	 				<section class="tut_intro">
 	 				  <div class="name_div">
-	 					<h3 class="tut_name">OOO 강사님을
+	 					<h3 class="tut_name">"${dto.id}" 강사님을
 	 									  <br>
 	 									 소개합니다
 	 					</h3>
@@ -85,13 +90,20 @@ $(document).ready(function($) {
 	 				 <div class="sub_div">
 	 				  		<div id="tuto_info_pro">
 	 				  		 	<div class="pro_img">
+	 				  		 	 	<c:if test="${dtt.pro eq null or dtt.pro eq ''}">
 	 				  		 		<img class ="profile_img" src="${profile_image}/img2.jpg">	 				  		 		
+	 				  		 		</c:if>
+	 				  		 		<c:if test=${dtt.pro ne null and dtt.pro ne '' }">
+	 				  		 		<img class= "profile_img" src="${profile_image}/${dtt.pro}">
+	 				  		 		</c:if>
 	 				  		 	</div>
 	 				  		 	<div id="pro_text">
-	 				  		 		<p class="pro_name">권다솜</p>				  		 		
+	 				  		 		<p class="pro_name">"${dtl.email}"</p>	
+	 				  		 		<p >"${dtl.tel }"</p>			  		 		
 	 				  		 	</div>
 	 				  		</div>
 	 				  		<div class="tut_text">
+	 				  		<c:if test="${dtt.info eq null or dtt.info eq ''}"> 
 	 				  			<p class="tut_text_area">
 	 				  			아
 	 				  			<br>
@@ -125,6 +137,10 @@ $(document).ready(function($) {
 								<br>
 								좋은 음악으로 좋은 인연 이어가고 싶습니다. 감사합니다.
 	 				  			</p>
+	 				  			</c:if>
+	 				  			<c:if test="${dto.info ne null and dto.info ne ''}">
+	 				  				${dtt.info}
+	 				  			</c:if>
 	 				  		</div>
 	 				  </div>	
 	 				
@@ -138,6 +154,7 @@ $(document).ready(function($) {
 	 						</div>
 	 						  <div class="sub_div">
 		 						<div class="tut_text">
+		 							<c:if test="${dto.con eq null or dto.con eq ''}">
 		 							<p class="tut_text_area">
 		 								#진행방식
 										1) 원데이 클래스 (오프라인)
@@ -186,6 +203,10 @@ $(document).ready(function($) {
 										◾ 일상 영어회화
 											<br>
 		 							</p>
+		 							</c:if>
+		 							<c:if test="${dto.con ne null and dto.con ne ''}">
+		 								${dto.con }
+		 							</c:if>						
 		 						</div>	
 		 					 </div>		 				
 	 					</section>	 				
