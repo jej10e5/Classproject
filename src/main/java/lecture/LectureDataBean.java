@@ -1,6 +1,5 @@
 package lecture;
 
-import tutor.TutorDataBean;
 
 public class LectureDataBean {
 	private int  lec_num;

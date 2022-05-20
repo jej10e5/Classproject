@@ -39,6 +39,17 @@
  	<select id="getClassList" resultType="lecture.LectureDataBean">
  		select img,sub,con,lec_num from lecture where sta=1
  	</select>
+
+ 	<select id="getLecture" parameterType="int" resultType="lecture.lectureDataBean">
+ 	 	select * from lecture where lec_num=#{lec_num}
+ 	</select>
+ 	<select id="getLecde" resultType="lecde.LecdeDataBean">
+ 		select *from lecde where lec_num=#{lec_num}
+ 	</select>
+ 	<select id="calcMonth" resultType="double" parameterType="int">
+ 		select months_between(fin,be) from lecde where lec_num=#{lec_num}
+ 	</select>
+
  	
  	<select id="getTutorClassCount" parameterType="String" resultType="int">
  		select count(*) from tutor where id=#{id}
