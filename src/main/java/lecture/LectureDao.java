@@ -6,6 +6,8 @@ import lecmem.LecmemDataBean;
 import tutor.TutorDataBean;
 public interface LectureDao {
 	public int createClass(LectureDataBean dto);
+	public int deleteMember( String id );
+
 	public int insertMember( LecmemDataBean dto );
 	public int check(String id,String passwd);
 	public int check(String id);
@@ -19,4 +21,5 @@ public interface LectureDao {
 	public List<LectureDataBean> getClassList();
 	
 	public int getCreateTutor(String id);
+
 }

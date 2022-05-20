@@ -6,7 +6,12 @@
   	<insert id="insertClass" parameterType="lecture.LectureDataBean">
   		insert into lecture values(LEC_NUM_SEQ.nextval,
   			#{id},#{sub},#{cate},#{con},#{img},#{intr},#{thu},default)
+  	
   	</insert>
+
+	<delete id="deleteMember" parameterType="String">
+		delete from member where id=#{id}
+	</delete>
   	<insert id="insertMember" parameterType="lecmem.LecmemDataBean">
   		insert into lecmem values(
   			#{id},#{passwd},#{email},#{tel})
@@ -39,3 +44,4 @@
  		select count(*) from tutor where id=#{id}
  	</select>
  </mapper>
+
