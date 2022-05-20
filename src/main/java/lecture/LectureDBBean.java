@@ -70,10 +70,11 @@ public class LectureDBBean implements LectureDao{
 	public int modifyTutor(TutorDataBean dto) {
 		return SqlMapClient.getSession().update("Lecture.modifyTutor",dto);
 	}
+
 	@Override
 	public int insertTutor(TutorDataBean dto) {
 		return SqlMapClient.getSession().insert("Lecture.insertTutor",dto);
-
+	}
 	@Override
 	public List<LectureDataBean> getClassList() {
 		// TODO Auto-generated method stub
