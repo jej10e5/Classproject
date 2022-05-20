@@ -8,14 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class TutorMainHandler implements CommandHandler{
-
-	@RequestMapping("/tutorMain")
+public class ClassFormHandler implements CommandHandler{
+	@RequestMapping("/classForm")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		
-		return new ModelAndView("class365/tutorMain");
+
+		return new ModelAndView("class365/classForm");
 	}
 
 }
+

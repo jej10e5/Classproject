@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="lecture.LectureDBBean"%>
+<%@page import="tutor.TutorDataBean" %>
+<%@page import="lecture.LectureDataBean" %>
 <%@include file="setting.jsp" %>    
 <link href="${project}/style.css" rel="stylesheet" type="text/css">   
 <link href="${project}/class_style.css" rel="stylesheet" type="text/css"> 
@@ -46,8 +49,13 @@ $(document).ready(function($) {
  			
  				<!-- 아티클 파트 나누는 블록 -->
 	 			<div id="class_info">
-	 				<div id="class_pic">
-	 					<img src="${class_image}/img1.jpg" >
+	 				<div id="class_pic"> 		
+						<c:if test="${dto.img ne null and dto.img ne ''}">			 				
+	 					<img src="${dto.img}" >
+	 					</c:if>
+	 					<c:if test="${dto.img eq null or dto.img eq ''}">
+	 				 	<img src="/ClassProject/classImage/img1.jpg">
+	 					</c:if>			
 	 				</div>
 	 				
 	 			 				
@@ -57,11 +65,11 @@ $(document).ready(function($) {
 	 					<!--  강좌이름, 강좌설명, 강의사진 -->
 	 					<dl class= class_dl>
 	 						<dt class= "class_dt">클래스 분량 </dt>
-	 						<dd class="class_dd">8개 챕터, 30개 세부강의</dd>
-	 						<dt class="class_dt">수강 가능일 </dt>
-	 						<dd class="class_dd">22.06.01</dd>
-	 						<dt class= "class_dt">강의 방식 </dt>
-	 						<dd class="class_dd">대면</dd>	 					
+	 						<dd class="class_dd">"${month}"</dd>
+	 						<dt class="class_dt">최대 인원 </dt>
+	 						<dd class="class_dd">"${dto.cap}"</dd>
+	 						<dt class= "class_dt">강의 난이도 </dt>
+	 						<dd class="class_dd">"${level}" </dd>	 					
 	 					</dl>
 	 				</section>
 	 			<!-- 강의 소개, 강사 소개 , 후기 -->
