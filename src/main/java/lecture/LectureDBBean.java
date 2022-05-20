@@ -79,7 +79,6 @@ public class LectureDBBean implements LectureDao{
 	
 	
 	public int calcMonth(int lec_num) {	
-		LecdeDataBean dto = getLecde(lec_num);
 		int month = (int)SqlMapClient.getSession().selectOne("Lecture.calcMonth",lec_num);
 		
 		return month;
