@@ -107,20 +107,23 @@
 			<div id="tutor_main_margin">
 				<div id="tutor_top_topic">
 					<h3 class="topic">강의</h3>
-					<a href="/ClassProject/class365/createClassForm1.jsp" style="color:inherit;">
+					<c:if test="${tutorInfo ne 0}">
+					<a href="createClassForm1.do" style="color:inherit;">
 						<button id="make_class_btn">
 							<span id="inher_span">
 								<span id="btn_icon_span">
 									<i class="fa-solid fa-plus"></i>
 								</span>
 								<div style="width:6px; height:0px;"></div>
-								<a href="createClassForm1.do" id="btn_subject"> 상품 만들기</a>
+								<span id="btn_subject"> 상품 만들기</span>
 							</span>
 						</button>					
 					</a>
+					</c:if>
 				</div>
 				<div id="table_div">
 					<table class="tutor_table">
+						<c:if test="${tutorInfo ne 0}">
 						<tr style="border-bottom:solid 1px lightgrey" >
 							<th style="width:5%"><input type="checkbox"></th>
 							<th style="width:15%">강좌명</th>
@@ -130,7 +133,15 @@
 							<th>난이도</th>
 							<th>현재인원</th>
 							<th style="width:15%">생성일</th>
-						</tr>						
+						</tr>	
+						</c:if>
+						<c:if test="${tutorInfo eq 0}">
+						<tr style="border-bottom:solid 1px lightgrey" >
+							<th> 강사 정보를 먼저 수정해주세요!</th>
+							<th><input type="button" class="btn" value="정보 수정" 
+								onclick="location='tutorInfoForm.do'"></th>
+						</tr>	
+						</c:if>				
 					</table>
 						
 				</div>

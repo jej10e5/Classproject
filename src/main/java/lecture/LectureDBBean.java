@@ -81,4 +81,8 @@ public class LectureDBBean implements LectureDao{
 		return SqlMapClient.getSession().selectList("Lecture.getClassList");
 
 	}
+	@Override
+	public int getCreateTutor(String id) {
+		return SqlMapClient.getSession().selectOne("Lecture.getTutorClassCount",id);
+	}
 }

@@ -11,8 +11,6 @@ public class LoginFormHandler implements CommandHandler{
 	@RequestMapping("/loginForm")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse reponse) throws Exception {
-		
-		
-		return new ModelAndView("class365/loginForm");
+	return new ModelAndView("class365/loginForm");
 	}
 }

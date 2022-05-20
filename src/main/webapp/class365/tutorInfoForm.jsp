@@ -84,10 +84,10 @@ function setImagePreview(event) {
                           <div class="col mb-3">
                             <div class="form-group">
                               <label>소개말</label>
-                              <c:if test = "${info eq null or info eq ''}">
+                              <c:if test = "${dto.info eq null or dto.info eq ''}">
                               <textarea class="form-control"name="info" rows="5" placeholder="튜터님의 소개를 입력해주세요"></textarea>
                               </c:if>
-                              <c:if test = "${txt ne null and info ne''}">
+                              <c:if test = "${dto.info ne null anddto.info ne''}">
                               <textarea class="form-control"name="info" rows="5" placeholder="튜터님의 소개를 입력해주세요">${dto.info}</textarea>
                               </c:if>
                             </div>
