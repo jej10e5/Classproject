@@ -14,6 +14,18 @@ body{
     margin-top:20px;
     background:#f8f8f8
 }
+.pro_img{
+overflow:hidden;
+width: 200px;
+height: 200px;
+
+}
+.profile{
+	overflow:hidden; 
+	display:flex; 
+	width:100%; 
+	height:100%; 
+	object-fit:cover;
 }
 </style>
 <script type="text/javascript">
@@ -24,9 +36,11 @@ function setImagePreview(event) {
     reader.onload = function(event) {
       var img = document.createElement("img");
       img.setAttribute("src", event.target.result);
+      $("#image_container *").remove();
       document.querySelector("div#image_container").appendChild(img);
+      $("img").addClass("profile");
     };
-
+	
     reader.readAsDataURL(event.target.files[0]);
   }
 
@@ -54,8 +68,8 @@ function setImagePreview(event) {
                    </c:if>
                    <c:if test ="${dto.pro ne null and  dto.pro ne ''}">
 
-                   <div id="image_container">
-                   		<img src="${dto.pro}">
+                   <div class="pro_img"id="image_container">
+                   		<img class="profile" src="${imagepath}${dto.pro}">
                    	</div>
 
 
