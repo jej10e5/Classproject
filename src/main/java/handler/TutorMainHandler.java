@@ -13,16 +13,16 @@ import org.springframework.web.servlet.ModelAndView;
 import lecture.LectureDao;
 import lecture.LectureDataBean;
 @Controller
-public class MainHandler implements CommandHandler {
+public class TutorMainHandler implements CommandHandler{
 	@Resource
 	private LectureDao lectureDao;
-	@RequestMapping("/mainForm")
+	@RequestMapping("/tutorMain")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		
-		List<LectureDataBean> dtos = lectureDao.getClassList();
-		request.setAttribute("dtos", dtos);
-		return new ModelAndView("class365/mainForm");
+		String id = (String)request.getSession().getAttribute("memid");
+		int tutorInfo = lectureDao.getCreateTutor(id); 
+		request.setAttribute("tutorInfo", tutorInfo);
+		return new ModelAndView("class365/tutorMain");
 	}
+
 }

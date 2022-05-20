@@ -2,17 +2,46 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
   <mapper namespace="Lecture">
   	<insert id="insertClass" parameterType="lecture.LectureDataBean">
   		insert into lecture values(LEC_NUM_SEQ.nextval,
   			#{id},#{sub},#{cate},#{con},#{img},#{intr},#{thu},default)
   	
   	</insert>
-	<select id="check" parameterType="String" resultType="int">
-		select count(*) from member where id=#{id}
-	</select>
+
 	<delete id="deleteMember" parameterType="String">
 		delete from member where id=#{id}
 	</delete>
-  </mapper>
+  	<insert id="insertMember" parameterType="lecmem.LecmemDataBean">
+  		insert into lecmem values(
+  			#{id},#{passwd},#{email},#{tel})
+  	</insert>
+  	<select id="check" parameterType="String" resultType="int">
+   		select count(*) from lecmem where id= #{id}
+ 	</select>
+ 	<select id="tutorCheck" parameterType="String" resultType="int">
+ 		select count(*) from tutor where id= #{id}
+ 	</select>
+ 	<select id="getMember" parameterType="String" resultType="lecmem.LecmemDataBean">
+ 		  select * from lecmem where id = #{id}	
+ 	</select>
+
+ 	<select id="getTutor" parameterType="String" resultType="tutor.TutorDataBean">
+ 		select * from tutor where id = #{id}
+ 	</select>
+ 	<update id="modifyTutor" parameterType="tutor.TutorDataBean">
+ 		update tutor set pro=#{pro, jdbcType=VARCHAR}, info=#{info, jdbcType=VARCHAR}, acc=#{acc, jdbcType=VARCHAR} where id=#{id}
+ 	</update>
+ 	<insert id="insertTutor" parameterType="tutor.TutorDataBean">
+ 		insert into tutor values(#{id}, #{pro, jdbcType=VARCHAR}, #{info, jdbcType=VARCHAR},#{acc, jdbcType=VARCHAR})
+ 	</insert>
+
+ 	<select id="getClassList" resultType="lecture.LectureDataBean">
+ 		select img,sub,con,lec_num from lecture where sta=1
+ 	</select>
+ 	
+ 	<select id="getTutorClassCount" parameterType="String" resultType="int">
+ 		select count(*) from tutor where id=#{id}
+ 	</select>
+ </mapper>
+

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@include file="setting.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
- <link href="style.css" rel="stylesheet" type="text/css"> 
-  <link href="login_style.css" rel="stylesheet" type="text/css"> 
+ <link href="${project}/style.css" rel="stylesheet" type="text/css"> 
+  <link href="${prpject}/login_style.css" rel="stylesheet" type="text/css"> 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 
@@ -18,7 +18,7 @@
 <body>
 <jsp:include page="header.jsp"/>
 <div class="signup-form">
-    <form method="post" action="mainForm.jsp">
+    <form method="post" action="loginPro.do">
 		<h2>로 그 인</h2>
 		<p class="hint-text">환영합니다.</p>
         <div class="form-group">		      	
@@ -27,7 +27,7 @@
         	<input type="text" class="form-control" name="id" placeholder="아이디" required="required">
         </div>
 		<div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="패스워드" required="required">
+            <input type="password" class="form-control" name="passwd" placeholder="패스워드" required="required">
         </div>
 		<div class="form-group">
 		<!--TODO 로그인 action -->

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="setting.jsp" %>  
- <link href="style.css" rel="stylesheet" type="text/css"> 
+ <link href="${project}/style.css" rel="stylesheet" type="text/css"> 
 
 <header id="header_nav">      
 <div id="header_top">   
@@ -10,7 +10,7 @@
 	</div> 
 	 
 <nav class="navbar navbar-expand-xl navbar-light bg-white">
-  <a class="navbar-brand c_font_main" href="${project}/mainForm.jsp" style="margin-right:30px;"> 
+  <a class="navbar-brand c_font_main" href="mainForm.do" style="margin-right:30px;"> 
   	<span class="cc_main">${page_main1}</span>
   	<span class="cc_orange">${page_main2}</span> 
   	</a>     
@@ -34,7 +34,7 @@
          ${menu_category}
         </a> 
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="mainResultForm.jsp?id=1">${category_cook}</a>
+          <a class="dropdown-item" href="#">${category_cook}</a>
           <a class="dropdown-item" href="#">${category_art}</a>
           <a class="dropdown-item" href="#">${category_exercise}</a>
           <a class="dropdown-item" href="#">${category_music}</a> 
@@ -51,34 +51,34 @@
      </ul> 
      
     <!-- guest -->
-    <c:if test="${sessionScope.id eq null}">
+    <c:if test="${sessionScope.memid eq null}">
     <ul class="navbar-nav"> 
       <li class="nav-item my-2 my-lg-0">
-        <a class="nav-link cc_purple c_font_category" href="signupForm.jsp">${menu_signup}</a>
+        <a class="nav-link cc_purple c_font_category" href="signupForm.do">${menu_signup}</a>
       </li>
       <li class="nav-item my-2 my-lg-0"> 
-        <a class="nav-link cc_purple c_font_category" href="loginForm.jsp">${menu_login}</a>
+        <a class="nav-link cc_purple c_font_category" href="loginForm.do">${menu_login}</a>
       </li> 
     </ul>
  	</c:if>
  	
  	<!-- member --> 
-     <c:if test="${sessionScope.id ne null}">
+     <c:if test="${sessionScope.memid ne null}">
      <ul class="navbar-nav"> 
      <li class="nav-item my-2 my-lg-0">
-     	 <a class="nav-link" href="likeListForm.jsp?id=1">
+     	 <a class="nav-link" href="#">
      	 	<i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:20px;"></i>
      	 </a>
         
       </li>
       <li class="nav-item my-2 my-lg-0">
-        <a class="nav-link cc_orange c_font_category" href="createClassForm1.jsp">${menu_creator}</a>
+        <a class="nav-link cc_orange c_font_category" href="tutorMain.do">${menu_creator}</a>
       </li>
       <li class="nav-item my-2 my-lg-0">
         <a class="nav-link cc_purple c_font_category" href="#">${menu_mypage}</a>
       </li>
       <li class="nav-item my-2 my-lg-0"> 
-        <a class="nav-link cc_gray c_font_category" href="mainForm.jsp">${menu_logout}</a>
+        <a class="nav-link cc_gray c_font_category" href="logout.do">${menu_logout}</a>
       </li> 
     </ul>
     </c:if>
