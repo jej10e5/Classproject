@@ -18,6 +18,6 @@
 
 
 %>
-	<c:redirect url="createClassForm2.do?${lec_num}"/>
+	<c:redirect url="createClassForm2.do?lec_num=${lec_num}"/>
 </c:if>
  

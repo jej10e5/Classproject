@@ -2,6 +2,7 @@ package lecture;
 
 import java.util.List;
 
+import lecde.LecdeDataBean;
 import lecmem.LecmemDataBean;
 import tutor.TutorDataBean;
 
@@ -95,5 +96,10 @@ public class LectureDBBean implements LectureDao{
 	public int getLecNum() {
 		// TODO Auto-generated method stub
 		return SqlMapClient.getSession().selectOne("Lecture.getLecNum");
+	}
+	@Override
+	public int createClass2(LecdeDataBean dto) {
+		// TODO Auto-generated method stub
+		return SqlMapClient.getSession().insert("Lecture.insertClass2",dto);
 	}
 }

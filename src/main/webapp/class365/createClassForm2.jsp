@@ -20,14 +20,15 @@ body{
 <body>
 <jsp:include page="header.jsp"/>
 <div class="container" >
-	<h2>강의번호 : ${lec_num}</h2>
+	<h2>강의번호 : ${param.lec_num}</h2>
         <div class="card" style="padding:3%;">
                <p class="c_font_main cc_black">
                ${sessionScope.memid}님의 강의 생성 - 상세정보</p>   
               <div class="tab-content pt-3">
                 <div class="tab-pane active">
-                  <form class="form" name="createform" enctype="multipart/form-data" method="post" 
-                  action="createClassPro2.do" onsubmit="return createcheck()">
+                  <form class="form" name="createform" method="post" 
+                  action="createClassPro2.do?lec_num=${param.lec_num}" onsubmit="return createcheck()">
+                    
                     <div class="row">
                       <div class="col">
                         <div class="row">
@@ -59,18 +60,18 @@ body{
 						<div class="row">
                           <div class="col-md-4">
                           	<label>강의시작일*</label>
-								<input class="form-control" id="date" type="date" name="begin" required>
+								<input class="form-control" id="date" type="date" name="be" required>
 							</div>
                          <div class="col-md-4">
                           	<label>강의마지막날*</label>
-							<input class="form-control" type="date" name="finish" required> 
+							<input class="form-control" type="date" name="fin" required> 
 							</div>
 
                          </div>
                          <div class="row">
                          	<div class="col-md-4">
                          	<label>강의 열리는 곳*</label>
-                         	<input class="form-control" type="text" id="address_kakao" name="address" readonly />
+                         	<input class="form-control" type="text" id="address_kakao" name="adr" readonly />
                          	</div>
                          	<div class="col-md-4">
                          	<!-- 주소 가져오는 api -->
@@ -103,6 +104,7 @@ body{
 			</div>				
 		</div>
 	</div>
+</div>
 
 <!-- bootstrap ver4.6 JS -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

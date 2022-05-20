@@ -75,7 +75,7 @@
       <span class="sr-only">Next</span>
     </button>
   </div>
-  
+   
 <!-- main lecture list section --> 
 	<div class="container mg_zero" style="max-width:fit-content;"> 
 		<div class="row">   

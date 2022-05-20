@@ -10,6 +10,8 @@ import javax.media.jai.JAI;
 import javax.media.jai.RenderedOp;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +31,7 @@ public class CreateClassProHandler implements CommandHandler{
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
+		HttpSession session=request.getSession();
 		String id = (String)request.getSession().getAttribute("memid");		
 		LectureDataBean dto = new LectureDataBean();
 
@@ -48,16 +51,16 @@ public class CreateClassProHandler implements CommandHandler{
 		//origin_name저장할 필요 없어서 안함.
 		dto.setId(id);
 		dto.setSub(sub);
-		dto.setCon(con);
+		dto.setCon(con); 
 		dto.setIntr(intr);
 		dto.setCate(category);
-		dto.setImg(imgname);
+		dto.setImg(imgname); 
 		dto.setThu(thumbname);
 		
 		int result = lectureDao.createClass(dto);
+		int lec_num=lectureDao.getLecNum()-1;
 		request.setAttribute("result", result);
-		
-		
+		request.setAttribute("lec_num", lec_num);
 		return new ModelAndView("class365/createClassPro1");
 	}
 	

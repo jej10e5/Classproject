@@ -2,6 +2,7 @@ package lecture;
 
 import java.util.List;
 
+import lecde.LecdeDataBean;
 import lecmem.LecmemDataBean;
 import tutor.TutorDataBean;
 public interface LectureDao {
@@ -22,5 +23,7 @@ public interface LectureDao {
 	
 	public int getCreateTutor(String id);
 	public int getLecNum();
+	
+	public int createClass2(LecdeDataBean dto);
 
 }

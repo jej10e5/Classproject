@@ -18,5 +18,6 @@
 	<context:component-scan base-package="handler"/>
 	<context:component-scan base-package="tutor"/>
 	<context:component-scan base-package="lecmem"/>
+	<context:component-scan base-package="lecde"/>
  
 </beans>

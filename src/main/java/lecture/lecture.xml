@@ -6,11 +6,10 @@
   	<insert id="insertClass" parameterType="lecture.LectureDataBean">
   		insert into lecture values(LEC_NUM_SEQ.nextval,
   			#{id},#{sub},#{cate},#{con},#{img},#{intr},#{thu},default)
-  	
   	</insert>
   	<select id="getLecNum" resultType="int">
   		select last_number from user_sequences 
-			where sequence_name='LEC_NUM_SEQ';
+			where sequence_name='LEC_NUM_SEQ'
   	</select>
 
 	<delete id="deleteMember" parameterType="String">
@@ -41,11 +40,14 @@
  	</insert>
 
  	<select id="getClassList" resultType="lecture.LectureDataBean">
- 		select img,sub,con,lec_num from lecture where sta=1
+ 		select * from lecture
  	</select>
  	
  	<select id="getTutorClassCount" parameterType="String" resultType="int">
  		select count(*) from tutor where id=#{id}
  	</select>
+ 	<insert id="insertClass2" parameterType="lecde.LecdeDataBean">
+ 		insert into lecde values(#{lec_num},#{lv, jdbcType=VARCHAR},#{pri, jdbcType=INTEGER},#{cap, jdbcType=INTEGER},#{adr, jdbcType=VARCHAR},#{be, jdbcType=VARCHAR},#{fin, jdbcType=VARCHAR})
+ 	</insert>
  </mapper>
 
