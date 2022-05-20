@@ -21,6 +21,7 @@
  	<select id="getMember" parameterType="String" resultType="lecmem.LecmemDataBean">
  		  select * from lecmem where id = #{id}	
  	</select>
+
  	<select id="getTutor" parameterType="String" resultType="tutor.TutorDataBean">
  		select * from tutor where id = #{id}
  	</select>
@@ -30,4 +31,8 @@
  	<insert id="insertTutor" parameterType="tutor.TutorDataBean">
  		insert into tutor values(#{id}, #{pro, jdbcType=VARCHAR}, #{info, jdbcType=VARCHAR},#{acc, jdbcType=VARCHAR})
  	</insert>
-  </mapper>
+
+ 	<select id="getClassList" resultType="lecture.LectureDataBean">
+ 		select img,sub,con,lec_num from lecture where sta=1
+ 	</select>
+ </mapper>

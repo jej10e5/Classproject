@@ -1,5 +1,7 @@
 package lecture;
 
+import java.util.List;
+
 import lecmem.LecmemDataBean;
 import tutor.TutorDataBean;
 
@@ -60,7 +62,7 @@ public class LectureDBBean implements LectureDao{
 	public LecmemDataBean getMember(String id) {	
 		return SqlMapClient.getSession().selectOne("Lecture.getMember",id);	
 	  }
-	
+
 	public TutorDataBean getTutor(String id) {
 		return SqlMapClient.getSession().selectOne("Lecture.getTutor",id);
 	}
@@ -71,5 +73,11 @@ public class LectureDBBean implements LectureDao{
 	@Override
 	public int insertTutor(TutorDataBean dto) {
 		return SqlMapClient.getSession().insert("Lecture.insertTutor",dto);
+
+	@Override
+	public List<LectureDataBean> getClassList() {
+		// TODO Auto-generated method stub
+		return SqlMapClient.getSession().selectList("Lecture.getClassList");
+
 	}
 }
