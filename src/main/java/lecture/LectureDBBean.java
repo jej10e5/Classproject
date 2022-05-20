@@ -59,6 +59,12 @@ public class LectureDBBean implements LectureDao{
 	
 	}
 	
+	@Override
+	public int deleteMember(String id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 	public LecmemDataBean getMember(String id) {	
 		return SqlMapClient.getSession().selectOne("Lecture.getMember",id);	
 	  }
