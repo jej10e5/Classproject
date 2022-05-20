@@ -108,7 +108,8 @@
 			<div id="tutor_main_margin">
 				<div id="tutor_top_topic">
 					<h3 class="topic">강의</h3>
-					<a href="/ClassProject/class365/createClassForm1.jsp" style="color:inherit;">
+					
+					<a href="createClassForm1.do" style="color:inherit;">
 						<button id="make_class_btn">
 							<span id="inher_span">
 								<span id="btn_icon_span">
