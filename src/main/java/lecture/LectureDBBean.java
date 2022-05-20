@@ -64,12 +64,12 @@ public class LectureDBBean implements LectureDao{
 	public String classLevel(int Lv) {
 		String Level = "";
 		if(Lv==1) {
-			Level = "ÃÊ±ÞÀÚ";
+			Level = "ï¿½Ê±ï¿½ï¿½ï¿½";
 			
 		}else if(Lv==2) {
-			Level = "Áß±ÞÀÚ";
+			Level = "ï¿½ß±ï¿½ï¿½ï¿½";
 		}else if(Lv==3) {
-			Level = "»ó±ÞÀÚ";
+			Level = "ï¿½ï¿½ï¿½ï¿½ï¿½";
 		}
 		
 		
@@ -82,7 +82,7 @@ public class LectureDBBean implements LectureDao{
 		int month = (int)SqlMapClient.getSession().selectOne("Lecture.calcMonth",lec_num);
 		
 		return month;
-	}// fin-be ÇØ¼­ ÃÑ °³¿ù¼ö °è½Ñ ÇÔ¼ö
+	}// fin-be ï¿½Ø¼ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
 	public LecmemDataBean getMember(String id) {	
 		return SqlMapClient.getSession().selectOne("Lecture.getMember",id);	
 	  }
@@ -94,6 +94,7 @@ public class LectureDBBean implements LectureDao{
 	public int modifyTutor(TutorDataBean dto) {
 		return SqlMapClient.getSession().update("Lecture.modifyTutor",dto);
 	}
+
 	@Override
 	public int insertTutor(TutorDataBean dto) {
 		return SqlMapClient.getSession().insert("Lecture.insertTutor",dto);
@@ -104,6 +105,7 @@ public class LectureDBBean implements LectureDao{
 
 	}
 	@Override
+
 	public LectureDataBean getLecture(int lec_num) {
 		return SqlMapClient.getSession().selectOne("Lecture.getLecture",lec_num);
 	}
@@ -112,5 +114,10 @@ public class LectureDBBean implements LectureDao{
 		return SqlMapClient.getSession().selectOne("Lecture.getLecde",lec_num);
 	}
 	
+
+
+	public int getCreateTutor(String id) {
+		return SqlMapClient.getSession().selectOne("Lecture.getTutorClassCount",id);
+	}
 
 }

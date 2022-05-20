@@ -11,7 +11,7 @@
 			//<!--
 			erroralert( createerror );
 			//-->
-		</script>
+		</script> 
 </c:if>
 <c:if test="${result ne 0}">
 <%

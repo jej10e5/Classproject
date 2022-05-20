@@ -2,12 +2,16 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
   <mapper namespace="Lecture">
   	<insert id="insertClass" parameterType="lecture.LectureDataBean">
   		insert into lecture values(LEC_NUM_SEQ.nextval,
   			#{id},#{sub},#{cate},#{con},#{img},#{intr},#{thu},default)
+  	
   	</insert>
+
+	<delete id="deleteMember" parameterType="String">
+		delete from member where id=#{id}
+	</delete>
   	<insert id="insertMember" parameterType="lecmem.LecmemDataBean">
   		insert into lecmem values(
   			#{id},#{passwd},#{email},#{tel})
@@ -35,6 +39,7 @@
  	<select id="getClassList" resultType="lecture.LectureDataBean">
  		select img,sub,con,lec_num from lecture where sta=1
  	</select>
+
  	<select id="getLecture" parameterType="int" resultType="lecture.lectureDataBean">
  	 	select * from lecture where lec_num=#{lec_num}
  	</select>
@@ -44,4 +49,10 @@
  	<select id="calcMonth" resultType="double" parameterType="int">
  		select months_between(fin,be) from lecde where lec_num=#{lec_num}
  	</select>
+
+ 	
+ 	<select id="getTutorClassCount" parameterType="String" resultType="int">
+ 		select count(*) from tutor where id=#{id}
+ 	</select>
  </mapper>
+
