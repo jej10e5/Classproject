@@ -128,4 +128,15 @@ public class LectureDBBean implements LectureDao{
 		return SqlMapClient.getSession().selectOne("Lecture.getTutorClassCount",id);
 	}
 
+	@Override
+	public int getLecNum() {
+		// TODO Auto-generated method stub
+		return SqlMapClient.getSession().selectOne("Lecture.getLecNum");
+	}
+	@Override
+	public int createClass2(LecdeDataBean dto) {
+		// TODO Auto-generated method stub
+		return SqlMapClient.getSession().insert("Lecture.insertClass2",dto);
+	}
+
 }

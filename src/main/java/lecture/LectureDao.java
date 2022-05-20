@@ -27,6 +27,9 @@ public interface LectureDao {
 
 	
 	public int getCreateTutor(String id);
+	public int getLecNum();
+	
+	public int createClass2(LecdeDataBean dto);
 
 
 }

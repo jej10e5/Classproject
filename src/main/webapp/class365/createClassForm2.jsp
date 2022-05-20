@@ -20,25 +20,27 @@ body{
 <body>
 <jsp:include page="header.jsp"/>
 <div class="container" >
+	<h2>강의번호 : ${param.lec_num}</h2>
         <div class="card" style="padding:3%;">
                <p class="c_font_main cc_black">
                ${sessionScope.memid}님의 강의 생성 - 상세정보</p>   
               <div class="tab-content pt-3">
                 <div class="tab-pane active">
-                  <form class="form" name="createform" enctype="multipart/form-data" method="post" 
-                  action="createClassPro2.do" onsubmit="return createcheck()">
+                  <form class="form" name="createform" method="post" 
+                  action="createClassPro2.do?lec_num=${param.lec_num}" onsubmit="return createcheck()">
+                    
                     <div class="row">
                       <div class="col">
                         <div class="row">
                           <div class="col-md-4">
                             <div class="form-group">
                               <label>가격*</label>
-                              <input class="form-control" type="number" name="price" placeholder="가격을 입력하세요." required>
+                              <input class="form-control" type="number" name="pri" placeholder="가격을 입력하세요." required>
                             </div>
                           </div>
                           <div class="col-md-4">
                           	<label>난이도*</label>
-									<select name="level" class="form-control" aria-label="Default select example" required>
+									<select name="lv" class="form-control" aria-label="Default select example" required>
   										<option value=0>난이도</option>
   										<option value="입문자">입문자</option>
  										<option value="초급자">초급자</option>
@@ -51,32 +53,29 @@ body{
                         	<div class="col-md-4">
                             <div class="form-group">
                               <label>최대인원*</label>
-                              <input class="form-control" type="number" name="capacity" placeholder="최대인원을 입력하세요." required>
+                              <input class="form-control" type="number" name="cap" placeholder="최대인원을 입력하세요." required>
                             </div>
                           </div>
                         </div>
 						<div class="row">
                           <div class="col-md-4">
                           	<label>강의시작일*</label>
-								<input class="form-control" type="date" name="begin" placeholder="강의시작일" required>
+								<input class="form-control" id="date" type="date" name="be" required>
 							</div>
                          <div class="col-md-4">
-                          	<label>강의시작일*</label>
-							<input class="form-control" type="date" name="begin" placeholder="강의시작일" required>
-							</div>
-                         </div>
-                        <div class="row">
-                        	<div class="col-md-4">
-                        	<label>강의 열리는 곳*</label>
-							<input class="form-control" type="date" name="begin" placeholder="강의시작일" required>
+                          	<label>강의마지막날*</label>
+							<input class="form-control" type="date" name="fin" required> 
 							</div>
 
-						</div>
+                         </div>
                          <div class="row">
-                         	<div class="col">
-                         	<input type="text" id="address_kakao" name="address" readonly />
-                         	<input type="text" name="address_detail" />
-                      		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+                         	<div class="col-md-4">
+                         	<label>강의 열리는 곳*</label>
+                         	<input class="form-control" type="text" id="address_kakao" name="adr" readonly />
+                         	</div>
+                         	<div class="col-md-4">
+                         	<!-- 주소 가져오는 api -->
+                         	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 								<script>
 								window.onload = function(){
 								    document.getElementById("address_kakao").addEventListener("click", function(){ //주소입력칸을 클릭하면
@@ -84,7 +83,7 @@ body{
 								        new daum.Postcode({
 								            oncomplete: function(data) { //선택시 입력값 세팅
 								                document.getElementById("address_kakao").value = data.address; // 주소 넣기
-								                document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
+								                //document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
 								            }
 								        }).open();
 								    });
@@ -105,6 +104,7 @@ body{
 			</div>				
 		</div>
 	</div>
+</div>
 
 <!-- bootstrap ver4.6 JS -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

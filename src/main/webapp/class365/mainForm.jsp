@@ -75,11 +75,11 @@
       <span class="sr-only">Next</span>
     </button>
   </div>
-  
+   
 <!-- main lecture list section --> 
 	<div class="container mg_zero" style="max-width:fit-content;"> 
 		<div class="row">   
-		<c:set var="imagepath" value="/ClassProject/classImage/"/>
+		
 		<c:forEach var="dto" items="${dtos}">
 			<div class="col-lg-3 col-md-6" style="margin:2% 0; ">
 				<div class="card" style="height:500px"> 
