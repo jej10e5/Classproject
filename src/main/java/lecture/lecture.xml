@@ -31,7 +31,7 @@
 
  	<select id="getTutor" parameterType="String" resultType="tutor.TutorDataBean">
  		select * from tutor where id = #{id}
- 	</select>
+ 	</select> 
  	<update id="modifyTutor" parameterType="tutor.TutorDataBean">
  		update tutor set pro=#{pro, jdbcType=VARCHAR}, info=#{info, jdbcType=VARCHAR}, acc=#{acc, jdbcType=VARCHAR} where id=#{id}
  	</update>
@@ -40,9 +40,9 @@
  	</insert>
 
  	<select id="getClassList" resultType="lecture.LectureDataBean">
- 		select * from lecture
- 	</select>
-
+ 		select * from lecture where sta=1
+ 	</select> 
+ 
  	<select id="getLecture" parameterType="int" resultType="lecture.LectureDataBean">
  	 	select * from lecture where lec_num=#{lec_num}
  	</select>
@@ -53,12 +53,14 @@
  		select round (months_between(fin,be)) from lecde where lec_num=#{lec_num}
  	</select>
 
- 	
  	<select id="getTutorClassCount" parameterType="String" resultType="int">
  		select count(*) from tutor where id=#{id}
  	</select>
  	<insert id="insertClass2" parameterType="lecde.LecdeDataBean">
  		insert into lecde values(#{lec_num},#{lv, jdbcType=VARCHAR},#{pri, jdbcType=INTEGER},#{cap, jdbcType=INTEGER},#{adr, jdbcType=VARCHAR},#{be, jdbcType=VARCHAR},#{fin, jdbcType=VARCHAR})
  	</insert>
+ 	<update id="updateFinClass" parameterType="int">
+ 		update lecture set sta=1 where lec_num=#{lec_num}
+ 	</update>
  </mapper>
 
