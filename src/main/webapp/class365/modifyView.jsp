@@ -43,18 +43,24 @@
 			</tr>
 			<tr>
 				<th> 이메일 </th>	
-				<td> &nbsp;${dto.email} </td>				
+				<td>
+					<input class="input" type="email" name="email" maxlength="20"
+						value="${dto.email}"> 
+				</td>			
 			</tr>
 			<tr>
 				<th> 전화번호 </th>	
-				<td> &nbsp;${dto.tel} </td>				
+				<td>
+					<input class="input" type="text" name="tel" maxlength="20"
+						value="${dto.tel}"> 
+				</td>				
 			</tr>
 			<tr>
 				<th colspan="2">
 					<input class="inputbutton" type="submit" value="수정">
 					<input class="inputbutton" type="reset" value="탈퇴">
 					<input class="inputbutton" type="button" value="수정취소"
-						onclick="location='main.do'">
+						onclick="location='mainForm.do'">
 				</th>
 			</tr>			
 		</table>		

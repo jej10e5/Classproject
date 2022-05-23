@@ -156,9 +156,7 @@ public class LectureDBBean implements LectureDao{
 		return SqlMapClient.getSession().update("Lecture.updateFinClass",lec_num);
 
 	}
-	@Override
 	public int modifyMember(LecmemDataBean dto) {
-		return 0;
+		return SqlMapClient.getSession().update( "Lecture.modifyMember", dto );
 	}
-
 }

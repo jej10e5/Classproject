@@ -62,5 +62,9 @@
  	<update id="updateFinClass" parameterType="int">
  		update lecture set sta=1 where lec_num=#{lec_num}
  	</update>
+ 	<update id="modifyMember" parameterType="lecmem.LecmemDataBean">
+		update lecmem set passwd=#{passwd}, 
+		tel=#{tel, jdbcType=VARCHAR}, email=#{email, jdbcType=VARCHAR} where id=#{id}
+	</update>	
  </mapper>
 
