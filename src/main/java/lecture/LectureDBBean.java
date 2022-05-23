@@ -150,11 +150,15 @@ public class LectureDBBean implements LectureDao{
 		int m_cost = price*month;
 				
 		return m_cost;
-
+	}
 	public int finClass(int lec_num) {
 		// TODO Auto-generated method stub
 		return SqlMapClient.getSession().update("Lecture.updateFinClass",lec_num);
 
+	}
+	@Override
+	public int modifyMember(LecmemDataBean dto) {
+		return 0;
 	}
 
 }
