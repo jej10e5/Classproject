@@ -16,8 +16,8 @@ public class ModifyFormHandler implements CommandHandler {
 
 	@RequestMapping( "/modifyForm" )
 	@Override
-	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {		
+		
 		return new ModelAndView( "class365/modifyForm" );
 	}
 }

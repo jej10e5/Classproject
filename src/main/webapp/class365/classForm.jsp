@@ -127,7 +127,7 @@ $(document).ready(function($) {
 	 				  		</div>
 	 				  		<div class="tut_text">
 	 				  		<c:if test="${dtt.info eq null or dtt.info eq ''}"> 
-	 				  			<p class="tut_text_area">
+	 				  			<pre class="tut_text_area">
 	 				  			아
 	 				  			<br>
 	 				  			아
@@ -159,7 +159,7 @@ $(document).ready(function($) {
 								나의 단점과 장점을 직접적으로 듣고 느낄 수 있는 경험도 해보실 수 있습니다.
 								<br>
 								좋은 음악으로 좋은 인연 이어가고 싶습니다. 감사합니다.
-	 				  			</p>
+	 				  			</pre>
 	 				  			</c:if>
 	 				  			<c:if test="${dtt.info ne null and dtt.info ne ''}">
 	 				  				${dtt.info}
@@ -178,7 +178,7 @@ $(document).ready(function($) {
 	 						  <div class="sub_div">
 		 						<div class="tut_text">
 		 							<c:if test="${dto.con eq null or dto.con eq ''}">
-		 							<p class="tut_text_area">
+		 							<pre class="tut_text_area">
 		 								#진행방식
 										1) 원데이 클래스 (오프라인)
 											<br>
@@ -225,7 +225,7 @@ $(document).ready(function($) {
 											<br>
 										◾ 일상 영어회화
 											<br>
-		 							</p>
+		 							</pre>
 		 							</c:if>
 		 							<c:if test="${dto.con ne null and dto.con ne ''}">
 		 								${dto.con }

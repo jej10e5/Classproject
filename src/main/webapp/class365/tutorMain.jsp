@@ -225,8 +225,7 @@
 							</th>
 						</tr>	
 						</c:forEach>					
-					</table>
-						
+					</table>	
 				</div>
 			</div>
 			
