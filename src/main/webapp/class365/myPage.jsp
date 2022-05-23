@@ -204,12 +204,12 @@ ul.online-users {
         <div class="col-md-4 static">
             <div class="profile-card">
                 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" class="profile-photo">
-            	<h5><a href="#" class="text-white">Sarah Cruiz</a></h5>
-            	<a href="#" class="text-white"><i class="fa fa-user"></i> 1,299 followers</a>
+            	<h5><a href="#" class="text-white">${memid} 님 안녕하세요 </a></h5>
+            	
             </div><!--profile card ends-->
             <ul class="nav-news-feed">
               <li><i class="fa fa-list-alt icon1"></i><div><a href="#">내 강의</a></div></li>
-              <li><i class="fa fa-users icon2"></i><div><a href="#">내 정보 수정</a></div></li>
+              <li><i class="fa fa-users icon2"></i><div><a href="modifyForm.do">내 정보 수정</a></div></li>
               <li><i class="fa fa-user icon3"></i><div><a href="deleteForm.do" >회원 탈퇴</a></div></li>
              
            

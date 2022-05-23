@@ -11,9 +11,8 @@
   		select last_number from user_sequences 
 			where sequence_name='LEC_NUM_SEQ'
   	</select>
-
 	<delete id="deleteMember" parameterType="String">
-		delete from member where id=#{id}
+		delete from lecmem where id=#{id}
 	</delete>
   	<insert id="insertMember" parameterType="lecmem.LecmemDataBean">
   		insert into lecmem values(
@@ -38,11 +37,9 @@
  	<insert id="insertTutor" parameterType="tutor.TutorDataBean">
  		insert into tutor values(#{id}, #{pro, jdbcType=VARCHAR}, #{info, jdbcType=VARCHAR},#{acc, jdbcType=VARCHAR})
  	</insert>
-
  	<select id="getClassList" resultType="lecture.LectureDataBean">
  		select * from lecture where sta=1
  	</select> 
- 
  	<select id="getLecture" parameterType="int" resultType="lecture.LectureDataBean">
  	 	select * from lecture where lec_num=#{lec_num}
  	</select>
@@ -57,14 +54,65 @@
  		select count(*) from tutor where id=#{id}
  	</select>
  	<insert id="insertClass2" parameterType="lecde.LecdeDataBean">
- 		insert into lecde values(#{lec_num},#{lv, jdbcType=VARCHAR},#{pri, jdbcType=INTEGER},#{cap, jdbcType=INTEGER},#{adr, jdbcType=VARCHAR},#{be, jdbcType=VARCHAR},#{fin, jdbcType=VARCHAR})
+ 		insert into lecde values(#{lec_num},#{lv, jdbcType=VARCHAR},#{pri, jdbcType=INTEGER},#{cap, jdbcType=INTEGER}
+ 		,#{adr, jdbcType=VARCHAR},#{be, jdbcType=VARCHAR},#{fin, jdbcType=VARCHAR})
  	</insert>
  	<update id="updateFinClass" parameterType="int">
  		update lecture set sta=1 where lec_num=#{lec_num}
  	</update>
+
  	<insert id="insertTutee" parameterType="tutee.TuteeDataBean">
  		insert into tutee (id,lec_num) values(#{id},#{lec_num})
  	</insert>
  	
+
+
+ 	<select id="getTutorClass" parameterType="String" resultType="lecturede.LectureDeDataBean">
+ 		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
+ 		from lecture l
+ 		full outer join lecde d
+ 		on l.lec_num=d.lec_num
+        where l.id=#{id}
+        order by l.lec_num desc
+ 	</select>
+ 	<select id="getOriginClass" parameterType="int" resultType="lecture.LectureDataBean">
+ 		select * from lecture where lec_num=#{lec_num}
+ 	</select>
+ 	<update id="updateClass" parameterType="lecture.LectureDataBean">
+ 		update lecture set sub=#{sub, jdbcType=VARCHAR}, cate=#{cate, jdbcType=VARCHAR}, con=#{con, jdbcType=VARCHAR}
+ 		where lec_num=#{lec_num}
+ 	</update>
+ 	<update id="updateClassImg" parameterType="lecture.LectureDataBean">
+ 		update lecture set img=#{img, jdbcType=VARCHAR} where lec_num=#{lec_num}
+ 	</update>
+ 	<update id="updateClassThumb" parameterType="lecture.LectureDataBean">
+ 		update lecture set thu=#{thu, jdbcType=VARCHAR} where lec_num=#{lec_num}
+ 	</update>
+ 	<select id="getOriginClassde" parameterType="int" resultType="lecde.LecdeDataBean">
+ 		select * from lecde where lec_num=#{lec_num}
+ 	</select>
+ 	<update id="updateClassDe" parameterType="lecde.LecdeDataBean">
+ 		update lecde set lv=#{lv,jdbcType=VARCHAR},pri=#{pri, jdbcType=INTEGER}
+ 		,cap=#{cap, jdbcType=INTEGER},adr=#{adr, jdbcType=VARCHAR}
+ 		,be=#{be, jdbcType=VARCHAR},fin=#{fin, jdbcType=VARCHAR}
+ 		where lec_num=#{lec_num}
+ 	</update>
+ 	<select id="checkOriginClassde" parameterType="int" resultType="int">
+ 		select count(*) from lecde where lec_num=#{lec_num}
+ 	</select>
+
+ 	<delete id="deleteClass" parameterType="int">
+ 		delete from lecture where lec_num=#{lec_num}
+ 	</delete>
+ 	<update id="updateInactive" parameterType="int">
+ 		update lecture set sta=2 where lec_num=#{lec_num}
+ 	</update>
+
+
+ 	<update id="modifyMember" parameterType="lecmem.LecmemDataBean">
+		update lecmem set passwd=#{passwd}, 
+		tel=#{tel, jdbcType=VARCHAR}, email=#{email, jdbcType=VARCHAR} where id=#{id}
+	</update>	
+
  </mapper>
 

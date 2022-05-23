@@ -31,6 +31,6 @@ public class DeleteProHandler implements CommandHandler {
 			request.setAttribute( "result", result );
 		}		
 		
-		return new ModelAndView( "member/deletePro" );
+		return new ModelAndView( "class365/deletePro" );
 	}
 }

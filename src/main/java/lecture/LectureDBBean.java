@@ -8,6 +8,7 @@ import java.util.List;
 import lecde.LecdeDataBean;
 import lecmem.LecmemDataBean;
 import tutee.TuteeDataBean;
+import lecturede.LectureDeDataBean;
 import tutor.TutorDataBean;
 
 public class LectureDBBean implements LectureDao{
@@ -64,11 +65,10 @@ public class LectureDBBean implements LectureDao{
 	
 	}
 	
-	@Override
+	
 
-	public int deleteMember(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteMember( String id ) {		
+		return SqlMapClient.getSession().delete( "Lecture.deleteMember", id );
 	}
 	
 	
@@ -136,10 +136,10 @@ public class LectureDBBean implements LectureDao{
 	public int insertTutor(TutorDataBean dto) {
 		return SqlMapClient.getSession().insert("Lecture.insertTutor",dto);
 	}
-	@Override 
+	@Override
 	public List<LectureDataBean> getClassList() {
+		// TODO Auto-generated method stub
 		return SqlMapClient.getSession().selectList("Lecture.getClassList");
-
 	}
 	@Override
 
@@ -186,6 +186,53 @@ public class LectureDBBean implements LectureDao{
 
 	
 		return SqlMapClient.getSession().insert("Lecture.insertTutee",dto);
+	}
+
+	@Override
+	public List<LectureDeDataBean> getTutorClass(String id) { 
+		return SqlMapClient.getSession().selectList("Lecture.getTutorClass",id);
+	}
+	@Override
+	public LectureDataBean getOriginClass(int lec_num) {
+		return SqlMapClient.getSession().selectOne("Lecture.getOriginClass",lec_num);
+	}
+	@Override
+	public int modifyClass(LectureDataBean dto) {
+		return SqlMapClient.getSession().update("Lecture.updateClass",dto);
+	}
+	@Override
+	public int modifyClassImg(LectureDataBean dto) {
+		// TODO Auto-generated method stub
+		return SqlMapClient.getSession().update("Lecture.updateClassImg",dto);
+	}
+	@Override
+	public int modifyClassThumb(LectureDataBean dto) {
+		// TODO Auto-generated method stub
+		return  SqlMapClient.getSession().update("Lecture.updateClassThumb",dto);
+	}
+	@Override
+	public LecdeDataBean getOriginClassde(int lec_num) {
+		return SqlMapClient.getSession().selectOne("Lecture.getOriginClassde",lec_num);
+	}
+	@Override
+	public int modifyClassde(LecdeDataBean dto) {
+		return SqlMapClient.getSession().update("Lecture.updateClassDe",dto);
+	}
+	@Override
+	public int checkOriginClassde(int lec_num) {
+		return SqlMapClient.getSession().selectOne("Lecture.checkOriginClassde",lec_num);
+	}
+	@Override
+	public int deleteClass(int lec_num) {
+		return SqlMapClient.getSession().delete("Lecture.deleteClass",lec_num);
+	}
+	@Override
+	public int inactiveClass(int lec_num) {
+		return SqlMapClient.getSession().update("Lecture.updateInactive",lec_num);
+	}
+
+	public int modifyMember(LecmemDataBean dto) {
+		return SqlMapClient.getSession().update( "Lecture.modifyMember", dto );
 	}
 
 }
