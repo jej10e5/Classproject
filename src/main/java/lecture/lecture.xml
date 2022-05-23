@@ -61,6 +61,12 @@
  		update lecture set sta=1 where lec_num=#{lec_num}
  	</update>
 
+ 	<insert id="insertTutee" parameterType="tutee.TuteeDataBean">
+ 		insert into tutee (id,lec_num) values(#{id},#{lec_num})
+ 	</insert>
+ 	
+
+
  	<select id="getTutorClass" parameterType="String" resultType="lecturede.LectureDeDataBean">
  		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
  		from lecture l
