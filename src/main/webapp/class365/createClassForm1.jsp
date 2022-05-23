@@ -87,7 +87,7 @@ function setThumbPreview(event) {
                               <label>강의 요약</label>
                               <textarea class="form-control" rows="3" 
                               name="lec_intr" placeholder="강의 요약 내용을 입력하세요." 
-                              maxlength="300"></textarea>
+                              maxlength="51"></textarea>
                             </div>
                           </div>
                         </div>

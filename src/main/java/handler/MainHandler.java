@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import lecture.LectureDao;
-import lecture.LectureDataBean;
 import lecturede.LectureDeDataBean;
 @Controller
 public class MainHandler implements CommandHandler {
