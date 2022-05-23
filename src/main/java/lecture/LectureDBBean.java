@@ -111,7 +111,7 @@ public class LectureDBBean implements LectureDao{
 	public int insertTutor(TutorDataBean dto) {
 		return SqlMapClient.getSession().insert("Lecture.insertTutor",dto);
 	}
-	@Override
+	@Override 
 	public List<LectureDataBean> getClassList() {
 		return SqlMapClient.getSession().selectList("Lecture.getClassList");
 
@@ -144,11 +144,17 @@ public class LectureDBBean implements LectureDao{
 		return SqlMapClient.getSession().insert("Lecture.insertClass2",dto);
 	}
 	@Override
+
 	public int calcMaxCost(LecdeDataBean dto, int month) {
 		int price = dto.getPri();
 		int m_cost = price*month;
 				
 		return m_cost;
+
+	public int finClass(int lec_num) {
+		// TODO Auto-generated method stub
+		return SqlMapClient.getSession().update("Lecture.updateFinClass",lec_num);
+
 	}
 
 }

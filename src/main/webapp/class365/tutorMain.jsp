@@ -108,6 +108,7 @@
 			<div id="tutor_main_margin">
 				<div id="tutor_top_topic">
 					<h3 class="topic">강의</h3>
+
 					<a href="createClassForm1.do" style="color:inherit;">
 						<button id="make_class_btn">
 							<span id="inher_span">

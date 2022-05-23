@@ -75,7 +75,7 @@
         <a class="nav-link cc_orange c_font_category" href="tutorMain.do">${menu_creator}</a>
       </li>
       <li class="nav-item my-2 my-lg-0">
-        <a class="nav-link cc_purple c_font_category" href="#">${menu_mypage}</a>
+        <a class="nav-link cc_purple c_font_category" href="myPage.do">${menu_mypage}</a>
       </li>
       <li class="nav-item my-2 my-lg-0"> 
         <a class="nav-link cc_gray c_font_category" href="logout.do">${menu_logout}</a>
