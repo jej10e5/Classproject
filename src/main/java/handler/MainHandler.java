@@ -20,9 +20,8 @@ public class MainHandler implements CommandHandler {
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		
 		List<LectureDataBean> dtos = lectureDao.getClassList();
 		request.setAttribute("dtos", dtos);
-		return new ModelAndView("class365/mainForm");
+		return new ModelAndView("class365/mainForm"); 
 	}
 }

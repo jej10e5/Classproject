@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lecde.LecdeDataBean;
 import lecture.LectureDao;
-
+ 
 @Controller
 public class CreateClassPro2Handler implements CommandHandler{
 	@Resource
@@ -27,7 +27,6 @@ public class CreateClassPro2Handler implements CommandHandler{
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
-		
 		LecdeDataBean dto = new LecdeDataBean();
 		int lec_num=Integer.parseInt(request.getParameter("lec_num"));
 //		String lv="≥≠¿Ãµµ";
