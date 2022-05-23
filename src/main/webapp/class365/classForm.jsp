@@ -329,7 +329,14 @@ $(document).ready(function($) {
  							<div id="box_mid">
  								<div id="box_mprice">
  									<div id="mon_price">
+ 										<c:if test="${month gt 1}">
  										<h4 font-weight="700" id="m_price">월 ${dcd.pri}원</h4>
+ 										</c:if>
+ 										<c:if test="${month le 1}">
+ 										<h4 style="font-size: 11px;font-weight: 500; color: rgb(162, 162, 162); line-height: 20px; letter-spacing: -0.5; margin: 0px;">1개월 미만은 분할결제를 지원하지 않습니다.</h4>
+ 										</c:if>
+ 										
+ 										
  									</div>
  								</div>								
  							</div>
@@ -360,8 +367,11 @@ $(document).ready(function($) {
 	 						<c:if test="${month gt 1 }">
 	 						  <input class="range-slider_range" type="range" value="${month}" min="1" max="${month}">
 	 						  <span class="result" style="font-wight:500; color:#fd3049;">${month}개월</span>
-		 						  </c:if>
-	 			
+		 					</c:if>
+	 						<c:if test="${month le 1}">
+
+	 						<span class="result" style="font-wight:500; color:#fd3049;">${days}일</span>
+	 						</c:if>
 	 						  <!-- 여기 -->
 	 						  
 	 						  
@@ -374,7 +384,13 @@ $(document).ready(function($) {
  								</div>
  								
 	 							<div id="box_total">
+	 							<c:if test="${month gt 1 }">
 	 								<span color="#fd3049" font-weight="700" id="total_price">${dcd.pri*month}원</span>
+	 							</c:if>
+	 							<c:if test="${month le 1}">
+	 								<span color="#fd3049" font-weight="700" id="total_price">${dcd.pri}원</span>
+	 							</c:if>
+	 							
 	 							</div>
 	 						</div>	
 	 					
@@ -385,13 +401,21 @@ $(document).ready(function($) {
 	 							</button>
 	 						</c:if>
 	 							<c:if test="${memid ne  null  and memid ne ''}">
-	 							<form action="payForm.do" method="get">
+	 							<c:if test="${month gt 1}">
+	 							<form action="payForm.do" method="post">
 	 							<input type="hidden" name="month" value="" id="pay_month">
 	 							<input type="hidden" name="cost" value="${m_cost}" id="cost">
+	 							<input type="hidden" name="lec_num" value="${lec_num}">
+	 							<input type="submit" id="buy_btn" value="결제하기">	 							 						
+	 							</form>
+	 							</c:if>
+	 							<c:if test="${month le 1}">
+	 							<form action="payForm.do" method="post">
+	 							<input type="hidden" name="cost" value="${dcd.pri}">
 	 							<input type="hidden" name="lec_num" value="${dto.lec_num}">
 	 							<input type="submit" id="buy_btn" value="결제하기">
-	 							 						
-	 							</form>
+	 							</form>	
+	 							</c:if>	 							
 	 						</c:if>
 	 					 		 <script type="text/javascript">
 								//<!--
