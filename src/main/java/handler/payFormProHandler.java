@@ -27,12 +27,7 @@ public class payFormProHandler implements CommandHandler{
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	String id= (String)request.getParameter("id");
 	int lec_num= Integer.parseInt(request.getParameter("lec_num"));
-	
-	
-	
-	
-	
-	
+
 	
 	TuteeDataBean dto = new TuteeDataBean();
 	dto.setId(id);
