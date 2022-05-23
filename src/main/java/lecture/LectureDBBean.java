@@ -137,7 +137,7 @@ public class LectureDBBean implements LectureDao{
 		return SqlMapClient.getSession().insert("Lecture.insertTutor",dto);
 	}
 	@Override
-	public List<LectureDataBean> getClassList() {
+	public List<LectureDeDataBean> getClassList() {
 		// TODO Auto-generated method stub
 		return SqlMapClient.getSession().selectList("Lecture.getClassList");
 	}

@@ -69,7 +69,8 @@ function setThumbPreview(event) {
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>강의명</label>
-                              <input class="form-control" type="text" name="lec_sub" placeholder="강의명을 입력하세요."
+                              <input class="form-control" type="text" name="lec_sub" 
+                              placeholder="강의명을 입력하세요."
                               	value="${dto.sub}">
                             </div>
                           </div>
@@ -99,7 +100,7 @@ function setThumbPreview(event) {
                             <div class="form-group">
                               <label>강의 요약</label>
                               <textarea class="form-control" rows="3" 
-                              name="lec_intr" placeholder="강의 요약 내용을 입력하세요." 
+                              name="lec_intr" placeholder="강의 요약 내용을 입력하세요."
                               maxlength="300">${dto.intr}</textarea>
                             </div>
                           </div>
@@ -133,7 +134,6 @@ function setThumbPreview(event) {
 		                        <span>사진 업로드</span>
 		                     </label>
 		                      <input style="visibility:hidden;" accept="image/*" type="file" id="file1"name="img"
-		                     
 		                       onchange="setImagePreview(event);">
 		                    </div>
 		                  </div>

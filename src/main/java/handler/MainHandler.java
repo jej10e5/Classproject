@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lecture.LectureDao;
 import lecture.LectureDataBean;
+import lecturede.LectureDeDataBean;
 @Controller
 public class MainHandler implements CommandHandler {
 	@Resource
@@ -20,7 +21,7 @@ public class MainHandler implements CommandHandler {
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		List<LectureDataBean> dtos = lectureDao.getClassList();
+		List<LectureDeDataBean> dtos = lectureDao.getClassList();
 		request.setAttribute("dtos", dtos);
 		return new ModelAndView("class365/mainForm"); 
 	}

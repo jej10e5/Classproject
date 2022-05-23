@@ -37,8 +37,13 @@
  	<insert id="insertTutor" parameterType="tutor.TutorDataBean">
  		insert into tutor values(#{id}, #{pro, jdbcType=VARCHAR}, #{info, jdbcType=VARCHAR},#{acc, jdbcType=VARCHAR})
  	</insert>
- 	<select id="getClassList" resultType="lecture.LectureDataBean">
- 		select * from lecture where sta=1
+ 	<select id="getClassList" resultType="lecturede.LectureDeDataBean">
+ 		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
+ 		from lecture l
+ 		join lecde d
+ 		on l.lec_num=d.lec_num
+ 		where sta=1
+        order by l.lec_num desc
  	</select> 
  	<select id="getLecture" parameterType="int" resultType="lecture.LectureDataBean">
  	 	select * from lecture where lec_num=#{lec_num}
@@ -79,7 +84,8 @@
  		select * from lecture where lec_num=#{lec_num}
  	</select>
  	<update id="updateClass" parameterType="lecture.LectureDataBean">
- 		update lecture set sub=#{sub, jdbcType=VARCHAR}, cate=#{cate, jdbcType=VARCHAR}, con=#{con, jdbcType=VARCHAR}
+ 		update lecture set sub=#{sub, jdbcType=VARCHAR}, cate=#{cate, jdbcType=VARCHAR}
+ 		, con=#{con, jdbcType=VARCHAR}, intr=#{intr, jdbcType=VARCHAR}
  		where lec_num=#{lec_num}
  	</update>
  	<update id="updateClassImg" parameterType="lecture.LectureDataBean">
@@ -107,7 +113,6 @@
  	<update id="updateInactive" parameterType="int">
  		update lecture set sta=2 where lec_num=#{lec_num}
  	</update>
-
 
  	<update id="modifyMember" parameterType="lecmem.LecmemDataBean">
 		update lecmem set passwd=#{passwd}, 
