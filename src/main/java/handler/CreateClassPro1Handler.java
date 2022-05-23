@@ -33,17 +33,11 @@ public class CreateClassPro1Handler implements CommandHandler{
 		// TODO Auto-generated method stub
 
 		String id = (String)request.getSession().getAttribute("memid");		
- 
-
 		LectureDataBean dto = new LectureDataBean();
-
 		String path= request.getSession().getServletContext().getRealPath("/classImage");
 		new File( path ).mkdir();
-
-		
 		MultipartRequest multi = new MultipartRequest(
 				request, path, 1024*1024*5, "utf-8", new DefaultFileRenamePolicy());
-			
 		String sub = multi.getParameter("lec_sub");
 		String con = multi.getParameter("lec_con");
 		String intr = multi.getParameter("lec_intr");

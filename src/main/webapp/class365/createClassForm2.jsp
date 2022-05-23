@@ -41,7 +41,7 @@ body{
                           <div class="col-md-4">
                           	<label>난이도*</label>
 									<select name="lv" class="form-control" aria-label="Default select example" required>
-  										<option value=0>난이도</option>
+  										<option value="">난이도</option>
   										<option value="입문자">입문자</option>
  										<option value="초급자">초급자</option>
   										<option value="중급자">중급자</option>

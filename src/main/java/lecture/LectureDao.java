@@ -4,6 +4,7 @@ import java.util.List;
 
 import lecde.LecdeDataBean;
 import lecmem.LecmemDataBean;
+import lecturede.LectureDeDataBean;
 import tutor.TutorDataBean;
 public interface LectureDao {
 	public int createClass(LectureDataBean dto);
@@ -30,6 +31,13 @@ public interface LectureDao {
 	
 	public int finClass(int lec_num);
 	public int createClass2(LecdeDataBean dto);
-
+	public List<LectureDeDataBean> getTutorClass(String id);
+	public LectureDataBean getOriginClass(int lec_num);
+	public int modifyClass(LectureDataBean dto);
+	public int modifyClassImg(LectureDataBean dto);
+	public int modifyClassThumb(LectureDataBean dto);
+	public LecdeDataBean getOriginClassde(int lec_num);
+	public int modifyClassde(LecdeDataBean dto);
+	public int checkOriginClassde(int lec_num);
 
 }

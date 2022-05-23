@@ -15,7 +15,43 @@
 body{
     background:#f8f8f8
 }
-</style>  
+.profile{
+	overflow:hidden; 
+	display:flex; 
+	width:100%; 
+	height:100%; 
+	object-fit:cover;
+}
+</style> 
+<script type="text/javascript">
+//사진미리보기
+function setImagePreview(event) {
+    var reader = new FileReader();
+
+    reader.onload = function(event) {
+      var img = document.createElement("img");
+      img.setAttribute("src", event.target.result);
+      $("#image_container *").remove();
+      document.querySelector("div#image_container").appendChild(img);
+      $("img").addClass("profile");
+    };
+	
+    reader.readAsDataURL(event.target.files[0]);
+  }
+function setThumbPreview(event) {
+    var reader = new FileReader();
+
+    reader.onload = function(event) {
+      var img = document.createElement("img");
+      img.setAttribute("src", event.target.result);
+      $("#thumb_container *").remove();
+      document.querySelector("div#thumb_container").appendChild(img);
+      $("img").addClass("profile");
+    };
+	
+    reader.readAsDataURL(event.target.files[0]);
+  } 
+</script>
 <body>
 <jsp:include page="header.jsp"/>
 <div class="container" >
@@ -38,7 +74,7 @@ body{
                           <div class="col-md-6">
                           	<label>카테고리*</label>
 									<select name="category" class="form-control" aria-label="Default select example">
-  										<option value=0>카테고리를 선택하세요</option>
+  										<option value="">카테고리를 선택하세요</option>
   										<option value="요리">요리</option>
  										<option value="운동">운동</option>
   										<option value="금융">금융</option>
@@ -66,32 +102,68 @@ body{
                           </div>
                         </div>
                         <!-- 사진업로드 --> 
-                        <div class="row">
-                        	<div class="col">
-	                        	<div class="form-group">
-	                        		<label>Class 사진</label>
-	                        		<input style="display:block;"accept="image/*" type="file" name="img" onchange="setImagePreview(event);" required>
-	                        		<div id="image_container"></div>
-	                        	</div>
-	                        	
-                        	</div>
-                        </div>
-                         <!-- 썸네일업로드 --> 
-                        <div class="row">
-                        	<div class="col">
-	                        	<div class="form-group">
-	                        		<label>Thumb 사진</label>
-	                        		<input style="display:block;"accept="image/*" type="file" name="thumb" onchange="setThumbPreview(event);" required>
-	                        		<div id="thumb_container"></div>
-	                        	</div>
-	                        	
-                        	</div>
-                        </div>
-                        
+                       <div class="class_img">
+                       <h5>Class 사진</h5>
+		              <div class="row">
+		                <div class="col-12 col-sm-auto mb-3">
+		                  <div  class="mx-auto"  style="width: 600px;">
+		                   <div class="pro_img"id="image_container" style="height: 400px;">
+		                    <div id="image_container"class="d-flex justify-content-center align-items-center rounded" 
+		                    style="height: 400px; background-color: rgb(233, 236, 239);">
+                     		 <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">600x400</span>
+		                   	</div>    
+		                    </div>
+		                  </div>
+		                </div>
+		                </div>
+		                <div class="row">
+		                <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+		                  <div class="text-center text-sm-left mb-2 mb-sm-0">
+		                    <div class="mt-2">
+		                     <label class="btn btn-primary" for="file1">             
+		                        <i class="fa fa-fw fa-camera"></i>               
+		                        <span>사진 업로드</span>
+		                     </label>
+		                      <input style="visibility:hidden;" accept="image/*" type="file" id="file1"name="img"
+		                     
+		                       onchange="setImagePreview(event);">
+		                    </div>
+		                  </div>
+		                </div>
+		              </div>
+		              </div>
+		              <div class="thumb_img">
+		              <h5>썸네일 사진</h5>
+		              <div class="row">
+		                <div class="col-12 col-sm-auto mb-3">
+		                  <div  class="mx-auto"  style="width: 300px;">
+		                   <div class="pro_img" id="thumb_container" style="height: 300px;">
+		                    <div id="image_container"class="d-flex justify-content-center align-items-center rounded" style="height: 300px;background-color: rgb(233, 236, 239);">
+                      			<span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">300x300</span>
+		                   	</div>    
+		                    </div>
+		                  </div> 
+		                </div>
+		                </div>
+		                <div class="row">
+		                <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+		                  <div class="text-center text-sm-left mb-2 mb-sm-0">
+		                    <div class="mt-2">
+		                     <label class="btn btn-primary" for="file2">             
+		                        <i class="fa fa-fw fa-camera"></i>               
+		                        <span>썸네일 업로드</span>
+		                     </label>
+		                      <input style="visibility:hidden;"accept="image/*" type="file" id="file2"name="thumb"
+		                       onchange="setThumbPreview(event);">
+		                    </div>
+		                  </div>
+		                </div>
+		              </div>
+                      </div>
                         
 						<div class="row">
                       			<div class="col d-flex justify-content-end">
-                       			 <button class="btn btn-primary" type="submit">Save Class</button>
+                       			 <button class="btn btn-primary" type="submit">save & next</button>
                        			 </div>
                     		</div>
                       </div>
@@ -103,7 +175,7 @@ body{
 </div>
 
 
-
+ 
 <!-- bootstrap ver4.6 JS -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>

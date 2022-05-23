@@ -7,6 +7,7 @@ import java.util.List;
 
 import lecde.LecdeDataBean;
 import lecmem.LecmemDataBean;
+import lecturede.LectureDeDataBean;
 import tutor.TutorDataBean;
 
 public class LectureDBBean implements LectureDao{
@@ -111,10 +112,10 @@ public class LectureDBBean implements LectureDao{
 	public int insertTutor(TutorDataBean dto) {
 		return SqlMapClient.getSession().insert("Lecture.insertTutor",dto);
 	}
-	@Override 
+	@Override
 	public List<LectureDataBean> getClassList() {
+		// TODO Auto-generated method stub
 		return SqlMapClient.getSession().selectList("Lecture.getClassList");
-
 	}
 	@Override
 
@@ -150,11 +151,45 @@ public class LectureDBBean implements LectureDao{
 		int m_cost = price*month;
 				
 		return m_cost;
-
+	}
 	public int finClass(int lec_num) {
 		// TODO Auto-generated method stub
 		return SqlMapClient.getSession().update("Lecture.updateFinClass",lec_num);
 
+	}
+	@Override
+	public List<LectureDeDataBean> getTutorClass(String id) { 
+		return SqlMapClient.getSession().selectList("Lecture.getTutorClass",id);
+	}
+	@Override
+	public LectureDataBean getOriginClass(int lec_num) {
+		return SqlMapClient.getSession().selectOne("Lecture.getOriginClass",lec_num);
+	}
+	@Override
+	public int modifyClass(LectureDataBean dto) {
+		return SqlMapClient.getSession().update("Lecture.updateClass",dto);
+	}
+	@Override
+	public int modifyClassImg(LectureDataBean dto) {
+		// TODO Auto-generated method stub
+		return SqlMapClient.getSession().update("Lecture.updateClassImg",dto);
+	}
+	@Override
+	public int modifyClassThumb(LectureDataBean dto) {
+		// TODO Auto-generated method stub
+		return  SqlMapClient.getSession().update("Lecture.updateClassThumb",dto);
+	}
+	@Override
+	public LecdeDataBean getOriginClassde(int lec_num) {
+		return SqlMapClient.getSession().selectOne("Lecture.getOriginClassde",lec_num);
+	}
+	@Override
+	public int modifyClassde(LecdeDataBean dto) {
+		return SqlMapClient.getSession().update("Lecture.updateClassDe",dto);
+	}
+	@Override
+	public int checkOriginClassde(int lec_num) {
+		return SqlMapClient.getSession().selectOne("Lecture.checkOriginClassde",lec_num);
 	}
 
 }
