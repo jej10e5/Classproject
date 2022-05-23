@@ -204,7 +204,7 @@ ul.online-users {
         <div class="col-md-4 static">
             <div class="profile-card">
                 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" class="profile-photo">
-            	<h5><a href="#" class="text-white">${memid}</a></h5>
+            	<h5><a href="#" class="text-white">${memid} 님 안녕하세요 </a></h5>
             	
             </div><!--profile card ends-->
             <ul class="nav-news-feed">

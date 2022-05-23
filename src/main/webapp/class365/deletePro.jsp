@@ -5,7 +5,7 @@
 <%@ include file="setting.jsp"%>    
 <script src="${project}/script.js"></script>
 
-<h2> ${page_delete} </h2>
+<h2> 회 원 탈 퇴 </h2>
 
 <c:if test="${resultCheck eq 0}">
 	<script type="text/javascript">
@@ -21,11 +21,11 @@
 			alert( deleteerror );	
 			//-->
 		</script>
-		<meta http-equiv="refresh" content="0; url=mainForm.do">
+		<meta http-equiv="refresh" content="0; url=myPage.do">
 	</c:if>
 	<c:if test="${result ne 0}">
 		${sessionScope.memid = null}
-		<c:redirect url="mainForm.do"/>
+		<c:redirect url="myPage.do"/>
 	</c:if>
 </c:if>
 

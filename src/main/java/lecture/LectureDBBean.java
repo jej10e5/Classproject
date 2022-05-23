@@ -7,6 +7,7 @@ import java.util.List;
 
 import lecde.LecdeDataBean;
 import lecmem.LecmemDataBean;
+
 import tutor.TutorDataBean;
 
 public class LectureDBBean implements LectureDao{
@@ -63,11 +64,10 @@ public class LectureDBBean implements LectureDao{
 	
 	}
 	
-	@Override
+	
 
-	public int deleteMember(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteMember( String id ) {		
+		return SqlMapClient.getSession().delete( "Lecture.deleteMember", id );
 	}
 	
 	

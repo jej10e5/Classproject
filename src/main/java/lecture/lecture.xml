@@ -13,7 +13,7 @@
   	</select>
 
 	<delete id="deleteMember" parameterType="String">
-		delete from member where id=#{id}
+		delete from lecmem where id=#{id}
 	</delete>
   	<insert id="insertMember" parameterType="lecmem.LecmemDataBean">
   		insert into lecmem values(
