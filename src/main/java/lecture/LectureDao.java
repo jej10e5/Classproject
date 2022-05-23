@@ -4,12 +4,16 @@ import java.util.List;
 
 import lecde.LecdeDataBean;
 import lecmem.LecmemDataBean;
+import tutee.TuteeDataBean;
 import tutor.TutorDataBean;
 public interface LectureDao {
 	public int createClass(LectureDataBean dto);
 	public int deleteMember( String id );
-
+	
+	
 	public int insertMember( LecmemDataBean dto );
+	public int insertTutee(TuteeDataBean dto);
+	
 	public int check(String id,String passwd);
 	public int check(String id);
 	public LecmemDataBean getMember(String id);
@@ -24,9 +28,12 @@ public interface LectureDao {
 	public LecdeDataBean getLecde(int lec_num);
 	public int calcMonth(int lec_num);
 	public int calcMaxCost(LecdeDataBean dto,int month);
+	public int calcDays(int lec_num);
 	
 	public int getCreateTutor(String id);
 	public int getLecNum();
+	
+	
 	
 	public int finClass(int lec_num);
 	public int createClass2(LecdeDataBean dto);

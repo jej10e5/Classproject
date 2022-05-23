@@ -31,11 +31,14 @@ public class ClassFormHandler implements CommandHandler{
 		
 		int month = lectureDao.calcMonth(lec_num);
 		int m_cost = lectureDao.calcMaxCost(dcd,month);
+		int days = lectureDao.calcDays(lec_num);
 		
+		request.setAttribute("lec_num", lec_num);
 		request.setAttribute("dto", dto);
 		request.setAttribute("dtt", dtt);
 		request.setAttribute("dtl", dtl);
 		request.setAttribute("dcd", dcd);
+		request.setAttribute("days", days);
 		request.setAttribute("month", month);
 		request.setAttribute("m_cost", m_cost);
 		return new ModelAndView("class365/classForm");

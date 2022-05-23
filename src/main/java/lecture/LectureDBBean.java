@@ -7,6 +7,7 @@ import java.util.List;
 
 import lecde.LecdeDataBean;
 import lecmem.LecmemDataBean;
+import tutee.TuteeDataBean;
 import tutor.TutorDataBean;
 
 public class LectureDBBean implements LectureDao{
@@ -95,6 +96,30 @@ public class LectureDBBean implements LectureDao{
 		return month;
 	}// 
 
+	public int calcDays(int lec_num) {
+		LecdeDataBean dto = getLecde(lec_num);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		int days =0;
+
+		try {
+			Date bdate = sdf.parse(dto.getBe());
+			Date  fdate = sdf.parse(dto.getFin());
+			
+			
+
+			long diff = fdate.getTime()-bdate.getTime();
+			long diffDays = diff / (24 * 60 * 60 * 1000) ;
+			
+			days= (int)diffDays;
+		
+	}catch (ParseException e) {
+		e.printStackTrace();
+	}
+
+	return days;
+	}
+	
+	
 	public LecmemDataBean getMember(String id) {	
 		return SqlMapClient.getSession().selectOne("Lecture.getMember",id);	
 	  }
@@ -150,11 +175,17 @@ public class LectureDBBean implements LectureDao{
 		int m_cost = price*month;
 				
 		return m_cost;
-
+	}
 	public int finClass(int lec_num) {
 		// TODO Auto-generated method stub
 		return SqlMapClient.getSession().update("Lecture.updateFinClass",lec_num);
 
+	}
+	@Override
+	public int insertTutee(TuteeDataBean dto) {
+
+	
+		return SqlMapClient.getSession().insert("Lecture.insertTutee",dto);
 	}
 
 }

@@ -62,5 +62,9 @@
  	<update id="updateFinClass" parameterType="int">
  		update lecture set sta=1 where lec_num=#{lec_num}
  	</update>
+ 	<insert id="insertTutee" parameterType="tutee.TuteeDataBean">
+ 		insert into tutee (id,lec_num) values(#{id},#{lec_num})
+ 	</insert>
+ 	
  </mapper>
 
