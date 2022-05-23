@@ -40,6 +40,8 @@ public interface LectureDao {
 	public LecdeDataBean getOriginClassde(int lec_num);
 	public int modifyClassde(LecdeDataBean dto);
 	public int checkOriginClassde(int lec_num);
+	public int deleteClass(int lec_num);
+	public int inactiveClass(int lec_num);
 
 	public int modifyMember( LecmemDataBean dto );
 

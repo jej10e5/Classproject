@@ -49,6 +49,7 @@ public class ModifyClassProHandler implements CommandHandler {
 			lectureDao.modifyClassImg(dto);
 		}
 		if(thumbname != null && thumbname !="") {
+			dto.setThu(thumbname);
 			lectureDao.modifyClassThumb(dto);
 		}
 		//origin_name저장할 필요 없어서 안함.

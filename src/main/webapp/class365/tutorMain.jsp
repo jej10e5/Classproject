@@ -7,7 +7,53 @@
  <link href="${project}/tutorMain_style.css" rel="stylesheet" type="text/css"> 
 <script src="https://kit.fontawesome.com/811e29d39a.js" crossorigin="anonymous"></script>
 <script src="${project}/jquery-3.6.0.js"></script> 
+<style>
+.btn_modify{
+	border: none;
+	border-radius:2px;
+	background-color:#fec9a5;
+}
+.btn_modify:hover{
+	border: none;
+	border-radius:2px;
+	background-color:#fda166;
+	
+}
+.btn_delete{
+	border: none;
+	border-radius:2px;
+	background-color:#ff968a;
+}
+.btn_delete:hover{
+	border: none;
+	border-radius:2px;
+	background-color:#ff6f61;
+	
+}
+.btn_sta1{
+	border: none;
+	border-radius:2px;
+	background-color:#ff8ec7;
+}
+.btn_sta1:hover{
+	border: none;
+	border-radius:2px;
+	background-color:#ff0080;
+	
+}
+.btn_sta2{
+	border: none;
+	border-radius:2px;
+	background-color:#c67d9f;
+}
+.btn_sta2:hover{
+	border: none;
+	border-radius:2px;
+	background-color:#9c446e;
+	
+}
 
+</style>
 <div id="total_div">
 <jsp:include page="header.jsp"/>
 <div id="mid_div">
@@ -158,8 +204,25 @@
 							<th>${dto.be}</th>
 							<th>${dto.fin}</th>
 							<th>${dto.pri}</th>
-							<th><input type="button" value="수정하기" onclick="location='modifyClass.do?lec_num=${dto.lec_num}'"></th>
-							<th><input type="button" value="삭제하기"></th>
+							<th><input class="btn_modify" type="button" value="수정하기" 
+							onclick="location='modifyClass.do?lec_num=${dto.lec_num}'"></th>
+							<th>
+							<c:if test="${dto.sta eq 0}">
+							<input class="btn_delete"type="button"
+							onclick="location='deleteClass.do?lec_num=${dto.lec_num}'" 
+							value="삭제하기">
+							</c:if>
+							<c:if test="${dto.sta eq 1}">
+							<input class="btn_sta1" type="button"
+							onclick="location='inactiveClass.do?lec_num=${dto.lec_num}'"
+							value="마감하기">
+							</c:if>
+							<c:if test="${dto.sta eq 2}">
+							<input class="btn_sta2" type="button"
+							onclick="location='activeClass.do?lec_num=${dto.lec_num}'"
+							value="모집하기">
+							</c:if>
+							</th>
 						</tr>	
 						</c:forEach>					
 					</table>
