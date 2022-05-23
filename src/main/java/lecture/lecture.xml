@@ -93,5 +93,11 @@
  	<select id="checkOriginClassde" parameterType="int" resultType="int">
  		select count(*) from lecde where lec_num=#{lec_num}
  	</select>
+ 	<delete id="deleteClass" parameterType="int">
+ 		delete from lecture where lec_num=#{lec_num}
+ 	</delete>
+ 	<update id="updateInactive" parameterType="int">
+ 		update lecture set sta=2 where lec_num=#{lec_num}
+ 	</update>
  </mapper>
 

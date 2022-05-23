@@ -191,5 +191,13 @@ public class LectureDBBean implements LectureDao{
 	public int checkOriginClassde(int lec_num) {
 		return SqlMapClient.getSession().selectOne("Lecture.checkOriginClassde",lec_num);
 	}
+	@Override
+	public int deleteClass(int lec_num) {
+		return SqlMapClient.getSession().delete("Lecture.deleteClass",lec_num);
+	}
+	@Override
+	public int inactiveClass(int lec_num) {
+		return SqlMapClient.getSession().update("Lecture.updateInactive",lec_num);
+	}
 
 }
