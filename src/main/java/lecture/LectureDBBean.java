@@ -7,7 +7,9 @@ import java.util.List;
 
 import lecde.LecdeDataBean;
 import lecmem.LecmemDataBean;
+
 import lecturede.LectureDeDataBean;
+
 import tutor.TutorDataBean;
 
 public class LectureDBBean implements LectureDao{
@@ -64,11 +66,10 @@ public class LectureDBBean implements LectureDao{
 	
 	}
 	
-	@Override
+	
 
-	public int deleteMember(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteMember( String id ) {		
+		return SqlMapClient.getSession().delete( "Lecture.deleteMember", id );
 	}
 	
 	
@@ -157,6 +158,7 @@ public class LectureDBBean implements LectureDao{
 		return SqlMapClient.getSession().update("Lecture.updateFinClass",lec_num);
 
 	}
+
 	@Override
 	public List<LectureDeDataBean> getTutorClass(String id) { 
 		return SqlMapClient.getSession().selectList("Lecture.getTutorClass",id);
@@ -190,6 +192,10 @@ public class LectureDBBean implements LectureDao{
 	@Override
 	public int checkOriginClassde(int lec_num) {
 		return SqlMapClient.getSession().selectOne("Lecture.checkOriginClassde",lec_num);
+	}
+
+	public int modifyMember(LecmemDataBean dto) {
+		return SqlMapClient.getSession().update( "Lecture.modifyMember", dto );
 	}
 
 }
