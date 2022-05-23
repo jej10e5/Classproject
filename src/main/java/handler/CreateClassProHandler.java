@@ -31,7 +31,6 @@ public class CreateClassProHandler implements CommandHandler{
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		HttpSession session=request.getSession();
 		String id = (String)request.getSession().getAttribute("memid");		
 		LectureDataBean dto = new LectureDataBean();
 
@@ -54,7 +53,7 @@ public class CreateClassProHandler implements CommandHandler{
 		dto.setCon(con); 
 		dto.setIntr(intr);
 		dto.setCate(category);
-		dto.setImg(imgname); 
+		dto.setImg(imgname);  
 		dto.setThu(thumbname);
 		
 		int result = lectureDao.createClass(dto);
