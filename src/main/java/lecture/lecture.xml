@@ -94,20 +94,19 @@
  	<select id="checkOriginClassde" parameterType="int" resultType="int">
  		select count(*) from lecde where lec_num=#{lec_num}
  	</select>
-<<<<<<< HEAD
+
  	<delete id="deleteClass" parameterType="int">
  		delete from lecture where lec_num=#{lec_num}
  	</delete>
  	<update id="updateInactive" parameterType="int">
  		update lecture set sta=2 where lec_num=#{lec_num}
  	</update>
-=======
+
 
  	<update id="modifyMember" parameterType="lecmem.LecmemDataBean">
 		update lecmem set passwd=#{passwd}, 
 		tel=#{tel, jdbcType=VARCHAR}, email=#{email, jdbcType=VARCHAR} where id=#{id}
 	</update>	
 
->>>>>>> 246bc171299f88ba6d3a472359fe28a47e748e3c
  </mapper>
 
