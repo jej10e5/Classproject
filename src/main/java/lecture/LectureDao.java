@@ -20,7 +20,7 @@ public interface LectureDao {
 	public int insertTutor(TutorDataBean dto);
 	public int tutorCheck(String id);
 	public LectureDataBean getLecture(int lec_num);
-	public List<LectureDataBean> getClassList();
+	public List<LectureDeDataBean> getClassList();
 
 	public LecdeDataBean getLecde(int lec_num);
 	public int calcMonth(int lec_num);

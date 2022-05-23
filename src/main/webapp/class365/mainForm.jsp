@@ -12,6 +12,15 @@
 
 <title>${title_main}</title> 
 </head>
+<style>
+.profile{
+	overflow:hidden; 
+	display:flex; 
+	width:100%; 
+	height:100%; 
+	object-fit:cover;
+}
+</style>
 <body> 
 <%@ include file="header.jsp" %>  
 <section>  
@@ -77,17 +86,28 @@
   </div>
    
 <!-- main lecture list section --> 
-	<div class="container mg_zero" style="max-width:fit-content;"> 
+	<div class="container" style="max-width:fit-content; margin:auto;"> 
 		<div class="row">   
 		<c:forEach var="dto" items="${dtos}">
 			<div class="col-lg-3 col-md-6" style="margin:2% 0; ">
-				<div class="card" style="height:500px"> 
-				  <img src="${imagepath}${dto.img}" class="card-img-top" style="margin:auto; "alt="...">
+				<div class="card" style="height:450px; width: 300px;margin:auto;">
+					<div class="row">
+		                  <div  class="mx-auto"  style="width: 250px; padding:auto;">
+		                   <div class="pro_img" id="thumb_container" style="height:250px;">
+		                   		<img class="profile" src="${imagepath}${dto.thu}">
+		                   	</div>    
+		                    </div>
+		                </div>
+				 
 				  <div class="card-body">
-				    <h5 class="card-title">${dto.sub}</h5>
-				    <span class="card-text" style="display:block;">${dto.intr}</span>
+				    <h4 class="card-title">[${dto.cate}]&nbsp;&nbsp;&nbsp;${dto.sub}</h4>
+				    <span class="card-text" style="display:block; margin-bottom:5px;">${dto.intr}</span>
+				    <h5 class="card-text" style="padding:5px 10px; display:inline;color:#ff6f61; margin-right:auto;">월 ${dto.pri}원</h5>
+				    <!-- like 
 				    <a href="#"><i class="fa-regular fa-heart cc_pink" style="padding:5px 10px; inline"></i></a>
-				    <a href="classForm.do?lec_num=${dto.lec_num}" class="btn btn-primary">상세정보</a>
+				    -->
+				    <a href="classForm.do?lec_num=${dto.lec_num}" class="btn btn-primary"
+				    style="float:right;">상세정보</a>
 
 				    <!-- classForm.jsp?classNum=${classNum} -->
 				  </div>
