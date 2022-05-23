@@ -12,6 +12,23 @@
  
 <script src="https://kit.fontawesome.com/811e29d39a.js" crossorigin="anonymous"></script>
 <script src="${project}/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ba7439462d656bdc59c5331193480eaa&libraries=services"></script>
+	
+<style>
+#slide_div{
+padding-top:10px;
+
+padding-bottom:10px;
+}
+.range-slider_range{
+background-color:#d7dcdf;
+border-radius: 5px;
+width:100%;
+
+}
+</style>
+
+			
 <script type="text/javascript">
 //<!--
 $(document).ready(function($) {
@@ -37,6 +54,9 @@ $(document).ready(function($) {
  	<!-- 네비게이터 -->
  	<div id="nav_div" >
  			<!-- 네비게이션 항목들 -->
+ 			
+ 			<a href="#map_div"  class="nav_list">장소</a>
+ 			
  			<a href="#review_div" class="nav_list">후기</a>	
  	
  			<a href="#class_info_div" class="nav_list">강의설명</a>	
@@ -66,14 +86,14 @@ $(document).ready(function($) {
 	 					<!--  강좌이름, 강좌설명, 강의사진 -->
 	 					<dl class= class_dl>
 	 						<dt class= "class_dt">강의 기간 </dt>
-	 						<!-- 
+	 						
 	 						<c:if test="${month gt 1}">
-	 						<dd class="class_dd">"${month}"</dd>
+	 						<dd class="class_dd">${month}</dd>
 	 						</c:if>
 	 						<c:if test="${month le 1}">
 	 						<dd class="class_dd">1개월 미만</dd>
 	 						</c:if>
-	 						 -->
+	 						 
 	 						<dt class="class_dt">최대 인원 </dt>
 	 						<dd class="class_dd">${dcd.cap}</dd>
 	 						<dt class= "class_dt">강의 난이도 </dt>
@@ -101,8 +121,8 @@ $(document).ready(function($) {
 	 				  		 		</c:if>
 	 				  		 	</div>
 	 				  		 	<div id="pro_text">
-	 				  		 		<p class="pro_name">"${dtl.email}"</p>	
-	 				  		 		<p >"${dtl.tel }"</p>			  		 		
+	 				  		 		<p class="pro_name">${dtl.email}</p>	
+	 				  		 		<p >${dtl.tel }</p>			  		 		
 	 				  		 	</div>
 	 				  		</div>
 	 				  		<div class="tut_text">
@@ -250,6 +270,48 @@ $(document).ready(function($) {
 	 						</div>
 	 					</section>
 	 				</div>
+	 			<div id="map_div" style="padding-top:150px;">
+	 			<section class="tut_intro">		
+	 				<div class="name_div">
+	 					<h3 class="tut_name">강의 장소</h3>
+	 				</div>	
+	 			
+					<div id="map" style="width:500px;height:400px;"></div>
+					<script>
+						var container = document.getElementById('map');
+						var options = {
+							center: new kakao.maps.LatLng(33.450701, 126.570667),
+							level: 3
+						};
+				
+						var map = new kakao.maps.Map(container, options);
+						
+						var geocoder = new kakao.maps.services.Geocoder();
+						
+						geocoder.addressSearch('${dcd.adr}', function(result, status) {
+							
+							if (status === kakao.maps.services.Status.OK) {
+
+						        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+						        // 결과값으로 받은 위치를 마커로 표시합니다
+						        var marker = new kakao.maps.Marker({
+						            map: map,
+						            position: coords
+						        });
+								
+						        var infowindow = new kakao.maps.InfoWindow({
+						            content: '<div style="width:150px;text-align:center;padding:6px 0;">${dcd.adr}</div>'
+						        });
+						        infowindow.open(map, marker);
+						        
+						        map.setCenter(coords);
+							}
+						});
+						</script>
+			
+				</section>
+				</div>
 	 			</div>	
  				</div>	
  		
@@ -257,8 +319,8 @@ $(document).ready(function($) {
  				<div id="pay_box">
  					<div id="pay_box_in">
  						<div id="box_object">
- 							<div id="box_cate" font-weight="500">카테﹒고리 · 박스</div>
- 							<h2 id="box_title">[간결한 제목 ABC abc 가나다라마바사 123467]</h2>
+ 							<div id="box_cate" font-weight="500">카테고리 · ${dto.cate}</div>
+ 							<h2 id="box_title">[${dto.sub}]</h2>
  							<div id="class_state">
  								<div id="state_box">
  									<div id="state_open">모집중</div>
@@ -267,7 +329,7 @@ $(document).ready(function($) {
  							<div id="box_mid">
  								<div id="box_mprice">
  									<div id="mon_price">
- 										<h4 font-weight="700" id="m_price">월 40,200원</h4>
+ 										<h4 font-weight="700" id="m_price">월 ${dcd.pri}원</h4>
  									</div>
  								</div>								
  							</div>
@@ -291,16 +353,31 @@ $(document).ready(function($) {
 	 							<div id="hidden2_div">
 	 								
 	 							</div>	
+	 						</div>
+	 						
+	 						<div id="slide_div">
+	 						
+	 						<c:if test="${month gt 1 }">
+	 						  <input class="range-slider_range" type="range" value="${month}" min="1" max="${month}">
+	 						  <span class="result" style="font-wight:500; color:#fd3049;">${month}개월</span>
+		 						  </c:if>
+	 			
+	 						  <!-- 여기 -->
+	 						  
+	 						  
 	 						</div>							
  							<div id="total_div">
+ 							
+ 						
  								<div id="total_month">
- 									<div font-wight-"500" color=#fd3049" id="month_text">기간 6개월</div>
+ 									<div  id="month_text"></div>
  								</div>
+ 								
 	 							<div id="box_total">
-	 								<h4 color="#fd3049" font-weight="700" id="total_price">총240,400원</h4>
+	 								<span color="#fd3049" font-weight="700" id="total_price">${dcd.pri*month}원</span>
 	 							</div>
 	 						</div>	
-	 						
+	 					
 	 						<section id="buy_sec">
 	 						<c:if test="${memid eq  null  or memid eq ''}">
 	 							<button type="button" id="buy_btn" onclick="location='loginForm.do'">
@@ -308,10 +385,31 @@ $(document).ready(function($) {
 	 							</button>
 	 						</c:if>
 	 							<c:if test="${memid ne  null  and memid ne ''}">
-	 							<button type="button" id="buy_btn" onclick="location='payForm.do'">
-	 							결제하기	 						
-	 							</button>
+	 							<form action="payForm.do" method="get">
+	 							<input type="hidden" name="month" value="" id="pay_month">
+	 							<input type="hidden" name="cost" value="${m_cost}" id="cost">
+	 							<input type="hidden" name="lec_num" value="${dto.lec_num}">
+	 							<input type="submit" id="buy_btn" value="결제하기">
+	 							 						
+	 							</form>
 	 						</c:if>
+	 					 		 <script type="text/javascript">
+								//<!--
+								 var result = $(".result");
+							      var slider = $(".range-slider_range");
+							      var price = $("#m_price");
+							      var tprice = $("#total_price");
+							      var cost = $("#cost");
+							      var month = $("#pay_month");
+							      
+							      slider.on('input', function() {
+							          result.html( $(this).val()+"개월" );
+							          tprice.html($(this).val()*${dcd.pri}+"원");
+									  cost.attr('value',$(this).val()*${dcd.pri});						
+							      	  month.attr('value',$(this).val());
+							      });
+								//-->
+								</script>
 	 						</section>
  						</div>
  					</div>
