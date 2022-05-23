@@ -149,9 +149,9 @@
 		</div>	
 	</div>
  <!-- 사이드바 -->	
-	<div id="tutor_div">
+	<div id="tutor_div" >
 	<c:if test="${tutorInfo ne 0}">
-		<div id="tutor_main_article">
+		<div id="tutor_main_article" style="overflow-x:scroll;" >
 			<div id="tutor_main_margin">
 			
 				<div id="tutor_top_topic">
@@ -170,7 +170,7 @@
 					</a>
 					
 				</div>
-				<div id="table_div">
+				<div id="table_div" >
 					<table class="tutor_table">
 						<tr style="border-bottom:solid 1px lightgrey" >
 							<th style="width:15%">강좌명</th>

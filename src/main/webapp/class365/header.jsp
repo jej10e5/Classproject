@@ -34,11 +34,10 @@
          ${menu_category}
         </a> 
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">${category_cook}</a>
-          <a class="dropdown-item" href="#">${category_art}</a>
-          <a class="dropdown-item" href="#">${category_exercise}</a>
-          <a class="dropdown-item" href="#">${category_music}</a> 
-          <a class="dropdown-item" href="#">${category_creative}</a>
+          <a class="dropdown-item" href="#">요리</a>
+          <a class="dropdown-item" href="#">운동</a>
+          <a class="dropdown-item" href="#">금융</a>
+          <a class="dropdown-item" href="#" style="color:gray;">마감된 강의</a> 
         </div>
       </li> 
        
