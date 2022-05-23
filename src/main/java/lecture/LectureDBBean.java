@@ -1,5 +1,6 @@
 package lecture;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -69,37 +70,31 @@ public class LectureDBBean implements LectureDao{
 		return 0;
 	}
 	
-/*
-	public String classLevel(int Lv) {
-		String Level = "";
-		if(Lv==1) {
-			Level = "초급자";
-			
-		}else if(Lv==2) {
-			Level = "중급자";
-		}else if(Lv==3) {
-			Level = "상급자";
-		}
-		
-		
-		
-		return Level;
-	}
-	*/
-	/*
+	
 	public int calcMonth(int lec_num) {	
 		LecdeDataBean dto = getLecde(lec_num);
-		
-		Date  bdate = dto.getBe();
-		Date  fdate = dto.getFin();
-		long diff = bdate.getTime() - fdate.getTime();
-		long diffDays = diff / (24 * 60 * 60 * 1000) ;
-		long difMonth = (diffDays+1)/30;
-		
-		int month =(int)difMonth;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		int month =0;
+
+		try {
+			Date bdate = sdf.parse(dto.getBe());
+			Date  fdate = sdf.parse(dto.getFin());
+			
+			
+
+			long diff = fdate.getTime()-bdate.getTime();
+			long diffDays = diff / (24 * 60 * 60 * 1000) ;
+			long difMonth = (diffDays+1)/30;
+			
+			month =(int)difMonth;
+			return month;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	
 		return month;
-	}// fin-be 占쌔쇽옙 占쏙옙 占쏙옙占쏙옙占� 占쏙옙占� 占쌉쇽옙
-*/
+	}// 
+
 	public LecmemDataBean getMember(String id) {	
 		return SqlMapClient.getSession().selectOne("Lecture.getMember",id);	
 	  }
@@ -147,6 +142,13 @@ public class LectureDBBean implements LectureDao{
 	public int createClass2(LecdeDataBean dto) {
 		// TODO Auto-generated method stub
 		return SqlMapClient.getSession().insert("Lecture.insertClass2",dto);
+	}
+	@Override
+	public int calcMaxCost(LecdeDataBean dto, int month) {
+		int price = dto.getPri();
+		int m_cost = price*month;
+				
+		return m_cost;
 	}
 
 }

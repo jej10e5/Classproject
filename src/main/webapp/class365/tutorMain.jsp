@@ -108,14 +108,14 @@
 			<div id="tutor_main_margin">
 				<div id="tutor_top_topic">
 					<h3 class="topic">강의</h3>
-					<a href="/ClassProject/class365/createClassForm1.jsp" style="color:inherit;">
+					<a href="createClassForm1.do" style="color:inherit;">
 						<button id="make_class_btn">
 							<span id="inher_span">
 								<span id="btn_icon_span">
 									<i class="fa-solid fa-plus"></i>
 								</span>
 								<div style="width:6px; height:0px;"></div>
-								<span id="btn_subject"> 상품 만들기</span>
+								<span id="btn_subject"> 강의 만들기</span>
 							</span>
 						</button>					
 					</a>

@@ -29,14 +29,15 @@ public class ClassFormHandler implements CommandHandler{
 		TutorDataBean dtt = lectureDao.getTutor(id);
 		LecmemDataBean dtl = lectureDao.getMember(id);
 		
-		//int month = lectureDao.calcMonth(lec_num);
-		
+		int month = lectureDao.calcMonth(lec_num);
+		int m_cost = lectureDao.calcMaxCost(dcd,month);
 		
 		request.setAttribute("dto", dto);
 		request.setAttribute("dtt", dtt);
 		request.setAttribute("dtl", dtl);
 		request.setAttribute("dcd", dcd);
-		//request.setAttribute("month", month);
+		request.setAttribute("month", month);
+		request.setAttribute("m_cost", m_cost);
 		return new ModelAndView("class365/classForm");
 	}
 
