@@ -12,7 +12,7 @@
 			where sequence_name='LEC_NUM_SEQ'
   	</select>
 	<delete id="deleteMember" parameterType="String">
-		delete from member where id=#{id}
+		delete from lecmem where id=#{id}
 	</delete>
   	<insert id="insertMember" parameterType="lecmem.LecmemDataBean">
   		insert into lecmem values(
@@ -60,6 +60,7 @@
  	<update id="updateFinClass" parameterType="int">
  		update lecture set sta=1 where lec_num=#{lec_num}
  	</update>
+
  	<select id="getTutorClass" parameterType="String" resultType="lecturede.LectureDeDataBean">
  		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
  		from lecture l
@@ -93,11 +94,20 @@
  	<select id="checkOriginClassde" parameterType="int" resultType="int">
  		select count(*) from lecde where lec_num=#{lec_num}
  	</select>
+<<<<<<< HEAD
  	<delete id="deleteClass" parameterType="int">
  		delete from lecture where lec_num=#{lec_num}
  	</delete>
  	<update id="updateInactive" parameterType="int">
  		update lecture set sta=2 where lec_num=#{lec_num}
  	</update>
+=======
+
+ 	<update id="modifyMember" parameterType="lecmem.LecmemDataBean">
+		update lecmem set passwd=#{passwd}, 
+		tel=#{tel, jdbcType=VARCHAR}, email=#{email, jdbcType=VARCHAR} where id=#{id}
+	</update>	
+
+>>>>>>> 246bc171299f88ba6d3a472359fe28a47e748e3c
  </mapper>
 

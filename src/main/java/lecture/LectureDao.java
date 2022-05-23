@@ -31,6 +31,7 @@ public interface LectureDao {
 	
 	public int finClass(int lec_num);
 	public int createClass2(LecdeDataBean dto);
+
 	public List<LectureDeDataBean> getTutorClass(String id);
 	public LectureDataBean getOriginClass(int lec_num);
 	public int modifyClass(LectureDataBean dto);
@@ -41,5 +42,9 @@ public interface LectureDao {
 	public int checkOriginClassde(int lec_num);
 	public int deleteClass(int lec_num);
 	public int inactiveClass(int lec_num);
+
+	public int modifyMember( LecmemDataBean dto );
+
+
 
 }
