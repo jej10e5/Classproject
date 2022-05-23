@@ -24,14 +24,17 @@ import lecture.LectureDao;
 import lecture.LectureDataBean;
 
 @Controller
-public class CreateClassProHandler implements CommandHandler{
+public class CreateClassPro1Handler implements CommandHandler{
 	@Resource
 	private LectureDao lectureDao;
 	@RequestMapping("/createClassPro1")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
+
 		String id = (String)request.getSession().getAttribute("memid");		
+ 
+
 		LectureDataBean dto = new LectureDataBean();
 
 		String path= request.getSession().getServletContext().getRealPath("/classImage");
@@ -50,7 +53,7 @@ public class CreateClassProHandler implements CommandHandler{
 		//origin_name저장할 필요 없어서 안함.
 		dto.setId(id);
 		dto.setSub(sub);
-		dto.setCon(con); 
+		dto.setCon(con);  
 		dto.setIntr(intr);
 		dto.setCate(category);
 		dto.setImg(imgname);  

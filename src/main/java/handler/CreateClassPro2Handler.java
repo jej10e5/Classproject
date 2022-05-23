@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lecde.LecdeDataBean;
 import lecture.LectureDao;
-
+ 
 @Controller
 public class CreateClassPro2Handler implements CommandHandler{
 	@Resource
@@ -53,7 +53,8 @@ public class CreateClassPro2Handler implements CommandHandler{
 		dto.setAdr(adr);
 		dto.setBe(be);
 		dto.setFin(fin);
-		int result=lectureDao.createClass2(dto);
+		
+		int result=lectureDao.createClass2(dto)+ lectureDao.finClass(lec_num);
 		request.setAttribute("result", result);
 		
 		return new ModelAndView("class365/createClassPro2");

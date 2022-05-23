@@ -94,10 +94,10 @@ $(document).ready(function($) {
 	 				  		<div id="tuto_info_pro">
 	 				  		 	<div class="pro_img">
 	 				  		 	 	<c:if test="${dtt.pro eq null or dtt.pro eq ''}">
-	 				  		 		<img class ="profile_img" src="${profile_image}/img2.jpg">	 				  		 		
+	 				  		 		<img class ="profile_img" src="${imagepath}img1.jpg">	 				  		 		
 	 				  		 		</c:if>
 	 				  		 		<c:if test="${dtt.pro ne null and dtt.pro ne '' }">
-	 				  		 		<img class= "profile_img" src="${profile_image}/${dtt.pro}">
+	 				  		 		<img class= "profile_img" src="${imagepath}${dtt.pro}">
 	 				  		 		</c:if>
 	 				  		 	</div>
 	 				  		 	<div id="pro_text">
@@ -302,11 +302,16 @@ $(document).ready(function($) {
 	 						</div>	
 	 						
 	 						<section id="buy_sec">
-	 							<button type="button" id="buy_btn" onclick="location='loginCheckForm.do?id=${dtl.id}'">
-	 							결제하기
-	 						
+	 						<c:if test="${memid eq  null  or memid eq ''}">
+	 							<button type="button" id="buy_btn" onclick="location='loginForm.do'">
+	 							결제하기	 						
 	 							</button>
-	 							
+	 						</c:if>
+	 							<c:if test="${memid ne  null  and memid ne ''}">
+	 							<button type="button" id="buy_btn" onclick="location='payForm.do'">
+	 							결제하기	 						
+	 							</button>
+	 						</c:if>
 	 						</section>
  						</div>
  					</div>
