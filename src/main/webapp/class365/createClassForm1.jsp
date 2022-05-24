@@ -68,7 +68,8 @@ function setThumbPreview(event) {
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>강의명</label>
-                              <input class="form-control" type="text" name="lec_sub" placeholder="강의명을 입력하세요.">
+                              <input class="form-control" type="text" name="lec_sub" placeholder="강의명을 입력하세요."
+                              	maxlength="30">
                             </div>
                           </div>
                           <div class="col-md-6">

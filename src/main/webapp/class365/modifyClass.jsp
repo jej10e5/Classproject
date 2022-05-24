@@ -70,7 +70,7 @@ function setThumbPreview(event) {
                             <div class="form-group">
                               <label>강의명</label>
                               <input class="form-control" type="text" name="lec_sub" 
-                              placeholder="강의명을 입력하세요."
+                              placeholder="강의명을 입력하세요." maxlength="10"
                               	value="${dto.sub}">
                             </div>
                           </div>

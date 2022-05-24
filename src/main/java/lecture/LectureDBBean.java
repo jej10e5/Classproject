@@ -239,5 +239,17 @@ public class LectureDBBean implements LectureDao{
 	public int modifyTutorPro(TutorDataBean dto) {
 		return SqlMapClient.getSession().update("Lecture.updateTutorPro",dto);
 	}
-
+	
+	@Override
+	public List<LectureDeDataBean> getCategory(String c) {
+		return SqlMapClient.getSession().selectList("Lecture.getCategory",c);
+	}
+	@Override
+	public List<LectureDeDataBean> getSearchResult(String p) {
+		return SqlMapClient.getSession().selectList("Lecture.getSearchResult",p);
+	}
+	@Override
+	public List<LectureDeDataBean> getInactive() {
+		return SqlMapClient.getSession().selectList("Lecture.getInactive");
+	}
 }

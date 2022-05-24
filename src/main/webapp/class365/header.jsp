@@ -34,16 +34,17 @@
          ${menu_category}
         </a> 
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">요리</a>
-          <a class="dropdown-item" href="#">운동</a>
-          <a class="dropdown-item" href="#">금융</a>
-          <a class="dropdown-item" href="#" style="color:gray;">마감된 강의</a> 
+          <a class="dropdown-item" href="mainResultForm.do?c=요리">요리</a>
+          <a class="dropdown-item" href="mainResultForm.do?c=운동">운동</a>
+          <a class="dropdown-item" href="mainResultForm.do?c=금융">금융</a>
+          <a class="dropdown-item" href="mainResultForm.do?c=d" style="color:gray;">마감된 강의</a> 
         </div>
       </li> 
        
       <li class="nav-item c_font_category">   
-        <form class="form-inline my-2 my-lg-0" style="padding:5px;">
-      	<input class="form-control mr-sm-2 " type="search" style="width:300px;" placeholder="${str_search}" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" style="padding:5px;"
+        	action="mainResultForm.do" method="post">
+      	<input class="form-control mr-sm-2 " type="search" name="p" style="width:300px;" placeholder="${str_search}" aria-label="Search">
       	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">${btn_search}</button>
       </form>
       </li>
