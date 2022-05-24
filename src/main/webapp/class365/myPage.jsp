@@ -1,224 +1,303 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%@include file="setting.jsp" %>
-<head> 
-<!-- font awesome -->
-<script src="https://kit.fontawesome.com/811e29d39a.js" crossorigin="anonymous"></script>
-<!-- bootstrap ver4.6 css -->
+<%@include file="/class365/setting.jsp" %>    
+<link href="style.css" rel="stylesheet" type="text/css">  
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
- <link href="${project}/style.css" rel="stylesheet" type="text/css"> 
-<script src="${project}/script.js"></script>
-
-<title>마이페이지</title>
-</head>
-
+ <link href="${project}/tutorMain_style.css" rel="stylesheet" type="text/css"> 
+<script src="https://kit.fontawesome.com/811e29d39a.js" crossorigin="anonymous"></script>
+<script src="${project}/jquery-3.6.0.js"></script> 
 <style>
-
-body{
-    margin-top:20px;
-    background:#FAFAFA;
+.btn_modify{
+	border: none;
+	border-radius:2px;
+	background-color:#fec9a5;
 }
-
-/*==================================================
-  Newsfeed Left Sidebar
-  ==================================================*/
-
-/*Profile Card CSS*/
-
+.btn_modify:hover{
+	border: none;
+	border-radius:2px;
+	background-color:#fda166;
+	
+}
+.btn_delete{
+	border: none;
+	border-radius:2px;
+	background-color:#ff968a;
+}
+.btn_delete:hover{
+	border: none;
+	border-radius:2px;
+	background-color:#ff6f61;
+	
+}
+.btn_sta1{
+	border: none;
+	border-radius:2px;
+	background-color:#ff8ec7;
+}
+.btn_sta1:hover{
+	border: none;
+	border-radius:2px;
+	background-color:#ff0080;
+	
+}
+.btn_sta2{
+	border: none;
+	border-radius:2px;
+	background-color:#c67d9f;
+}
+.btn_sta2:hover{
+	border: none;
+	border-radius:2px;
+	background-color:#9c446e;
+	
+}
 .profile-card{
-  background: linear-gradient(to bottom, rgba(39,170,225,.8), rgba(28,117,188,.8));
-  background-size: cover;
-  width: 100%;
-  min-height: 90px;
-  border-radius: 4px;
-  padding: 10px 20px;
-  color: #fff;
-  margin-bottom: 40px;
+	background-color: rgb(255 111 97 / 83%);
+    background-size: cover;
+    width: 100%;
+    min-height: 90px;
+    border-radius: 4px;
+    padding: 10px 20px;
+    color: #fff;
+
 }
-
-.profile-card img.profile-photo{
-  border: 7px solid #fff;
-  float: left;
-  margin-right: 20px;
-  position: relative;
-  top: -30px;
-  height: 70px;
-  width: 70px;
-  border-radius: 50%;
-}
-
-.profile-card h5 a{
-  font-size: 15px;
-}
-
-.profile-card a{
-  font-size: 12px;
-}
-
-/*Newsfeed Links CSS*/
-
-ul.nav-news-feed{
-  padding-left: 20px;
-  padding-right: 20px;
-  margin: 0 0 40px 0;
-    background:#fff;
-  padding-top:20px;
-}
-
-ul.nav-news-feed li{
-  list-style: none;
-  display: block;
-  padding: 15px 0;
-}
-
-ul.nav-news-feed li div{
-  position: relative;
-  margin-left: 30px;
-  }
-
-ul.nav-news-feed li div::after{
-  content: "";
-  width: 100%;
-  height: 1px;
-  border-top: 1px solid #f1f2f2;
-  position: absolute;
-  bottom: -15px;
-  left: 0;
-}
-
-ul.nav-news-feed li a{color: #6d6e71;}
-
-ul.nav-news-feed li i{
-  font-size: 18px;
-  margin-right: 15px;
-  float: left;
-}
-
-ul.nav-news-feed i.icon1{color: #8dc63f;}
-
-ul.nav-news-feed i.icon2{color: #662d91;}
-
-ul.nav-news-feed i.icon3{color: #ee2a7b;}
-
-ul.nav-news-fee i.icon4{color: #f7941e;}
-
-ul.nav-news-fee i.con5{color: #1c75bc;}
-
-ul.nav-news-feed i.icon6{color: #9e1f63;}
-
-/*Chat Block CSS*/
-
-#chat-block{
-  margin: 0 0 40px 0;
-  text-align: center;
-  background:#fff;
-  padding-top:20px;
-}
-
-#chat-block .title{
-  background: #8dc63f;
-  padding: 2px 20px;
-  width: 70%;
-  height: 30px;
-  border-radius: 15px;
-  position: relative;
-  margin: 0 auto 20px;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-ul.online-users{
-  padding-left: 20px;
-  padding-right: 20px;
-  text-align: center;
-  margin: 0;
-}
-
-ul.online-users li{
-  list-style: none;
-  position: relative;
-  margin: 3px auto !important;
-  padding-left: 2px;
-  padding-right: 2px;
-}
-
-ul.online-users li span.online-dot{
-  background: linear-gradient(to bottom, rgba(141,198,63, 1), rgba(0,148,68, 1));
-  border: none;
-  height: 12px;
-  width: 12px;
-  border-radius: 50%;
-  position: absolute;
-  bottom: -6px;
-  border: 2px solid #fff;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
-img.profile-photo {
-    height: 58px;
-    width: 58px;
+.profile-photo{
+	border: 7px solid #fff;
+    float: left;
+    margin-right: 20px;
+    position: relative;
+    margin-top: -5;
+    height: 70px;
+    width: 70px;
     border-radius: 50%;
 }
+.text-white{
+font-size: 18px;
+color: #fff!important;
 
-ul.online-users {
-    padding-left: 20px;
-    padding-right: 20px;
-    text-align: center;
-    margin: 0;
 }
-
-.list-inline {
-    padding-left: 0;
-    margin-left: -5px;
-    list-style: none;
+.my_lec{
+    
+    font-size: 18px;
+    margin-right: 15px;
+    float: left;
+    font-family: "Font Awesome 6 Free";
+    
 }
-
-.list-inline>li {
-    display: inline-block;
-    padding-right: 5px;
-    padding-left: 5px;
+.icon1{
+	color: #8dc63f;
 }
-
-.text-white {
-    color: #fff;
+.icon2{
+	color:#662d91;
 }
+.icon3{
 
-
-
-
-
+}
+.icon4{
+	color: #ee2a7b;
+}
+.cate_name_css{
+	margin-left: 15px;
+    margin-top: 3px;
+}
 </style>
-
-
-
-
-<body>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<%@ include file="header.jsp" %>  
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 static">
-            <div class="profile-card">
-                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" class="profile-photo">
-            	<h5><a href="#" class="text-white">${memid} 님 안녕하세요 </a></h5>
+<div id="total_div">
+<jsp:include page="header.jsp"/>
+<div id="mid_div">
+	<!--  사이드바 -->
+	<div id="side_bar_div">
+		<div id="side_bar_size">
+			<div id="side_bar_pos">
+				<div id="side_menu">
+					<div id="side_cate">
+						<div id="side_top_div">
+						 <div class="profile-card">
+               			 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" class="profile-photo">
+            			<h5 class="text-white">${memid} 님</h5>
+            			<h5 class="text-white">안녕하세요</h5>
             	
-            </div><!--profile card ends-->
-            <ul class="nav-news-feed">
-              <li><i class="fa fa-list-alt icon1"></i><div><a href="#">내 강의</a></div></li>
-              <li><i class="fa fa-users icon2"></i><div><a href="modifyForm.do">내 정보 수정</a></div></li>
-              <li><i class="fa fa-user icon3"></i><div><a href="deleteForm.do" >회원 탈퇴</a></div></li>
-             
-           
-        </div>
+            			</div><!--profile card ends-->
+
+						</div>
+						<!-- 강사 정보 -->
+						<div id="side_top_div" onclick="location='myPage.do'">
+						<div style="height: 4px; display : flex;">	</div>
+							<div class="cate_div">
+								<div class="cate_subject">
+									<div class="cate_space">
+										<span class="cate_icon">
+
+										<i class="fa fa-list-alt icon1 my_lec"></i>
+									
+										</span>
+										<div class="cate_icon_space"></div>
+										<span class="cate_name_css">내 강의</span>
+									</div>
+								</div>
+							
+							</div>
+					
+						
+						</div>
+						<!-- 클래스 관리 -->
+							<div id="side_top_div" onclick="location='modifyForm.do'">
+						<div style="height: 4px; display : flex;">	</div>
+							<div class="cate_div">
+								<div class="cate_subject">
+									<div class="cate_space">
+										<span class="cate_icon">
+
+										<i class="fa fa-users icon2 my_lec"></i>
+									
+										</span>
+										<div class="cate_icon_space"></div>
+										<span class="cate_name_css">내 정보 수정</span>
+									</div>
+								</div>
+							
+							</div>
+					
+						
+						</div>
+						<!-- 리뷰 관리 -->
+							<div id="side_top_div" onclick="location=''">
+						<div style="height: 4px; display : flex;">	</div>
+							<div class="cate_div">
+								<div class="cate_subject">
+									<div class="cate_space">
+										<span class="cate_icon">
+
+										<i class="fa-solid fa-pen-to-square icon3 my_lec"></i>
+									
+										</span>
+										<div class="cate_icon_space"></div>
+										<span class="cate_name_css">리뷰 관리</span>
+									</div>
+								</div>
+							
+							</div>
+					
+						
+						</div>
+						<!-- 회원 탈퇴 -->	
+							<div id="side_top_div" onclick="location='deleteForm.do'">
+						<div style="height: 4px; display : flex;">	</div>
+							<div class="cate_div">
+								<div class="cate_subject">
+									<div class="cate_space">
+										<span class="cate_icon">
+
+										<i class="fa fa-user icon4 my_lec"></i>
+									
+										</span>
+										<div class="cate_icon_space"></div>
+										<span class="cate_name_css">회원 탈퇴</span>
+									</div>
+								</div>
+							
+							</div>
+					
+						
+						</div>
+						
+						
+					</div>
+				</div>
+				<div id="side_line">				
+				</div>
+			</div>
+		</div>	
+	</div>
+ <!-- 사이드바 -->	
+	<div id="tutor_div">
+	<c:if test="${tutorInfo ne 0}">
+		<div id="tutor_main_article">
+			<div id="tutor_main_margin">
+			
+				<div id="tutor_top_topic">
+					<h3 class="topic">내 강의</h3>
+					
+					
+					
+				</div>
+				<div id="table_div">
+					<table class="tutor_table">
+						<tr style="border-bottom:solid 1px lightgrey" >
+							<th style="width:15%">강좌명</th>
+							<th>상태</th>
+							<th >카테고리</th>
+							<th>난이도</th>
+							<th>현재인원</th>
+							<th>시작일</th>
+							<th>마지막일</th>
+							<th>가격</th>
+							<th></th>
+							<th></th>
+						</tr>
+						<c:forEach var="dto" items="${dtos}">
+						<tr>
+							<th style="width:15%">${dto.sub}</th>
+							<th>
+								<c:if test="${dto.sta eq 0}">
+								작성중
+								</c:if>
+								<c:if test="${dto.sta eq 1}">
+								모집중
+								</c:if>
+								<c:if test="${dto.sta eq 2}">
+								마감
+								</c:if>
+							</th>
+							<th>${dto.cate}</th> 
+							<th>${dto.lv}</th>
+							<th>현재인원</th>
+							<th>${dto.be}</th>
+							<th>${dto.fin}</th>
+							<th>${dto.pri}</th>
+							<th><input class="btn_modify" type="button" value="수정하기" 
+							onclick="location='modifyClass.do?lec_num=${dto.lec_num}'"></th>
+							<th>
+							<c:if test="${dto.sta eq 0}">
+							<input class="btn_delete"type="button"
+							onclick="location='deleteClass.do?lec_num=${dto.lec_num}'" 
+							value="삭제하기">
+							</c:if>
+							<c:if test="${dto.sta eq 1}">
+							<input class="btn_sta1" type="button"
+							onclick="location='inactiveClass.do?lec_num=${dto.lec_num}'"
+							value="마감하기">
+							</c:if>
+							<c:if test="${dto.sta eq 2}">
+							<input class="btn_sta2" type="button"
+							onclick="location='activeClass.do?lec_num=${dto.lec_num}'"
+							value="모집하기">
+							</c:if>
+							</th>
+						</tr>	
+						</c:forEach>					
+					</table>	
+				</div>
+			</div>
+			
+		</div>
+		</c:if>
+		<c:if test="${tutorInfo eq 0}">
+		<div style="padding:5%;">
+			<h5>Class만들기가 처음이신가요?</h5>
+			<h5>튜터 정보를 먼저 등록해주세요!</h5>
+			<input class="btn" type="button" value="튜터 정보 등록하기" onclick="location='tutorInfoForm.do'">
+
+		</div>
+		</c:if>
+			
+	  <div id="tutor_div_space"></div>
 	</div>
 </div>
+</div>
+
 <!-- bootstrap ver4.6 JS -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
  
-</body>
-</html>
+

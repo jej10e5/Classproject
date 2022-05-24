@@ -14,7 +14,7 @@
 	<meta http-equiv="refresh" content="0; url=mainForm.do">
 </c:if>
 <c:if test="${result ne 0}">
-	<c:redirect url="mainForm.do"/>		
+	<c:redirect url="modifyForm.do"/>		
 </c:if>
 	
 	

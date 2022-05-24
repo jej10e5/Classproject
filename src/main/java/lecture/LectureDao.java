@@ -54,7 +54,7 @@ public interface LectureDao {
 	public int inactiveClass(int lec_num);
 
 	public int modifyMember( LecmemDataBean dto );
-
+	public int modifyTutorPro(TutorDataBean dto);
 
 
 }

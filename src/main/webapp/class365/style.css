@@ -12,6 +12,9 @@
 *{
 	font-family:'EliceDigitalBaeum-Bd';
 } 
+pre{
+	font-family:'EliceDigitalBaeum-Bd';
+} 
 
 body{ 
 	overflow-x:hidden;

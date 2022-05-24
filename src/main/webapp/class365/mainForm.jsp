@@ -101,14 +101,15 @@
 				 
 				  <div class="card-body">
 				    <h4 class="card-title">[${dto.cate}]&nbsp;&nbsp;&nbsp;${dto.sub}</h4>
-				    <span class="card-text" style="display:block; margin-bottom:5px;">${dto.intr}</span>
+				    <h7 class="card-text" style="display:block; margin-bottom:5px;">${dto.intr}</h7>
+				    <div style="bottom:0px;">
 				    <h5 class="card-text" style="padding:5px 10px; display:inline;color:#ff6f61; margin-right:auto;">월 ${dto.pri}원</h5>
 				    <!-- like 
 				    <a href="#"><i class="fa-regular fa-heart cc_pink" style="padding:5px 10px; inline"></i></a>
 				    -->
 				    <a href="classForm.do?lec_num=${dto.lec_num}" class="btn btn-primary"
 				    style="float:right;">상세정보</a>
-
+					</div>
 				    <!-- classForm.jsp?classNum=${classNum} -->
 				  </div>
 				</div>

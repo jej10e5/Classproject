@@ -32,7 +32,7 @@
  		select * from tutor where id = #{id}
  	</select> 
  	<update id="modifyTutor" parameterType="tutor.TutorDataBean">
- 		update tutor set pro=#{pro, jdbcType=VARCHAR}, info=#{info, jdbcType=VARCHAR}, acc=#{acc, jdbcType=VARCHAR} where id=#{id}
+ 		update tutor set info=#{info, jdbcType=VARCHAR}, acc=#{acc, jdbcType=VARCHAR} where id=#{id}
  	</update>
  	<insert id="insertTutor" parameterType="tutor.TutorDataBean">
  		insert into tutor values(#{id}, #{pro, jdbcType=VARCHAR}, #{info, jdbcType=VARCHAR},#{acc, jdbcType=VARCHAR})
@@ -69,8 +69,6 @@
  	<insert id="insertTutee" parameterType="tutee.TuteeDataBean">
  		insert into tutee (id,lec_num) values(#{id},#{lec_num})
  	</insert>
- 	
-
 
  	<select id="getTutorClass" parameterType="String" resultType="lecturede.LectureDeDataBean">
  		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
@@ -113,10 +111,12 @@
  	<update id="updateInactive" parameterType="int">
  		update lecture set sta=2 where lec_num=#{lec_num}
  	</update>
-
  	<update id="modifyMember" parameterType="lecmem.LecmemDataBean">
 		update lecmem set passwd=#{passwd}, 
 		tel=#{tel, jdbcType=VARCHAR}, email=#{email, jdbcType=VARCHAR} where id=#{id}
+	</update>
+	<update id="updateTutorPro" parameterType="tutor.TutorDataBean">
+		update tutor set pro=#{pro, jdbcType=VARCHAR} where id=#{id}
 	</update>	
 
  </mapper>
