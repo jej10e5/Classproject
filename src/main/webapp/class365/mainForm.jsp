@@ -90,7 +90,7 @@
 		<div class="row">   
 		<c:forEach var="dto" items="${dtos}">
 			<div class="col-lg-3 col-md-6" style="margin:2% 0; ">
-				<div class="card" style="height:450px; width: 300px;margin:auto;">
+				<div class="card" style="height:450px; width: 300px;margin-right:auto;">
 					<div class="row">
 		                  <div  class="mx-auto"  style="width: 250px; padding:auto;">
 		                   <div class="pro_img" id="thumb_container" style="height:250px;">

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="Lecture">
+ <mapper namespace="Lecture">
   	<insert id="insertClass" parameterType="lecture.LectureDataBean">
   		insert into lecture values(LEC_NUM_SEQ.nextval,
   			#{id},#{sub},#{cate},#{con},#{img},#{intr},#{thu},default)
@@ -27,7 +27,6 @@
  	<select id="getMember" parameterType="String" resultType="lecmem.LecmemDataBean">
  		  select * from lecmem where id = #{id}	
  	</select>
-
  	<select id="getTutor" parameterType="String" resultType="tutor.TutorDataBean">
  		select * from tutor where id = #{id}
  	</select> 
@@ -54,7 +53,6 @@
  	<select id="calcMonth" resultType="int" parameterType="int">
  		select round (months_between(fin,be)) from lecde where lec_num=#{lec_num}
  	</select>
-
  	<select id="getTutorClassCount" parameterType="String" resultType="int">
  		select count(*) from tutor where id=#{id}
  	</select>
@@ -65,11 +63,9 @@
  	<update id="updateFinClass" parameterType="int">
  		update lecture set sta=1 where lec_num=#{lec_num}
  	</update>
-
  	<insert id="insertTutee" parameterType="tutee.TuteeDataBean">
  		insert into tutee (id,lec_num) values(#{id},#{lec_num})
  	</insert>
-
  	<select id="getTutorClass" parameterType="String" resultType="lecturede.LectureDeDataBean">
  		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
  		from lecture l
@@ -104,7 +100,6 @@
  	<select id="checkOriginClassde" parameterType="int" resultType="int">
  		select count(*) from lecde where lec_num=#{lec_num}
  	</select>
-
  	<delete id="deleteClass" parameterType="int">
  		delete from lecture where lec_num=#{lec_num}
  	</delete>
@@ -118,6 +113,30 @@
 	<update id="updateTutorPro" parameterType="tutor.TutorDataBean">
 		update tutor set pro=#{pro, jdbcType=VARCHAR} where id=#{id}
 	</update>	
-
- </mapper>
+	<select id="getCategory" parameterType="String" resultType="lecturede.LectureDeDataBean">
+		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
+ 		from lecture l
+ 		join lecde d
+ 		on l.lec_num=d.lec_num
+ 		where l.cate=#{c}
+        order by l.lec_num desc
+	</select>
+	<select id="getSearchResult" parameterType="String" resultType="lecturede.LectureDeDataBean">
+		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
+ 		from lecture l
+ 		join lecde d
+ 		on l.lec_num=d.lec_num
+ 		WHERE l.sub LIKE '%'||#{p}||'%' or l.intr LIKE '%'||#{p}||'%' or l.id LIKE '%'||#{p}||'%'
+ 			or d.lv LIKE '%'||#{p}||'%' or l.cate LIKE '%'||#{p}||'%'
+        order by l.lec_num desc
+	</select>
+	<select id="getInactive" resultType="lecturede.LectureDeDataBean">
+		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
+ 		from lecture l
+ 		join lecde d
+ 		on l.lec_num=d.lec_num
+ 		where sta=2
+        order by l.lec_num desc
+	</select>
+</mapper>
 

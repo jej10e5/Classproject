@@ -55,6 +55,8 @@ public interface LectureDao {
 
 	public int modifyMember( LecmemDataBean dto );
 	public int modifyTutorPro(TutorDataBean dto);
-
-
+	
+	public List<LectureDeDataBean> getCategory(String c);
+	public List<LectureDeDataBean> getSearchResult(String p);
+	public List<LectureDeDataBean> getInactive();
 }
