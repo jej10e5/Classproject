@@ -118,7 +118,7 @@
  		from lecture l
  		join lecde d
  		on l.lec_num=d.lec_num
- 		where l.cate=#{c}
+ 		where l.cate=#{c} and sta=1
         order by l.lec_num desc
 	</select>
 	<select id="getSearchResult" parameterType="String" resultType="lecturede.LectureDeDataBean">

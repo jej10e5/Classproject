@@ -35,8 +35,8 @@
         </a> 
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="mainResultForm.do?c=요리">요리</a>
-          <a class="dropdown-item" href="mainResultForm.do?c=2">운동</a>
-          <a class="dropdown-item" href="mainResultForm.do?c=3">금융</a>
+          <a class="dropdown-item" href="mainResultForm.do?c=운동">운동</a>
+          <a class="dropdown-item" href="mainResultForm.do?c=금융">금융</a>
           <a class="dropdown-item" href="mainResultForm.do?c=d" style="color:gray;">마감된 강의</a> 
         </div>
       </li> 
