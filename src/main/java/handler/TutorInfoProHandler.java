@@ -46,20 +46,20 @@ public class TutorInfoProHandler implements CommandHandler{
 		
 		if(compare ==0) {
 			dto.setId(id);
-			dto.setPro(systempro);
 			dto.setInfo(multi.getParameter("info"));
 			dto.setAcc(multi.getParameter("acc"));		
-			
-			
+			dto.setPro(systempro);
 			 result = lectureDao.insertTutor(dto);
 			
 		}else {
 			
 			dto.setId(id);
-			dto.setPro(systempro);
 			dto.setInfo(multi.getParameter("info"));
-			dto.setAcc(multi.getParameter("acc"));		
-			
+			dto.setAcc(multi.getParameter("acc"));	
+			if(systempro!=null && systempro!="") {
+				dto.setPro(systempro);
+				lectureDao.modifyTutorPro(dto);
+			}
 			
 			result = lectureDao.modifyTutor(dto);
 		}
