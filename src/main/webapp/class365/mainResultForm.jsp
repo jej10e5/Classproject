@@ -97,7 +97,7 @@
 	<div class="container" style="max-width:fit-content; margin:auto;"> 
 		<div class="row">   
 		<c:forEach var="dto" items="${dtos}">
-			<div class="col-xl-3 col-lg-6" style="margin:2% 0;" >
+			<div class="col-sm" style="margin:2% 0;" >
 				<div class="card" style="height:500px; width: 300px; margin:auto;"
 					onclick="location.href='http://localhost:8080/ClassProject/classForm.do?lec_num=${dto.lec_num}'">
 					<div class="row">

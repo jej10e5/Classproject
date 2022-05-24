@@ -192,25 +192,11 @@
 		                   		<span class="sbox s2">마감</span>
 		                   		</c:if>
 		                   		 
-		                   		<c:if test="${memid ne null}">
-		                   		<c:forEach var="ldto" items="${ldtos}">
-			                   		<c:if test="${ldto.lec_num ne dto.lec_num}">
-			                   		<a style="position:absolute; top:10px; right:10px;" href="insertHeart.do?lec_num=${dto.lec_num}">
-							     	 	<i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
-							     	 </a>
-			                   		</c:if>
-			                   		<c:if test="${ldto.lec_num eq dto.lec_num}">
-							     	 <a style="position:absolute; top:10px; right:10px;" href="deleteHeart.do?lec_num=${dto.lec_num}">
-							     	 	<i class="fa-solid fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
-							     	 </a>
-							     	</c:if>
-						     	</c:forEach>						    
-						     	</c:if>
-						     	<c:if test="${memid eq null}">
+		                   		<!-- 좋아요기능 -->
 						     	<a style="position:absolute; top:10px; right:10px;">
 						     	 	<i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
 						     	 </a>
-						     	</c:if>
+						     
 		                   	</div>    
 		                    </div>
 		                </div>

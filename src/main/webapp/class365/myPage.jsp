@@ -285,13 +285,13 @@ color: #fff!important;
 	</div>
  <!-- 사이드바 -->	
 	<!-- main lecture list section --> 
-	<div class="container" style="max-width:fit-content; margin-left:250px; margin-top:50px;"> 
+	<div class="container" style="max-width:fit-content; margin-left:250px; margin-top:50px; margin-right:0px;"> 
 		<div class="row">
 			<h2>수강중인 강의</h2>
 		</div>
 		<div class="row">   
 		<c:forEach var="dto" items="${dtos}">
-			<div class="col-lg-3 col-md-6" style="margin:2% 0;" >
+			<div class="col-6" style="margin:2% 0;" >
 				<div class="card" style="height:500px; width: 300px; margin:auto;"
 					onclick="location.href='http://localhost:8080/ClassProject/classForm.do?lec_num=${dto.lec_num}'">
 					<div class="row">
