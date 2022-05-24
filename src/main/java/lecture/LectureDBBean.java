@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import lecde.LecdeDataBean;
+import leclike.LeclikeDataBean;
 import lecmem.LecmemDataBean;
 import tutee.TuteeDataBean;
 import lecturede.LectureDeDataBean;
@@ -169,7 +170,6 @@ public class LectureDBBean implements LectureDao{
 		return SqlMapClient.getSession().insert("Lecture.insertClass2",dto);
 	}
 	@Override
-
 	public int calcMaxCost(LecdeDataBean dto, int month) {
 		int price = dto.getPri();
 		int m_cost = price*month;
@@ -251,5 +251,21 @@ public class LectureDBBean implements LectureDao{
 	@Override
 	public List<LectureDeDataBean> getInactive() {
 		return SqlMapClient.getSession().selectList("Lecture.getInactive");
+	}
+	@Override
+	public List<LectureDeDataBean> getTuteeClassList(String id) {
+		return SqlMapClient.getSession().selectList("Lecture.getTuteeClassList", id);
+	}
+	@Override
+	public List<LeclikeDataBean> getLikeList(String id) {
+		return SqlMapClient.getSession().selectList("Lecture.getLikeList",id);
+	}
+	@Override
+	public int deleteHeart(LeclikeDataBean dto) {
+		return SqlMapClient.getSession().delete("Lecture.deleteHeart",dto);
+	}
+	@Override
+	public int insertHeart(LeclikeDataBean dto) {
+		return SqlMapClient.getSession().insert("Lecture.insertHeart",dto);
 	}
 }

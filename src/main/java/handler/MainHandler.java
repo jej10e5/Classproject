@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import leclike.LeclikeDataBean;
 import lecture.LectureDao;
 import lecturede.LectureDeDataBean;
 @Controller
@@ -22,6 +23,12 @@ public class MainHandler implements CommandHandler {
 		// TODO Auto-generated method stub
 		List<LectureDeDataBean> dtos = lectureDao.getClassList();
 		request.setAttribute("dtos", dtos);
+		
+		String id = (String)request.getSession().getAttribute("memid");
+		if(id!=null) {
+		List<LeclikeDataBean> ldtos = lectureDao.getLikeList(id);
+		request.setAttribute("ldtos", ldtos);
+		}
 		return new ModelAndView("class365/mainForm"); 
 	}
 }

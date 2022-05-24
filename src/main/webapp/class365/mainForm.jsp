@@ -43,6 +43,15 @@
 	color:white;
 	padding:3px 5px;
 }
+.sbox{
+	position:absolute; 
+	bottom:210px; 
+	left:10px;
+	border:solid 1px white;
+	border-radius:7px;
+	color:white;
+	padding:3px 5px;
+}
 .lv1{
 	background-color:#fda166;
 }
@@ -61,6 +70,13 @@
 .ca3{
 	background-color:#9c446e;
 }
+.s1{
+	background-color:#ff6f61;
+}
+.s2{
+	background-color:#9c446e;
+}
+
 .card{
 	border:none;
 }
@@ -158,6 +174,7 @@
 		                   		<c:if test="${dto.lv eq '중급자'}">
 		                   		<span class="lvbox lv3">${dto.lv}</span>
 		                   		</c:if>
+		                   		
 		                   		<c:if test="${dto.cate eq '요리'}">
 		                   		<span class="cbox ca1">${dto.cate}</span>
 		                   		</c:if>
@@ -167,6 +184,33 @@
 		                   		<c:if test="${dto.cate eq '금융'}">
 		                   		<span class="cbox ca3">${dto.cate}</span>
 		                   		</c:if>
+		                   		
+		                   		<c:if test="${dto.sta eq 1}">
+		                   		<span class="sbox s1">모집중</span>
+		                   		</c:if>
+		                   		<c:if test="${dto.sta eq 2}">
+		                   		<span class="sbox s2">마감</span>
+		                   		</c:if>
+		                   		 
+		                   		<c:if test="${memid ne null}">
+		                   		<c:forEach var="ldto" items="${ldtos}">
+			                   		<c:if test="${ldto.lec_num ne dto.lec_num}">
+			                   		<a style="position:absolute; top:10px; right:10px;" href="insertHeart.do?lec_num=${dto.lec_num}">
+							     	 	<i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
+							     	 </a>
+			                   		</c:if>
+			                   		<c:if test="${ldto.lec_num eq dto.lec_num}">
+							     	 <a style="position:absolute; top:10px; right:10px;" href="deleteHeart.do?lec_num=${dto.lec_num}">
+							     	 	<i class="fa-solid fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
+							     	 </a>
+							     	</c:if>
+						     	</c:forEach>						    
+						     	</c:if>
+						     	<c:if test="${memid eq null}">
+						     	<a style="position:absolute; top:10px; right:10px;">
+						     	 	<i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
+						     	 </a>
+						     	</c:if>
 		                   	</div>    
 		                    </div>
 		                </div>
@@ -186,10 +230,10 @@
 				  </div>
 				</div>
 			</div>
-		</c:forEach>
+			</c:forEach>
+		
 		</div>
 	</div>
-   
 	<div class="cb_orange" style="width:100%; height:500px; ">
 		<span class="c_font_main cc_white">메인 페이지입니다.</span> 
 	</div>

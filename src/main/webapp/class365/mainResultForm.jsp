@@ -43,6 +43,15 @@
 	color:white;
 	padding:3px 5px;
 }
+.sbox{
+	position:absolute; 
+	top:10px; 
+	left:140px;
+	border:solid 1px white;
+	border-radius:7px;
+	color:white;
+	padding:3px 5px;
+}
 .lv1{
 	background-color:#fda166;
 }
@@ -59,6 +68,12 @@
 	background-color:#ff6f61;
 }
 .ca3{
+	background-color:#9c446e;
+}
+.s1{
+	background-color:#ff6f61;
+}
+.s2{
 	background-color:#9c446e;
 }
 .card{
@@ -106,6 +121,12 @@
 		                   		</c:if>
 		                   		<c:if test="${dto.cate eq '금융'}">
 		                   		<span class="cbox ca3">${dto.cate}</span>
+		                   		</c:if>
+		                   		<c:if test="${dto.sta eq 1}">
+		                   		<span class="sbox s1">모집중</span>
+		                   		</c:if>
+		                   		<c:if test="${dto.sta eq 2}">
+		                   		<span class="sbox s2">마감</span>
 		                   		</c:if>
 		                   	</div>    
 		                    </div>
