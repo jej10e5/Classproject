@@ -21,12 +21,17 @@
 	 				<div class="name_div">
 	 					<h3 class="tut_name">강의 장소</h3>
 	 				</div>	
-	 				<div class="col-md-4">
-                         	<label>지역 검색*</label>
-                         	<input class="form-control" type="text" id="address_kakao" name="adr" readonly />
+	 				<label>지역 검색*</label>
+	 				<div class="row" style="margin:20px;">
+                       <div class="col">  
+                         	<input class="form-control" type="text" id="address_kakao" name="adr" readonly 
+                         	placeholder="현재 주소를 입력하세요!" style="display:inline;">
+                         </div>
+                        <div class="col">
                          	<input class="btn" type="button" id="adr_btn" value="검색" onclick="adr()">
-                         	</div>
-                         	<div class="col-md-4">
+                         </div>
+                   </div>
+                     <div class="col-md-4">
                          	<!-- 주소 가져오는 api -->
                          	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 								<script>
