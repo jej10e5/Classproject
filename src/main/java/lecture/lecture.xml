@@ -110,14 +110,10 @@
 		update lecmem set passwd=#{passwd}, 
 		tel=#{tel, jdbcType=VARCHAR}, email=#{email, jdbcType=VARCHAR} where id=#{id}
 	</update>
-
 	<update id="modifyReview" parameterType="review.ReviewDataBean">
-		update review set re=#{re, jdbcType=VARCHAR}, img=#{img, jdbcType=VARCHAR}, reg_date=#{reg_date, jdbcType=VARCHAR} where re_num=#{re_num}
-	
+		update review set re=#{re, jdbcType=VARCHAR}, img=#{img, jdbcType=VARCHAR}, 
+		reg_date=#{reg_date, jdbcType=VARCHAR} where re_num=#{re_num}
 	</update>
-	<update id="updateTutorPro" parameterType="tutor.TutorDataBean">
-		update tutor set pro=#{pro, jdbcType=VARCHAR} where id=#{id}
-	</update>	
 	<select id="getReview" parameterType="review.ReviewDataBean" resultType="review.ReviewDataBean">
 		select *from review where id=#{id} and lec_num=#{lec_num}
 	</select>
@@ -150,7 +146,7 @@
 		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
  		from lecture l
  		join lecde d
- 		on l.lec_num=d.lec_num
+ 		on l.lec_num=d.lec_num 
  		where l.cate=#{c} and sta=1
         order by l.lec_num desc
 	</select>

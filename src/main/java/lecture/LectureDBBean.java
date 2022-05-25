@@ -88,7 +88,7 @@ public class LectureDBBean implements LectureDao{
 			
 			
 
-			long diff = fdate.getTime()-bdate.getTime();
+			long diff = fdate.getTime()-bdate.getTime(); 
 			long diffDays = diff / (24 * 60 * 60 * 1000) ;
 			long difMonth = (diffDays+1)/30;
 			
@@ -178,7 +178,7 @@ public class LectureDBBean implements LectureDao{
 		int price = dto.getPri();
 		int m_cost = price*month;
 				
-		return m_cost;
+		return m_cost; 
 	}
 	public int finClass(int lec_num) {
 		// TODO Auto-generated method stub
@@ -275,7 +275,7 @@ public class LectureDBBean implements LectureDao{
 		return SqlMapClient.getSession().update("Lecture.modifyReview",dto);
 	}
 
-=======
+
 	
 	@Override
 	public List<LectureDeDataBean> getCategory(String c) {
