@@ -272,5 +272,9 @@ public class LectureDBBean implements LectureDao{
 	public int insertHeart(LeclikeDataBean dto) {
 		return SqlMapClient.getSession().insert("Lecture.insertHeart",dto);
 	}
+	@Override
+	public int getNowTutee(int lec_num) {
+		return SqlMapClient.getSession().selectOne("Lecture.getNowTutee",lec_num);
+	}
 
 }

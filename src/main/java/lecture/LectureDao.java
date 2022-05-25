@@ -68,5 +68,6 @@ public interface LectureDao {
 	public List<LeclikeDataBean> getLikeList(String id);
 	public int deleteHeart(LeclikeDataBean dto);
 	public int insertHeart(LeclikeDataBean dto);
+	public int getNowTutee(int lec_num);
 
 }

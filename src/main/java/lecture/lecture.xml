@@ -157,6 +157,9 @@
 	<insert id="insertHeart" parameterType="leclike.LeclikeDataBean">
 		insert into leclike values(#{lec_num},#{id})
 	</insert>
+	<select id="getNowTutee" parameterType="int" resultType="int">
+		select count(*) from tutee where lec_num=#{lec_num}
+	</select>
 </mapper>
 
 

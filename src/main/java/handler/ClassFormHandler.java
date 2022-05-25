@@ -32,6 +32,7 @@ public class ClassFormHandler implements CommandHandler{
 		int month = lectureDao.calcMonth(lec_num);
 		int m_cost = lectureDao.calcMaxCost(dcd,month);
 		int days = lectureDao.calcDays(lec_num);
+		int now= lectureDao.getNowTutee(lec_num);
 		
 		request.setAttribute("lec_num", lec_num);
 		request.setAttribute("dto", dto);
@@ -41,6 +42,7 @@ public class ClassFormHandler implements CommandHandler{
 		request.setAttribute("days", days);
 		request.setAttribute("month", month);
 		request.setAttribute("m_cost", m_cost);
+		request.setAttribute("now", now);
 		return new ModelAndView("class365/classForm");
 	}
 

@@ -401,6 +401,7 @@ $(document).ready(function($) {
 	 							</button>
 	 						</c:if>
 	 							<c:if test="${memid ne  null  and memid ne ''}">
+	 							<c:if test="${now lt dcd.cap}">
 	 							<c:if test="${month gt 1}">
 	 							<form action="payForm.do" method="post">
 	 							<input type="hidden" name="month" value="" id="pay_month">
@@ -415,7 +416,14 @@ $(document).ready(function($) {
 	 							<input type="hidden" name="lec_num" value="${dto.lec_num}">
 	 							<input type="submit" id="buy_btn" value="결제하기">
 	 							</form>	
-	 							</c:if>	 							
+	 							</c:if>	
+	 							</c:if> 
+	 							<c:if test="${now eq dcd.cap}">
+	 							<input type="hidden" name="month" value="" id="pay_month">
+	 							<input type="hidden" name="cost" value="${m_cost}" id="cost">
+	 							<input type="hidden" name="lec_num" value="${lec_num}">
+	 							<input type="button" class="btn" value="수강 인원이 마감되었습니다.">	 							 						
+	 							</c:if>							
 	 						</c:if>
 	 					 		 <script type="text/javascript">
 								//<!--
