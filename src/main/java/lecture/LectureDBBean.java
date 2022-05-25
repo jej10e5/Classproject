@@ -275,7 +275,7 @@ public class LectureDBBean implements LectureDao{
 		return SqlMapClient.getSession().update("Lecture.modifyReview",dto);
 	}
 
-=======
+
 	
 	@Override
 	public List<LectureDeDataBean> getCategory(String c) {

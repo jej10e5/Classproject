@@ -321,7 +321,7 @@ float:right;
 						<div id="rev_arti">
 							<div class="rev_box">
 								<div class="lec_pic">
-									<img src="${dto.thu}" class="picture">
+									<img src="${imagepath}${dto.thu}" class="picture">
 								</div>
 								<div class="div_subs">
 								  <div class="lec_nam_wrap">	
