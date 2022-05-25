@@ -30,7 +30,7 @@ public class ModifyProHandler implements CommandHandler {
 		int result = lectureDao.modifyMember( dto );
 
 		request.setAttribute( "result", result );	
-		
+
 		return new ModelAndView( "class365/modifyPro" );
 	}
 

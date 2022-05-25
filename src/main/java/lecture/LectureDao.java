@@ -7,9 +7,13 @@ import leclike.LeclikeDataBean;
 import lecmem.LecmemDataBean;
 
 import tutee.TuteeDataBean;
-import tuteemem.TuteememDataBean;
-import lecturede.LectureDeDataBean;
 
+import tuteelec.TuteeLecDataBean;
+
+import tuteemem.TuteememDataBean;
+
+import lecturede.LectureDeDataBean;
+import review.ReviewDataBean;
 import tutor.TutorDataBean;
 public interface LectureDao {
 	public int createClass(LectureDataBean dto);
@@ -38,15 +42,21 @@ public interface LectureDao {
 	public int getCreateTutor(String id);
 	public int getLecNum();
 	
-	
+	public int modifyReview(ReviewDataBean dto);
+	public int insertReview(ReviewDataBean dto);
+	public ReviewDataBean getReview(ReviewDataBean dto); 
+	public ReviewDataBean getRe(int re_num); 
 	
 	public int finClass(int lec_num);
 	public int createClass2(LecdeDataBean dto);
 
+	
+	public int insertRenum(TuteeDataBean dtt);
+
 	public String findId(String tel);
 
-
 	public List<LectureDeDataBean> getTutorClass(String id);
+	public List<TuteeLecDataBean> getTuteeClass(String id);
 	public LectureDataBean getOriginClass(int lec_num);
 	public int modifyClass(LectureDataBean dto);
 	public int modifyClassImg(LectureDataBean dto);

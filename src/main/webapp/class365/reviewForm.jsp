@@ -2,12 +2,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/class365/setting.jsp" %>    
-<link href="style.css" rel="stylesheet" type="text/css">  
+<link href="${project}/style.css" rel="stylesheet" type="text/css">   
+<link href="${project}/class_style.css" rel="stylesheet" type="text/css"> 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
  <link href="${project}/tutorMain_style.css" rel="stylesheet" type="text/css"> 
 <script src="https://kit.fontawesome.com/811e29d39a.js" crossorigin="anonymous"></script>
 <script src="${project}/jquery-3.6.0.js"></script> 
+
+<script>
+function selectAll(selectAll)  {
+	  const checkboxes 
+	     = document.querySelectorAll('input[type="checkbox"]');
+	  
+	  checkboxes.forEach((checkbox) => {
+	    checkbox.checked = selectAll.checked
+	  });
+	}
+
+</script>
+
 <style>
+
+
 .btn_modify{
 	border: none;
 	border-radius:2px;
@@ -101,87 +117,80 @@ color: #fff!important;
 	margin-left: 15px;
     margin-top: 3px;
 }
-.pro_img{
-	border-radius:20px;
-}
-.profile{
-	overflow:hidden; 
-	display:flex; 
-	width:100%; 
-	height:100%; 
-	object-fit:cover;
-	transition: all 0.2s linear;
-	max-width:100%;
-}
-.lvbox{
-	position:absolute; 
-	top:10px; 
-	left:10px;
-	border:solid 1px white;
-	border-radius:7px;
-	color:white;
-	padding:3px 5px;
-}
-.cbox{
-	position:absolute; 
-	top:10px; 
-	left:80px;
-	border:solid 1px white;
-	border-radius:7px;
-	color:white;
-	padding:3px 5px;
-}
-.sbox{
-	position:absolute; 
-	bottom:210px; 
-	left:10px;
-	border:solid 1px white;
-	border-radius:7px;
-	color:white;
-	padding:3px 5px;
-}
-.hebox{
-	position:absolute; 
-	top:15px; 
-	right:15px;
-	z-index:100;
+.review_div{
+	width:100%;
+	padding-left: 10px;
+    padding-right: 10px;
 
 }
-.lv1{
-	background-color:#fda166;
+#totla_select{
+width: 100%;
+ 
+    margin-left: 20px;
+    margin-top: 20px;
 }
-.lv2{
-	background-color:#ff6f61;
+#rev_arti{
+ height:auto;
+ display: flex;
+ margin-left: 20px;
+ margin-top: 20px;
 }
-.lv3{
-	background-color:#9c446e;
+.rev_box{
+	padding-top:30px;
+	padding-bottom:30px;
+	border-top: solid 1px lightgrey;
+	border-bottom: solid 1px lightgrey;
+	display : flex;
+	width: 100%;
 }
-.ca1{
-	background-color:#fda166;
+.lec_pic{
+	 width: 250px;
+	 height: 200px;
+	 align-items: center;
 }
-.ca2{
-	background-color:#ff6f61;
+.picture{
+	overflow: hidden;
+    width: 100%;
+    height: 100%;
+   
 }
-.ca3{
-	background-color:#9c446e;
+.div_subs{
+	padding-left:70px;
+	
 }
-.s1{
-	background-color:#ff6f61;
+.lec_sub{
+	
 }
-.s2{
-	background-color:#9c446e;
+.rev_select{
+margin-top:3px;
 }
-.card{
-	border:none;
+.tetee_rev{
+background-color: snow;
 }
-.card img{
-	border-radius:20px;
+.tutee_rev_div{
+padding-top:20px;
 }
-.card:hover{
-	cursor:pointer;
+.lec_nam_wrap{
+	display: flex;
+	justify-content: space-between;
+	width:100%;
 }
-.card:hover img{
-	transform:scale(1.2);
+.btn_div{
+float:right;
+margin-right:20px;
+margin-top:20px;
+}
+.rev_btn{
+	background-color: #ff6f61!important;
+    border: none !important;
+    color: white;
+}
+.rev_obj{
+	margin-top: 8px;
+}
+#review_btn,#review_ok{
+
+float:right;
 }
 </style>
 <div id="total_div">
@@ -195,8 +204,9 @@ color: #fff!important;
 					<div id="side_cate">
 						<div id="side_top_div">
 						 <div class="profile-card">
-            			<h3 class="text-white">${memid} 님</h3>
-            			<h5 class="text-white">안녕하세요</h5> 
+               			 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" class="profile-photo">
+            			<h5 class="text-white">${memid} 님</h5>
+            			<h5 class="text-white">안녕하세요</h5>
             	
             			</div><!--profile card ends-->
 
@@ -291,87 +301,111 @@ color: #fff!important;
 		</div>	
 	</div>
  <!-- 사이드바 -->	
-	<!-- main lecture list section --> 
-	<div class="container" style="max-width:fit-content; margin-left:280px;"> 
-		<h2>수강중인 강의</h2>
-		<div class="row">   
-		<c:forEach var="dto" items="${dtos}">
-			<div class="col" style="margin:2% 0;" >
-				<div class="card" style="height:500px; width: 300px; margin:auto;"
-					onclick="location.href='classForm.do?lec_num=${dto.lec_num}'">
-					<div class="row">
-		                  <div  class="mx-auto"  style="width: 300px;">
-		                   <div class="pro_img" id="thumb_container" style="height:300px; overflow:hidden;">
-		                   		<img class="profile" src="${imagepath}${dto.thu}" style="position:relative;">
-		                   		<c:if test="${dto.lv eq '입문자'}">
-		                   		<span class="lvbox lv1">${dto.lv}</span>
-		                   		</c:if>
-		                   		<c:if test="${dto.lv eq '초급자'}">
-		                   		<span class="lvbox lv2">${dto.lv}</span>
-		                   		</c:if>
-		                   		<c:if test="${dto.lv eq '중급자'}">
-		                   		<span class="lvbox lv3">${dto.lv}</span>
-		                   		</c:if>
-		                   		
-		                   		<c:if test="${dto.cate eq '요리'}">
-		                   		<span class="cbox ca1">${dto.cate}</span>
-		                   		</c:if>
-		                   		<c:if test="${dto.cate eq '운동'}">
-		                   		<span class="cbox ca2">${dto.cate}</span>
-		                   		</c:if>
-		                   		<c:if test="${dto.cate eq '금융'}">
-		                   		<span class="cbox ca3">${dto.cate}</span>
-		                   		</c:if>
-		                   		
-		                   		<c:if test="${dto.sta eq 1}">
-		                   		<span class="sbox s1">모집중</span>
-		                   		</c:if>
-		                   		<c:if test="${dto.sta eq 2}">
-		                   		<span class="sbox s2">마감</span>
-		                   		</c:if>
-		                   		<!-- 좋아요기능 -->
-		                   		<c:forEach var="ldto" items="${ldtos}">
-			                   		<c:if test="${dto.lec_num eq ldto.lec_num}">
-								     	<a class="hebox" style="z-index:200;" href="deleteHeart.do?lec_num=${dto.lec_num}">
-								     	 	<i class="fa-solid fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
-								     	 </a>
-							     	 </c:if>
-						     	</c:forEach>
-						     	<c:if test="${memid eq null or memid eq '' }">
-						     	<a class="hebox" href="loginForm.do">
-								     <i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
-								 </a>
-								 </c:if>
-								 <c:if test="${memid ne null and memid ne '' }">
-								 <a class="hebox" href="insertHeart.do?lec_num=${dto.lec_num}">
-								     <i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
-								 </a>
-								 </c:if>
-		                   	</div>    
-		                    </div>
-		                </div>
-				  <div class="card-body">
-				    <h4 class="card-title" style="text-overflow: ellipsis; overflow:hidden;"> ${dto.sub}</h4>
-				    <h7 class="card-text" style="display:block; margin-bottom:5px;">${dto.id}</h7>
-				    <h7 class="card-text" style="display:block; margin-bottom:5px;text-overflow: ellipsis; overflow:hidden;">${dto.intr}</h7>
-				    <div style="bottom:0px;">
-				    <h5 class="card-text" style="padding:5px 10px; display:inline;color:#ff6f61; margin-right:auto;">월 ${dto.pri}원</h5>
-				    <!-- like 
-				    <a href="#"><i class="fa-regular fa-heart cc_pink" style="padding:5px 10px; inline"></i></a>
-				    -->
-				    <a href="classForm.do?lec_num=${dto.lec_num}" class="btn btn-primary"
-				    style="float:right;">상세정보</a>
+	<div id="tutor_div">
+
+		<div id="tutor_main_article">
+			<div id="tutor_main_margin">
+			
+				<div id="tutor_top_topic">
+					<h3 class="topic">리뷰 관리</h3>
 					</div>
-				    <!-- classForm.jsp?classNum=${classNum} -->
-				  </div>
-				</div>
-			</div>
-			</c:forEach>
+					<div id="totla_select">
+							<input type="checkbox" id="total_check_box" value="selectall" onclick="selectAll(this)" >
+							<span style="margin-left:10px;">현재 페이지 게시물 전체선택</span>
+						</div>					
+					<c:forEach var="dto" items="${dtos}">
 		
+					<div class="review_div">
+						<form method="post" action="reviewPro.do">
+	
+						<div id="rev_arti">
+							<div class="rev_box">
+								<div class="lec_pic">
+									<img src="${dto.thu}" class="picture">
+								</div>
+								<div class="div_subs">
+								  <div class="lec_nam_wrap">	
+									<div class="lec_sub">
+										<h4>${dto.sub}</h4>		
+									 <div  class="mx-auto"  style="width: 300px; margin-top: 20px!important; margin-left:0 ;">
+						                   <c:if test="${dto.re_num ne 0 }">
+						                   <div  id="thumb_container" style="height: 150px;">
+						                  
+						                   <c:if test="${dto.img eq null or dto.img eq ''}">
+						                    <div id="image_container"class="d-flex justify-content-center align-items-center rounded" style="height: 150px;background-color: rgb(233, 236, 239);">
+				                      			<span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">300x150</span>
+						                   	</div>   
+						                   	</c:if> 
+						                   	<c:if test="${dto.img ne null and dto.img ne ''}">
+						                   	<img src="${imagepath}${dto.img}" class="picture">
+						                   	</c:if>
+						                    </div>
+						                    </c:if>
+						                  </div> 			
+										</div>
+										<c:if test="${dto.re_num ne 0}">
+										<input type="checkbox"class="rev_select">
+										</c:if>
+									</div>
+									
+									<c:if test="${dto.re_num ne 0}">
+									<div class=tutee_rev_div>
+									<div class=tetee_rev>
+										 <div class="rev_tute_info">		
+	 									  <div class="tute">	
+	 										<div class ="rev_tut_name">
+	 											<span class="tut_names">${dto.id} :</span>
+	 										</div>	
+	 										<div class = "rev_write_date">
+	 										  <p class = "write_date">${dto.reg_date}</p> 
+	 										</div>
+	 									  </div>	
+	 									 
+	 									 </div>	
+	 									 <div class="rev_object">					  										  
+											<textarea name="modify" rows="6" id="review_text" style="width:700px;height:auto; background:none;" disabled="disabled">${dto.re}</textarea>		  			 									  		
+	 									  </div>	
+	 									  <div class="btn_div">
+	 									  	 <input class="rev_btn " id="modify_btn" type="button" value="수정하기" onclick="location='reviewModifyForm.do?re_num=${dto.re_num}'"> 									 
+	 									  </div>
+									</div>
+								</div>	
+
+								
+								
+									</c:if>
+									<c:if test="${dto.re_num eq 0}">
+										 <div class="rev_obj">					  										  
+												  			 									  		
+	 									  </div>	
+										<input class="rev_btn" id="review_btn" type="button" value="리뷰작성" onclick="location='reviewWrite.do?lec_num=${dto.lec_num}'">									
+									</c:if>
+									
+								  </div>	
+								
+								</div>
+								
+								
+								
+								
+								
+							</div>
+						
+						 </form>
+						</div>
+						
+						</c:forEach>	
+					</div>
+			
+				</div>
+			
+		
+			
 		</div>
+		
+			
+	  <div id="tutor_div_space"></div>
 	</div>
-	
-	
 </div>
 </div>
 
