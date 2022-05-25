@@ -23,6 +23,8 @@ public class mapFormHandler implements CommandHandler{
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		List<LecdeDataBean> dtos = lectureDao.getClassDeList();
 		request.setAttribute("dtos", dtos);
+		String p ="check";
+		request.setAttribute("p", p);
 		return new ModelAndView("class365/mapForm");
 		
 	}
