@@ -1,4 +1,3 @@
-
 package handler;
 
 import java.util.List;
@@ -15,20 +14,19 @@ import lecture.LectureDao;
 import lecturede.LectureDeDataBean;
 
 @Controller
-public class TutorMainHandler implements CommandHandler{
+public class ActiveClassHandler implements CommandHandler{
 	@Resource
 	private LectureDao lectureDao;
-	@RequestMapping("/tutorMain")
+	@RequestMapping("/activeClass")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		int lec_num=Integer.parseInt(request.getParameter("lec_num"));
+		lectureDao.finClass(lec_num);
 		String id = (String)request.getSession().getAttribute("memid");
 		int tutorInfo = lectureDao.getCreateTutor(id); 
 		request.setAttribute("tutorInfo", tutorInfo);
 		List<LectureDeDataBean> dtos = lectureDao.getTutorClass(id);
 		request.setAttribute("dtos", dtos);
-		return new ModelAndView("class365/tutorMain");
+		return new ModelAndView("/class365/tutorMain");
 	}
-
 }
-
- 

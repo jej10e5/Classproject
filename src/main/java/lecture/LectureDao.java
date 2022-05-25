@@ -3,13 +3,22 @@ package lecture;
 import java.util.List;
 
 import lecde.LecdeDataBean;
+import leclike.LeclikeDataBean;
 import lecmem.LecmemDataBean;
+
+import tutee.TuteeDataBean;
+
+import lecturede.LectureDeDataBean;
+
 import tutor.TutorDataBean;
 public interface LectureDao {
 	public int createClass(LectureDataBean dto);
 	public int deleteMember( String id );
-
+	
+	
 	public int insertMember( LecmemDataBean dto );
+	public int insertTutee(TuteeDataBean dto);
+	
 	public int check(String id,String passwd);
 	public int check(String id);
 	public LecmemDataBean getMember(String id);
@@ -19,17 +28,45 @@ public interface LectureDao {
 	public int insertTutor(TutorDataBean dto);
 	public int tutorCheck(String id);
 	public LectureDataBean getLecture(int lec_num);
-	public List<LectureDataBean> getClassList();
+	public List<LectureDeDataBean> getClassList();
 
 	public LecdeDataBean getLecde(int lec_num);
 	public int calcMonth(int lec_num);
 	public int calcMaxCost(LecdeDataBean dto,int month);
+	public int calcDays(int lec_num);
 	
 	public int getCreateTutor(String id);
 	public int getLecNum();
 	
+	
+	
 	public int finClass(int lec_num);
 	public int createClass2(LecdeDataBean dto);
-	public int modifyMember( LecmemDataBean dto );
+
 	public String findId(String tel);
+
+
+	public List<LectureDeDataBean> getTutorClass(String id);
+	public LectureDataBean getOriginClass(int lec_num);
+	public int modifyClass(LectureDataBean dto);
+	public int modifyClassImg(LectureDataBean dto);
+	public int modifyClassThumb(LectureDataBean dto);
+	public LecdeDataBean getOriginClassde(int lec_num);
+	public int modifyClassde(LecdeDataBean dto);
+	public int checkOriginClassde(int lec_num);
+	public int deleteClass(int lec_num);
+	public int inactiveClass(int lec_num);
+
+	public int modifyMember( LecmemDataBean dto );
+	public int modifyTutorPro(TutorDataBean dto);
+	
+	public List<LectureDeDataBean> getCategory(String c);
+	public List<LectureDeDataBean> getSearchResult(String p);
+	public List<LectureDeDataBean> getInactive();
+	public List<LectureDeDataBean> getTuteeClassList(String id);
+	
+	public List<LeclikeDataBean> getLikeList(String id);
+	public int deleteHeart(LeclikeDataBean dto);
+	public int insertHeart(LeclikeDataBean dto);
+
 }

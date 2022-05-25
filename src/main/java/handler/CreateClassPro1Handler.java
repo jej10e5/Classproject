@@ -31,17 +31,13 @@ public class CreateClassPro1Handler implements CommandHandler{
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		HttpSession session=request.getSession();
-		String id = (String)request.getSession().getAttribute("memid");		 
-		LectureDataBean dto = new LectureDataBean();
 
+		String id = (String)request.getSession().getAttribute("memid");		
+		LectureDataBean dto = new LectureDataBean();
 		String path= request.getSession().getServletContext().getRealPath("/classImage");
 		new File( path ).mkdir();
-
-		
 		MultipartRequest multi = new MultipartRequest(
 				request, path, 1024*1024*5, "utf-8", new DefaultFileRenamePolicy());
-			
 		String sub = multi.getParameter("lec_sub");
 		String con = multi.getParameter("lec_con");
 		String intr = multi.getParameter("lec_intr");
@@ -54,7 +50,7 @@ public class CreateClassPro1Handler implements CommandHandler{
 		dto.setCon(con);  
 		dto.setIntr(intr);
 		dto.setCate(category);
-		dto.setImg(imgname); 
+		dto.setImg(imgname);  
 		dto.setThu(thumbname);
 		
 		int result = lectureDao.createClass(dto);

@@ -7,7 +7,53 @@
  <link href="${project}/tutorMain_style.css" rel="stylesheet" type="text/css"> 
 <script src="https://kit.fontawesome.com/811e29d39a.js" crossorigin="anonymous"></script>
 <script src="${project}/jquery-3.6.0.js"></script> 
+<style>
+.btn_modify{
+	border: none;
+	border-radius:2px;
+	background-color:#fec9a5;
+}
+.btn_modify:hover{
+	border: none;
+	border-radius:2px;
+	background-color:#fda166;
+	
+}
+.btn_delete{
+	border: none;
+	border-radius:2px;
+	background-color:#ff968a;
+}
+.btn_delete:hover{
+	border: none;
+	border-radius:2px;
+	background-color:#ff6f61;
+	
+}
+.btn_sta1{
+	border: none;
+	border-radius:2px;
+	background-color:#ff8ec7;
+}
+.btn_sta1:hover{
+	border: none;
+	border-radius:2px;
+	background-color:#ff0080;
+	
+}
+.btn_sta2{
+	border: none;
+	border-radius:2px;
+	background-color:#c67d9f;
+}
+.btn_sta2:hover{
+	border: none;
+	border-radius:2px;
+	background-color:#9c446e;
+	
+}
 
+</style>
 <div id="total_div">
 <jsp:include page="header.jsp"/>
 <div id="mid_div">
@@ -103,12 +149,14 @@
 		</div>	
 	</div>
  <!-- 사이드바 -->	
-	<div id="tutor_div">
-		<div id="tutor_main_article">
+	<div id="tutor_div" >
+	<c:if test="${tutorInfo ne 0}">
+		<div id="tutor_main_article" style="overflow-x:scroll;" >
 			<div id="tutor_main_margin">
+			
 				<div id="tutor_top_topic">
 					<h3 class="topic">강의</h3>
-
+					
 					<a href="createClassForm1.do" style="color:inherit;">
 						<button id="make_class_btn">
 							<span id="inher_span">
@@ -120,26 +168,78 @@
 							</span>
 						</button>					
 					</a>
+					
 				</div>
-				<div id="table_div">
+				<div id="table_div" >
 					<table class="tutor_table">
 						<tr style="border-bottom:solid 1px lightgrey" >
-							<th style="width:5%"><input type="checkbox"></th>
 							<th style="width:15%">강좌명</th>
 							<th>상태</th>
 							<th >카테고리</th>
-							<th style="width:15%">지역</th>
 							<th>난이도</th>
 							<th>현재인원</th>
-							<th style="width:15%">생성일</th>
-						</tr>						
-					</table>
-						
+							<th>시작일</th>
+							<th>마지막일</th>
+							<th>가격</th>
+							<th></th>
+							<th></th>
+						</tr>
+						<c:forEach var="dto" items="${dtos}">
+						<tr>
+							<th style="width:15%">${dto.sub}</th>
+							<th>
+								<c:if test="${dto.sta eq 0}">
+								작성중
+								</c:if>
+								<c:if test="${dto.sta eq 1}">
+								모집중
+								</c:if>
+								<c:if test="${dto.sta eq 2}">
+								마감
+								</c:if>
+							</th>
+							<th>${dto.cate}</th> 
+							<th>${dto.lv}</th>
+							<th>현재인원</th>
+							<th>${dto.be}</th>
+							<th>${dto.fin}</th>
+							<th>${dto.pri}</th>
+							<th><input class="btn_modify" type="button" value="수정하기" 
+							onclick="location='modifyClass.do?lec_num=${dto.lec_num}'"></th>
+							<th>
+							<c:if test="${dto.sta eq 0}">
+							<input class="btn_delete"type="button"
+							onclick="location='deleteClass.do?lec_num=${dto.lec_num}'" 
+							value="삭제하기">
+							</c:if>
+							<c:if test="${dto.sta eq 1}">
+							<input class="btn_sta1" type="button"
+							onclick="location='inactiveClass.do?lec_num=${dto.lec_num}'"
+							value="마감하기">
+							</c:if>
+							<c:if test="${dto.sta eq 2}">
+							<input class="btn_sta2" type="button"
+							onclick="location='activeClass.do?lec_num=${dto.lec_num}'"
+							value="모집하기">
+							</c:if>
+							</th>
+						</tr>	
+						</c:forEach>					
+					</table>	
 				</div>
 			</div>
+			
 		</div>
-	
-	
+		</c:if>
+		<c:if test="${tutorInfo eq 0}">
+		<div style="padding:5%;">
+			<h5>Class만들기가 처음이신가요?</h5>
+			<h5>튜터 정보를 먼저 등록해주세요!</h5>
+			<input class="btn" type="button" value="튜터 정보 등록하기" onclick="location='tutorInfoForm.do'">
+
+		</div>
+		</c:if>
+			
 	  <div id="tutor_div_space"></div>
 	</div>
 </div>

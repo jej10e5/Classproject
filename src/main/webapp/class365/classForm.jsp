@@ -127,7 +127,7 @@ $(document).ready(function($) {
 	 				  		</div>
 	 				  		<div class="tut_text">
 	 				  		<c:if test="${dtt.info eq null or dtt.info eq ''}"> 
-	 				  			<p class="tut_text_area">
+	 				  			<pre class="tut_text_area">
 	 				  			아
 	 				  			<br>
 	 				  			아
@@ -159,7 +159,7 @@ $(document).ready(function($) {
 								나의 단점과 장점을 직접적으로 듣고 느낄 수 있는 경험도 해보실 수 있습니다.
 								<br>
 								좋은 음악으로 좋은 인연 이어가고 싶습니다. 감사합니다.
-	 				  			</p>
+	 				  			</pre>
 	 				  			</c:if>
 	 				  			<c:if test="${dtt.info ne null and dtt.info ne ''}">
 	 				  				${dtt.info}
@@ -178,7 +178,7 @@ $(document).ready(function($) {
 	 						  <div class="sub_div">
 		 						<div class="tut_text">
 		 							<c:if test="${dto.con eq null or dto.con eq ''}">
-		 							<p class="tut_text_area">
+		 							<pre class="tut_text_area">
 		 								#진행방식
 										1) 원데이 클래스 (오프라인)
 											<br>
@@ -225,7 +225,7 @@ $(document).ready(function($) {
 											<br>
 										◾ 일상 영어회화
 											<br>
-		 							</p>
+		 							</pre>
 		 							</c:if>
 		 							<c:if test="${dto.con ne null and dto.con ne ''}">
 		 								${dto.con }
@@ -329,7 +329,14 @@ $(document).ready(function($) {
  							<div id="box_mid">
  								<div id="box_mprice">
  									<div id="mon_price">
+ 										<c:if test="${month gt 1}">
  										<h4 font-weight="700" id="m_price">월 ${dcd.pri}원</h4>
+ 										</c:if>
+ 										<c:if test="${month le 1}">
+ 										<h4 style="font-size: 11px;font-weight: 500; color: rgb(162, 162, 162); line-height: 20px; letter-spacing: -0.5; margin: 0px;">1개월 미만은 분할결제를 지원하지 않습니다.</h4>
+ 										</c:if>
+ 										
+ 										
  									</div>
  								</div>								
  							</div>
@@ -360,8 +367,11 @@ $(document).ready(function($) {
 	 						<c:if test="${month gt 1 }">
 	 						  <input class="range-slider_range" type="range" value="${month}" min="1" max="${month}">
 	 						  <span class="result" style="font-wight:500; color:#fd3049;">${month}개월</span>
-		 						  </c:if>
-	 			
+		 					</c:if>
+	 						<c:if test="${month le 1}">
+
+	 						<span class="result" style="font-wight:500; color:#fd3049;">${days}일</span>
+	 						</c:if>
 	 						  <!-- 여기 -->
 	 						  
 	 						  
@@ -374,7 +384,13 @@ $(document).ready(function($) {
  								</div>
  								
 	 							<div id="box_total">
+	 							<c:if test="${month gt 1 }">
 	 								<span color="#fd3049" font-weight="700" id="total_price">${dcd.pri*month}원</span>
+	 							</c:if>
+	 							<c:if test="${month le 1}">
+	 								<span color="#fd3049" font-weight="700" id="total_price">${dcd.pri}원</span>
+	 							</c:if>
+	 							
 	 							</div>
 	 						</div>	
 	 					
@@ -385,13 +401,21 @@ $(document).ready(function($) {
 	 							</button>
 	 						</c:if>
 	 							<c:if test="${memid ne  null  and memid ne ''}">
-	 							<form action="payForm.do" method="get">
+	 							<c:if test="${month gt 1}">
+	 							<form action="payForm.do" method="post">
 	 							<input type="hidden" name="month" value="" id="pay_month">
 	 							<input type="hidden" name="cost" value="${m_cost}" id="cost">
+	 							<input type="hidden" name="lec_num" value="${lec_num}">
+	 							<input type="submit" id="buy_btn" value="결제하기">	 							 						
+	 							</form>
+	 							</c:if>
+	 							<c:if test="${month le 1}">
+	 							<form action="payForm.do" method="post">
+	 							<input type="hidden" name="cost" value="${dcd.pri}">
 	 							<input type="hidden" name="lec_num" value="${dto.lec_num}">
 	 							<input type="submit" id="buy_btn" value="결제하기">
-	 							 						
-	 							</form>
+	 							</form>	
+	 							</c:if>	 							
 	 						</c:if>
 	 					 		 <script type="text/javascript">
 								//<!--

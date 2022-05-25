@@ -1,4 +1,3 @@
-
 package handler;
 
 import java.util.List;
@@ -11,24 +10,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import leclike.LeclikeDataBean;
 import lecture.LectureDao;
 import lecturede.LectureDeDataBean;
 
 @Controller
-public class TutorMainHandler implements CommandHandler{
+public class DeleteHeartHandler implements CommandHandler {
 	@Resource
 	private LectureDao lectureDao;
-	@RequestMapping("/tutorMain")
+	@RequestMapping("/deleteHeart") 
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String id = (String)request.getSession().getAttribute("memid");
-		int tutorInfo = lectureDao.getCreateTutor(id); 
-		request.setAttribute("tutorInfo", tutorInfo);
-		List<LectureDeDataBean> dtos = lectureDao.getTutorClass(id);
-		request.setAttribute("dtos", dtos);
-		return new ModelAndView("class365/tutorMain");
+		int lec_num=Integer.parseInt(request.getParameter("lec_num"));
+		LeclikeDataBean dto = new LeclikeDataBean();
+		dto.setId(id);
+		dto.setLec_num(lec_num);
+		lectureDao.deleteHeart(dto);
+		
+		return new ModelAndView("/class365/deleteHeart");
 	}
-
 }
-
- 
