@@ -22,7 +22,8 @@
 		<h2>회 원 가 입</h2>
 		<p class="hint-text">여러분 근처의 고수님들을 만나보세요!</p>
         <div class="form-group">
-        	<input type="text" class="form-control" name="id" placeholder="아이디" required="required">
+        	<input type="text" class="form-control" style="display:inline-block;" name="id" placeholder="아이디" required="required">
+        	<input type="button" class="btn" value="중복확인">
         </div>
 		<div class="form-group">
             <input type="password" class="form-control" name="passwd" placeholder="패스워드" required="required">

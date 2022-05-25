@@ -7,6 +7,12 @@
  <link href="${project}/tutorMain_style.css" rel="stylesheet" type="text/css"> 
 <script src="https://kit.fontawesome.com/811e29d39a.js" crossorigin="anonymous"></script>
 <script src="${project}/jquery-3.6.0.js"></script> 
+<script type="text/javascript">
+function checktutee(lec_num){
+	url="checktutee.do?lec_num="+lec_num;
+	open( url, "checktutee", "scrollbar=no, menubar=no, status=no, width=600, height=600" ); //새창띄우기
+}
+</script> 
 <style>
 .btn_modify{
 	border: none;
@@ -183,6 +189,7 @@
 							<th>가격</th>
 							<th></th>
 							<th></th>
+							<th></th>
 						</tr>
 						<c:forEach var="dto" items="${dtos}">
 						<tr>
@@ -216,14 +223,21 @@
 							<input class="btn_sta1" type="button"
 							onclick="location='inactiveClass.do?lec_num=${dto.lec_num}'"
 							value="마감하기">
+							<input class="btn_sta1" type="button"
+							onclick="checktutee(${dto.lec_num})"
+							value="수강생">
 							</c:if>
 							<c:if test="${dto.sta eq 2}">
 							<input class="btn_sta2" type="button"
 							onclick="location='activeClass.do?lec_num=${dto.lec_num}'"
 							value="모집하기">
+							<input class="btn_sta1" type="button"
+							onclick="checktutee(${dto.lec_num})"
+							value="수강생">
 							</c:if>
 							</th>
-						</tr>	
+						</tr>
+							
 						</c:forEach>					
 					</table>	
 				</div>

@@ -3,10 +3,15 @@ package lecture;
 import java.util.List;
 
 import lecde.LecdeDataBean;
+import leclike.LeclikeDataBean;
 import lecmem.LecmemDataBean;
 
 import tutee.TuteeDataBean;
+
 import tuteelec.TuteeLecDataBean;
+
+import tuteemem.TuteememDataBean;
+
 import lecturede.LectureDeDataBean;
 import review.ReviewDataBean;
 import tutor.TutorDataBean;
@@ -39,13 +44,17 @@ public interface LectureDao {
 	
 	public int modifyReview(ReviewDataBean dto);
 	public int insertReview(ReviewDataBean dto);
-	public ReviewDataBean getReview(ReviewDataBean dto); //튜티 테이블에 리뷰넘버 넣을떄 사용하는 메서드 
-	public ReviewDataBean getRe(int re_num); // 리뷰 수정할떄 사용하는 메서드
+	public ReviewDataBean getReview(ReviewDataBean dto); 
+	public ReviewDataBean getRe(int re_num); 
 	
 	public int finClass(int lec_num);
 	public int createClass2(LecdeDataBean dto);
+
 	
 	public int insertRenum(TuteeDataBean dtt);
+
+	public String findId(String tel);
+
 	public List<LectureDeDataBean> getTutorClass(String id);
 	public List<TuteeLecDataBean> getTuteeClass(String id);
 	public LectureDataBean getOriginClass(int lec_num);
@@ -60,6 +69,16 @@ public interface LectureDao {
 
 	public int modifyMember( LecmemDataBean dto );
 	public int modifyTutorPro(TutorDataBean dto);
-
-
+	
+	public List<LectureDeDataBean> getCategory(String c);
+	public List<LectureDeDataBean> getSearchResult(String p);
+	public List<LectureDeDataBean> getInactive();
+	public List<LectureDeDataBean> getTuteeClassList(String id);
+	
+	public List<LeclikeDataBean> getLikeList(String id);
+	public int deleteHeart(LeclikeDataBean dto);
+	public int insertHeart(LeclikeDataBean dto);
+	public int getNowTutee(int lec_num);
+	public List<TuteememDataBean> getTutee(int lec_num);
+	public List<LectureDeDataBean> getMemberLikeList(String id);
 }

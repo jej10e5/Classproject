@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  <link href="${project}/style.css" rel="stylesheet" type="text/css"> 
-  <link href="${prpject}/login_style.css" rel="stylesheet" type="text/css"> 
+  <link href="${project}/login_style.css" rel="stylesheet" type="text/css"> 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 
@@ -36,7 +36,7 @@
     </form>
 	<div class="text-center">
 	<span style="color:orange;">아이디/비밀번호를 잊어버리셨나요?</span> 
-	<a href="#">아이디</a>
+	<a href="findIdForm.do">아이디</a>
 	/
 	<a href="#">비밀번호</a>
 	</div>

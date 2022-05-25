@@ -101,6 +101,88 @@ color: #fff!important;
 	margin-left: 15px;
     margin-top: 3px;
 }
+.pro_img{
+	border-radius:20px;
+}
+.profile{
+	overflow:hidden; 
+	display:flex; 
+	width:100%; 
+	height:100%; 
+	object-fit:cover;
+	transition: all 0.2s linear;
+	max-width:100%;
+}
+.lvbox{
+	position:absolute; 
+	top:10px; 
+	left:10px;
+	border:solid 1px white;
+	border-radius:7px;
+	color:white;
+	padding:3px 5px;
+}
+.cbox{
+	position:absolute; 
+	top:10px; 
+	left:80px;
+	border:solid 1px white;
+	border-radius:7px;
+	color:white;
+	padding:3px 5px;
+}
+.sbox{
+	position:absolute; 
+	bottom:210px; 
+	left:10px;
+	border:solid 1px white;
+	border-radius:7px;
+	color:white;
+	padding:3px 5px;
+}
+.hebox{
+	position:absolute; 
+	top:15px; 
+	right:15px;
+	z-index:100;
+
+}
+.lv1{
+	background-color:#fda166;
+}
+.lv2{
+	background-color:#ff6f61;
+}
+.lv3{
+	background-color:#9c446e;
+}
+.ca1{
+	background-color:#fda166;
+}
+.ca2{
+	background-color:#ff6f61;
+}
+.ca3{
+	background-color:#9c446e;
+}
+.s1{
+	background-color:#ff6f61;
+}
+.s2{
+	background-color:#9c446e;
+}
+.card{
+	border:none;
+}
+.card img{
+	border-radius:20px;
+}
+.card:hover{
+	cursor:pointer;
+}
+.card:hover img{
+	transform:scale(1.2);
+}
 </style>
 <div id="total_div">
 <jsp:include page="header.jsp"/>
@@ -113,9 +195,8 @@ color: #fff!important;
 					<div id="side_cate">
 						<div id="side_top_div">
 						 <div class="profile-card">
-               			 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" class="profile-photo">
-            			<h5 class="text-white">${memid} 님</h5>
-            			<h5 class="text-white">안녕하세요</h5>
+            			<h3 class="text-white">${memid} 님</h3>
+            			<h5 class="text-white">안녕하세요</h5> 
             	
             			</div><!--profile card ends-->
 
@@ -210,89 +291,87 @@ color: #fff!important;
 		</div>	
 	</div>
  <!-- 사이드바 -->	
-	<div id="tutor_div">
-	<c:if test="${tutorInfo ne 0}">
-		<div id="tutor_main_article">
-			<div id="tutor_main_margin">
-			
-				<div id="tutor_top_topic">
-					<h3 class="topic">내 강의</h3>
-					
-					
-					
-				</div>
-				<div id="table_div">
-					<table class="tutor_table">
-						<tr style="border-bottom:solid 1px lightgrey" >
-							<th style="width:15%">강좌명</th>
-							<th>상태</th>
-							<th >카테고리</th>
-							<th>난이도</th>
-							<th>현재인원</th>
-							<th>시작일</th>
-							<th>마지막일</th>
-							<th>가격</th>
-							<th></th>
-							<th></th>
-						</tr>
-						<c:forEach var="dto" items="${dtos}">
-						<tr>
-							<th style="width:15%">${dto.sub}</th>
-							<th>
-								<c:if test="${dto.sta eq 0}">
-								작성중
-								</c:if>
-								<c:if test="${dto.sta eq 1}">
-								모집중
-								</c:if>
-								<c:if test="${dto.sta eq 2}">
-								마감
-								</c:if>
-							</th>
-							<th>${dto.cate}</th> 
-							<th>${dto.lv}</th>
-							<th>현재인원</th>
-							<th>${dto.be}</th>
-							<th>${dto.fin}</th>
-							<th>${dto.pri}</th>
-							<th><input class="btn_modify" type="button" value="수정하기" 
-							onclick="location='modifyClass.do?lec_num=${dto.lec_num}'"></th>
-							<th>
-							<c:if test="${dto.sta eq 0}">
-							<input class="btn_delete"type="button"
-							onclick="location='deleteClass.do?lec_num=${dto.lec_num}'" 
-							value="삭제하기">
-							</c:if>
-							<c:if test="${dto.sta eq 1}">
-							<input class="btn_sta1" type="button"
-							onclick="location='inactiveClass.do?lec_num=${dto.lec_num}'"
-							value="마감하기">
-							</c:if>
-							<c:if test="${dto.sta eq 2}">
-							<input class="btn_sta2" type="button"
-							onclick="location='activeClass.do?lec_num=${dto.lec_num}'"
-							value="모집하기">
-							</c:if>
-							</th>
-						</tr>	
-						</c:forEach>					
-					</table>	
+	<!-- main lecture list section --> 
+	<div class="container" style="max-width:fit-content; margin-left:280px;"> 
+		<h2>수강중인 강의</h2>
+		<div class="row">   
+		<c:forEach var="dto" items="${dtos}">
+			<div class="col" style="margin:2% 0;" >
+				<div class="card" style="height:500px; width: 300px; margin:auto;"
+					onclick="location.href='classForm.do?lec_num=${dto.lec_num}'">
+					<div class="row">
+		                  <div  class="mx-auto"  style="width: 300px;">
+		                   <div class="pro_img" id="thumb_container" style="height:300px; overflow:hidden;">
+		                   		<img class="profile" src="${imagepath}${dto.thu}" style="position:relative;">
+		                   		<c:if test="${dto.lv eq '입문자'}">
+		                   		<span class="lvbox lv1">${dto.lv}</span>
+		                   		</c:if>
+		                   		<c:if test="${dto.lv eq '초급자'}">
+		                   		<span class="lvbox lv2">${dto.lv}</span>
+		                   		</c:if>
+		                   		<c:if test="${dto.lv eq '중급자'}">
+		                   		<span class="lvbox lv3">${dto.lv}</span>
+		                   		</c:if>
+		                   		
+		                   		<c:if test="${dto.cate eq '요리'}">
+		                   		<span class="cbox ca1">${dto.cate}</span>
+		                   		</c:if>
+		                   		<c:if test="${dto.cate eq '운동'}">
+		                   		<span class="cbox ca2">${dto.cate}</span>
+		                   		</c:if>
+		                   		<c:if test="${dto.cate eq '금융'}">
+		                   		<span class="cbox ca3">${dto.cate}</span>
+		                   		</c:if>
+		                   		
+		                   		<c:if test="${dto.sta eq 1}">
+		                   		<span class="sbox s1">모집중</span>
+		                   		</c:if>
+		                   		<c:if test="${dto.sta eq 2}">
+		                   		<span class="sbox s2">마감</span>
+		                   		</c:if>
+		                   		<!-- 좋아요기능 -->
+		                   		<c:forEach var="ldto" items="${ldtos}">
+			                   		<c:if test="${dto.lec_num eq ldto.lec_num}">
+								     	<a class="hebox" style="z-index:200;" href="deleteHeart.do?lec_num=${dto.lec_num}">
+								     	 	<i class="fa-solid fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
+								     	 </a>
+							     	 </c:if>
+						     	</c:forEach>
+						     	<c:if test="${memid eq null or memid eq '' }">
+						     	<a class="hebox" href="loginForm.do">
+								     <i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
+								 </a>
+								 </c:if>
+								 <c:if test="${memid ne null and memid ne '' }">
+								 <a class="hebox" href="insertHeart.do?lec_num=${dto.lec_num}">
+								     <i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
+								 </a>
+								 </c:if>
+		                   	</div>    
+		                    </div>
+		                </div>
+				  <div class="card-body">
+				    <h4 class="card-title" style="text-overflow: ellipsis; overflow:hidden;"> ${dto.sub}</h4>
+				    <h7 class="card-text" style="display:block; margin-bottom:5px;">${dto.id}</h7>
+				    <h7 class="card-text" style="display:block; margin-bottom:5px;text-overflow: ellipsis; overflow:hidden;">${dto.intr}</h7>
+				    <div style="bottom:0px;">
+				    <h5 class="card-text" style="padding:5px 10px; display:inline;color:#ff6f61; margin-right:auto;">월 ${dto.pri}원</h5>
+				    <!-- like 
+				    <a href="#"><i class="fa-regular fa-heart cc_pink" style="padding:5px 10px; inline"></i></a>
+				    -->
+				    <a href="classForm.do?lec_num=${dto.lec_num}" class="btn btn-primary"
+				    style="float:right;">상세정보</a>
+					</div>
+				    <!-- classForm.jsp?classNum=${classNum} -->
+				  </div>
 				</div>
 			</div>
-			
+			</c:forEach>
+		
 		</div>
-		</c:if>
-		<c:if test="${tutorInfo eq 0}">
-		<div style="padding:5%;">
-			<h5>Class만들기가 처음이신가요?</h5>
-			<h5>튜터 정보를 먼저 등록해주세요!</h5>
-			<input class="btn" type="button" value="튜터 정보 등록하기" onclick="location='tutorInfoForm.do'">
-
-		</div>
-		</c:if>
-			
-	  <div id="tutor_div_space"></div>
 	</div>
+	
+	
 </div>
 </div>
 

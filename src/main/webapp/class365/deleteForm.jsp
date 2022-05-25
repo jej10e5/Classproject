@@ -78,6 +78,7 @@
 font-size: 18px;
 color: #fff!important;
 
+
 }
 .my_lec{
     

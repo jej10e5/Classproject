@@ -12,7 +12,7 @@
 <nav class="navbar navbar-expand-xl navbar-light bg-white">
   <a class="navbar-brand c_font_main" href="mainForm.do" style="margin-right:30px;"> 
   	<span class="cc_main">${page_main1}</span>
-  	<span class="cc_orange">${page_main2}</span> 
+  	<span class="cc_orange">${page_main2}</span>  
   	</a>     
   	    
   <!-- 반응형웹 - 화면 크기 줄어들었을때 햄버거모양 리스트 -->
@@ -24,7 +24,7 @@
  <div class="dropdown-divider"></div>
     <ul class="navbar-nav "style=" margin-right:auto;">   
       <li class="nav-item"> 
-        <a class="nav-link cc_pink c_font_category" href="#">${menu_event}</a>
+        <a class="nav-link cc_pink c_font_category" href="likeListForm.do">${menu_event}</a>
       </li>    
       <li class="nav-item"> 
         <a class="nav-link cc_main c_font_category" href="#">${menu_class}</a>
@@ -34,16 +34,17 @@
          ${menu_category}
         </a> 
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">요리</a>
-          <a class="dropdown-item" href="#">운동</a>
-          <a class="dropdown-item" href="#">금융</a>
-          <a class="dropdown-item" href="#" style="color:gray;">마감된 강의</a> 
+          <a class="dropdown-item" href="mainResultForm.do?c=요리">요리</a>
+          <a class="dropdown-item" href="mainResultForm.do?c=운동">운동</a>
+          <a class="dropdown-item" href="mainResultForm.do?c=금융">금융</a>
+          <a class="dropdown-item" href="mainResultForm.do?c=d" style="color:gray;">마감된 강의</a> 
         </div>
       </li> 
        
       <li class="nav-item c_font_category">   
-        <form class="form-inline my-2 my-lg-0" style="padding:5px;">
-      	<input class="form-control mr-sm-2 " type="search" style="width:300px;" placeholder="${str_search}" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" style="padding:5px;"
+        	action="mainResultForm.do" method="post">
+      	<input class="form-control mr-sm-2 " type="search" name="p" style="width:300px;" placeholder="${str_search}" aria-label="Search">
       	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">${btn_search}</button>
       </form>
       </li>
@@ -65,7 +66,7 @@
      <c:if test="${sessionScope.memid ne null}">
      <ul class="navbar-nav"> 
      <li class="nav-item my-2 my-lg-0">
-     	 <a class="nav-link" href="#">
+     	 <a class="nav-link" href="likeListForm.do">
      	 	<i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:20px;"></i>
      	 </a>
         
