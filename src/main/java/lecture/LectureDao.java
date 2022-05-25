@@ -81,4 +81,5 @@ public interface LectureDao {
 	public int getNowTutee(int lec_num);
 	public List<TuteememDataBean> getTutee(int lec_num);
 	public List<LectureDeDataBean> getMemberLikeList(String id);
+	public List<LecdeDataBean> getClassDeList();
 }

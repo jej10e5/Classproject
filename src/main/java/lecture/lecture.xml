@@ -203,6 +203,12 @@
         where ll.id=#{id}
         order by ll.lec_num desc
  	</select>
+ 	<select id="getClassDeList" resultType="lecde.LecdeDataBean">
+ 		select d.lec_num, d.lv, d.pri, d.cap, d.adr, d.be, d.fin from lecde d
+ 		join lecture l
+ 		on d.lec_num = l.lec_num
+ 		where l.sta=1
+ 	</select>
 </mapper>
 
 

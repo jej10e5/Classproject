@@ -23,6 +23,8 @@
 	 			
 					<div id="map" style="width:500px;height:400px;"></div>
 					<script>
+						var list = new Array();
+						
 						var container = document.getElementById('map');
 						var options = {
 							center: new kakao.maps.LatLng(33.450701, 126.570667),
@@ -33,45 +35,71 @@
 						
 						var geocoder = new kakao.maps.services.Geocoder();
 						
-						var positions = [
-						    {
-						        'title': '신촌역', 
-						        'adr':'서울 서대문구 신촌로 90'
-						    },
-						    {
-						        'title': '이마트', 
-						        'adr': '서울 마포구 신촌로 94'
-						    },
-						    
-						];
-						
-						for(var i=0;i<positions.length;i++){
-							
-						
-						geocoder.addressSearch(positions[i].adr, function(result, status) {
+						<c:forEach var="dto" items="${dtos}">
+						list.push("${dto.adr}");
+						</c:forEach>
+						geocoder.addressSearch(list[0], function(result, status) {
 							
 							if (status === kakao.maps.services.Status.OK) {
 
 						        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-						        // 결과값으로 받은 위치를 마커로 표시합니다
-						        var marker = new kakao.maps.Marker({
-						            map: map,
-						            position: positions[i].latlng, // 마커를 표시할 위치
-						            title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-						        });
-								
-						        var infowindow = new kakao.maps.InfoWindow({
-						            content: '<div style="width:150px;text-align:center;padding:6px 0;">${dcd.adr}</div>'
-						        });
-						        infowindow.open(map, marker);
 						        
-						        map.setCenter(coords);
+						     // 마커 이미지의 이미지 주소입니다
+						        var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+	
+						            
+						            // 마커 이미지의 이미지 크기 입니다
+						            var imageSize = new kakao.maps.Size(24, 35); 
+						            
+						            // 마커 이미지를 생성합니다    
+						            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+						            
+						            // 마커를 생성합니다
+						            var marker = new kakao.maps.Marker({
+						                map: map, // 마커를 표시할 지도
+						                position: coords, // 마커를 표시할 위치
+						                title : '마커', // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+						                image : markerImage // 마커 이미지 
+						            });
+
+						        
 							}
 						});
-						}
+						
+						
+						
+						
+							geocoder.addressSearch('서울 서대문구 신촌로 129 아트레온', function(result, status) {
+							
+							if (status === kakao.maps.services.Status.OK) {
+
+						        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+						       
+						     // 마커 이미지의 이미지 주소입니다
+						        var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+	
+						            
+						            // 마커 이미지의 이미지 크기 입니다
+						            var imageSize = new kakao.maps.Size(24, 35); 
+						            
+						            // 마커 이미지를 생성합니다    
+						            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+						            
+						            // 마커를 생성합니다
+						            var marker = new kakao.maps.Marker({
+						                map: map, // 마커를 표시할 지도
+						                position: coords, // 마커를 표시할 위치
+						                title : '마커', // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+						                image : markerImage // 마커 이미지 
+						            });
+						            map.setCenter(coords);
+
+							}
+						});
+							
+							
 						</script>
-			
+
 				</section>
 				</div> 
 <!-- bootstrap ver4.6 JS -->

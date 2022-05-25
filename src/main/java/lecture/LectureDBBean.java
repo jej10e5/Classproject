@@ -317,5 +317,9 @@ public class LectureDBBean implements LectureDao{
 	public List<LectureDeDataBean> getMemberLikeList(String id) {
 		return SqlMapClient.getSession().selectList("Lecture.getMemberLikeList",id);
 	}
+	@Override
+	public List<LecdeDataBean> getClassDeList() {
+		return SqlMapClient.getSession().selectList("Lecture.getClassDeList");
+	}
 
 }
