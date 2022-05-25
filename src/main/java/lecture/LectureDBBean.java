@@ -9,8 +9,11 @@ import lecde.LecdeDataBean;
 import leclike.LeclikeDataBean;
 import lecmem.LecmemDataBean;
 import tutee.TuteeDataBean;
+import tuteelec.TuteeLecDataBean;
+
 import tuteemem.TuteememDataBean;
 import lecturede.LectureDeDataBean;
+import review.ReviewDataBean;
 import tutor.TutorDataBean;
 
 public class LectureDBBean implements LectureDao{
@@ -244,6 +247,35 @@ public class LectureDBBean implements LectureDao{
 	public int modifyTutorPro(TutorDataBean dto) {
 		return SqlMapClient.getSession().update("Lecture.updateTutorPro",dto);
 	}
+
+	@Override
+	public ReviewDataBean getReview(ReviewDataBean dto) {
+		return SqlMapClient.getSession().selectOne("Lecture.getReview",dto);
+	}
+
+	@Override
+	public List<TuteeLecDataBean> getTuteeClass(String id) {
+		return SqlMapClient.getSession().selectList("Lecture.getTuteeClass",id);
+	}
+	@Override
+	public int insertReview(ReviewDataBean dto) {
+		return SqlMapClient.getSession().insert("Lecture.insertReview",dto);
+	}
+	@Override
+	public int insertRenum(TuteeDataBean dtt) {
+		return SqlMapClient.getSession().update("Lecture.insertRenum",dtt);
+	}
+	@Override
+	public ReviewDataBean getRe(int re_num) {
+
+		return SqlMapClient.getSession().selectOne("Lecture.getRe",re_num);
+	}
+	@Override
+	public int modifyReview(ReviewDataBean dto) {
+		return SqlMapClient.getSession().update("Lecture.modifyReview",dto);
+	}
+
+=======
 	
 	@Override
 	public List<LectureDeDataBean> getCategory(String c) {
@@ -285,4 +317,5 @@ public class LectureDBBean implements LectureDao{
 	public List<LectureDeDataBean> getMemberLikeList(String id) {
 		return SqlMapClient.getSession().selectList("Lecture.getMemberLikeList",id);
 	}
+
 }

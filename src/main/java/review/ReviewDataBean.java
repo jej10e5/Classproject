@@ -10,7 +10,8 @@ public class ReviewDataBean {
 	private String img;
 	private int re_level;
 	private int gr;
-	private Timestamp reg_date;
+	private String reg_date;
+	
 	public int getRe_num() {
 		return re_num;
 	}
@@ -54,10 +55,10 @@ public class ReviewDataBean {
 	public void setGr(int gr) {
 		this.gr = gr;
 	}
-	public Timestamp getReg_date() {
+	public String getReg_date() {
 		return reg_date;
 	}
-	public void setReg_date(Timestamp reg_date) {
+	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
 	}
 

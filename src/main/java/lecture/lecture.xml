@@ -64,7 +64,7 @@
  		update lecture set sta=1 where lec_num=#{lec_num}
  	</update>
  	<insert id="insertTutee" parameterType="tutee.TuteeDataBean">
- 		insert into tutee (id,lec_num) values(#{id},#{lec_num})
+ 		insert into tutee values(#{id},#{lec_num},default)
  	</insert>
  	<select id="getTutorClass" parameterType="String" resultType="lecturede.LectureDeDataBean">
  		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
@@ -110,6 +110,36 @@
 		update lecmem set passwd=#{passwd}, 
 		tel=#{tel, jdbcType=VARCHAR}, email=#{email, jdbcType=VARCHAR} where id=#{id}
 	</update>
+
+	<update id="modifyReview" parameterType="review.ReviewDataBean">
+		update review set re=#{re, jdbcType=VARCHAR}, img=#{img, jdbcType=VARCHAR}, reg_date=#{reg_date, jdbcType=VARCHAR} where re_num=#{re_num}
+	
+	</update>
+	<update id="updateTutorPro" parameterType="tutor.TutorDataBean">
+		update tutor set pro=#{pro, jdbcType=VARCHAR} where id=#{id}
+	</update>	
+	<select id="getReview" parameterType="review.ReviewDataBean" resultType="review.ReviewDataBean">
+		select *from review where id=#{id} and lec_num=#{lec_num}
+	</select>
+	<select id="getTuteeClass" parameterType="String" resultType="tuteelec.TuteeLecDataBean">
+		select t.lec_num, t.id, e.sub, r.re, r.reg_date, r.img, e.thu, t.re_num 
+		from tutee t 
+		join lecture e 
+		on t.lec_num=e.lec_num
+		full outer join review r
+		on t.lec_num=r.lec_num	 
+		where t.id=#{id} 
+		order by t.lec_num desc
+	</select>
+	<insert id="insertReview" parameterType="review.ReviewDataBean">
+		insert into review values(re_num_SEQ.nextval, #{lec_num, jdbcType=INTEGER}, #{id, jdbcType=VARCHAR}, #{re, jdbcType=VARCHAR}, #{img, jdbcType=VARCHAR}, #{reg_date}, #{re_level, jdbcType=INTEGER}, gr_SEQ.nextval )
+	</insert>
+	<update id="insertRenum" parameterType="tutee.TuteeDataBean">
+		update tutee set re_num=#{re_num} where id=#{id} and lec_num=#{lec_num}
+	</update>
+	<select id="getRe" parameterType="int" resultType="review.ReviewDataBean">
+		select * from review where re_num=#{re_num}
+	</select>
 	<select id="findId" parameterType="String" resultType="String">
 		select id from lecmem where tel = #{tel}
 	</select>	
@@ -178,5 +208,6 @@
         order by ll.lec_num desc
  	</select>
 </mapper>
+
 
 
