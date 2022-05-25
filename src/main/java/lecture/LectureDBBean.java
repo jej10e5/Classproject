@@ -8,7 +8,9 @@ import java.util.List;
 import lecde.LecdeDataBean;
 import lecmem.LecmemDataBean;
 import tutee.TuteeDataBean;
+import tuteelec.TuteeLecDataBean;
 import lecturede.LectureDeDataBean;
+import review.ReviewDataBean;
 import tutor.TutorDataBean;
 
 public class LectureDBBean implements LectureDao{
@@ -238,6 +240,32 @@ public class LectureDBBean implements LectureDao{
 	@Override
 	public int modifyTutorPro(TutorDataBean dto) {
 		return SqlMapClient.getSession().update("Lecture.updateTutorPro",dto);
+	}
+	@Override
+	public ReviewDataBean getReview(ReviewDataBean dto) {
+		return SqlMapClient.getSession().selectOne("Lecture.getReview",dto);
+	}
+
+	@Override
+	public List<TuteeLecDataBean> getTuteeClass(String id) {
+		return SqlMapClient.getSession().selectList("Lecture.getTuteeClass",id);
+	}
+	@Override
+	public int insertReview(ReviewDataBean dto) {
+		return SqlMapClient.getSession().insert("Lecture.insertReview",dto);
+	}
+	@Override
+	public int insertRenum(TuteeDataBean dtt) {
+		return SqlMapClient.getSession().update("Lecture.insertRenum",dtt);
+	}
+	@Override
+	public ReviewDataBean getRe(int re_num) {
+
+		return SqlMapClient.getSession().selectOne("Lecture.getRe",re_num);
+	}
+	@Override
+	public int modifyReview(ReviewDataBean dto) {
+		return SqlMapClient.getSession().update("Lecture.modifyReview",dto);
 	}
 
 }
