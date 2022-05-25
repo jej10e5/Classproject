@@ -133,8 +133,8 @@ color: #fff!important;
 }
 .sbox{
 	position:absolute; 
-	top:10px; 
-	left:140px;
+	bottom:210px; 
+	left:10px;
 	border:solid 1px white;
 	border-radius:7px;
 	color:white;
@@ -285,15 +285,13 @@ color: #fff!important;
 	</div>
  <!-- 사이드바 -->	
 	<!-- main lecture list section --> 
-	<div class="container" style="max-width:fit-content; margin-left:250px; margin-top:50px; margin-right:0px;"> 
-		<div class="row">
-			<h2>수강중인 강의</h2>
-		</div>
+	<div class="container" style="max-width:fit-content; margin-left:280px;"> 
+		<h2>수강중인 강의</h2>
 		<div class="row">   
 		<c:forEach var="dto" items="${dtos}">
-			<div class="col-6" style="margin:2% 0;" >
+			<div class="col-lg-3 col-md-6" style="margin:2% 0;" >
 				<div class="card" style="height:500px; width: 300px; margin:auto;"
-					onclick="location.href='http://localhost:8080/ClassProject/classForm.do?lec_num=${dto.lec_num}'">
+					onclick="location.href='classForm.do?lec_num=${dto.lec_num}'">
 					<div class="row">
 		                  <div  class="mx-auto"  style="width: 300px;">
 		                   <div class="pro_img" id="thumb_container" style="height:300px; overflow:hidden;">
@@ -307,6 +305,7 @@ color: #fff!important;
 		                   		<c:if test="${dto.lv eq '중급자'}">
 		                   		<span class="lvbox lv3">${dto.lv}</span>
 		                   		</c:if>
+		                   		
 		                   		<c:if test="${dto.cate eq '요리'}">
 		                   		<span class="cbox ca1">${dto.cate}</span>
 		                   		</c:if>
@@ -316,12 +315,31 @@ color: #fff!important;
 		                   		<c:if test="${dto.cate eq '금융'}">
 		                   		<span class="cbox ca3">${dto.cate}</span>
 		                   		</c:if>
+		                   		
 		                   		<c:if test="${dto.sta eq 1}">
 		                   		<span class="sbox s1">모집중</span>
 		                   		</c:if>
 		                   		<c:if test="${dto.sta eq 2}">
 		                   		<span class="sbox s2">마감</span>
 		                   		</c:if>
+		                   		<!-- 좋아요기능 -->
+		                   		<c:forEach var="ldto" items="${ldtos}">
+			                   		<c:if test="${dto.lec_num eq ldto.lec_num}">
+								     	<a class="hebox" style="z-index:200;" href="deleteHeart.do?lec_num=${dto.lec_num}">
+								     	 	<i class="fa-solid fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
+								     	 </a>
+							     	 </c:if>
+						     	</c:forEach>
+						     	<c:if test="${memid eq null or memid eq '' }">
+						     	<a class="hebox" href="loginForm.do">
+								     <i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
+								 </a>
+								 </c:if>
+								 <c:if test="${memid ne null and memid ne '' }">
+								 <a class="hebox" href="insertHeart.do?lec_num=${dto.lec_num}">
+								     <i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
+								 </a>
+								 </c:if>
 		                   	</div>    
 		                    </div>
 		                </div>
@@ -341,7 +359,8 @@ color: #fff!important;
 				  </div>
 				</div>
 			</div>
-		</c:forEach>
+			</c:forEach>
+		
 		</div>
 	</div>
 </div>

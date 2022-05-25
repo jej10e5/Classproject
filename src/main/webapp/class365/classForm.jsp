@@ -384,6 +384,7 @@ $(document).ready(function($) {
  								</div>
  								
 	 							<div id="box_total">
+	 								<span style="color:gray; font-weight:700; left:0px;" >현재${now}명</span>
 	 							<c:if test="${month gt 1 }">
 	 								<span color="#fd3049" font-weight="700" id="total_price">${dcd.pri*month}원</span>
 	 							</c:if>
