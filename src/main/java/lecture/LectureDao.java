@@ -3,6 +3,7 @@ package lecture;
 import java.util.List;
 
 import lecde.LecdeDataBean;
+import leclike.LeclikeDataBean;
 import lecmem.LecmemDataBean;
 
 import tutee.TuteeDataBean;
@@ -59,4 +60,9 @@ public interface LectureDao {
 	public List<LectureDeDataBean> getCategory(String c);
 	public List<LectureDeDataBean> getSearchResult(String p);
 	public List<LectureDeDataBean> getInactive();
+	public List<LectureDeDataBean> getTuteeClassList(String id);
+	
+	public List<LeclikeDataBean> getLikeList(String id);
+	public int deleteHeart(LeclikeDataBean dto);
+	public int insertHeart(LeclikeDataBean dto);
 }

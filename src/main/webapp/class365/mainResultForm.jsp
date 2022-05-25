@@ -43,6 +43,15 @@
 	color:white;
 	padding:3px 5px;
 }
+.sbox{
+	position:absolute; 
+	top:10px; 
+	left:140px;
+	border:solid 1px white;
+	border-radius:7px;
+	color:white;
+	padding:3px 5px;
+}
 .lv1{
 	background-color:#fda166;
 }
@@ -59,6 +68,12 @@
 	background-color:#ff6f61;
 }
 .ca3{
+	background-color:#9c446e;
+}
+.s1{
+	background-color:#ff6f61;
+}
+.s2{
 	background-color:#9c446e;
 }
 .card{
@@ -82,7 +97,7 @@
 	<div class="container" style="max-width:fit-content; margin:auto;"> 
 		<div class="row">   
 		<c:forEach var="dto" items="${dtos}">
-			<div class="col-xl-3 col-lg-6" style="margin:2% 0;" >
+			<div class="col-sm" style="margin:2% 0;" >
 				<div class="card" style="height:500px; width: 300px; margin:auto;"
 					onclick="location.href='http://localhost:8080/ClassProject/classForm.do?lec_num=${dto.lec_num}'">
 					<div class="row">
@@ -106,6 +121,12 @@
 		                   		</c:if>
 		                   		<c:if test="${dto.cate eq '금융'}">
 		                   		<span class="cbox ca3">${dto.cate}</span>
+		                   		</c:if>
+		                   		<c:if test="${dto.sta eq 1}">
+		                   		<span class="sbox s1">모집중</span>
+		                   		</c:if>
+		                   		<c:if test="${dto.sta eq 2}">
+		                   		<span class="sbox s2">마감</span>
 		                   		</c:if>
 		                   	</div>    
 		                    </div>
