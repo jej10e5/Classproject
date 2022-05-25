@@ -69,7 +69,11 @@
      	 <a class="nav-link" href="likeListForm.do">
      	 	<i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:20px;"></i>
      	 </a>
-        
+     </li>
+     <li class="nav-item my-2 my-lg-0">
+     	 <a class="nav-link" href="mapForm.do">
+        	<i class="fa-solid fa-map-location-dot" style="padding-top:5px; font-size:20px;color:#9c446e;"></i>
+        </a>
       </li>
       <li class="nav-item my-2 my-lg-0">
         <a class="nav-link cc_orange c_font_category" href="tutorMain.do">${menu_creator}</a>
