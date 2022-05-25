@@ -11,7 +11,7 @@
 		alert( modifyerror );
 		//-->
 	</script>
-	<meta http-equiv="refresh" content="0; url=mainForm.do">
+	<meta http-equiv="refresh" content="0; url=myPage.do">
 </c:if>
 <c:if test="${result ne 0}">
 	<c:redirect url="modifyForm.do"/>		

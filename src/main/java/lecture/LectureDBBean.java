@@ -235,6 +235,10 @@ public class LectureDBBean implements LectureDao{
 		return SqlMapClient.getSession().update( "Lecture.modifyMember", dto );
 	}
 	
+	public String findId(String tel) {
+		return SqlMapClient.getSession().selectOne( "Lecture.findId", tel);
+	}
+
 	@Override
 	public int modifyTutorPro(TutorDataBean dto) {
 		return SqlMapClient.getSession().update("Lecture.updateTutorPro",dto);
@@ -268,4 +272,5 @@ public class LectureDBBean implements LectureDao{
 	public int insertHeart(LeclikeDataBean dto) {
 		return SqlMapClient.getSession().insert("Lecture.insertHeart",dto);
 	}
+
 }

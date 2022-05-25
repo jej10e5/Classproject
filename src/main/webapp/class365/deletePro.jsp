@@ -25,7 +25,7 @@
 	</c:if>
 	<c:if test="${result ne 0}">
 		${sessionScope.memid = null}
-		<c:redirect url="myPage.do"/>
+		<c:redirect url="mainForm.do"/>
 	</c:if>
 </c:if>
 

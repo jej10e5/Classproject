@@ -110,6 +110,9 @@
 		update lecmem set passwd=#{passwd}, 
 		tel=#{tel, jdbcType=VARCHAR}, email=#{email, jdbcType=VARCHAR} where id=#{id}
 	</update>
+	<select id="findId" parameterType="String" resultType="String">
+		select id from lecmem where tel = #{tel}
+	</select>	
 	<update id="updateTutorPro" parameterType="tutor.TutorDataBean">
 		update tutor set pro=#{pro, jdbcType=VARCHAR} where id=#{id}
 	</update>	
@@ -155,4 +158,5 @@
 		insert into leclike values(#{lec_num},#{id})
 	</insert>
 </mapper>
+
 

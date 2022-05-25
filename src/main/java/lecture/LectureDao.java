@@ -43,6 +43,9 @@ public interface LectureDao {
 	public int finClass(int lec_num);
 	public int createClass2(LecdeDataBean dto);
 
+	public String findId(String tel);
+
+
 	public List<LectureDeDataBean> getTutorClass(String id);
 	public LectureDataBean getOriginClass(int lec_num);
 	public int modifyClass(LectureDataBean dto);
@@ -65,4 +68,5 @@ public interface LectureDao {
 	public List<LeclikeDataBean> getLikeList(String id);
 	public int deleteHeart(LeclikeDataBean dto);
 	public int insertHeart(LeclikeDataBean dto);
+
 }
