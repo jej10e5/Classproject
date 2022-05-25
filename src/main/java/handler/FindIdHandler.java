@@ -29,7 +29,7 @@ public class FindIdHandler implements CommandHandler{
 	
 		request.setAttribute("result", result);
 		
-		request.setAttribute("tel", tel);
+		
 		
 		return new ModelAndView("class365/findId");
 	}
