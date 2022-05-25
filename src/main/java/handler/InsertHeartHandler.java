@@ -24,6 +24,6 @@ public class InsertHeartHandler implements CommandHandler {
 		dto.setId(id);
 		dto.setLec_num(lec_num);
 		lectureDao.insertHeart(dto);
-		return new ModelAndView("/class365/mainForm");
+		return new ModelAndView("/class365/insertHeart");
 	}
 }

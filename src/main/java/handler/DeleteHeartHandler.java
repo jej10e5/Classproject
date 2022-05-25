@@ -1,5 +1,7 @@
 package handler;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import leclike.LeclikeDataBean;
 import lecture.LectureDao;
+import lecturede.LectureDeDataBean;
 
 @Controller
 public class DeleteHeartHandler implements CommandHandler {
@@ -24,6 +27,7 @@ public class DeleteHeartHandler implements CommandHandler {
 		dto.setId(id);
 		dto.setLec_num(lec_num);
 		lectureDao.deleteHeart(dto);
-		return new ModelAndView("/class365/mainForm");
+		
+		return new ModelAndView("/class365/deleteHeart");
 	}
 }
