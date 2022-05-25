@@ -52,6 +52,13 @@
 	color:white;
 	padding:3px 5px;
 }
+.hebox{
+	position:absolute; 
+	top:15px; 
+	right:15px;
+	z-index:100;
+
+}
 .lv1{
 	background-color:#fda166;
 }
@@ -191,12 +198,24 @@
 		                   		<c:if test="${dto.sta eq 2}">
 		                   		<span class="sbox s2">마감</span>
 		                   		</c:if>
-		                   		 
 		                   		<!-- 좋아요기능 -->
-						     	<a style="position:absolute; top:10px; right:10px;">
-						     	 	<i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
-						     	 </a>
-						     
+		                   		<c:forEach var="ldto" items="${ldtos}">
+			                   		<c:if test="${dto.lec_num eq ldto.lec_num}">
+								     	<a class="hebox" style="z-index:200;" href="deleteHeart.do?lec_num=${dto.lec_num}">
+								     	 	<i class="fa-solid fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
+								     	 </a>
+							     	 </c:if>
+						     	</c:forEach>
+						     	<c:if test="${memid eq null or memid eq '' }">
+						     	<a class="hebox" href="loginForm.do">
+								     <i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
+								 </a>
+								 </c:if>
+								 <c:if test="${memid ne null and memid ne '' }">
+								 <a class="hebox" href="insertHeart.do?lec_num=${dto.lec_num}">
+								     <i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
+								 </a>
+								 </c:if>
 		                   	</div>    
 		                    </div>
 		                </div>
