@@ -3,4 +3,4 @@
 <!DOCTYPE html>
 <%@ include file="setting.jsp"%>
 <script src="${project}/script.js"></script>
-<c:redirect url="mainForm.do"/>
+<c:redirect url="${re}"/>

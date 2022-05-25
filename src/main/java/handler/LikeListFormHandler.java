@@ -1,5 +1,7 @@
 package handler;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,22 +12,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 import leclike.LeclikeDataBean;
 import lecture.LectureDao;
+import lecturede.LectureDeDataBean;
 
 @Controller
-public class InsertHeartHandler implements CommandHandler {
+public class LikeListFormHandler implements CommandHandler {
 	@Resource
 	private LectureDao lectureDao;
-	@RequestMapping("/insertHeart") 
+	@RequestMapping("/likeListForm")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String id = (String)request.getSession().getAttribute("memid");
-		int lec_num=Integer.parseInt(request.getParameter("lec_num"));
-		LeclikeDataBean dto = new LeclikeDataBean();
-		dto.setId(id);
-		dto.setLec_num(lec_num);
-		lectureDao.insertHeart(dto);
-		String re=request.getHeader("Referer");
-		request.setAttribute("re", re);
-		return new ModelAndView("/class365/insertHeart");
+		// TODO Auto-generated method stub
+		String id=(String) request.getSession().getAttribute("memid");
+		List<LeclikeDataBean> ldtos = lectureDao.getLikeList(id);
+		request.setAttribute("ldtos", ldtos);
+		List<LectureDeDataBean> mldtos = lectureDao.getMemberLikeList(id);
+		request.setAttribute("mldtos", mldtos);
+		return new ModelAndView("class365/likeListForm");
 	}
 }
