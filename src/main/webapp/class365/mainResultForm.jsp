@@ -52,6 +52,13 @@
 	color:white;
 	padding:3px 5px;
 }
+.hebox{
+	position:absolute; 
+	top:15px; 
+	right:15px;
+	z-index:100;
+
+}
 .lv1{
 	background-color:#fda166;
 }

@@ -165,7 +165,7 @@
 	<div class="container" style="max-width:fit-content; margin:auto;"> 
 		<div class="row">   
 		<c:forEach var="dto" items="${dtos}">
-			<div class="col-lg-3 col-md-6" style="margin:2% 0;" >
+			<div class="col" style="margin:2% 0;" >
 				<div class="card" style="height:500px; width: 300px; margin:auto;"
 					onclick="location.href='classForm.do?lec_num=${dto.lec_num}'">
 					<div class="row">

@@ -140,6 +140,13 @@ color: #fff!important;
 	color:white;
 	padding:3px 5px;
 }
+.hebox{
+	position:absolute; 
+	top:15px; 
+	right:15px;
+	z-index:100;
+
+}
 .lv1{
 	background-color:#fda166;
 }
@@ -289,7 +296,7 @@ color: #fff!important;
 		<h2>수강중인 강의</h2>
 		<div class="row">   
 		<c:forEach var="dto" items="${dtos}">
-			<div class="col-lg-3 col-md-6" style="margin:2% 0;" >
+			<div class="col" style="margin:2% 0;" >
 				<div class="card" style="height:500px; width: 300px; margin:auto;"
 					onclick="location.href='classForm.do?lec_num=${dto.lec_num}'">
 					<div class="row">
