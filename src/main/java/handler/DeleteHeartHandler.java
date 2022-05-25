@@ -15,11 +15,11 @@ import lecture.LectureDao;
 import lecturede.LectureDeDataBean;
 
 @Controller
-public class DeleteHeartHandler implements CommandHandler {
+public class DeleteHeartHandler implements CommandHandler{
 	@Resource
 	private LectureDao lectureDao;
 	@RequestMapping("/deleteHeart") 
-	@Override
+
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String id = (String)request.getSession().getAttribute("memid");
 		int lec_num=Integer.parseInt(request.getParameter("lec_num"));
@@ -27,7 +27,8 @@ public class DeleteHeartHandler implements CommandHandler {
 		dto.setId(id);
 		dto.setLec_num(lec_num);
 		lectureDao.deleteHeart(dto);
-		
+		String re=request.getHeader("Referer");
+		request.setAttribute("re", re);
 		return new ModelAndView("/class365/deleteHeart");
 	}
 }

@@ -7,7 +7,7 @@ import leclike.LeclikeDataBean;
 import lecmem.LecmemDataBean;
 
 import tutee.TuteeDataBean;
-
+import tuteemem.TuteememDataBean;
 import lecturede.LectureDeDataBean;
 
 import tutor.TutorDataBean;
@@ -69,5 +69,6 @@ public interface LectureDao {
 	public int deleteHeart(LeclikeDataBean dto);
 	public int insertHeart(LeclikeDataBean dto);
 	public int getNowTutee(int lec_num);
-
+	public List<TuteememDataBean> getTutee(int lec_num);
+	public List<LectureDeDataBean> getMemberLikeList(String id);
 }

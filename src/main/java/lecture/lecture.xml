@@ -147,6 +147,7 @@
  		join lecde d
  		on l.lec_num=d.lec_num
  		where l.lec_num in (select lec_num from tutee where id=#{id})
+ 		order by l.lec_num desc
 	</select>
 	<select id="getLikeList" parameterType="String" resultType="leclike.LeclikeDataBean">
 		select * from leclike where id=#{id}
@@ -160,6 +161,22 @@
 	<select id="getNowTutee" parameterType="int" resultType="int">
 		select count(*) from tutee where lec_num=#{lec_num}
 	</select>
+	<select  id="getTutee" parameterType="int" resultType="tuteemem.TuteememDataBean">
+		select t.id, t.lec_num, l.email, l.tel 
+		from tutee t join lecmem l on t.id=l.id
+		where t.lec_num=#{lec_num}
+		order by t.id desc
+	</select>
+	<select id="getMemberLikeList" parameterType="String" resultType="lecturede.LectureDeDataBean">
+ 		select l.lec_num, ll.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
+ 		from lecture l
+ 		join lecde d
+ 		on l.lec_num=d.lec_num
+ 		join leclike ll
+        on ll.lec_num=d.lec_num
+        where ll.id=#{id}
+        order by ll.lec_num desc
+ 	</select>
 </mapper>
 
 

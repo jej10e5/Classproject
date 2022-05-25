@@ -9,6 +9,7 @@ import lecde.LecdeDataBean;
 import leclike.LeclikeDataBean;
 import lecmem.LecmemDataBean;
 import tutee.TuteeDataBean;
+import tuteemem.TuteememDataBean;
 import lecturede.LectureDeDataBean;
 import tutor.TutorDataBean;
 
@@ -276,5 +277,12 @@ public class LectureDBBean implements LectureDao{
 	public int getNowTutee(int lec_num) {
 		return SqlMapClient.getSession().selectOne("Lecture.getNowTutee",lec_num);
 	}
-
+	@Override
+	public List<TuteememDataBean> getTutee(int lec_num) {
+		return SqlMapClient.getSession().selectList("Lecture.getTutee",lec_num);
+	}
+	@Override
+	public List<LectureDeDataBean> getMemberLikeList(String id) {
+		return SqlMapClient.getSession().selectList("Lecture.getMemberLikeList",id);
+	}
 }

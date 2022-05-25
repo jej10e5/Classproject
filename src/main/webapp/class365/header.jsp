@@ -12,7 +12,7 @@
 <nav class="navbar navbar-expand-xl navbar-light bg-white">
   <a class="navbar-brand c_font_main" href="mainForm.do" style="margin-right:30px;"> 
   	<span class="cc_main">${page_main1}</span>
-  	<span class="cc_orange">${page_main2}</span> 
+  	<span class="cc_orange">${page_main2}</span>  
   	</a>     
   	    
   <!-- 반응형웹 - 화면 크기 줄어들었을때 햄버거모양 리스트 -->
@@ -24,7 +24,7 @@
  <div class="dropdown-divider"></div>
     <ul class="navbar-nav "style=" margin-right:auto;">   
       <li class="nav-item"> 
-        <a class="nav-link cc_pink c_font_category" href="#">${menu_event}</a>
+        <a class="nav-link cc_pink c_font_category" href="likeListForm.do">${menu_event}</a>
       </li>    
       <li class="nav-item"> 
         <a class="nav-link cc_main c_font_category" href="#">${menu_class}</a>
@@ -66,7 +66,7 @@
      <c:if test="${sessionScope.memid ne null}">
      <ul class="navbar-nav"> 
      <li class="nav-item my-2 my-lg-0">
-     	 <a class="nav-link" href="#">
+     	 <a class="nav-link" href="likeListForm.do">
      	 	<i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:20px;"></i>
      	 </a>
         
