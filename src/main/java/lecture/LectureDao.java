@@ -31,7 +31,5 @@ public interface LectureDao {
 	public int finClass(int lec_num);
 	public int createClass2(LecdeDataBean dto);
 	public int modifyMember( LecmemDataBean dto );
-
-
-
+	public String findId(String tel);
 }

@@ -65,6 +65,10 @@
  	<update id="modifyMember" parameterType="lecmem.LecmemDataBean">
 		update lecmem set passwd=#{passwd}, 
 		tel=#{tel, jdbcType=VARCHAR}, email=#{email, jdbcType=VARCHAR} where id=#{id}
-	</update>	
+	</update>
+	<!-- 아이디 찾기 -->
+	<select id="findId" parameterType="String" resultType="String">
+		select id from lecmem where tel = #{tel}
+	</select>	
  </mapper>
 

@@ -159,4 +159,11 @@ public class LectureDBBean implements LectureDao{
 	public int modifyMember(LecmemDataBean dto) {
 		return SqlMapClient.getSession().update( "Lecture.modifyMember", dto );
 	}
+	
+	public String findId(String tel) {
+		return SqlMapClient.getSession().selectOne( "Lecture.findId", tel);
+	}
+	
+	
+	
 }
