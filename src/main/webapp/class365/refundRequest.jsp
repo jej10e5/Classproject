@@ -337,10 +337,10 @@ color: #fff!important;
 							<th>${dto.reg_date}</th>
 							<th>
 								<c:if test="${dto.sta eq 0}">
-								신청접수
+								<span>신청접수</span>
 								</c:if>
 								<c:if test="${dto.sta eq 1}">
-								신청완료
+								<span>신청완료</span>
 								</c:if>
 							</th>
 							<th><input type="button" value="더보기" onclick="location='classForm.do?lec_num=${dto.lec_num}'"></th>

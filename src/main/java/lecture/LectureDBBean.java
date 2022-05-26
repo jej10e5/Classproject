@@ -372,5 +372,9 @@ public class LectureDBBean implements LectureDao{
 		SqlMapClient.getSession().delete("Lecture.deleteTutee",dto);
 		return SqlMapClient.getSession().update("Lecture.updateRefund",dto);
 	}
+	@Override
+	public int calcLike(int lec_num) {
+		return SqlMapClient.getSession().selectOne("Lecture.calcLike",lec_num);
+	}
 
 }

@@ -23,12 +23,7 @@
   <div class="collapse navbar-collapse bg-white " id="navbarCollapse">
  <div class="dropdown-divider"></div>
     <ul class="navbar-nav "style=" margin-right:auto;">   
-      <li class="nav-item"> 
-        <a class="nav-link cc_pink c_font_category" href="likeListForm.do">${menu_event}</a>
-      </li>    
-      <li class="nav-item"> 
-        <a class="nav-link cc_main c_font_category" href="#">${menu_class}</a>
-      </li>       
+            
       <li class="nav-item dropdown" style="margin-right:20px;"> 
         <a class="nav-link dropdown-toggle c_font_category cc_black" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
          ${menu_category}
@@ -67,7 +62,7 @@
      <ul class="navbar-nav"> 
      <li class="nav-item my-2 my-lg-0">
      	 <a class="nav-link" href="likeListForm.do">
-     	 	<i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:20px;"></i>
+     	 	<i class="fa-solid fa-heart cc_pink" style="padding-top:5px; font-size:20px;"></i>
      	 </a>
      </li>
      <li class="nav-item my-2 my-lg-0">

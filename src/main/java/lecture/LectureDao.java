@@ -98,5 +98,6 @@ public interface LectureDao {
 	public int checkMemRefund(RefundDataBean dto);
 	public List<RefundDataBean> getRefundList();
 	public int refundConfirm(RefundDataBean dto);
+	public int calcLike(int lec_num);
 
 }

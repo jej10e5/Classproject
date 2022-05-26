@@ -183,7 +183,6 @@ function checktutee(lec_num){
 							<th>상태</th>
 							<th >카테고리</th>
 							<th>난이도</th>
-							<th>현재인원</th>
 							<th>시작일</th>
 							<th>마지막일</th>
 							<th>가격</th>
@@ -207,7 +206,6 @@ function checktutee(lec_num){
 							</th>
 							<th>${dto.cate}</th> 
 							<th>${dto.lv}</th>
-							<th>현재인원</th>
 							<th>${dto.be}</th>
 							<th>${dto.fin}</th>
 							<th>${dto.pri}</th>
