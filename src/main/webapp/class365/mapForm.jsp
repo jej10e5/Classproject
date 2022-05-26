@@ -74,8 +74,8 @@
 				var cate=[];
 			    var i=0;
 				<c:forEach var='dto' items='${dtos}'>
-					 content.push('<div class="customoverlay" style="background-color:white;">' +
-				    '  <a href="classForm.do?lec_num=${dto.lec_num}" style="display:block; color:balck; text-decoration:none;"target="_blank">' +   
+					 content.push('<div class="customoverlay">' +
+				    '  <a href="classForm.do?lec_num=${dto.lec_num}" style="display:block; color:black; text-decoration:none;"target="_blank">' +   
 				    '    <span class="title">${dto.sub}</span>' +
 				    '  </a>' +
 				    '</div>');
@@ -140,9 +140,23 @@
 				//}
 				</c:forEach>
 				
-				
-				
-				
+				//초기중심값
+				geocoder.addressSearch('서울 서대문구 신촌로 90', function(result, status) {
+					var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+					var imageSize = new kakao.maps.Size(24, 35); 
+				    // 마커 이미지를 생성합니다    
+				    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+				    
+				    // 정상적으로 검색이 완료됐으면 
+				     if (status === kakao.maps.services.Status.OK) {
+
+				        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+				        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+				        map.setCenter(coords);
+				      
+				    } 
+				}); 
 				
 				function adr(){
 				var i=document.getElementById("address_kakao").value;
