@@ -15,23 +15,23 @@ function checktutee(lec_num){
 }
 </script> 
 <style>
-.btn_modify{
+.btn_info{
 	border: none;
 	border-radius:2px;
-	background-color:#fec9a5;
+	background-color:lightgray;
 }
-.btn_modify:hover{
+.btn_info:hover{
 	border: none;
 	border-radius:2px;
-	background-color:#fda166;
+	background-color:gray;
 	
 }
-.btn_delete{
+.btn_confirm{
 	border: none;
 	border-radius:2px;
 	background-color:#ff968a;
 }
-.btn_delete:hover{
+.btn_confirm:hover{
 	border: none;
 	border-radius:2px;
 	background-color:#ff6f61;
@@ -92,7 +92,7 @@ function checktutee(lec_num){
 					<div id="side_cate">
 					
 						<!-- 환불 정보 -->
-						<div id="side_top_div" onclick="location='tutorInfoForm.do'">
+						<div id="side_top_div" onclick="location='adminMainForm.do'">
 						<div style="height: 4px; display : flex;">	</div>
 							<div class="cate_div">
 								<div class="cate_subject">
@@ -220,13 +220,13 @@ function checktutee(lec_num){
 							<th style="width:15%">${dto.ref_num}</th>
 							<th>${dto.id}</th>
 							<th>${dto.lec_num}</th>
-							<th><input type="button" value="더보기" onclick="location='classForm.do?lec_num=${dto.lec_num}'"></th>
+							<th><input type="button" class="btn_info"value="더보기" onclick="location='classForm.do?lec_num=${dto.lec_num}'"></th>
 							<th>${dto.reg_date}</th>
 							<c:if test="${dto.sta eq 0}">
 							<th>
-								접수완료
+								접수
 							</th>
-							<th><input type="button" value="신청확인" onclick="location='refundConfirm.do?lec_num=${dto.lec_num}&id=${dto.id}'"></th>
+							<th><input class="btn_confirm" type="button" value="신청확인" onclick="location='refundConfirm.do?lec_num=${dto.lec_num}&id=${dto.id}'"></th>
 							</c:if>
 							<c:if test="${dto.sta eq 1}">
 							<th>
