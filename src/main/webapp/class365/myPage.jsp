@@ -201,7 +201,7 @@ color: #fff!important;
             			</div><!--profile card ends-->
 
 						</div>
-						<!-- 강사 정보 -->
+						<!-- 강의 정보 -->
 						<div id="side_top_div" onclick="location='myPage.do'">
 						<div style="height: 4px; display : flex;">	</div>
 							<div class="cate_div">
@@ -218,10 +218,26 @@ color: #fff!important;
 								</div>
 							
 							</div>
-					
-						
 						</div>
-						<!-- 클래스 관리 -->
+						<!-- 강의 정보 -->
+						<div id="side_top_div" onclick="location='refundRequest.do'">
+						<div style="height: 4px; display : flex;">	</div>
+							<div class="cate_div">
+								<div class="cate_subject">
+									<div class="cate_space">
+										<span class="cate_icon">
+
+										<i class="fa fa-list-alt icon1 my_lec" style="color:red;"></i>
+									
+										</span>
+										<div class="cate_icon_space"></div>
+										<span class="cate_name_css">취소현황</span>
+									</div>
+								</div>
+							
+							</div>
+						</div>
+						<!-- 내정보 관리 -->
 							<div id="side_top_div" onclick="location='modifyForm.do'">
 						<div style="height: 4px; display : flex;">	</div>
 							<div class="cate_div">
@@ -298,11 +314,11 @@ color: #fff!important;
 		<c:forEach var="dto" items="${dtos}">
 			<div class="col" style="margin:2% 0;" >
 				<div class="card" style="height:500px; width: 300px; margin:auto;"
-					onclick="location.href='classForm.do?lec_num=${dto.lec_num}'">
+					>
 					<div class="row">
-		                  <div  class="mx-auto"  style="width: 300px;">
-		                   <div class="pro_img" id="thumb_container" style="height:300px; overflow:hidden;">
-		                   		<img class="profile" src="${imagepath}${dto.thu}" style="position:relative;">
+		                  <div  class="mx-auto"  style="width: 300px;" >
+		                   <div class="pro_img" id="thumb_container" style="height:300px; overflow:hidden;" >
+		                   		<img class="profile" src="${imagepath}${dto.thu}" style="position:relative;" onclick="location.href='classForm.do?lec_num=${dto.lec_num}'">
 		                   		<c:if test="${dto.lv eq '입문자'}">
 		                   		<span class="lvbox lv1">${dto.lv}</span>
 		                   		</c:if>
@@ -353,14 +369,20 @@ color: #fff!important;
 				  <div class="card-body">
 				    <h4 class="card-title" style="text-overflow: ellipsis; overflow:hidden;"> ${dto.sub}</h4>
 				    <h7 class="card-text" style="display:block; margin-bottom:5px;">${dto.id}</h7>
-				    <h7 class="card-text" style="display:block; margin-bottom:5px;text-overflow: ellipsis; overflow:hidden;">${dto.intr}</h7>
 				    <div style="bottom:0px;">
-				    <h5 class="card-text" style="padding:5px 10px; display:inline;color:#ff6f61; margin-right:auto;">월 ${dto.pri}원</h5>
 				    <!-- like 
 				    <a href="#"><i class="fa-regular fa-heart cc_pink" style="padding:5px 10px; inline"></i></a>
 				    -->
-				    <a href="classForm.do?lec_num=${dto.lec_num}" class="btn btn-primary"
-				    style="float:right;">상세정보</a>
+				    <script>
+				    
+				    function refund(){
+				    	if(confirm("강의를 정말 취소 하시겠습니까?")==true){
+				    	}else return false;
+				    }
+				    </script>
+				    <!-- 취소버튼 -->
+				    <a  class="btn btn-primary" href="refundRequest.do?lec_num=${dto.lec_num}"
+				    style="float:right;" onclick="return refund()">취소 요청하기</a>
 					</div>
 				    <!-- classForm.jsp?classNum=${classNum} -->
 				  </div>

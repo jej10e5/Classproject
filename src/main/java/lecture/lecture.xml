@@ -209,6 +209,24 @@
  		on d.lec_num = l.lec_num
  		where l.sta=1
  	</select>
+ 	<insert id="insertRefund" parameterType="refund.RefundDataBean">
+ 		insert into refund values(ref_num_seq.nextval, #{lec_num, jdbcType=INTEGER}, #{id, jdbcType=VARCHAR},to_char(sysdate,'YYYY-MM-DD HH24:MI'),default,to_char(sysdate,'YYYY-MM-DD HH24:MI'))
+ 	</insert>
+ 	<select id="getMemberRefund" parameterType="String" resultType="refund.RefundDataBean">
+ 		select * from refund where id=#{id} order by ref_num desc
+ 	</select>
+ 	<select id="checkMemRefund" parameterType="refund.RefundDataBean" resultType="int">
+ 		select count(*) from refund where id=#{id} and lec_num=#{lec_num} and sta=0
+ 	</select>
+ 	<select id="getRefundList" resultType="refund.RefundDataBean">
+ 		select * from refund order by sta, ref_num desc 
+ 	</select>
+ 	<delete id="deleteTutee" parameterType="refund.RefundDataBean">
+ 		delete from tutee where id=#{id} and lec_num=#{lec_num}
+ 	</delete>
+ 	<update id="updateRefund" parameterType="refund.RefundDataBean">
+ 		update refund set sta=1, fin_date=to_char(sysdate,'YYYY-MM-DD HH24:MI') where id=#{id} and lec_num=#{lec_num}
+ 	</update>
 </mapper>
 
 

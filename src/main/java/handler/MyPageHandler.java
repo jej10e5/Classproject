@@ -26,6 +26,7 @@ public class MyPageHandler implements CommandHandler {
 		request.setAttribute("dtos", dtos);
 		List<LeclikeDataBean> ldtos = lectureDao.getLikeList(id);
 		request.setAttribute("ldtos", ldtos);
+
 		return new ModelAndView("class365/myPage");
 	}
 }
