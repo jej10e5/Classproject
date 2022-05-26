@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import lecde.LecdeDataBean;
 import lecture.LectureDao;
 import lecturede.LectureDeDataBean;
+import map.MapDataBean;
 
 @Controller
 public class mapFormHandler implements CommandHandler{
@@ -21,7 +22,8 @@ public class mapFormHandler implements CommandHandler{
 	@RequestMapping("mapForm")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		List<LecdeDataBean> dtos = lectureDao.getClassDeList();
+		List<MapDataBean> dtos=lectureDao.getClassMapList();
+		//List<LecdeDataBean> dtos = lectureDao.getClassDeList();
 		request.setAttribute("dtos", dtos);
 		String p ="check";
 		request.setAttribute("p", p);

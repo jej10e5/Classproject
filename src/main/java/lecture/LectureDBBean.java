@@ -13,6 +13,7 @@ import tuteelec.TuteeLecDataBean;
 
 import tuteemem.TuteememDataBean;
 import lecturede.LectureDeDataBean;
+import map.MapDataBean;
 import review.ReviewDataBean;
 import tutor.TutorDataBean;
 
@@ -317,9 +318,10 @@ public class LectureDBBean implements LectureDao{
 	public List<LectureDeDataBean> getMemberLikeList(String id) {
 		return SqlMapClient.getSession().selectList("Lecture.getMemberLikeList",id);
 	}
+
 	@Override
-	public List<LecdeDataBean> getClassDeList() {
-		return SqlMapClient.getSession().selectList("Lecture.getClassDeList");
+	public List<MapDataBean> getClassMapList() {
+		return SqlMapClient.getSession().selectList("Lecture.getClassMapList");
 	}
 
 }

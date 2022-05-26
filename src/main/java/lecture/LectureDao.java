@@ -13,6 +13,7 @@ import tuteelec.TuteeLecDataBean;
 import tuteemem.TuteememDataBean;
 
 import lecturede.LectureDeDataBean;
+import map.MapDataBean;
 import review.ReviewDataBean;
 import tutor.TutorDataBean;
 public interface LectureDao {
@@ -81,5 +82,5 @@ public interface LectureDao {
 	public int getNowTutee(int lec_num);
 	public List<TuteememDataBean> getTutee(int lec_num);
 	public List<LectureDeDataBean> getMemberLikeList(String id);
-	public List<LecdeDataBean> getClassDeList();
+	public List<MapDataBean> getClassMapList();
 }
