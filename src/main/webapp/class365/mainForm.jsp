@@ -96,6 +96,9 @@
 .card:hover img{
 	transform:scale(1.2);
 }
+.i:hover{
+	cursor:pointer;
+}
 </style>
 <body> 
 <%@ include file="header.jsp" %>  
@@ -166,8 +169,10 @@
 		<div class="row">   
 		<c:forEach var="dto" items="${dtos}">
 			<div class="col" style="margin:2% 0;" >
-				<div class="card" style="height:500px; width: 300px; margin:auto;"
+				<div class="card" style="height:500px; width: 300px; margin:auto;">
+					<!-- 
 					onclick="location.href='classForm.do?lec_num=${dto.lec_num}'">
+					 -->
 					<div class="row">
 		                  <div  class="mx-auto"  style="width: 300px;">
 		                   <div class="pro_img" id="thumb_container" style="height:300px; overflow:hidden;">
@@ -199,23 +204,122 @@
 		                   		<span class="sbox s2">마감</span>
 		                   		</c:if>
 		                   		<!-- 좋아요기능 -->
+		                   		<!-- 
 		                   		<c:forEach var="ldto" items="${ldtos}">
 			                   		<c:if test="${dto.lec_num eq ldto.lec_num}">
 								     	<a class="hebox" style="z-index:200;" href="deleteHeart.do?lec_num=${dto.lec_num}">
 								     	 	<i class="fa-solid fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
 								     	 </a>
 							     	 </c:if>
+							     <c:if test="${memid ne null and memid ne '' }">
+								 <a class="hebox" href="insertHeart.do?lec_num=${dto.lec_num}">
+								     <i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
+								 </a>
+								 </c:if>
 						     	</c:forEach>
+		                   		
+		                   		 -->
+		                   		
+						     	<c:if test="${memid ne null and memid ne '' }">
+						     	<c:if test="${not empty ldtos}">
+								 <c:forEach var="ldto" items="${ldtos}">
+			                   		<c:if test="${dto.lec_num eq ldto.lec_num}">
+			                   			<div id="likeresult">
+			                   			<form id="likeform">
+			                   				<input type="hidden" name="lec_num" value="${dto.lec_num}">
+			                   				<input type="hidden" name="id" value="${memid}">
+			                   				<input type="hidden" name="heart" value=1>
+								     	 	<i id="likeicon" class="hebox fa-solid fa-heart cc_pink" 
+								     	 	style="padding-top:5px; font-size:25px; "></i>
+								     	 </form>
+								     	 </div>
+							     	 </c:if>
+							     	 <c:if test="${dto.lec_num ne ldto.lec_num}">
+							     	 <div id="likeresult">
+			                   			<form id="likeform">
+			                   				<input type="hidden" name="lec_num" value="${dto.lec_num}">
+			                   				<input type="hidden" name="id" value="${memid}">
+			                   				<input type="hidden" name="heart" value=0>
+								     	 	<i id="likeicon" class="hebox fa-regular fa-heart cc_pink" 
+								     	 	style="padding-top:5px; font-size:25px; "></i>
+								     	 </form>
+								     	</div>
+							     	 </c:if>
+						     	</c:forEach>
+						     	</c:if>
+						     	<c:if test="${empty ldtos}">
+						     	<div id="likeresult">
+			                   			<form id="likeform">
+			                   				<input type="hidden" name="lec_num" value="${dto.lec_num}">
+			                   				<input type="hidden" name="id" value="${memid}">
+			                   				<input type="hidden" name="heart" value=0>
+								     	 	<i id="likeicon" class="hebox fa-regular fa-heart cc_pink" 
+								     	 	style="padding-top:5px; font-size:25px; "></i>
+								     	 </form>
+								  </div>
+						     	</c:if>
+						     	</c:if>
+						     	<c:if test="${memid eq null or memid eq '' }">
+						     	<i id="likeicon" class="hebox fa-regular fa-heart cc_pink" 
+								     	 	style="padding-top:5px; font-size:25px; "></i>
+						     	</c:if>
+						     	
+						     	<script src="/JQueryEx/jquery-3.6.0.js" type="text/javascript"></script>
+						     	<script type="text/javascript">
+								// <!--
+								$(document).ready(
+									function() {
+										$("#likeicon").on(
+											"click",
+											function( event ) {
+												// var params = "name=" + $("input[name=name]").val()
+												// 		+ "&age=" + $("input[name=age]").val();
+												
+												// var name = $("input[name=name]").val();
+												// var age = $("input[name=age]").val();
+												
+												$.ajax(
+													{
+														type : "POST",
+														url : "heart.do",
+														/*data : params,*/
+														/*data : {
+															name : name,
+															age : age
+														},*/
+														data : $("#likeform").serialize(),
+														dataType : "text",
+														success : function( data ) {
+															console.log(data);
+															
+															$("#likeform *").remove();
+															
+															$("#likeresult").html(data);
+															
+															
+														},
+														error : function( error ) {
+															$("#likeresult").html( error );
+														}
+													}		
+												)
+											}		
+										);
+										
+									}	
+								);	
+								//-->
+							</script>
+						     	
+						     	
+	
+						     	
 						     	<c:if test="${memid eq null or memid eq '' }">
 						     	<a class="hebox" href="loginForm.do">
 								     <i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
 								 </a>
 								 </c:if>
-								 <c:if test="${memid ne null and memid ne '' }">
-								 <a class="hebox" href="insertHeart.do?lec_num=${dto.lec_num}">
-								     <i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
-								 </a>
-								 </c:if>
+								 
 		                   	</div>    
 		                    </div>
 		                </div>
@@ -248,7 +352,6 @@
 	
 </section> 
 <!-- bootstrap ver4.6 JS -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
  </body>
 <footer> 
