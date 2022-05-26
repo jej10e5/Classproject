@@ -42,7 +42,6 @@ function setid( id ) {
 </style>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
 <div class="signup-form">
   <div class="form-group">		      	
         </div>
@@ -69,7 +68,8 @@ function setid( id ) {
 		<table>
 			<tr>
 				<th colspan="2">
-					<span>${id}</span>는 사용할 수 없습니다
+					<span>${id}</span>는 사용할 수 없습니다<br>
+					다른 아이디를 입력해주세요
 				</th>
 			</tr>
 			<tr>
@@ -78,7 +78,7 @@ function setid( id ) {
 			</tr>
 			<tr>
 				<th colspan="2">
-					<input  class="btn btn-success btn-lg btn-block" type="submit" value="확인">
+					<input  class="btn btn-success btn-lg btn-block" type="submit" value="사용">
 					<input  class="btn btn-success btn-lg btn-block" type="button" value="취소"
 						onclick="window.close()">
 				</th> 
