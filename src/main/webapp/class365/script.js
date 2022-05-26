@@ -71,3 +71,4 @@ function setThumbPreview(event) {
     reader.readAsDataURL(event.target.files[0]);
   }
 
+
