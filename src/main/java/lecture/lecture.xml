@@ -193,6 +193,7 @@
 		where t.lec_num=#{lec_num}
 		order by t.id desc
 	</select>
+	
 	<select id="getMemberLikeList" parameterType="String" resultType="lecturede.LectureDeDataBean">
  		select l.lec_num, ll.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
  		from lecture l
@@ -203,6 +204,26 @@
         where ll.id=#{id}
         order by ll.lec_num desc
  	</select>
+
+ 	<delete id="deleteReview" parameterType="int">
+ 		delete from review where re_num=#{re_num jdbcType=INTEGER}
+ 	</delete>
+ 	<update id="resetTuteeReviewNum" parameterType="int">
+ 		update tutee set re_num=default where re_num=#{re_num, jdbcType=INTEGER}
+ 	</update>
+ 	<select id="getReCount" parameterType="String" resultType="int">
+ 		select count(*) from tutee where id=#{id}
+ 	</select>
+ 	<select id="getTutorReview" parameterType="int" resultType="review.ReviewDataBean">
+ 		select * from review where lec_num=#{lec_num, jdbcType=INTEGER} order by gr desc, re_level asc
+ 	</select>
+ 	<select id="getLectureId" parameterType="String" resultType="lecture.LectureDataBean">
+ 		select  * from lecture where id=#{id}
+ 	</select>
+ 	<insert id="insertTutorReview" parameterType="review.ReviewDataBean">
+ 		insert into review values(re_num_SEQ.nextval, #{lec_num}, #{id}, #{re, jdbcType=VARCHAR}, '', #{reg_date, jdbcType=VARCHAR}, 1, #{gr, jdbcType=INTEGER}) 
+ 	</insert>
+
  	<select id="getClassMapList" resultType="map.MapDataBean">
  		select d.lec_num, l.sub, l.cate, d.adr from lecde d
  		join lecture l
@@ -227,6 +248,7 @@
  	<update id="updateRefund" parameterType="refund.RefundDataBean">
  		update refund set sta=1, fin_date=to_char(sysdate,'YYYY-MM-DD HH24:MI') where id=#{id} and lec_num=#{lec_num}
  	</update>
+
 </mapper>
 
 
