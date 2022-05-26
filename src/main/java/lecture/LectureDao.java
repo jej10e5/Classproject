@@ -13,6 +13,8 @@ import tuteelec.TuteeLecDataBean;
 import tuteemem.TuteememDataBean;
 
 import lecturede.LectureDeDataBean;
+import map.MapDataBean;
+import refund.RefundDataBean;
 import review.ReviewDataBean;
 import tutor.TutorDataBean;
 public interface LectureDao {
@@ -87,5 +89,14 @@ public interface LectureDao {
 	public int getNowTutee(int lec_num);
 	public List<TuteememDataBean> getTutee(int lec_num);
 	public List<LectureDeDataBean> getMemberLikeList(String id);
+
 	public List<ReviewDataBean> getTutorReview(int lec_num);
+	public List<MapDataBean> getClassMapList();
+	
+	public int insertRefund(RefundDataBean dto);
+	public List<RefundDataBean> getMemberRefund(String id);
+	public int checkMemRefund(RefundDataBean dto);
+	public List<RefundDataBean> getRefundList();
+	public int refundConfirm(RefundDataBean dto);
+
 }

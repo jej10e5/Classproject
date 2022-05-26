@@ -110,10 +110,9 @@
 		update lecmem set passwd=#{passwd}, 
 		tel=#{tel, jdbcType=VARCHAR}, email=#{email, jdbcType=VARCHAR} where id=#{id}
 	</update>
-
 	<update id="modifyReview" parameterType="review.ReviewDataBean">
-		update review set re=#{re, jdbcType=VARCHAR}, img=#{img, jdbcType=VARCHAR}, reg_date=#{reg_date, jdbcType=VARCHAR} where re_num=#{re_num}
-	
+		update review set re=#{re, jdbcType=VARCHAR}, img=#{img, jdbcType=VARCHAR}, 
+		reg_date=#{reg_date, jdbcType=VARCHAR} where re_num=#{re_num}
 	</update>
 	<select id="getReview" parameterType="review.ReviewDataBean" resultType="review.ReviewDataBean">
 		select *from review where id=#{id} and lec_num=#{lec_num}
@@ -147,7 +146,7 @@
 		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
  		from lecture l
  		join lecde d
- 		on l.lec_num=d.lec_num
+ 		on l.lec_num=d.lec_num 
  		where l.cate=#{c} and sta=1
         order by l.lec_num desc
 	</select>
@@ -205,6 +204,7 @@
         where ll.id=#{id}
         order by ll.lec_num desc
  	</select>
+
  	<delete id="deleteReview" parameterType="int">
  		delete from review where re_num=#{re_num jdbcType=INTEGER}
  	</delete>
@@ -223,6 +223,32 @@
  	<insert id="insertTutorReview" parameterType="review.ReviewDataBean">
  		insert into review values(re_num_SEQ.nextval, #{lec_num}, #{id}, #{re, jdbcType=VARCHAR}, '', #{reg_date, jdbcType=VARCHAR}, 1, #{gr, jdbcType=INTEGER}) 
  	</insert>
+
+ 	<select id="getClassMapList" resultType="map.MapDataBean">
+ 		select d.lec_num, l.sub, l.cate, d.adr from lecde d
+ 		join lecture l
+ 		on d.lec_num = l.lec_num
+ 		where l.sta=1
+ 	</select>
+ 	<insert id="insertRefund" parameterType="refund.RefundDataBean">
+ 		insert into refund values(ref_num_seq.nextval, #{lec_num, jdbcType=INTEGER}, #{id, jdbcType=VARCHAR},to_char(sysdate,'YYYY-MM-DD HH24:MI'),default,to_char(sysdate,'YYYY-MM-DD HH24:MI'))
+ 	</insert>
+ 	<select id="getMemberRefund" parameterType="String" resultType="refund.RefundDataBean">
+ 		select * from refund where id=#{id} order by ref_num desc
+ 	</select>
+ 	<select id="checkMemRefund" parameterType="refund.RefundDataBean" resultType="int">
+ 		select count(*) from refund where id=#{id} and lec_num=#{lec_num} and sta=0
+ 	</select>
+ 	<select id="getRefundList" resultType="refund.RefundDataBean">
+ 		select * from refund order by sta, ref_num desc 
+ 	</select>
+ 	<delete id="deleteTutee" parameterType="refund.RefundDataBean">
+ 		delete from tutee where id=#{id} and lec_num=#{lec_num}
+ 	</delete>
+ 	<update id="updateRefund" parameterType="refund.RefundDataBean">
+ 		update refund set sta=1, fin_date=to_char(sysdate,'YYYY-MM-DD HH24:MI') where id=#{id} and lec_num=#{lec_num}
+ 	</update>
+
 </mapper>
 
 

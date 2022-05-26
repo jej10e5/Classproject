@@ -10,25 +10,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import leclike.LeclikeDataBean;
+import lecde.LecdeDataBean;
 import lecture.LectureDao;
 import lecturede.LectureDeDataBean;
+import map.MapDataBean;
 
 @Controller
-public class DeleteHeartHandler implements CommandHandler{
+public class mapFormHandler implements CommandHandler{
 	@Resource
 	private LectureDao lectureDao;
-	@RequestMapping("/deleteHeart") 
-
+	@RequestMapping("mapForm")
+	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String id = (String)request.getSession().getAttribute("memid");
-		int lec_num=Integer.parseInt(request.getParameter("lec_num"));
-		LeclikeDataBean dto = new LeclikeDataBean();
-		dto.setId(id);
-		dto.setLec_num(lec_num);
-		lectureDao.deleteHeart(dto);
-		String re=request.getHeader("Referer");
-		request.setAttribute("re", re);
-		return new ModelAndView("/class365/redirectPage");
+		List<MapDataBean> dtos=lectureDao.getClassMapList();
+		//List<LecdeDataBean> dtos = lectureDao.getClassDeList();
+		request.setAttribute("dtos", dtos);
+		String p ="check";
+		request.setAttribute("p", p);
+		return new ModelAndView("class365/mapForm");
+		
 	}
 }

@@ -330,7 +330,7 @@ float:right;
 								<div class="div_subs">
 								  <div class="lec_nam_wrap">	
 									<div class="lec_sub">
-										<h4>${dto.sub}</h4>		
+										<a href="classForm.do?lec_num=${dto.lec_num}" style="font-size:25px; text-decoration:none!important; color:black;">${dto.sub}</a>		
 									 <div  class="mx-auto"  style="width: 300px; margin-top: 20px!important; margin-left:0 ;">
 						                   <c:if test="${dto.re_num ne 0 }">
 						                   <div  id="thumb_container" style="height: 150px;">
