@@ -28,6 +28,7 @@ public interface LectureDao {
 	public int check(String id,String passwd);
 	public int check(String id);
 	public LecmemDataBean getMember(String id);
+	public List<LecmemDataBean> getMemberAll();
 
 	public TutorDataBean getTutor(String id);
 	public int modifyTutor(TutorDataBean dto);
@@ -35,6 +36,7 @@ public interface LectureDao {
 	public int tutorCheck(String id);
 	public LectureDataBean getLecture(int lec_num);
 	public List<LectureDeDataBean> getClassList();
+	public List<LectureDeDataBean> getClassListAll();
 
 	public LecdeDataBean getLecde(int lec_num);
 	public int calcMonth(int lec_num);

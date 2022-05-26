@@ -123,13 +123,17 @@ public class LectureDBBean implements LectureDao{
 		e.printStackTrace();
 	}
 
-	return days;
+	return days; 
 	}
 	
 	
 	public LecmemDataBean getMember(String id) {	
 		return SqlMapClient.getSession().selectOne("Lecture.getMember",id);	
 	  }
+	public List<LecmemDataBean> getMemberAll() {	
+		return SqlMapClient.getSession().selectList("Lecture.getMemberAll");	
+	  }
+
 
 	public TutorDataBean getTutor(String id) {
 		return SqlMapClient.getSession().selectOne("Lecture.getTutor",id);
@@ -147,6 +151,10 @@ public class LectureDBBean implements LectureDao{
 	public List<LectureDeDataBean> getClassList() {
 		// TODO Auto-generated method stub
 		return SqlMapClient.getSession().selectList("Lecture.getClassList");
+	}
+	public List<LectureDeDataBean> getClassListAll() {
+		// TODO Auto-generated method stub
+		return SqlMapClient.getSession().selectList("Lecture.getClassListAll");
 	}
 	@Override
 

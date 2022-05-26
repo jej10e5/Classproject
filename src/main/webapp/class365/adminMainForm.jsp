@@ -89,9 +89,9 @@
 					<div id="side_cate">
 					
 						<!-- 환불 정보 -->
-						<div id="side_top_div" onclick="location='adminMainForm.do'">
+						<div id="side_top_div" >
 						<div style="height: 4px; display : flex;">	</div>
-							<div class="cate_div">
+							<div class="cate_div" onclick="location='adminMainForm.do'">
 								<div class="cate_subject">
 									<div class="cate_space">
 										<span class="cate_icon">
@@ -106,9 +106,9 @@
 							
 							</div>
 					<!-- 회원 정보 -->
-						<div id="side_top_div">
+						<div id="side_top_div" >
 						<div style="height: 4px; display : flex;">	</div>
-							<div class="cate_div">
+							<div class="cate_div" onclick="location='adminMember.do'">
 								<div class="cate_subject">
 									<div class="cate_space">
 										<span class="cate_icon">
@@ -126,9 +126,9 @@
 						
 						</div>
 						<!-- 클래스 관리 -->
-							<div id="side_top_div">
+							<div id="side_top_div" >
 						<div style="height: 4px; display : flex;">	</div>
-							<div class="cate_div">
+							<div class="cate_div" onclick="location='adminClass.do'">
 								<div class="cate_subject">
 									<div class="cate_space">
 										<span class="cate_icon">
@@ -146,9 +146,9 @@
 						
 						</div>
 						<!-- 리뷰 관리 -->
-							<div id="side_top_div">
+							<div id="side_top_div" >
 						<div style="height: 4px; display : flex;">	</div>
-							<div class="cate_div">
+							<div class="cate_div" onclick="location='adminReview.do'">
 								<div class="cate_subject">
 									<div class="cate_space">
 										<span class="cate_icon">
@@ -166,9 +166,9 @@
 						
 						</div>
 						<!-- 관리자 페이지 나가기 -->
-							<div id="side_top_div" onclick="location='mainForm.do'">
+							<div id="side_top_div" >
 						<div style="height: 4px; display : flex;">	</div>
-							<div class="cate_div">
+							<div class="cate_div" onclick="location='mainForm.do'">
 								<div class="cate_subject">
 									<div class="cate_space">
 										<span class="cate_icon">

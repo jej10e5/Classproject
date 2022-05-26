@@ -27,6 +27,9 @@
  	<select id="getMember" parameterType="String" resultType="lecmem.LecmemDataBean">
  		  select * from lecmem where id = #{id}	
  	</select>
+ 	<select id="getMemberAll" resultType="lecmem.LecmemDataBean">
+ 		  select * from lecmem order by id
+ 	</select>
  	<select id="getTutor" parameterType="String" resultType="tutor.TutorDataBean">
  		select * from tutor where id = #{id}
  	</select> 
@@ -42,6 +45,14 @@
  		join lecde d
  		on l.lec_num=d.lec_num
  		where sta=1
+        order by l.lec_num desc
+ 	</select> 
+ 	<select id="getClassListAll" resultType="lecturede.LectureDeDataBean">
+ 		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
+ 		from lecture l
+ 		join lecde d
+ 		on l.lec_num=d.lec_num
+ 		where l.sta=1 or l.sta=2 or l.sta=3
         order by l.lec_num desc
  	</select> 
  	<select id="getLecture" parameterType="int" resultType="lecture.LectureDataBean">
