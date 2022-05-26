@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="lecture.LectureDBBean"%>
+<%@page import="tutor.TutorDataBean" %>
+<%@page import="lecture.LectureDataBean" %>
+<%@page import="lecde.LecdeDataBean" %>
 <%@include file="setting.jsp" %>    
 <link href="${project}/style.css" rel="stylesheet" type="text/css">   
 <link href="${project}/class_style.css" rel="stylesheet" type="text/css"> 
@@ -8,6 +12,23 @@
  
 <script src="https://kit.fontawesome.com/811e29d39a.js" crossorigin="anonymous"></script>
 <script src="${project}/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ba7439462d656bdc59c5331193480eaa&libraries=services"></script>
+	
+<style>
+#slide_div{
+padding-top:10px;
+
+padding-bottom:10px;
+}
+.range-slider_range{
+background-color:#d7dcdf;
+border-radius: 5px;
+width:100%;
+
+}
+</style>
+
+			
 <script type="text/javascript">
 //<!--
 $(document).ready(function($) {
@@ -33,6 +54,9 @@ $(document).ready(function($) {
  	<!-- 네비게이터 -->
  	<div id="nav_div" >
  			<!-- 네비게이션 항목들 -->
+ 			
+ 			<a href="#map_div"  class="nav_list">장소</a>
+ 			
  			<a href="#review_div" class="nav_list">후기</a>	
  	
  			<a href="#class_info_div" class="nav_list">강의설명</a>	
@@ -46,8 +70,13 @@ $(document).ready(function($) {
  			
  				<!-- 아티클 파트 나누는 블록 -->
 	 			<div id="class_info">
-	 				<div id="class_pic">
-	 					<img src="${class_image}/img1.jpg" >
+	 				<div id="class_pic"> 		
+						<c:if test="${dto.img ne null and dto.img ne ''}">			  				
+	 					<img src="${imagepath}${dto.img}" >
+	 					</c:if>
+	 					<c:if test="${dto.img eq null or dto.img eq ''}">
+	 				 	<img src="/ClassProject/classImage/img1.jpg">
+	 					</c:if>			
 	 				</div>
 	 				
 	 			 				
@@ -56,12 +85,19 @@ $(document).ready(function($) {
 	 					<h2 id="section_name">클래스 정보</h2>
 	 					<!--  강좌이름, 강좌설명, 강의사진 -->
 	 					<dl class= class_dl>
-	 						<dt class= "class_dt">클래스 분량 </dt>
-	 						<dd class="class_dd">8개 챕터, 30개 세부강의</dd>
-	 						<dt class="class_dt">수강 가능일 </dt>
-	 						<dd class="class_dd">22.06.01</dd>
-	 						<dt class= "class_dt">강의 방식 </dt>
-	 						<dd class="class_dd">대면</dd>	 					
+	 						<dt class= "class_dt">강의 기간 </dt>
+	 						
+	 						<c:if test="${month gt 1}">
+	 						<dd class="class_dd">${month}</dd>
+	 						</c:if>
+	 						<c:if test="${month le 1}">
+	 						<dd class="class_dd">1개월 미만</dd>
+	 						</c:if>
+	 						 
+	 						<dt class="class_dt">최대 인원 </dt>
+	 						<dd class="class_dd">${dcd.cap}</dd>
+	 						<dt class= "class_dt">강의 난이도 </dt>
+	 						<dd class="class_dd">${dcd.lv} </dd>	 					
 	 					</dl>
 	 				</section>
 	 			<!-- 강의 소개, 강사 소개 , 후기 -->
@@ -69,7 +105,7 @@ $(document).ready(function($) {
 	 				<div id="tut_div" style="padding-top:150px;">
 	 				<section class="tut_intro">
 	 				  <div class="name_div">
-	 					<h3 class="tut_name">OOO 강사님을
+	 					<h3 class="tut_name">"${dto.id}" 강사님을
 	 									  <br>
 	 									 소개합니다
 	 					</h3>
@@ -77,14 +113,21 @@ $(document).ready(function($) {
 	 				 <div class="sub_div">
 	 				  		<div id="tuto_info_pro">
 	 				  		 	<div class="pro_img">
-	 				  		 		<img class ="profile_img" src="${profile_image}/img2.jpg">	 				  		 		
+	 				  		 	 	<c:if test="${dtt.pro eq null or dtt.pro eq ''}">
+	 				  		 		<img class ="profile_img" src="${imagepath}img1.jpg">	 				  		 		
+	 				  		 		</c:if>
+	 				  		 		<c:if test="${dtt.pro ne null and dtt.pro ne '' }">
+	 				  		 		<img class= "profile_img" src="${imagepath}${dtt.pro}">
+	 				  		 		</c:if>
 	 				  		 	</div>
 	 				  		 	<div id="pro_text">
-	 				  		 		<p class="pro_name">권다솜</p>				  		 		
+	 				  		 		<p class="pro_name">${dtl.email}</p>	
+	 				  		 		<p >${dtl.tel }</p>			  		 		
 	 				  		 	</div>
 	 				  		</div>
 	 				  		<div class="tut_text">
-	 				  			<p class="tut_text_area">
+	 				  		<c:if test="${dtt.info eq null or dtt.info eq ''}"> 
+	 				  			<pre class="tut_text_area">
 	 				  			아
 	 				  			<br>
 	 				  			아
@@ -116,7 +159,11 @@ $(document).ready(function($) {
 								나의 단점과 장점을 직접적으로 듣고 느낄 수 있는 경험도 해보실 수 있습니다.
 								<br>
 								좋은 음악으로 좋은 인연 이어가고 싶습니다. 감사합니다.
-	 				  			</p>
+	 				  			</pre>
+	 				  			</c:if>
+	 				  			<c:if test="${dtt.info ne null and dtt.info ne ''}">
+	 				  				${dtt.info}
+	 				  			</c:if>
 	 				  		</div>
 	 				  </div>	
 	 				
@@ -130,7 +177,8 @@ $(document).ready(function($) {
 	 						</div>
 	 						  <div class="sub_div">
 		 						<div class="tut_text">
-		 							<p class="tut_text_area">
+		 							<c:if test="${dto.con eq null or dto.con eq ''}">
+		 							<pre class="tut_text_area">
 		 								#진행방식
 										1) 원데이 클래스 (오프라인)
 											<br>
@@ -177,7 +225,11 @@ $(document).ready(function($) {
 											<br>
 										◾ 일상 영어회화
 											<br>
-		 							</p>
+		 							</pre>
+		 							</c:if>
+		 							<c:if test="${dto.con ne null and dto.con ne ''}">
+		 								${dto.con }
+		 							</c:if>						
 		 						</div>	
 		 					 </div>		 				
 	 					</section>	 				
@@ -218,6 +270,48 @@ $(document).ready(function($) {
 	 						</div>
 	 					</section>
 	 				</div>
+	 			<div id="map_div" style="padding-top:150px;">
+	 			<section class="tut_intro">		
+	 				<div class="name_div">
+	 					<h3 class="tut_name">강의 장소</h3>
+	 				</div>	
+	 			
+					<div id="map" style="width:500px;height:400px;"></div>
+					<script>
+						var container = document.getElementById('map');
+						var options = {
+							center: new kakao.maps.LatLng(33.450701, 126.570667),
+							level: 3
+						};
+				
+						var map = new kakao.maps.Map(container, options);
+						
+						var geocoder = new kakao.maps.services.Geocoder();
+						
+						geocoder.addressSearch('${dcd.adr}', function(result, status) {
+							
+							if (status === kakao.maps.services.Status.OK) {
+
+						        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+						        // 결과값으로 받은 위치를 마커로 표시합니다
+						        var marker = new kakao.maps.Marker({
+						            map: map,
+						            position: coords
+						        });
+								
+						        var infowindow = new kakao.maps.InfoWindow({
+						            content: '<div style="width:150px;text-align:center;padding:6px 0;">${dcd.adr}</div>'
+						        });
+						        infowindow.open(map, marker);
+						        
+						        map.setCenter(coords);
+							}
+						});
+						</script>
+			
+				</section>
+				</div>
 	 			</div>	
  				</div>	
  		
@@ -225,8 +319,8 @@ $(document).ready(function($) {
  				<div id="pay_box">
  					<div id="pay_box_in">
  						<div id="box_object">
- 							<div id="box_cate" font-weight="500">카테﹒고리 · 박스</div>
- 							<h2 id="box_title">[간결한 제목 ABC abc 가나다라마바사 123467]</h2>
+ 							<div id="box_cate" font-weight="500">카테고리 · ${dto.cate}</div>
+ 							<h2 id="box_title">[${dto.sub}]</h2>
  							<div id="class_state">
  								<div id="state_box">
  									<div id="state_open">모집중</div>
@@ -235,7 +329,14 @@ $(document).ready(function($) {
  							<div id="box_mid">
  								<div id="box_mprice">
  									<div id="mon_price">
- 										<h4 font-weight="700" id="m_price">월 40,200원</h4>
+ 										<c:if test="${month gt 1}">
+ 										<h4 font-weight="700" id="m_price">월 ${dcd.pri}원</h4>
+ 										</c:if>
+ 										<c:if test="${month le 1}">
+ 										<h4 style="font-size: 11px;font-weight: 500; color: rgb(162, 162, 162); line-height: 20px; letter-spacing: -0.5; margin: 0px;">1개월 미만은 분할결제를 지원하지 않습니다.</h4>
+ 										</c:if>
+ 										
+ 										
  									</div>
  								</div>								
  							</div>
@@ -249,7 +350,7 @@ $(document).ready(function($) {
 	 									<div id="heart_div">
 	 										<i class="fa-solid fa-heart heart_color"></i>
 	 									</div>
-	 									<span id="like_amount">1234</span>
+	 									<span id="like_amount">${like}</span>
 	 								</button>
 	 								
 	 							</div>			
@@ -259,18 +360,89 @@ $(document).ready(function($) {
 	 							<div id="hidden2_div">
 	 								
 	 							</div>	
+	 						</div>
+	 						
+	 						<div id="slide_div">
+	 						
+	 						<c:if test="${month gt 1 }">
+	 						  <input class="range-slider_range" type="range" value="${month}" min="1" max="${month}">
+	 						  <span class="result" style="font-wight:500; color:#fd3049;">${month}개월</span>
+		 					</c:if>
+	 						<c:if test="${month le 1}">
+
+	 						<span class="result" style="font-wight:500; color:#fd3049;">${days}일</span>
+	 						</c:if>
+	 						  <!-- 여기 -->
+	 						  
+	 						  
 	 						</div>							
  							<div id="total_div">
+ 							
+ 						
  								<div id="total_month">
- 									<div font-wight-"500" color=#fd3049" id="month_text">기간 6개월</div>
+ 									<div  id="month_text"></div>
  								</div>
+ 								
 	 							<div id="box_total">
-	 								<h4 color="#fd3049" font-weight="700" id="total_price">총240,400원</h4>
+	 								<span style="color:gray; font-weight:700; left:0px;" >현재${now}명</span>
+	 							<c:if test="${month gt 1 }">
+	 								<span color="#fd3049" font-weight="700" id="total_price">${dcd.pri*month}원</span>
+	 							</c:if>
+	 							<c:if test="${month le 1}">
+	 								<span color="#fd3049" font-weight="700" id="total_price">${dcd.pri}원</span>
+	 							</c:if>
+	 							
 	 							</div>
 	 						</div>	
-	 						
+	 					
 	 						<section id="buy_sec">
-	 							<button type="button" id="buy_btn">결제하기</button>
+	 						<c:if test="${memid eq  null  or memid eq ''}">
+	 							<button type="button" id="buy_btn" onclick="location='loginForm.do'">
+	 							결제하기	 						
+	 							</button>
+	 						</c:if>
+	 							<c:if test="${memid ne  null  and memid ne ''}">
+	 							<c:if test="${now lt dcd.cap}">
+	 							<c:if test="${month gt 1}">
+	 							<form action="payForm.do" method="post">
+	 							<input type="hidden" name="month" value="" id="pay_month">
+	 							<input type="hidden" name="cost" value="${m_cost}" id="cost">
+	 							<input type="hidden" name="lec_num" value="${lec_num}">
+	 							<input type="submit" id="buy_btn" value="결제하기">	 							 						
+	 							</form>
+	 							</c:if>
+	 							<c:if test="${month le 1}">
+	 							<form action="payForm.do" method="post">
+	 							<input type="hidden" name="cost" value="${dcd.pri}">
+	 							<input type="hidden" name="lec_num" value="${dto.lec_num}">
+	 							<input type="submit" id="buy_btn" value="결제하기">
+	 							</form>	
+	 							</c:if>	
+	 							</c:if> 
+	 							<c:if test="${now eq dcd.cap}">
+	 							<input type="hidden" name="month" value="" id="pay_month">
+	 							<input type="hidden" name="cost" value="${m_cost}" id="cost">
+	 							<input type="hidden" name="lec_num" value="${lec_num}">
+	 							<input type="button" class="btn" value="수강 인원이 마감되었습니다.">	 							 						
+	 							</c:if>							
+	 						</c:if>
+	 					 		 <script type="text/javascript">
+								//<!--
+								 var result = $(".result");
+							      var slider = $(".range-slider_range");
+							      var price = $("#m_price");
+							      var tprice = $("#total_price");
+							      var cost = $("#cost");
+							      var month = $("#pay_month");
+							      
+							      slider.on('input', function() {
+							          result.html( $(this).val()+"개월" );
+							          tprice.html($(this).val()*${dcd.pri}+"원");
+									  cost.attr('value',$(this).val()*${dcd.pri});						
+							      	  month.attr('value',$(this).val());
+							      });
+								//-->
+								</script>
 	 						</section>
  						</div>
  					</div>

@@ -16,6 +16,10 @@
 
 	<context:component-scan base-package="lecture"/>
 	<context:component-scan base-package="handler"/>
-	
+	<context:component-scan base-package="tutor"/>
+	<context:component-scan base-package="lecmem"/>
+	<context:component-scan base-package="lecde"/>
+ 	<context:component-scan base-package="tutee"/>
+ 	<context:component-scan base-package="review"/>
  
 </beans>

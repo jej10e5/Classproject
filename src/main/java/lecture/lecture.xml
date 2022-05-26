@@ -2,12 +2,18 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="Lecture">
+ <mapper namespace="Lecture">
   	<insert id="insertClass" parameterType="lecture.LectureDataBean">
   		insert into lecture values(LEC_NUM_SEQ.nextval,
   			#{id},#{sub},#{cate},#{con},#{img},#{intr},#{thu},default)
   	</insert>
+  	<select id="getLecNum" resultType="int">
+  		select last_number from user_sequences 
+			where sequence_name='LEC_NUM_SEQ'
+  	</select>
+	<delete id="deleteMember" parameterType="String">
+		delete from lecmem where id=#{id}
+	</delete>
   	<insert id="insertMember" parameterType="lecmem.LecmemDataBean">
   		insert into lecmem values(
   			#{id},#{passwd},#{email},#{tel})
@@ -15,7 +21,238 @@
   	<select id="check" parameterType="String" resultType="int">
    		select count(*) from lecmem where id= #{id}
  	</select>
+ 	<select id="tutorCheck" parameterType="String" resultType="int">
+ 		select count(*) from tutor where id= #{id}
+ 	</select>
  	<select id="getMember" parameterType="String" resultType="lecmem.LecmemDataBean">
  		  select * from lecmem where id = #{id}	
  	</select>
-  </mapper>
+ 	<select id="getTutor" parameterType="String" resultType="tutor.TutorDataBean">
+ 		select * from tutor where id = #{id}
+ 	</select> 
+ 	<update id="modifyTutor" parameterType="tutor.TutorDataBean">
+ 		update tutor set info=#{info, jdbcType=VARCHAR}, acc=#{acc, jdbcType=VARCHAR} where id=#{id}
+ 	</update>
+ 	<insert id="insertTutor" parameterType="tutor.TutorDataBean">
+ 		insert into tutor values(#{id}, #{pro, jdbcType=VARCHAR}, #{info, jdbcType=VARCHAR},#{acc, jdbcType=VARCHAR})
+ 	</insert>
+ 	<select id="getClassList" resultType="lecturede.LectureDeDataBean">
+ 		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
+ 		from lecture l
+ 		join lecde d
+ 		on l.lec_num=d.lec_num
+ 		where sta=1
+        order by l.lec_num desc
+ 	</select> 
+ 	<select id="getLecture" parameterType="int" resultType="lecture.LectureDataBean">
+ 	 	select * from lecture where lec_num=#{lec_num}
+ 	</select>
+ 	<select id="getLecde" resultType="lecde.LecdeDataBean" parameterType="int">
+ 		select *from lecde where lec_num=#{lec_num}
+ 	</select>
+ 	<select id="calcMonth" resultType="int" parameterType="int">
+ 		select round (months_between(fin,be)) from lecde where lec_num=#{lec_num}
+ 	</select>
+ 	<select id="getTutorClassCount" parameterType="String" resultType="int">
+ 		select count(*) from tutor where id=#{id}
+ 	</select>
+ 	<insert id="insertClass2" parameterType="lecde.LecdeDataBean">
+ 		insert into lecde values(#{lec_num},#{lv, jdbcType=VARCHAR},#{pri, jdbcType=INTEGER},#{cap, jdbcType=INTEGER}
+ 		,#{adr, jdbcType=VARCHAR},#{be, jdbcType=VARCHAR},#{fin, jdbcType=VARCHAR})
+ 	</insert>
+ 	<update id="updateFinClass" parameterType="int">
+ 		update lecture set sta=1 where lec_num=#{lec_num}
+ 	</update>
+ 	<insert id="insertTutee" parameterType="tutee.TuteeDataBean">
+ 		insert into tutee values(#{id},#{lec_num},default)
+ 	</insert>
+ 	<select id="getTutorClass" parameterType="String" resultType="lecturede.LectureDeDataBean">
+ 		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
+ 		from lecture l
+ 		full outer join lecde d
+ 		on l.lec_num=d.lec_num
+        where l.id=#{id}
+        order by l.lec_num desc
+ 	</select>
+ 	<select id="getOriginClass" parameterType="int" resultType="lecture.LectureDataBean">
+ 		select * from lecture where lec_num=#{lec_num}
+ 	</select>
+ 	<update id="updateClass" parameterType="lecture.LectureDataBean">
+ 		update lecture set sub=#{sub, jdbcType=VARCHAR}, cate=#{cate, jdbcType=VARCHAR}
+ 		, con=#{con, jdbcType=VARCHAR}, intr=#{intr, jdbcType=VARCHAR}
+ 		where lec_num=#{lec_num}
+ 	</update>
+ 	<update id="updateClassImg" parameterType="lecture.LectureDataBean">
+ 		update lecture set img=#{img, jdbcType=VARCHAR} where lec_num=#{lec_num}
+ 	</update>
+ 	<update id="updateClassThumb" parameterType="lecture.LectureDataBean">
+ 		update lecture set thu=#{thu, jdbcType=VARCHAR} where lec_num=#{lec_num}
+ 	</update>
+ 	<select id="getOriginClassde" parameterType="int" resultType="lecde.LecdeDataBean">
+ 		select * from lecde where lec_num=#{lec_num}
+ 	</select>
+ 	<update id="updateClassDe" parameterType="lecde.LecdeDataBean">
+ 		update lecde set lv=#{lv,jdbcType=VARCHAR},pri=#{pri, jdbcType=INTEGER}
+ 		,cap=#{cap, jdbcType=INTEGER},adr=#{adr, jdbcType=VARCHAR}
+ 		,be=#{be, jdbcType=VARCHAR},fin=#{fin, jdbcType=VARCHAR}
+ 		where lec_num=#{lec_num}
+ 	</update>
+ 	<select id="checkOriginClassde" parameterType="int" resultType="int">
+ 		select count(*) from lecde where lec_num=#{lec_num}
+ 	</select>
+ 	<delete id="deleteClass" parameterType="int">
+ 		delete from lecture where lec_num=#{lec_num}
+ 	</delete>
+ 	<update id="updateInactive" parameterType="int">
+ 		update lecture set sta=2 where lec_num=#{lec_num}
+ 	</update>
+ 	<update id="modifyMember" parameterType="lecmem.LecmemDataBean">
+		update lecmem set passwd=#{passwd}, 
+		tel=#{tel, jdbcType=VARCHAR}, email=#{email, jdbcType=VARCHAR} where id=#{id}
+	</update>
+	<update id="modifyReview" parameterType="review.ReviewDataBean">
+		update review set re=#{re, jdbcType=VARCHAR}, img=#{img, jdbcType=VARCHAR}, 
+		reg_date=#{reg_date, jdbcType=VARCHAR} where re_num=#{re_num}
+	</update>
+	<select id="getReview" parameterType="review.ReviewDataBean" resultType="review.ReviewDataBean">
+		select *from review where id=#{id} and lec_num=#{lec_num}
+	</select>
+	<select id="getTuteeClass" parameterType="String" resultType="tuteelec.TuteeLecDataBean">
+		select t.lec_num, t.id, e.sub, r.re, r.reg_date, r.img, e.thu, t.re_num 
+		from tutee t 
+		join lecture e 
+		on t.lec_num=e.lec_num
+		full outer join review r
+		on t.lec_num=r.lec_num	 
+		where t.id=#{id} 
+		order by t.lec_num desc
+	</select>
+	<insert id="insertReview" parameterType="review.ReviewDataBean">
+		insert into review values(re_num_SEQ.nextval, #{lec_num, jdbcType=INTEGER}, #{id, jdbcType=VARCHAR}, #{re, jdbcType=VARCHAR}, #{img, jdbcType=VARCHAR}, #{reg_date}, #{re_level, jdbcType=INTEGER}, gr_SEQ.nextval )
+	</insert>
+	<update id="insertRenum" parameterType="tutee.TuteeDataBean">
+		update tutee set re_num=#{re_num} where id=#{id} and lec_num=#{lec_num}
+	</update>
+	<select id="getRe" parameterType="int" resultType="review.ReviewDataBean">
+		select * from review where re_num=#{re_num}
+	</select>
+	<select id="findId" parameterType="String" resultType="String">
+		select id from lecmem where tel = #{tel}
+	</select>	
+	<update id="updateTutorPro" parameterType="tutor.TutorDataBean">
+		update tutor set pro=#{pro, jdbcType=VARCHAR} where id=#{id}
+	</update>	
+	<select id="getCategory" parameterType="String" resultType="lecturede.LectureDeDataBean">
+		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
+ 		from lecture l
+ 		join lecde d
+ 		on l.lec_num=d.lec_num 
+ 		where l.cate=#{c} and sta=1
+        order by l.lec_num desc
+	</select>
+	<select id="getSearchResult" parameterType="String" resultType="lecturede.LectureDeDataBean">
+		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
+ 		from lecture l
+ 		join lecde d
+ 		on l.lec_num=d.lec_num
+ 		WHERE sta!=0 and (l.sub LIKE '%'||#{p}||'%' or l.intr LIKE '%'||#{p}||'%' or l.id LIKE '%'||#{p}||'%'
+ 			or d.lv LIKE '%'||#{p}||'%' or l.cate LIKE '%'||#{p}||'%')
+       		 order by l.lec_num desc
+	</select>
+	<select id="getInactive" resultType="lecturede.LectureDeDataBean">
+		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
+ 		from lecture l
+ 		join lecde d
+ 		on l.lec_num=d.lec_num
+ 		where sta=2
+        order by l.lec_num desc
+	</select>
+	<select id="getTuteeClassList" parameterType="String" resultType="lecturede.LectureDeDataBean">
+		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
+ 		from lecture l
+ 		join lecde d
+ 		on l.lec_num=d.lec_num
+ 		where l.lec_num in (select lec_num from tutee where id=#{id})
+ 		order by l.lec_num desc
+	</select>
+	<select id="getLikeList" parameterType="String" resultType="leclike.LeclikeDataBean">
+		select * from leclike where id=#{id}
+	</select>
+	<delete id="deleteHeart" parameterType="leclike.LeclikeDataBean">
+		delete from leclike where id=#{id, jdbcType=VARCHAR} and lec_num=#{lec_num, jdbcType=INTEGER}
+	</delete>
+	<insert id="insertHeart" parameterType="leclike.LeclikeDataBean">
+		insert into leclike values(#{lec_num},#{id})
+	</insert>
+	<select id="getNowTutee" parameterType="int" resultType="int">
+		select count(*) from tutee where lec_num=#{lec_num}
+	</select>
+	<select  id="getTutee" parameterType="int" resultType="tuteemem.TuteememDataBean">
+		select t.id, t.lec_num, l.email, l.tel 
+		from tutee t join lecmem l on t.id=l.id
+		where t.lec_num=#{lec_num}
+		order by t.id desc
+	</select>
+	
+	<select id="getMemberLikeList" parameterType="String" resultType="lecturede.LectureDeDataBean">
+ 		select l.lec_num, ll.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
+ 		from lecture l
+ 		join lecde d
+ 		on l.lec_num=d.lec_num
+ 		join leclike ll
+        on ll.lec_num=d.lec_num
+        where ll.id=#{id}
+        order by ll.lec_num desc
+ 	</select>
+
+ 	<delete id="deleteReview" parameterType="int">
+ 		delete from review where re_num=#{re_num jdbcType=INTEGER}
+ 	</delete>
+ 	<update id="resetTuteeReviewNum" parameterType="int">
+ 		update tutee set re_num=default where re_num=#{re_num, jdbcType=INTEGER}
+ 	</update>
+ 	<select id="getReCount" parameterType="String" resultType="int">
+ 		select count(*) from tutee where id=#{id}
+ 	</select>
+ 	<select id="getTutorReview" parameterType="int" resultType="review.ReviewDataBean">
+ 		select * from review where lec_num=#{lec_num, jdbcType=INTEGER} order by gr desc, re_level asc
+ 	</select>
+ 	<select id="getLectureId" parameterType="String" resultType="lecture.LectureDataBean">
+ 		select  * from lecture where id=#{id}
+ 	</select>
+ 	<insert id="insertTutorReview" parameterType="review.ReviewDataBean">
+ 		insert into review values(re_num_SEQ.nextval, #{lec_num}, #{id}, #{re, jdbcType=VARCHAR}, '', #{reg_date, jdbcType=VARCHAR}, 1, #{gr, jdbcType=INTEGER}) 
+ 	</insert>
+
+ 	<select id="getClassMapList" resultType="map.MapDataBean">
+ 		select d.lec_num, l.sub, l.cate, d.adr from lecde d
+ 		join lecture l
+ 		on d.lec_num = l.lec_num
+ 		where l.sta=1
+ 	</select>
+ 	<insert id="insertRefund" parameterType="refund.RefundDataBean">
+ 		insert into refund values(ref_num_seq.nextval, #{lec_num, jdbcType=INTEGER}, #{id, jdbcType=VARCHAR},to_char(sysdate,'YYYY-MM-DD HH24:MI'),default,to_char(sysdate,'YYYY-MM-DD HH24:MI'))
+ 	</insert>
+ 	<select id="getMemberRefund" parameterType="String" resultType="refund.RefundDataBean">
+ 		select * from refund where id=#{id} order by ref_num desc
+ 	</select>
+ 	<select id="checkMemRefund" parameterType="refund.RefundDataBean" resultType="int">
+ 		select count(*) from refund where id=#{id} and lec_num=#{lec_num} and sta=0
+ 	</select>
+ 	<select id="getRefundList" resultType="refund.RefundDataBean">
+ 		select * from refund order by sta, ref_num desc 
+ 	</select>
+ 	<delete id="deleteTutee" parameterType="refund.RefundDataBean">
+ 		delete from tutee where id=#{id} and lec_num=#{lec_num}
+ 	</delete>
+ 	<update id="updateRefund" parameterType="refund.RefundDataBean">
+ 		update refund set sta=1, fin_date=to_char(sysdate,'YYYY-MM-DD HH24:MI') where id=#{id} and lec_num=#{lec_num}
+ 	</update>
+ 	<select id="calcLike" parameterType="int" resultType="int">
+ 		select count(*) from leclike where lec_num=#{lec_num}
+ 	</select>
+
+</mapper>
+
+
+
