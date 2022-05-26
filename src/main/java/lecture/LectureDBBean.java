@@ -52,7 +52,7 @@ public class LectureDBBean implements LectureDao{
 	
 	
 	
-	@Override
+	
 	public int check(String id, String passwd) {
 		int count = check(id);
 		int result = 0;

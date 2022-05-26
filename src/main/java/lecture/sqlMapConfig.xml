@@ -8,6 +8,8 @@
  	<!-- DB연결 -->
  	<environments default="developement">
  		<environment id="developement">
+
+ 
  			<transactionManager type="JDBC"/>
  			<dataSource type="POOLED">
  				<property name="driver" value="${driver}"/>
@@ -19,8 +21,17 @@
  		</environment>
  	</environments>
  	
+ 	
+
+ 	
+ 	
+ 	
  	<!-- Mapper 설정 -->
  	<mappers>
  		<mapper resource="lecture/lecture.xml"/>
  	</mappers>
+ 	
  </configuration>
+ 
+
+
