@@ -309,10 +309,14 @@ float:right;
 				<div id="tutor_top_topic">
 					<h3 class="topic">리뷰 관리</h3>
 					</div>
+					<!-- 
 					<div id="totla_select">
-							<input type="checkbox" id="total_check_box" value="selectall" onclick="selectAll(this)" >
-							<span style="margin-left:10px;">현재 페이지 게시물 전체선택</span>
-						</div>					
+					
+							<button type="checkbox" id="total_check_box" value="selectall" onclick="selectAll(this)" >
+							<span style="margin-left:10px;"> 게시물 전체선택</span>
+							</button>
+						</div>
+					 -->						
 					<c:forEach var="dto" items="${dtos}">
 		
 					<div class="review_div">
@@ -342,12 +346,8 @@ float:right;
 						                    </div>
 						                    </c:if>
 						                  </div> 			
-										</div>
-										<c:if test="${dto.re_num ne 0}">
-										<input type="checkbox"class="rev_select">
-										</c:if>
-									</div>
-									
+										</div>								
+									</div>									
 									<c:if test="${dto.re_num ne 0}">
 									<div class=tutee_rev_div>
 									<div class=tetee_rev>
@@ -366,7 +366,8 @@ float:right;
 											<textarea name="modify" rows="6" id="review_text" style="width:700px;height:auto; background:none;" disabled="disabled">${dto.re}</textarea>		  			 									  		
 	 									  </div>	
 	 									  <div class="btn_div">
-	 									  	 <input class="rev_btn " id="modify_btn" type="button" value="수정하기" onclick="location='reviewModifyForm.do?re_num=${dto.re_num}'"> 									 
+	 									  	 <input class="rev_btn " id="modify_btn" type="button" value="수정하기" onclick="location='reviewModifyForm.do?re_num=${dto.re_num}'">
+	 									  	 <input class="rev_btn " id="modify_btn" type="button" value="삭제하기" onclick="location='reviewDeleteForm.do?re_num=${dto.re_num}'">								  	 								 
 	 									  </div>
 									</div>
 								</div>	
@@ -398,16 +399,12 @@ float:right;
 					</div>
 			
 				</div>
-			
-		
-			
-		</div>
-		
-			
+	
+		</div>			
 	  <div id="tutor_div_space"></div>
 	</div>
 </div>
-</div>
+
 
 <!-- bootstrap ver4.6 JS -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

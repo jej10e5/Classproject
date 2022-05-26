@@ -317,5 +317,31 @@ public class LectureDBBean implements LectureDao{
 	public List<LectureDeDataBean> getMemberLikeList(String id) {
 		return SqlMapClient.getSession().selectList("Lecture.getMemberLikeList",id);
 	}
+	@Override
+	public int deleteReview(int re_num) {
+		return SqlMapClient.getSession().delete("Lecture.deleteReview",re_num);
+	}
+	@Override
+	public int resetTuteeReviewNum(int re_num) {
+		return SqlMapClient.getSession().update("Lecture.resetTuteeReviewNum",re_num);
+	}
+	@Override
+	public int getReCount(String id) {
+		return SqlMapClient.getSession().selectOne("Lecture.getReCount",id);
+	}
+	@Override
+	public List<ReviewDataBean> getTutorReview(int lec_num) {
+
+		return SqlMapClient.getSession().selectList("Lecture.getTutorReview",lec_num);
+	}
+	@Override
+	public LectureDataBean getLectureId(String id) {
+		return SqlMapClient.getSession().selectOne("Lecture.getLectureId",id);
+	}
+	@Override
+	public int insertTutorReview(ReviewDataBean dto) {
+
+		return SqlMapClient.getSession().insert("Lecture.insertTutorReview",dto);
+	}
 
 }

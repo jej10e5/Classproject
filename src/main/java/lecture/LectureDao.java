@@ -46,10 +46,13 @@ public interface LectureDao {
 	public int insertReview(ReviewDataBean dto);
 	public ReviewDataBean getReview(ReviewDataBean dto); 
 	public ReviewDataBean getRe(int re_num); 
+	public int deleteReview(int re_num);
+	public int resetTuteeReviewNum(int re_num);
 	
 	public int finClass(int lec_num);
 	public int createClass2(LecdeDataBean dto);
-
+	
+	public int getReCount(String id);
 	
 	public int insertRenum(TuteeDataBean dtt);
 
@@ -74,6 +77,9 @@ public interface LectureDao {
 	public List<LectureDeDataBean> getSearchResult(String p);
 	public List<LectureDeDataBean> getInactive();
 	public List<LectureDeDataBean> getTuteeClassList(String id);
+	public LectureDataBean getLectureId(String id);
+	public int insertTutorReview(ReviewDataBean dto);
+	
 	
 	public List<LeclikeDataBean> getLikeList(String id);
 	public int deleteHeart(LeclikeDataBean dto);
@@ -81,4 +87,5 @@ public interface LectureDao {
 	public int getNowTutee(int lec_num);
 	public List<TuteememDataBean> getTutee(int lec_num);
 	public List<LectureDeDataBean> getMemberLikeList(String id);
+	public List<ReviewDataBean> getTutorReview(int lec_num);
 }

@@ -107,7 +107,7 @@ function checktutee(lec_num){
 						
 						</div>
 						<!-- 클래스 관리 -->
-							<div id="side_top_div">
+							<div id="side_top_div" >
 						<div style="height: 4px; display : flex;">	</div>
 							<div class="cate_div">
 								<div class="cate_subject">
@@ -127,7 +127,7 @@ function checktutee(lec_num){
 						
 						</div>
 						<!-- 리뷰 관리 -->
-							<div id="side_top_div">
+							<div id="side_top_div"onclick="location='tutorReviewForm.do?'">
 						<div style="height: 4px; display : flex;">	</div>
 							<div class="cate_div">
 								<div class="cate_subject">
