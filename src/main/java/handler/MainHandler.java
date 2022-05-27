@@ -23,6 +23,7 @@ public class MainHandler implements CommandHandler {
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		String id = (String)request.getSession().getAttribute("memid");
+		if(id==null||id=="") id="geust";
 		List<LecdelikeDataBean> dtos = lectureDao.getClassLikeList(id); 
 		request.setAttribute("dtos", dtos);
 		

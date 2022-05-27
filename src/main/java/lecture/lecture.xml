@@ -197,6 +197,7 @@
 			on l.lec_num=k.lec_num
 			join lecde d
 			on l.lec_num=d.lec_num
+		order by l.lec_num desc
 	</select>
 	<delete id="deleteHeart" parameterType="leclike.LeclikeDataBean">
 		delete from leclike where id=#{id, jdbcType=VARCHAR} and lec_num=#{lec_num, jdbcType=INTEGER}
