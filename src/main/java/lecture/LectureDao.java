@@ -17,6 +17,7 @@ import lecturede.LectureDeDataBean;
 import map.MapDataBean;
 import refund.RefundDataBean;
 import review.ReviewDataBean;
+import reviewlec.ReviewLecDataBean;
 import tutor.TutorDataBean;
 public interface LectureDao {
 	public int createClass(LectureDataBean dto);
@@ -52,7 +53,7 @@ public interface LectureDao {
 	public int insertReview(ReviewDataBean dto);
 	public ReviewDataBean getReview(ReviewDataBean dto); 
 	public ReviewDataBean getRe(int re_num); 
-	public int deleteReview(int re_num);
+	public int deleteReview(int gr);
 	public int resetTuteeReviewNum(int re_num);
 	
 	public int finClass(int lec_num);
@@ -81,12 +82,17 @@ public interface LectureDao {
 	public int modifyMember( LecmemDataBean dto );
 	public int modifyTutorPro(TutorDataBean dto);
 	
+	
+	
 	public List<LectureDeDataBean> getCategory(String c);
 	public List<LectureDeDataBean> getSearchResult(String p);
 	public List<LectureDeDataBean> getInactive();
 	public List<LectureDeDataBean> getTuteeClassList(String id);
 	public LectureDataBean getLectureId(String id);
 	public int insertTutorReview(ReviewDataBean dto);
+	public ReviewLecDataBean getTutorObj(int lec_num);
+	public int getGrCount(int gr);
+	public int modifyTutorReview(ReviewDataBean dto);
 	
 	
 	public List<LeclikeDataBean> getLikeList(String id);

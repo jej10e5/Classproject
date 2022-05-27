@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import lecture.LectureDao;
 import review.ReviewDataBean;
 @Controller
-public class TutorReviewPro implements CommandHandler{
+public class TutorReviewProHandler implements CommandHandler{
 	
 	@Resource
 	LectureDao lectureDao;
@@ -39,6 +39,7 @@ public class TutorReviewPro implements CommandHandler{
 		
 		int result = lectureDao.insertTutorReview(dto);
 		
+		request.setAttribute("lec_num", lec_num);
 		request.setAttribute("result", result);
 		return new ModelAndView("class365/tutorReviewPro");
 	}

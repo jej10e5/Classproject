@@ -107,7 +107,7 @@ function checktutee(lec_num){
 						
 						</div>
 						<!-- 클래스 관리 -->
-							<div id="side_top_div" >
+							<div id="side_top_div"onclick="location='tutorMain.do'">
 						<div style="height: 4px; display : flex;">	</div>
 							<div class="cate_div">
 								<div class="cate_subject">
@@ -156,107 +156,46 @@ function checktutee(lec_num){
 	</div>
  <!-- 사이드바 -->	
 	<div id="tutor_div" >
-	<c:if test="${tutorInfo ne 0}">
 		<div id="tutor_main_article" style="overflow-x:scroll;" >
 			<div id="tutor_main_margin">
 			
 				<div id="tutor_top_topic">
-					<h3 class="topic">강의</h3>
+					<h3 class="topic">리뷰 관리</h3>
 					
-					<a href="createClassForm1.do" style="color:inherit;">
-						<button id="make_class_btn">
-							<span id="inher_span">
-								<span id="btn_icon_span">
-									<i class="fa-solid fa-plus"></i>
-								</span>
-								<div style="width:6px; height:0px;"></div>
-								<span id="btn_subject"> 강의 만들기</span>
-							</span>
-						</button>					
-					</a>
+					
 					
 				</div>
 				<div id="table_div" >
-					<table class="tutor_table table table-hover">
+					<table class="tutor_table">
 						<tr style="border-bottom:solid 1px lightgrey" >
 							<th style="width:15%">강좌명</th>
-							<th>상태</th>
-							<th >카테고리</th>
-							<th>난이도</th>
-							<th>시작일</th>
-							<th>마지막일</th>
-							<th>가격</th>
-							<th></th>
-							<th></th>
+							<th>강의번호</th>
+							<th >좋아요 개수</th>
+							<th>리뷰 개수</th>
 							<th></th>
 						</tr>
-						<c:forEach var="dto" items="${dtos}">
+						<c:forEach var="dlo" items="${dlos}">
 						<tr>
-							<th style="width:15%">${dto.sub}</th>
-							<th>
-								<c:if test="${dto.sta eq 0}">
-								작성중
-								</c:if>
-								<c:if test="${dto.sta eq 1}">
-								모집중
-								</c:if>
-								<c:if test="${dto.sta eq 2}">
-								마감
-								</c:if>
-								<c:if test="${dto.sta eq 3}">
-								제한됨
-								</c:if>
-							</th>
-							<th>${dto.cate}</th> 
-							<th>${dto.lv}</th>
-							<th>${dto.be}</th>
-							<th>${dto.fin}</th>
-							<th>${dto.pri}</th>
-							<th><input class="btn_modify" type="button" value="수정하기" 
-							onclick="location='modifyClass.do?lec_num=${dto.lec_num}'"></th>
-							<th>
-							<c:if test="${dto.sta eq 0}">
-							<input class="btn_delete"type="button"
-							onclick="location='deleteClass.do?lec_num=${dto.lec_num}'" 
-							value="삭제하기">
+							<th style="width:15%">${dlo.sub}</th>
+							<th>${dlo.lec_num}</th> 
+							<th>${dlo.totlike}</th>
+							<th>${dlo.totreview}</th>
+							<c:if test="${dlototreview ne 0}">
+							<th><input class="btn_modify" type="button" value="리뷰관리하기" 
+							onclick="location='tutorReviewForm.do?lec_num=${dlo.lec_num}'"></th>
 							</c:if>
-							<c:if test="${dto.sta eq 1}">
-							<input class="btn_sta1" type="button"
-							onclick="location='inactiveClass.do?lec_num=${dto.lec_num}'"
-							value="마감하기">
-							<input class="btn_sta1" type="button"
-							onclick="checktutee(${dto.lec_num})"
-							value="수강생">
+							<c:if test="${dlototreview eq 0}">
+							<th><input class="btn_modify" type="button" value="리뷰가없습니다" 
+							onclick="location=''"></th>
 							</c:if>
-							<c:if test="${dto.sta eq 2}">
-							<input class="btn_sta2" type="button"
-							onclick="location='activeClass.do?lec_num=${dto.lec_num}'"
-							value="모집하기">
-							<input class="btn_sta1" type="button"
-							onclick="checktutee(${dto.lec_num})"
-							value="수강생">
-							</c:if>
-							<c:if test="${dto.sta eq 3}">
-							제제됨
-							</c:if>
-							</th>
-						</tr>
-							
+							<th>						
+						</tr>						
 						</c:forEach>					
 					</table>	
 				</div>
 			</div>
 			
 		</div>
-		</c:if>
-		<c:if test="${tutorInfo eq 0}">
-		<div style="padding:5%;">
-			<h5>Class만들기가 처음이신가요?</h5>
-			<h5>튜터 정보를 먼저 등록해주세요!</h5>
-			<input class="btn" type="button" value="튜터 정보 등록하기" onclick="location='tutorInfoForm.do'">
-
-		</div>
-		</c:if>
 			
 	  <div id="tutor_div_space"></div>
 	</div>

@@ -26,6 +26,40 @@ border-radius: 5px;
 width:100%;
 
 }
+.tue_rev{
+	width: 100%;
+    padding: 48px 0px;
+}
+.tutor_img{
+	display: table-cell;
+    width: 30px;
+    height: 30px;
+
+}
+.tutor_pro_img {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.tutor_info {
+   display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+}
+}
+.tut_rev_div {
+    margin-left: 200px;
+}
+.tutor_cmt{
+	list-style: none!important; 
+    margin-left: 100px;
+}
+.rev_box{
+    display: flex;
+    flex-direction: column;
+}
 </style>
 
 			
@@ -235,38 +269,88 @@ $(document).ready(function($) {
 	 					</section>	 				
 	 				</div>
 	 				<div id="review_div" style="padding-top:150px;">
-	 					<section class="tut_intro">
+	 					<section class="tut_rev">
 	 						<div class="name_div">
 	 							<h3 class="tut_name">수강생 리뷰 </h3>
 	 						</div>
+	 						<div class="rev_box">
+	 						<!-- 여기 -->
+	 						<c:forEach var="dgo" items="${dgos}">
+	 						<c:if test="${dgo.re_level eq 0}">
 	 						<div class="tut_rev_div">
 	 							<div class="review_text">
 	 								<ul>
+	 									<c:if test="${dgo.count eq 1}">
 	 									<li class="review_list">
 	 									  <div class="rev_tute_info">
 	 										<span class="tute_img">
-	 											<img class = "tute_rev_img" src="/Test/images/tut_img.jpg"/>
+	 											<img class = "tute_rev_img" src="${imagepath}tett_img.jpg"/>
 	 										</span>	
 	 									  <div class="tute">	
 	 										<div class ="rev_tut_name">
-	 											<span class="tut_names">김밥</span>
+	 											<span class="tut_names">${dgo.id}</span>
+	 											
 	 										</div>	
 	 										<div class = "rev_write_date">
-	 											<p class = "write_date">2022-05-30 11:00:56</p> 
+	 											<p class = "write_date">${dgo.reg_date}</p> 
 	 										</div>
 	 									  </div>	
 	 									 
 	 									 </div>	
 	 									  <div class="rev_object">
-	 									  		<p class="rev_cmt">가나다라 마바사 ABCD
-	 									  			<br>
-	 									  			어렵지만 재밌게 읽었습니다. 사주를 재미겸 많이 봤던편인데 많이 봐서 그런지 지금까지 들었던 이야기들이 들어있었습니다.
-그래도 좋았던건 뭔가 진심으로 봐주시려하는 느낌이 글 한 자 한 자에 녹아있던 것 같습니다. 마지막에 사주를 마무리하며 남겨주신 이야기도 마음에 와 닿았습니다.
-	 									  		</p>
+	 									  		<pre class="rev_cmt">${dgo.re}</pre>
 	 									  </div>	
 	 									</li>
+	 									</c:if>
+	 									<c:if test="${dgo.count ne 1}">
+	 									<li class="review_list_no">
+	 									  <div class="rev_tute_info">
+	 										<span class="tute_img">
+	 											<img class = "tute_rev_img" src="${imagepath}tett_img.jpg"/>
+	 										</span>	
+	 									  <div class="tute">	
+	 										<div class ="rev_tut_name">
+	 											<span class="tut_names">${dgo.id}</span>
+	 										</div>	
+	 										<div class = "rev_write_date">
+	 											<p class = "write_date">${dgo.reg_date}</p> 
+	 										</div>
+	 									  </div>	
+	 									 
+	 									 </div>	
+	 									  <div class="rev_object">
+	 									  		<pre class="rev_cmt">${dgo.re}</pre>
+	 									  </div>	
+	 									</li>
+	 									</c:if>	
+	 								
 	 								</ul>
 	 							</div>
+	 						</div>
+	 						</c:if>
+	 						<c:if test="${dgo.re_level eq 1}">
+	 						 <ul class="tutor_cmt">
+	 									 		<li class="tutor_re">
+	 									 			<div class="tutor_info">
+	 									 			
+	 									 				<span class="tutor_img">
+	 									 					<img src="${imagepath}${dtt.pro}"class="tutor_pro_img">
+	 									 				</span>
+	 									 			
+	 									 				<div class="rev_tutor_id"> 			
+	 									 				     <span class="tutor_name">${dtt.id}</span>
+	 									 				
+	 									 					<p class="write_date">${dgo.reg_date}</p>
+	 									 				
+	 									 				</div>	
+	 									 				<div class="tutor_rev_box">
+	 									 				<pre class="tutor_txt" id="review_txt"style="background-color: #ffe5ec; height:150px;">${dgo.re}</pre>	 									 				
+	 									 			</div>		
+	 									 			</div> 			 									 			
+	 									 		</li>
+	 									 	</ul>			
+	 						</c:if>
+	 						</c:forEach>
 	 						</div>
 	 					</section>
 	 				</div>
