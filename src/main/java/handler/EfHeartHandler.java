@@ -24,7 +24,7 @@ public class EfHeartHandler{
 		dto.setLec_num(lec_num);
 			lectureDao.insertHeart(dto);
 			request.setAttribute("lec_num", lec_num);
-			return new ModelAndView("/class365/solidheart");
+			return new ModelAndView("/class365/heart_full");
 
 	}
 }

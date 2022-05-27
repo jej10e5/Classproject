@@ -24,7 +24,7 @@ public class FeHeartHandler{
 		dto.setLec_num(lec_num);
 			lectureDao.deleteHeart(dto);
 			request.setAttribute("lec_num", lec_num);
-			return new ModelAndView("/class365/emptyheart");
+			return new ModelAndView("/class365/heart_empty");
 
 	}
 	

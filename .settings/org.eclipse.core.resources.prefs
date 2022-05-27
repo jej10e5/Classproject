@@ -1,4 +1,4 @@
 eclipse.preferences.version=1
 encoding//src/main/java/lecture/LectureDBBean.java=UTF-8
-encoding//src/main/webapp/class365/emptyheart.jsp=UTF-8
-encoding//src/main/webapp/class365/solidheart.jsp=UTF-8
+encoding//src/main/webapp/class365/heart_empty.jsp=UTF-8
+encoding//src/main/webapp/class365/heart_full.jsp=UTF-8

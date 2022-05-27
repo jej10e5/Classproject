@@ -176,7 +176,8 @@
 					<div class="row">
 		                  <div  class="mx-auto"  style="width: 300px;">
 		                   <div class="pro_img" id="thumb_container" style="height:300px; overflow:hidden;">
-		                   		<img class="profile" src="${imagepath}${dto.thu}" style="position:relative;">
+		                   		<img class="profile" src="${imagepath}${dto.thu}" style="position:relative;"
+		                   			onclick="location='classForm.do?lec_num=${dto.lec_num}'">
 		                   		<c:if test="${dto.lv eq '입문자'}">
 		                   		<span class="lvbox lv1">${dto.lv}</span>
 		                   		</c:if>
@@ -244,11 +245,7 @@
 						     	<i id="likeicon" class="hebox fa-regular fa-heart cc_pink" 
 								     	 	style="padding-top:5px; font-size:25px; "></i>
 						     	</c:if>
-						     	
-						     	
-						     	
 	
-						     	
 						     	<c:if test="${memid eq null or memid eq '' }">
 						     	<a class="hebox" href="loginForm.do">
 								     <i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
@@ -329,7 +326,7 @@
 										
 									}	
 								);	
-								
+								 
 								$(document).ready(
 										function() {
 											$("i[id^='likeicon_empty']").on(
