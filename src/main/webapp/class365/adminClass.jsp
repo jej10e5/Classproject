@@ -240,7 +240,7 @@ function checktutee(lec_num,id){
 							<th>${dto.be}</th>
 							<th>${dto.fin}</th>
 							<th>${dto.pri}</th>
-							<th>
+							<th style="padding-top:12px;">
 							<c:if test="${dto.sta ne 3}">
 							<div id="result${dto.lec_num}"></div>
 							<form id="btnform${dto.lec_num}">

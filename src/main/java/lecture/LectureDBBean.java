@@ -15,6 +15,7 @@ import tuteelec.TuteeLecDataBean;
 import tuteemem.TuteememDataBean;
 import lecturede.LectureDeDataBean;
 import map.MapDataBean;
+import mem.MemDataBean;
 import refund.RefundDataBean;
 import review.ReviewDataBean;
 import reviewlec.ReviewLecDataBean;
@@ -132,7 +133,7 @@ public class LectureDBBean implements LectureDao{
 	public LecmemDataBean getMember(String id) {	
 		return SqlMapClient.getSession().selectOne("Lecture.getMember",id);	
 	  }
-	public List<LecmemDataBean> getMemberAll() {	
+	public List<MemDataBean> getMemberAll() {	
 		return SqlMapClient.getSession().selectList("Lecture.getMemberAll");	
 	  }
 

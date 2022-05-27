@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lecmem.LecmemDataBean;
 import lecture.LectureDao;
+import mem.MemDataBean;
 
 @Controller
 public class AdminMemberHandler implements CommandHandler{
@@ -20,7 +21,7 @@ public class AdminMemberHandler implements CommandHandler{
 	@RequestMapping("adminMember")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		List<LecmemDataBean> dtos=lectureDao.getMemberAll();
+		List<MemDataBean> dtos=lectureDao.getMemberAll();
 		request.setAttribute("dtos", dtos);
 		return new ModelAndView("/class365/adminMember");
 	}

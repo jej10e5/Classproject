@@ -27,8 +27,12 @@
  	<select id="getMember" parameterType="String" resultType="lecmem.LecmemDataBean">
  		  select * from lecmem where id = #{id}	
  	</select>
- 	<select id="getMemberAll" resultType="lecmem.LecmemDataBean">
- 		  select * from lecmem order by id
+ 	<select id="getMemberAll" resultType="mem.MemDataBean">
+ 		  select l.id, l.tel, l.email, t.acc 
+			from lecmem l
+			left join tutor t
+			on l.id=t.id
+			order by l.id desc
  	</select>
  	<select id="getTutor" parameterType="String" resultType="tutor.TutorDataBean">
  		select * from tutor where id = #{id}
@@ -204,6 +208,7 @@
 			on l.lec_num=k.lec_num
 			join lecde d
 			on l.lec_num=d.lec_num
+			where l.sta=1
 		order by l.lec_num desc
 	</select>
 	<delete id="deleteHeart" parameterType="leclike.LeclikeDataBean">

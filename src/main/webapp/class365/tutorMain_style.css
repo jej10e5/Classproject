@@ -217,3 +217,8 @@ width:1000px;
 height:auto; 
 padding-top:20px;
 }
+#table_div{
+	overflow-x:scroll; 
+	max-width:100%;
+}
+

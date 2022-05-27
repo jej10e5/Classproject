@@ -157,7 +157,7 @@ function checktutee(lec_num){
  <!-- 사이드바 -->	
 	<div id="tutor_div" >
 	<c:if test="${tutorInfo ne 0}">
-		<div id="tutor_main_article" style="overflow-x:scroll;" >
+		<div id="tutor_main_article" >
 			<div id="tutor_main_margin">
 			
 				<div id="tutor_top_topic">

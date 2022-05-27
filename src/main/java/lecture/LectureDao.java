@@ -15,6 +15,7 @@ import tuteemem.TuteememDataBean;
 
 import lecturede.LectureDeDataBean;
 import map.MapDataBean;
+import mem.MemDataBean;
 import refund.RefundDataBean;
 import review.ReviewDataBean;
 import reviewlec.ReviewLecDataBean;
@@ -30,7 +31,7 @@ public interface LectureDao {
 	public int check(String id,String passwd);
 	public int check(String id);
 	public LecmemDataBean getMember(String id);
-	public List<LecmemDataBean> getMemberAll();
+	public List<MemDataBean> getMemberAll();
 
 	public TutorDataBean getTutor(String id);
 	public int modifyTutor(TutorDataBean dto);

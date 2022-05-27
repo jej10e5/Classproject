@@ -17,19 +17,19 @@
 
 <body> 
 <%@ include file="header.jsp" %>  
-<div id="map_div" style="padding:150px;">
+<div id="map_div" style="padding:50px 150px;">
 	 			<section class="tut_intro">		
 	 			
 	 				<div class="name_div">
 	 					<h3 class="tut_name">강의 장소</h3>
 	 				</div>	
 	 				<label>지역 검색*</label>
-	 				<div class="row" style="margin:20px;">
-                       <div class="col">  
+	 				<div class="row" style="margin:20px 0px;">
+                       <div class="col" >  
                          	<input class="form-control" type="text" id="address_kakao" name="adr" readonly 
-                         	placeholder="현재 주소를 입력하세요!" style="display:inline;">
+                         	placeholder="현재 주소를 입력하세요!">
                          </div>
-                        <div class="col">
+                        <div class="col" >
                          	<input class="btn" type="button" id="adr_btn" value="검색" onclick="adr()">
                          </div>
                    </div>
@@ -53,7 +53,7 @@
 								</script>
                          	
 							</div>
-					<div id="map" style="width:700px;height:500px;"></div>
+					<div id="map" style="width:800px;height:600px;"></div>
 					<script type="text/javascript">
 					
 					
@@ -201,8 +201,3 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
  </body>
-<footer> 
-<a href='https://kr.freepik.com/photos/woman'>Woman 사진는 freepik - kr.freepik.com가 제작함</a>
-<a href='https://kr.freepik.com/photos/hand'>Hand 사진는 pressfoto - kr.freepik.com가 제작함</a>
-<a href='https://kr.freepik.com/photos/woman'>Woman 사진는 freepik - kr.freepik.com가 제작함</a>
-</footer> 

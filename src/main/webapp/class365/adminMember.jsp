@@ -207,7 +207,7 @@
 							<th style="width:15%">아이디</th>
 							<th>이메일</th>
 							<th>전화번호</th>
-							<th></th>
+							<th>계좌</th>
 							<th></th>
 						</tr>
 						<c:forEach var="dto" items="${dtos}">
@@ -215,6 +215,9 @@
 							<th style="width:15%">${dto.id}</th>
 							<th>${dto.email}</th>
 							<th>${dto.tel}</th>
+							<th>
+							${dto.acc}
+							</th>
 							<th><input class="btn_confirm" type="button" value="수강제한하기" 
 							onclick="location='#.do?id=${dto.id}'">
 							</th>
