@@ -3,6 +3,7 @@ package lecture;
 import java.util.List;
 
 import lecde.LecdeDataBean;
+import lecdelike.LecdelikeDataBean;
 import leclike.LeclikeDataBean;
 import lecmem.LecmemDataBean;
 
@@ -29,6 +30,7 @@ public interface LectureDao {
 	public int check(String id,String passwd);
 	public int check(String id);
 	public LecmemDataBean getMember(String id);
+	public List<LecmemDataBean> getMemberAll();
 
 	public TutorDataBean getTutor(String id);
 	public int modifyTutor(TutorDataBean dto);
@@ -36,6 +38,8 @@ public interface LectureDao {
 	public int tutorCheck(String id);
 	public LectureDataBean getLecture(int lec_num);
 	public List<LectureDeDataBean> getClassList();
+	public List<LectureDeDataBean> getClassListAll();
+	public List<LecdelikeDataBean> getClassLikeList(String id);
 
 	public LecdeDataBean getLecde(int lec_num);
 	public int calcMonth(int lec_num);
@@ -60,7 +64,9 @@ public interface LectureDao {
 	public int insertRenum(TuteeDataBean dtt);
 
 	public String findId(String tel);
+	public String findPasswd(LecmemDataBean dto);
 
+	
 	public List<LectureDeDataBean> getTutorClass(String id);
 	public List<TuteeLecDataBean> getTuteeClass(String id);
 	public LectureDataBean getOriginClass(int lec_num);
@@ -104,5 +110,7 @@ public interface LectureDao {
 	public int checkMemRefund(RefundDataBean dto);
 	public List<RefundDataBean> getRefundList();
 	public int refundConfirm(RefundDataBean dto);
-
+	public int calcLike(int lec_num);
+	
+	public int changeClass(LectureDataBean dto);
 }

@@ -1,15 +1,16 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/class365/setting.jsp" %>    
-<link href="style.css" rel="stylesheet" type="text/css">  
+<link href="${project}/style.css" rel="stylesheet" type="text/css">  
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
  <link href="${project}/tutorMain_style.css" rel="stylesheet" type="text/css"> 
  <link href="${project}/style.css" rel="stylesheet" type="text/css"> 
 <script src="https://kit.fontawesome.com/811e29d39a.js" crossorigin="anonymous"></script>
-<script src="${project}/jquery-3.6.0.js"></script> 
 <script type="text/javascript">
-
+function checktutee(lec_num,id){
+	url="checktutee.do?lec_num="+lec_num;
+	open( url, "checktutee", "scrollbar=no, menubar=no, status=no, width=600, height=600" ); //새창띄우기
+}
 </script> 
 <style>
 .btn_info{
@@ -146,7 +147,7 @@
 						
 						</div>
 						<!-- 리뷰 관리 -->
-							<div id="side_top_div" >
+							<div id="side_top_div">
 						<div style="height: 4px; display : flex;">	</div>
 							<div class="cate_div" onclick="location='adminReview.do'">
 								<div class="cate_subject">
@@ -198,62 +199,132 @@
 			<div id="tutor_main_margin">
 			
 				<div id="tutor_top_topic">
-					<h3 class="topic">환불 현황</h3>
+					<h3 class="topic">강의 현황</h3>
 					
 				</div>
 				<div id="table_div" >
 					<table class="tutor_table">
 						<tr style="border-bottom:solid 1px lightgrey" >
-							<th style="width:15%">접수번호</th>
-							<th>신청자</th>
-							<th>강의번호</th>
-							<th>강의정보</th>
-							<th>취소 신청일</th>
+							<th style="width:7%">강의번호</th>
+							<th style="width:15%">강좌명</th>
+							<th>튜터</th>
 							<th>상태</th>
-							<th>처리</th>
+							<th >카테고리</th>
+							<th>난이도</th>
+							<th>시작일</th>
+							<th>마지막일</th>
+							<th>가격</th>
+							<th></th>
+							<th></th>
+							<th></th>
 						</tr>
 						<c:forEach var="dto" items="${dtos}">
-							<tr>
-							<th style="width:15%">${dto.ref_num}</th>
+						<tr>
+							<th style="width:7%">${dto.lec_num}</th>
+							<th style="width:15%">${dto.sub}</th>
 							<th>${dto.id}</th>
-							<th>${dto.lec_num}</th>
-							<th><input type="button" class="btn_info"value="더보기" onclick="location='classForm.do?lec_num=${dto.lec_num}'"></th>
-							<th>${dto.reg_date}</th>
-							<c:if test="${dto.sta eq 0}">
-							<th>
-								접수
+							<th id="staresult${dto.lec_num}">
+							<div id="sta${dto_lec_num}"></div>
+								<c:if test="${dto.sta eq 1}">
+								모집중
+								</c:if>
+								<c:if test="${dto.sta eq 2}">
+								마감
+								</c:if>
+								<c:if test="${dto.sta eq 3}">
+								제한됨
+								</c:if>
 							</th>
-							<th><input class="btn_confirm" type="button" value="신청확인" onclick="location='refundConfirm.do?lec_num=${dto.lec_num}&id=${dto.id}'"></th>
-							</c:if>
-							<c:if test="${dto.sta eq 1}">
+							<th >${dto.cate}</th> 
+							<th>${dto.lv}</th>
+							<th>${dto.be}</th>
+							<th>${dto.fin}</th>
+							<th>${dto.pri}</th>
 							<th>
-								처리완료
-							</th>
-							<th>${dto.fin_date}</th>
+							<c:if test="${dto.sta ne 3}">
+							<div id="result${dto.lec_num}"></div>
+							<form id="btnform${dto.lec_num}">
+								<input type="hidden" name="lec_num" value="${dto.lec_num}">
+								<input name="ACbtn/hide/${dto.lec_num}" class="btn_sta2"
+								type="button"value="숨기기">
+							</form>
 							</c:if>
-							</tr>
-						</c:forEach>					
+							<c:if test="${dto.sta eq 3}">
+							<div id="result${dto.lec_num}"></div>
+							<form id="btnform${dto.lec_num}">
+								<input type="hidden" name="lec_num" value="${dto.lec_num}">
+								<input name="ACbtn/show/${dto.lec_num}" class="btn_sta1" 
+								type="button" value="보이기">
+							</form>
+							</c:if>
+							</th>
+						</tr>
+							
+						</c:forEach>	
+				
 					</table>	
+					
+					<script src="/JQueryEx/jquery-3.6.0.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(
+		function() {
+			$("input[name^='ACbtn']").on(
+				"click",
+				function( event ) {
+					var idstr =$(this).attr('name');
+					var sta=idstr.split('/')[1];
+					var num=idstr.split('/')[2];
+					$.ajax(
+						{
+							type : "POST",
+							url : (sta=='hide') ? "hideClass.do" : "showClass.do",
+							/*data : params,*/
+							/*data : {
+								name : name,
+								age : age
+							},*/
+							data : $("#btnform"+num).serialize(),
+							dataType : "text",
+							success : function( data ) {
+								console.log(data);
+								$("#btnform"+num).remove();
+								$("#result"+num).html(data);
+								$("#sta"+num).remove();
+								$("#staresult"+num).html( (sta=='hide') ? '제한됨':'마감');
+	
+							},
+							error : function(  ) {
+								alert("강의 숨기기 실패");
+							}
+						}		
+					)
+					
+				}
+						
+			);
+			
+		}	
+	);	
+
+
+
+</script>	
 				</div>
 			</div>
 			
 		</div>
 		</c:if>
-		<c:if test="${tutorInfo eq 0}">
-		<div style="padding:5%;">
-			<h5>Class만들기가 처음이신가요?</h5>
-			<h5>튜터 정보를 먼저 등록해주세요!</h5>
-			<input class="btn" type="button" value="튜터 정보 등록하기" onclick="location='tutorInfoForm.do'">
-
-		</div>
-		</c:if>
-			
-	  <div id="tutor_div_space"></div>
+		
 	</div>
 </div>
 </div>
 
+
+
+
+
+
+
+
 <!-- bootstrap ver4.6 JS -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
- 

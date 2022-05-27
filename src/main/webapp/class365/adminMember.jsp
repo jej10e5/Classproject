@@ -1,33 +1,34 @@
 
-<%@page import="lecmem.LecmemDataBean"%>
-<%@page import="lecture.LectureDBBean"%>
-<%@page import="lecture.LectureDataBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/class365/setting.jsp" %>    
 <link href="style.css" rel="stylesheet" type="text/css">  
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
  <link href="${project}/tutorMain_style.css" rel="stylesheet" type="text/css"> 
+ <link href="${project}/style.css" rel="stylesheet" type="text/css"> 
 <script src="https://kit.fontawesome.com/811e29d39a.js" crossorigin="anonymous"></script>
 <script src="${project}/jquery-3.6.0.js"></script> 
+<script type="text/javascript">
+
+</script> 
 <style>
-.btn_modify{
+.btn_info{
 	border: none;
 	border-radius:2px;
-	background-color:#fec9a5;
+	background-color:lightgray;
 }
-.btn_modify:hover{
+.btn_info:hover{
 	border: none;
 	border-radius:2px;
-	background-color:#fda166;
+	background-color:gray;
 	
 }
-.btn_delete{
+.btn_confirm{
 	border: none;
 	border-radius:2px;
 	background-color:#ff968a;
 }
-.btn_delete:hover{
+.btn_confirm:hover{
 	border: none;
 	border-radius:2px;
 	background-color:#ff6f61;
@@ -55,58 +56,30 @@
 	background-color:#9c446e;
 	
 }
-.profile-card{
-	background-color: rgb(255 111 97 / 83%);
-    background-size: cover;
-    width: 100%;
-    min-height: 90px;
-    border-radius: 4px;
-    padding: 10px 20px;
-    color: #fff;
+.cate_div{
+	font-size: 1rem;
+}
 
-}
-.profile-photo{
-	border: 7px solid #fff;
-    float: left;
-    margin-right: 20px;
-    position: relative;
-    margin-top: -5;
-    height: 70px;
-    width: 70px;
-    border-radius: 50%;
-}
-.text-white{
-font-size: 18px;
-color: #fff!important;
-
-}
-.my_lec{
-    
-    font-size: 18px;
-    margin-right: 15px;
-    float: left;
-    font-family: "Font Awesome 6 Free";
-    
-}
-.icon1{
-	color: #8dc63f;
-}
-.icon2{
-	color:#662d91;
-}
-.icon3{
-
-}
-.icon4{
-	color: #ee2a7b;
-}
-.cate_name_css{
-	margin-left: 15px;
-    margin-top: 3px;
-}
 </style>
 <div id="total_div">
-<jsp:include page="header.jsp"/>
+
+<header id="header_nav">      
+<div id="header_top">   
+	<div id="h_top">  
+		<span class="c_font_content" id="htext">매일 매일 듣는 class 365!!</span> 
+	</div> 
+	 
+<nav class="navbar navbar-expand-xl navbar-light bg-white">
+  <a class="navbar-brand c_font_main" href="mainForm.do" style="margin-right:30px;"> 
+  	<span class="cc_main">${page_main1}</span>
+  	<span class="cc_orange">${page_main2}</span> 
+  	<span class="cc_purple" style="margin-left:100px;">관리자 페이지</span> 
+  	</a>     
+
+</nav>
+</div>
+</header> 
+
 <div id="mid_div">
 	<!--  사이드바 -->
 	<div id="side_bar_div">
@@ -114,63 +87,57 @@ color: #fff!important;
 			<div id="side_bar_pos">
 				<div id="side_menu">
 					<div id="side_cate">
-						<div id="side_top_div">
-						 <div class="profile-card">
-            			<h3 class="text-white">${memid} 님</h3>
-            			<h5 class="text-white">안녕하세요</h5> 
-            	
-            			</div><!--profile card ends-->
-
-						</div>
-						<!-- 강의 정보 -->
-						<div id="side_top_div" onclick="location='myPage.do'">
+					
+						<!-- 환불 정보 -->
+						<div id="side_top_div" >
 						<div style="height: 4px; display : flex;">	</div>
-							<div class="cate_div">
+							<div class="cate_div" onclick="location='adminMainForm.do'">
 								<div class="cate_subject">
 									<div class="cate_space">
 										<span class="cate_icon">
 
-										<i class="fa fa-list-alt icon1 my_lec"></i>
+										<i class="fa-solid fa-chalkboard-user icon_pos"></i>
 									
 										</span>
 										<div class="cate_icon_space"></div>
-										<span class="cate_name_css">내 강의</span>
+										<span class="cate_name_css">환불현황</span>
 									</div>
 								</div>
 							
 							</div>
-						</div>
-						<!-- 강의 정보 -->
-						<div id="side_top_div" onclick="location='refundRequest.do'">
+					<!-- 회원 정보 -->
+						<div id="side_top_div" >
 						<div style="height: 4px; display : flex;">	</div>
-							<div class="cate_div">
+							<div class="cate_div" onclick="location='adminMember.do'">
 								<div class="cate_subject">
 									<div class="cate_space">
 										<span class="cate_icon">
-
-										<i class="fa fa-list-alt icon1 my_lec" style="color:red;"></i>
-									
+										<i class="fa-solid fa-bell icon_pos"></i>
 										</span>
 										<div class="cate_icon_space"></div>
-										<span class="cate_name_css">취소현황</span>
+										<span class="cate_name_css">회원현황</span>
 									</div>
 								</div>
 							
 							</div>
+					
+						
 						</div>
-						<!-- 내정보 관리 -->
-							<div id="side_top_div" onclick="location='modifyForm.do'">
+						
+						</div>
+						<!-- 클래스 관리 -->
+							<div id="side_top_div" >
 						<div style="height: 4px; display : flex;">	</div>
-							<div class="cate_div">
+							<div class="cate_div" onclick="location='adminClass.do'">
 								<div class="cate_subject">
 									<div class="cate_space">
 										<span class="cate_icon">
 
-										<i class="fa fa-users icon2 my_lec"></i>
+										<i class="fa-solid fa-school icon_pos"></i>
 									
 										</span>
 										<div class="cate_icon_space"></div>
-										<span class="cate_name_css">내 정보 수정</span>
+										<span class="cate_name_css">강의 관리</span>
 									</div>
 								</div>
 							
@@ -179,14 +146,14 @@ color: #fff!important;
 						
 						</div>
 						<!-- 리뷰 관리 -->
-							<div id="side_top_div" onclick="location='reviewForm.do'">
+							<div id="side_top_div">
 						<div style="height: 4px; display : flex;">	</div>
-							<div class="cate_div">
+							<div class="cate_div" onclick="location='adminReview.do'">
 								<div class="cate_subject">
 									<div class="cate_space">
 										<span class="cate_icon">
 
-										<i class="fa-solid fa-pen-to-square icon3 my_lec"></i>
+										<i class="fa-solid fa-pen-to-square icon_pos"></i>
 									
 										</span>
 										<div class="cate_icon_space"></div>
@@ -198,19 +165,17 @@ color: #fff!important;
 					
 						
 						</div>
-						<!-- 회원 탈퇴 -->	
-							<div id="side_top_div" onclick="location='deleteForm.do'">
+						<!-- 관리자 페이지 나가기 -->
+							<div id="side_top_div" >
 						<div style="height: 4px; display : flex;">	</div>
-							<div class="cate_div">
+							<div class="cate_div" onclick="location='mainForm.do'">
 								<div class="cate_subject">
 									<div class="cate_space">
 										<span class="cate_icon">
-
-										<i class="fa fa-user icon4 my_lec"></i>
-									
+										<i class="fa-solid fa-door-open icon_pos"></i>
 										</span>
 										<div class="cate_icon_space"></div>
-										<span class="cate_name_css">회원 탈퇴</span>
+										<span class="cate_name_css">나가기</span>
 									</div>
 								</div>
 							
@@ -218,7 +183,6 @@ color: #fff!important;
 					
 						
 						</div>
-						
 						
 					</div>
 				</div>
@@ -228,43 +192,46 @@ color: #fff!important;
 		</div>	
 	</div>
  <!-- 사이드바 -->	
-	<div id="tutor_div">
-	
-		<div id="tutor_main_article">
+	<div id="tutor_div" >
+	<c:if test="${tutorInfo ne 0}">
+		<div id="tutor_main_article" >
 			<div id="tutor_main_margin">
 			
 				<div id="tutor_top_topic">
-					<h3 class="topic" ">내 정보 수정</h3>
+					<h3 class="topic">회원 현황</h3>
 					
 				</div>
-				<div id="table_div">
-					<div class="signup-form" style="width:400px;">
-			    <form action="modifyView.do" method="post">
-					<h2>회원정보수정</h2>
-					<p class="hint-text" style="">비밀번호를 다시 확인해주세요</p>
-			       
-					<div class="form-group">
-			            <input type="password" class="form-control" name="passwd" placeholder="패스워드" required="required">
-			        </div>
-					
-			        
-			       
-			       
-					<div class="form-group">
-			            <button type="submit" class="btn btn-success btn-lg btn-block">수정하기</button>
-			        </div>
-			    </form>
-				<div class="text-center">
-	
-			</div>
+				<div id="table_div" >
+					<table class="tutor_table">
+						<tr style="border-bottom:solid 1px lightgrey" >
+							<th style="width:15%">아이디</th>
+							<th>이메일</th>
+							<th>전화번호</th>
+							<th></th>
+							<th></th>
+						</tr>
+						<c:forEach var="dto" items="${dtos}">
+							<tr>
+							<th style="width:15%">${dto.id}</th>
+							<th>${dto.email}</th>
+							<th>${dto.tel}</th>
+							<th><input class="btn_confirm" type="button" value="수강제한하기" 
+							onclick="location='#.do?id=${dto.id}'">
+							</th>
+							<th><input class="btn_info" type="button" value="리뷰제한하기" 
+							onclick="location='#.do?id=${dto.id}'"></th>
+							<th><input class="btn_confirm" type="button" value="강의생성하기" 
+							onclick="location='#.do?id=${dto.id}'">
+							</th>
+							</tr>
+						</c:forEach>					
+					</table>	
 				</div>
 			</div>
 			
 		</div>
-	</div>	
+		</c:if>
 		
-			
-	  <div id="tutor_div_space"></div>
 	</div>
 </div>
 </div>
@@ -272,6 +239,3 @@ color: #fff!important;
 <!-- bootstrap ver4.6 JS -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
- 
-
-

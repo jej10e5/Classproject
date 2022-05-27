@@ -27,6 +27,9 @@
  	<select id="getMember" parameterType="String" resultType="lecmem.LecmemDataBean">
  		  select * from lecmem where id = #{id}	
  	</select>
+ 	<select id="getMemberAll" resultType="lecmem.LecmemDataBean">
+ 		  select * from lecmem order by id
+ 	</select>
  	<select id="getTutor" parameterType="String" resultType="tutor.TutorDataBean">
  		select * from tutor where id = #{id}
  	</select> 
@@ -45,6 +48,14 @@
  		join lecde d
  		on l.lec_num=d.lec_num
  		where sta=1
+        order by l.lec_num desc
+ 	</select> 
+ 	<select id="getClassListAll" resultType="lecturede.LectureDeDataBean">
+ 		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
+ 		from lecture l
+ 		join lecde d
+ 		on l.lec_num=d.lec_num
+ 		where l.sta=1 or l.sta=2 or l.sta=3
         order by l.lec_num desc
  	</select> 
  	<select id="getLecture" parameterType="int" resultType="lecture.LectureDataBean">
@@ -142,6 +153,10 @@
 	<select id="findId" parameterType="String" resultType="String">
 		select id from lecmem where tel = #{tel}
 	</select>	
+	<select id="findPasswd" parameterType="lecmem.LecmemDataBean" resultType="String">
+		select passwd from lecmem where email = #{email} and id=#{id}
+	</select>
+	
 	<update id="updateTutorPro" parameterType="tutor.TutorDataBean">
 		update tutor set pro=#{pro, jdbcType=VARCHAR} where id=#{id}
 	</update>	
@@ -180,6 +195,16 @@
 	</select>
 	<select id="getLikeList" parameterType="String" resultType="leclike.LeclikeDataBean">
 		select * from leclike where id=#{id}
+	</select>
+	<select id="getClassLikeList" parameterType="String" resultType="lecdelike.LecdelikeDataBean">
+		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, 
+		d.lv, d.pri, d.cap, d.be, d.fin, k.id lid
+			from lecture l
+			full outer join (select * from leclike where id=#{id}) k
+			on l.lec_num=k.lec_num
+			join lecde d
+			on l.lec_num=d.lec_num
+		order by l.lec_num desc
 	</select>
 	<delete id="deleteHeart" parameterType="leclike.LeclikeDataBean">
 		delete from leclike where id=#{id, jdbcType=VARCHAR} and lec_num=#{lec_num, jdbcType=INTEGER}
@@ -251,6 +276,7 @@
  	<update id="updateRefund" parameterType="refund.RefundDataBean">
  		update refund set sta=1, fin_date=to_char(sysdate,'YYYY-MM-DD HH24:MI') where id=#{id} and lec_num=#{lec_num}
  	</update>
+
 		<select id="getTutorObj" parameterType="int" resultType="reviewlec.ReviewLecDataBean">
 		select lec_num,sub,(select count(*) from leclike where lec_num=#{lec_num}) as totlike, (select count(*) from review where lec_num=#{lec_num}) as totreview
 		from lecture
@@ -259,6 +285,14 @@
 	<select id="getGrCount" parameterType="int" resultType="int">
 	select count(*) as count from review  where gr in #{gr, jdbcType=INTEGER} group by gr
 	</select>
+
+ 	<select id="calcLike" parameterType="int" resultType="int">
+ 		select count(*) from leclike where lec_num=#{lec_num}
+ 	</select>
+	<update id="hideClass" parameterType="int">
+		update lecture set sta=#{sta} where lec_num=#{lec_num}
+	</update>
+
 </mapper>
 
 

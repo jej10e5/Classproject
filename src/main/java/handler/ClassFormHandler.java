@@ -57,10 +57,8 @@ public class ClassFormHandler implements CommandHandler{
 			dgos.add(dgo);
 		}
 		
-		
-		
-		
-		
+
+		int like=lectureDao.calcLike(lec_num);
 		int month = lectureDao.calcMonth(lec_num);
 		int m_cost = lectureDao.calcMaxCost(dcd,month);
 		int days = lectureDao.calcDays(lec_num);
@@ -76,6 +74,7 @@ public class ClassFormHandler implements CommandHandler{
 		request.setAttribute("month", month);
 		request.setAttribute("m_cost", m_cost);
 		request.setAttribute("now", now);
+		request.setAttribute("like", like);
 		return new ModelAndView("class365/classForm");
 	}
 

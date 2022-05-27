@@ -38,7 +38,7 @@
 	<span style="color:orange;">아이디/비밀번호를 잊어버리셨나요?</span> 
 	<a href="findIdForm.do">아이디</a>
 	/
-	<a href="#">비밀번호</a>
+	<a href="findPasswdForm.do">비밀번호</a>
 	</div>
 </div>
 <!-- bootstrap ver4.6 JS -->
