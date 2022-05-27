@@ -212,8 +212,13 @@ function checktutee(lec_num){
 							<th>${dto.be}</th>
 							<th>${dto.fin}</th>
 							<th>${dto.pri}</th>
-							<th><input class="btn_modify" type="button" value="수정하기" 
-							onclick="location='modifyClass.do?lec_num=${dto.lec_num}'"></th>
+							<th>
+							<c:if test="${dto.sta eq 3}">
+							</c:if>
+							<c:if test="${dto.sta ne 3}">
+							<input class="btn_modify" type="button" value="수정하기" 
+							onclick="location='modifyClass.do?lec_num=${dto.lec_num}'">
+							</c:if></th>
 							<th>
 							<c:if test="${dto.sta eq 0}">
 							<input class="btn_delete"type="button"
