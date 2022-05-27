@@ -219,7 +219,7 @@ color: #fff!important;
 							
 							</div>
 						</div>
-						<!-- 강의 정보 -->
+						<!-- 취소 현황 -->
 						<div id="side_top_div" onclick="location='refundRequest.do'">
 						<div style="height: 4px; display : flex;">	</div>
 							<div class="cate_div">
