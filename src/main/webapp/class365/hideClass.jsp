@@ -31,6 +31,8 @@ $(document).ready(
 								console.log(data);
 								$("#btnform"+num).remove();
 								$("#result"+num).html(data);
+								$("#sta"+num).remove();
+								$("#staresult"+num).html( (sta=='hide') ? '제한됨':'마감');
 	
 							},
 							error : function(  ) {
