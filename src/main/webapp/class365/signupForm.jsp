@@ -21,7 +21,7 @@ function confirmid() {
 		signupform.id.focus();		
 	} else {
 		url = "confirmid.do?id=" + signupform.id.value;
-		open( url, "confirm", "scrollbar=no, menubar=no, status=no, width=400, height=200" );
+		open( url, "confirm", "scrollbar=no, menubar=no, status=no, width=600, height=500" );
 	}		
 }
 function confirmcheck() {
