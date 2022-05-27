@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import leclike.LeclikeDataBean;
 import lecture.LectureDao;
 import lecturede.LectureDeDataBean;
 
@@ -22,6 +23,7 @@ public class MainResultForm implements CommandHandler{
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String p = (String) request.getParameter("p");
 		String c = (String) request.getParameter("c");
+		String id = (String)request.getSession().getAttribute("memid");
 		if(p!=null && p!="") {
 			request.setAttribute("p", p);
 			List<LectureDeDataBean> dtos=lectureDao.getSearchResult(p);
@@ -40,6 +42,10 @@ public class MainResultForm implements CommandHandler{
 			p="검색결과 없음";
 			request.setAttribute("p", p);
 		}
+		if(id!=null) {
+			List<LeclikeDataBean> ldtos = lectureDao.getLikeList(id);
+			request.setAttribute("ldtos", ldtos);
+			}
 		return new ModelAndView("/class365/mainResultForm");
 	}
 }

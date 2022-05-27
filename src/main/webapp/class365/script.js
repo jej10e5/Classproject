@@ -26,8 +26,6 @@ function createcheck(){
 		createform.category.focus();
 		return false;
 	}
-	
-	
 }
 //로그인
 function erroralert(msg){

@@ -8,8 +8,14 @@ import lecmem.LecmemDataBean;
 
 import tutee.TuteeDataBean;
 
-import lecturede.LectureDeDataBean;
+import tuteelec.TuteeLecDataBean;
 
+import tuteemem.TuteememDataBean;
+
+import lecturede.LectureDeDataBean;
+import map.MapDataBean;
+import refund.RefundDataBean;
+import review.ReviewDataBean;
 import tutor.TutorDataBean;
 public interface LectureDao {
 	public int createClass(LectureDataBean dto);
@@ -22,6 +28,7 @@ public interface LectureDao {
 	public int check(String id,String passwd);
 	public int check(String id);
 	public LecmemDataBean getMember(String id);
+	public List<LecmemDataBean> getMemberAll();
 
 	public TutorDataBean getTutor(String id);
 	public int modifyTutor(TutorDataBean dto);
@@ -29,6 +36,7 @@ public interface LectureDao {
 	public int tutorCheck(String id);
 	public LectureDataBean getLecture(int lec_num);
 	public List<LectureDeDataBean> getClassList();
+	public List<LectureDeDataBean> getClassListAll();
 
 	public LecdeDataBean getLecde(int lec_num);
 	public int calcMonth(int lec_num);
@@ -38,15 +46,24 @@ public interface LectureDao {
 	public int getCreateTutor(String id);
 	public int getLecNum();
 	
-	
+	public int modifyReview(ReviewDataBean dto);
+	public int insertReview(ReviewDataBean dto);
+	public ReviewDataBean getReview(ReviewDataBean dto); 
+	public ReviewDataBean getRe(int re_num); 
+	public int deleteReview(int re_num);
+	public int resetTuteeReviewNum(int re_num);
 	
 	public int finClass(int lec_num);
 	public int createClass2(LecdeDataBean dto);
+	
+	public int getReCount(String id);
+	
+	public int insertRenum(TuteeDataBean dtt);
 
 	public String findId(String tel);
 
-
 	public List<LectureDeDataBean> getTutorClass(String id);
+	public List<TuteeLecDataBean> getTuteeClass(String id);
 	public LectureDataBean getOriginClass(int lec_num);
 	public int modifyClass(LectureDataBean dto);
 	public int modifyClassImg(LectureDataBean dto);
@@ -64,10 +81,25 @@ public interface LectureDao {
 	public List<LectureDeDataBean> getSearchResult(String p);
 	public List<LectureDeDataBean> getInactive();
 	public List<LectureDeDataBean> getTuteeClassList(String id);
+	public LectureDataBean getLectureId(String id);
+	public int insertTutorReview(ReviewDataBean dto);
+	
 	
 	public List<LeclikeDataBean> getLikeList(String id);
 	public int deleteHeart(LeclikeDataBean dto);
 	public int insertHeart(LeclikeDataBean dto);
 	public int getNowTutee(int lec_num);
+	public List<TuteememDataBean> getTutee(int lec_num);
+	public List<LectureDeDataBean> getMemberLikeList(String id);
+
+	public List<ReviewDataBean> getTutorReview(int lec_num);
+	public List<MapDataBean> getClassMapList();
+	
+	public int insertRefund(RefundDataBean dto);
+	public List<RefundDataBean> getMemberRefund(String id);
+	public int checkMemRefund(RefundDataBean dto);
+	public List<RefundDataBean> getRefundList();
+	public int refundConfirm(RefundDataBean dto);
+	public int calcLike(int lec_num);
 
 }

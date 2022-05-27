@@ -1,0 +1,365 @@
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@include file="/class365/setting.jsp" %>    
+<link href="style.css" rel="stylesheet" type="text/css">  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+ <link href="${project}/tutorMain_style.css" rel="stylesheet" type="text/css"> 
+ <link href="${project}/class_style.css" rel="stylesheet" type="text/css"> 
+<script src="https://kit.fontawesome.com/811e29d39a.js" crossorigin="anonymous"></script>
+<script src="${project}/jquery-3.6.0.js"></script> 
+<script type="text/javascript">
+function checktutee(lec_num){
+	url="checktutee.do?lec_num="+lec_num;
+	open( url, "checktutee", "scrollbar=no, menubar=no, status=no, width=600, height=600" ); //새창띄우기
+}
+</script> 
+<style>
+.btn_modify{
+	border: none;
+	border-radius:2px;
+	background-color:#fec9a5;
+}
+.btn_modify:hover{
+	border: none;
+	border-radius:2px;
+	background-color:#fda166;
+	
+}
+.btn_delete{
+	border: none;
+	border-radius:2px;
+	background-color:#ff968a;
+}
+.btn_delete:hover{
+	border: none;
+	border-radius:2px;
+	background-color:#ff6f61;
+	
+}
+.btn_sta1{
+	border: none;
+	border-radius:2px;
+	background-color:#ff8ec7;
+}
+.btn_sta1:hover{
+	border: none;
+	border-radius:2px;
+	background-color:#ff0080;
+	
+}
+.btn_sta2{
+	border: none;
+	border-radius:2px;
+	background-color:#c67d9f;
+}
+.btn_sta2:hover{
+	border: none;
+	border-radius:2px;
+	background-color:#9c446e;
+	
+}
+.tutee_review_img{
+	width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.review_img_list{
+	margin: 10px
+px
+ 0 0 -7px;
+    margin-top: 10px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: -7px;
+    font-size: 0;
+}
+.review_img_list li{
+ display: inline-block !important;
+    overflow: hidden;
+    width: calc(20% - 7px);
+    height: 68px;
+    margin-left: 7px;
+    padding: 0 !important;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.tutor_cmt {
+margin-left: 70px;
+}
+
+.tutor_re{
+ margin-top: 11px;
+
+}
+.tutor_info{
+display: flex;
+
+}
+
+.tutor_img{
+display: table-cell;
+    width: 30px;
+    height: 30px;
+
+}
+
+.tutor_pro_img{
+ border-radius: 50%;
+    width: 100%;
+    height: 100%;
+   object-fit: cover;
+    object-position: center;
+}
+.rev_tutor_id{
+ position: relative;
+    width: 100%;
+    padding-left: 10px;
+}
+.tutor_name{
+display: inline-block;
+    margin-top: 4px;
+    font-weight: 500;
+background-size: 14px 14px;
+padding-right: 22px;
+}
+.rev_date{
+ margin-top: 6px;
+    line-height: 19px;
+    color: #999;
+}
+.tutor_rev_box{
+ 
+ margin: 8px 0 0 72px;
+ padding: 17px 19px;
+    border-radius: 0 10px 10px 10px;
+}
+
+.tutor_txt{
+ font-size: 14px;
+    line-height: 23px;
+    word-break: break-all;
+}
+
+</style>
+<div id="total_div">
+<jsp:include page="header.jsp"/>
+<div id="mid_div">
+	<!--  사이드바 -->
+	<div id="side_bar_div">
+		<div id="side_bar_size">
+			<div id="side_bar_pos">
+				<div id="side_menu">
+					<div id="side_cate">
+						<div id="side_top_div">
+						<div style="height: 4px; display : flex;">	</div>
+							<div class="cate_div">
+								<div class="cate_subject">
+									<div class="cate_space">
+										<span class="cate_icon">
+										<i class="fa-solid fa-bell icon_pos"></i>
+										</span>
+										<div class="cate_icon_space"></div>
+										<span class="cate_name_css">공지사항</span>
+									</div>
+								</div>
+							
+							</div>
+					
+						
+						</div>
+						<!-- 강사 정보 -->
+						<div id="side_top_div" onclick="location='tutorInfoForm.do'">
+						<div style="height: 4px; display : flex;">	</div>
+							<div class="cate_div">
+								<div class="cate_subject">
+									<div class="cate_space">
+										<span class="cate_icon">
+
+										<i class="fa-solid fa-chalkboard-user icon_pos"></i>
+									
+										</span>
+										<div class="cate_icon_space"></div>
+										<span class="cate_name_css">강사 정보</span>
+									</div>
+								</div>
+							
+							</div>
+					
+						
+						</div>
+						<!-- 클래스 관리 -->
+							<div id="side_top_div" >
+						<div style="height: 4px; display : flex;">	</div>
+							<div class="cate_div">
+								<div class="cate_subject">
+									<div class="cate_space">
+										<span class="cate_icon">
+
+										<i class="fa-solid fa-school icon_pos"></i>
+									
+										</span>
+										<div class="cate_icon_space"></div>
+										<span class="cate_name_css">강의 관리</span>
+									</div>
+								</div>
+							
+							</div>
+					
+						
+						</div>
+						<!-- 리뷰 관리 -->
+							<div id="side_top_div"onclick="location='tutorReviewfoForm.do?'">
+						<div style="height: 4px; display : flex;">	</div>
+							<div class="cate_div">
+								<div class="cate_subject">
+									<div class="cate_space">
+										<span class="cate_icon">
+
+										<i class="fa-solid fa-pen-to-square icon_pos"></i>
+									
+										</span>
+										<div class="cate_icon_space"></div>
+										<span class="cate_name_css">리뷰 관리</span>
+									</div>
+								</div>
+							
+							</div>
+					
+						
+						</div>
+						
+					</div>
+				</div>
+				<div id="side_line">				
+				</div>
+			</div>
+		</div>	
+	</div>
+ <!-- 사이드바 -->	
+	<div id="tutor_div">
+
+		<div id="tutor_main_article">
+			<div id="tutor_main_margin">
+			
+				<div id="tutor_top_topic">
+					<h3 class="topic">리뷰 관리</h3>
+					</div>
+										
+						<div id="review_div" style="padding-top:20px; width:100%;">
+	 					<section class="tut_intro">
+	 						<div class="tut_rev_div">
+	 							<div class="review_text">
+	 								<ul>
+	 									<c:forEach var="dto" items="${dtos}" varStatus="status">
+	 									<li class="review_list">
+	 									<c:if test="${dto.re_level eq 0}">
+	 									  <div class="rev_tute_info">
+	 										<span class="tute_img">
+	 											<img class = "tute_rev_img" src="/Test/images/tut_img.jpg"/>
+	 										</span>	
+	 									  <div class="tute">	
+	 										<div class ="rev_tut_name">
+	 											<span class="tut_names">${dto.id}</span>
+	 										</div>	
+	 										<div class = "rev_write_date">
+	 											<p class = "write_date">${dto.reg_date}</p> 
+	 										</div>
+	 									  </div>	
+	 									 
+	 									 </div>	
+	 									  <div class="rev_object">
+	 									  		<pre class="rev_cmt">${dto.re}
+	 									  		</pre>
+	 									  		<ul class="review_img_list">
+	 									  			<li>
+	 									  			<img src="${imagepath}${dto.img}"class="tutee_review_img" >
+	 									  			</li>
+	 									  		</ul>
+	 									  </div>
+	 									  </c:if>
+	 									   <c:if test="${dto.re_level eq 1}">
+	 									 	<ul class="tutor_cmt">
+	 									 		<li class="tutor_re">
+	 									 			<div class="tutor_info">
+	 									 				<span class="tutor_img">
+	 									 					<img src="${imagepath}${tutorpro}"class="tutor_pro_img">
+	 									 				</span>
+	 									 				<div class="rev_tutor_id">
+	 									 				     <span class="tutor_name">${tutorid}</span>
+	 									 					<p class="rev_date">${dto.reg_date}</p>
+	 									 				</div>		
+	 									 			</div> 		
+	 									 			<div class="tutor_rev_box">
+	 									 				<pre class="tutor_txt">${dto.re}</pre>
+	 									 			</div>							 		
+	 									 		</li>
+	 									 	</ul>
+	 									 	</c:if>
+	 									 	<c:if test="${dto.re_level eq 0 and dto.id ne tutorid}"> 
+	 									 	<ul class="tutor_cmt">
+	 									 		<li class="tutor_re">
+	 									 		<form method="get" action="tutorReviewPro.do" name="form"${status.index}>	
+	 									 		<input type="hidden" name="gr" value="${dto.gr}">
+	 									 		<input type="hidden" name="lec_num" value="${dto.lec_num}">	 									 		 									 		
+	 									 		<div id="re_box${status.index}">
+	 									 			<div class="tutor_rev_box">
+	 									 				<textarea name="re" class="tutor_txt" id="review_text${status.index}" style="display:none; background-color: #ffe5ec; width:100%;"></textarea>
+	 									 			</div>						
+	 									 		
+	 									 		<div class="tutor_btn_box">
+	 									 			<input type="button" id="review_btn${status.index}"name="review_btn${status.index}" value="답글작성">
+	 									 			<input type="button" onclick="submit()" id="review_ok${status.index}" style="display:none;"value="답글저장"/>
+	 									 		</div>
+	 									 		</div>
+	 									 		</form>
+	 									 	  </li>
+	 									 	</ul>
+	 									 	</c:if>
+>	 									</li>
+	 									</c:forEach>
+	 								</ul>
+	 								<script type="text/javascript">
+	 							
+	 								$("input[name^='review_btn']").on("click", function(e) {	
+	 									var num = $(this).attr('id'); 
+	 									var fullStr = num;
+	 									var lastChar = fullStr.charAt(fullStr.length-1);
+	 					
+	 										$("#review_text"+lastChar).show();
+											 $("#review_ok"+lastChar).show();
+											 $(this).hide();
+								
+											 
+										 });
+	 								 
+	 								  function submit() {
+	 									 	var num = $(this).attr('id'); 
+		 									var fullStr = num;
+		 									var lastChar = fullStr.charAt(fullStr.length-1);
+	 									  	document.forms["form"+lastChar].submit();
+	 									  
+	 								  }
+										 
+									
+	 							
+									
+									</script>
+	 							</div>
+	 						</div>
+	 					</section>
+	 				</div>	
+					</div>
+			
+				</div>
+	
+		</div>			
+	  <div id="tutor_div_space"></div>
+</div>
+</div>
+
+<!-- bootstrap ver4.6 JS -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+ 
+
