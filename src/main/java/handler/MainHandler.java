@@ -26,7 +26,6 @@ public class MainHandler implements CommandHandler {
 		if(id==null||id=="") id="geust";
 		List<LecdelikeDataBean> dtos = lectureDao.getClassLikeList(id); 
 		request.setAttribute("dtos", dtos);
-		
 		return new ModelAndView("class365/mainForm"); 
 	}
 }
