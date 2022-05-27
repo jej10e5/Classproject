@@ -16,6 +16,7 @@ import lecturede.LectureDeDataBean;
 import map.MapDataBean;
 import refund.RefundDataBean;
 import review.ReviewDataBean;
+import reviewlec.ReviewLecDataBean;
 import tutor.TutorDataBean;
 
 public class LectureDBBean implements LectureDao{
@@ -320,8 +321,8 @@ public class LectureDBBean implements LectureDao{
 		return SqlMapClient.getSession().selectList("Lecture.getMemberLikeList",id);
 	}
 	@Override
-	public int deleteReview(int re_num) {
-		return SqlMapClient.getSession().delete("Lecture.deleteReview",re_num);
+	public int deleteReview(int gr) {
+		return SqlMapClient.getSession().delete("Lecture.deleteReview",gr);
 	}
 	@Override
 	public int resetTuteeReviewNum(int re_num) {
@@ -371,6 +372,19 @@ public class LectureDBBean implements LectureDao{
 	public int refundConfirm(RefundDataBean dto) {
 		SqlMapClient.getSession().delete("Lecture.deleteTutee",dto);
 		return SqlMapClient.getSession().update("Lecture.updateRefund",dto);
+	}
+	@Override
+	public ReviewLecDataBean getTutorObj(int lec_num) {
+
+		return SqlMapClient.getSession().selectOne("Lecture.getTutorObj",lec_num);
+	}
+	@Override
+	public int getGrCount(int gr) {
+		return SqlMapClient.getSession().selectOne("Lecture.getGrCount",gr);
+	}
+	@Override
+	public int modifyTutorReview(ReviewDataBean dto) {
+		return SqlMapClient.getSession().update("Lecture.modifyTutorReview",dto);
 	}
 
 }

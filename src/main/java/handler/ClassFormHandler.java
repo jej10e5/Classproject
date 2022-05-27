@@ -1,5 +1,8 @@
 package handler;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +15,8 @@ import lecde.LecdeDataBean;
 import lecmem.LecmemDataBean;
 import lecture.LectureDao;
 import lecture.LectureDataBean;
+import review.ReviewDataBean;
+import reviewgr.ReviewGrDataBean;
 import tutor.TutorDataBean;
 
 @Controller
@@ -28,12 +33,40 @@ public class ClassFormHandler implements CommandHandler{
 		String id = dto.getId();
 		TutorDataBean dtt = lectureDao.getTutor(id);
 		LecmemDataBean dtl = lectureDao.getMember(id);
+		List<ReviewDataBean> dros =lectureDao.getTutorReview(lec_num); 
+		List<ReviewGrDataBean> dgos = new ArrayList<ReviewGrDataBean>(); 
+		
+		for(ReviewDataBean dro : dros) {
+			int clec_num = dro.getLec_num();
+			int gr =  dro.getGr();
+			int count =  0;
+			ReviewGrDataBean dgo = new ReviewGrDataBean();
+
+			
+			  count=lectureDao.getGrCount(gr);			
+	
+			dgo.setRe_num(dro.getRe_num());
+			dgo.setLec_num(clec_num);
+			dgo.setId(dro.getId());
+			dgo.setRe(dro.getRe());
+			dgo.setImg(dro.getImg());
+			dgo.setReg_date(dro.getReg_date());
+			dgo.setRe_level(dro.getRe_level());
+			dgo.setGr(gr);
+			 dgo.setCount(count);
+			dgos.add(dgo);
+		}
+		
+		
+		
+		
 		
 		int month = lectureDao.calcMonth(lec_num);
 		int m_cost = lectureDao.calcMaxCost(dcd,month);
 		int days = lectureDao.calcDays(lec_num);
 		int now= lectureDao.getNowTutee(lec_num);
 		
+		request.setAttribute("dgos", dgos);
 		request.setAttribute("lec_num", lec_num);
 		request.setAttribute("dto", dto);
 		request.setAttribute("dtt", dtt);

@@ -28,6 +28,7 @@ z-index : 10;
 }
 #middle_div
 {
+	width: 100%;
 	padding-top: 24px;
 	background-color : white;
 	position: static;
@@ -85,6 +86,7 @@ a{
     float : left;
 }
 #pay_box{
+	width:400px;
 	position: sticky;
     top: 150px;
     max-height: 100vh;
@@ -438,8 +440,17 @@ overflow: hidden;
 .review_list{
 	display: block;
     padding: 22px 0;
-    border-bottom: 1px solid #ddd;
+   border-bottom: 1px solid #ddd;
     list-style : none;
+}
+.review_list_no{
+	display: block;
+    padding: 22px 0;
+    list-style : none;
+}
+.tutor_re{
+	  list-style : none;
+    border-bottom: 1px solid #ddd;	
 }
 .rev_tute_info{
     display: table;

@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/class365/setting.jsp" %>    
@@ -8,13 +7,8 @@
  <link href="${project}/class_style.css" rel="stylesheet" type="text/css"> 
 <script src="https://kit.fontawesome.com/811e29d39a.js" crossorigin="anonymous"></script>
 <script src="${project}/jquery-3.6.0.js"></script> 
-<script type="text/javascript">
-function checktutee(lec_num){
-	url="checktutee.do?lec_num="+lec_num;
-	open( url, "checktutee", "scrollbar=no, menubar=no, status=no, width=600, height=600" ); //새창띄우기
-}
-</script> 
 <style>
+
 .btn_modify{
 	border: none;
 	border-radius:2px;
@@ -65,31 +59,27 @@ function checktutee(lec_num){
     object-fit: cover;
 }
 .review_img_list{
-	margin: 10px
-px
- 0 0 -7px;
-    margin-top: 10px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: -7px;
-    font-size: 0;
+	margin-bottom: 15px;
+    width: 100%;
+    margin-left: 30px;
 }
 .review_img_list li{
- display: inline-block !important;
+ 	display: inline-block !important;
     overflow: hidden;
-    width: calc(20% - 7px);
-    height: 68px;
+    
     margin-left: 7px;
+    height: 100px;
     padding: 0 !important;
     border-radius: 6px;
     cursor: pointer;
 }
 .tutor_cmt {
 margin-left: 70px;
+list-style:none;
 }
 
 .tutor_re{
- margin-top: 11px;
+list-style:none;
 
 }
 .tutor_info{
@@ -114,7 +104,7 @@ display: table-cell;
 .rev_tutor_id{
  position: relative;
     width: 100%;
-    padding-left: 10px;
+    padding-left: 20px;
 }
 .tutor_name{
 display: inline-block;
@@ -140,7 +130,29 @@ padding-right: 22px;
     line-height: 23px;
     word-break: break-all;
 }
+.review_list_tutee{
+	display: block;
+    list-style: none;
+}
+.rev_cmt{
+	background-color: lightgrey;
+    width: 100%;
+    height: 150;
 
+}
+.tutor_btn_box{
+float:right;
+}
+.review_object{
+	margin: 8px 0 0 72px;
+    margin-top: 8px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 72px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 </style>
 <div id="total_div">
 <jsp:include page="header.jsp"/>
@@ -206,10 +218,9 @@ padding-right: 22px;
 							
 							</div>
 					
-						
 						</div>
 						<!-- 리뷰 관리 -->
-							<div id="side_top_div"onclick="location='tutorReviewfoForm.do?'">
+							<div id="side_top_div"onclick="location='tutorReviewMain.do'">
 						<div style="height: 4px; display : flex;">	</div>
 							<div class="cate_div">
 								<div class="cate_subject">
@@ -224,9 +235,7 @@ padding-right: 22px;
 									</div>
 								</div>
 							
-							</div>
-					
-						
+							</div>					
 						</div>
 						
 					</div>
@@ -238,84 +247,109 @@ padding-right: 22px;
 	</div>
  <!-- 사이드바 -->	
 	<div id="tutor_div">
-
 		<div id="tutor_main_article">
 			<div id="tutor_main_margin">
-			
 				<div id="tutor_top_topic">
 					<h3 class="topic">리뷰 관리</h3>
-					</div>
-										
+					</div>			
 						<div id="review_div" style="padding-top:20px; width:100%;">
 	 					<section class="tut_intro">
-	 						<div class="tut_rev_div">
+	 						<div class="tut_rev_div"style="width:100%">
 	 							<div class="review_text">
 	 								<ul>
-	 									<c:forEach var="dto" items="${dtos}" varStatus="status">
-	 									<li class="review_list">
-	 									<c:if test="${dto.re_level eq 0}">
+	 									<c:forEach var="dgo" items="${dgos}" varStatus="status">
+	 									<li class="review_list_tutee">
+	 									<!-- 튜티의 리뷰 무조건 출력  -->
+	 									<c:if test="${dgo.re_level eq 0}">
 	 									  <div class="rev_tute_info">
 	 										<span class="tute_img">
-	 											<img class = "tute_rev_img" src="/Test/images/tut_img.jpg"/>
+	 											<img class = "tute_rev_img" src="${imagepath}tutee_img.jpg"/>
 	 										</span>	
 	 									  <div class="tute">	
 	 										<div class ="rev_tut_name">
-	 											<span class="tut_names">${dto.id}</span>
+	 											<span class="tut_names">${dgo.id}</span>
 	 										</div>	
 	 										<div class = "rev_write_date">
-	 											<p class = "write_date">${dto.reg_date}</p> 
+	 											<p class = "write_date">${dgo.reg_date}</p> 
 	 										</div>
 	 									  </div>	
 	 									 
-	 									 </div>	
-	 									  <div class="rev_object">
-	 									  		<pre class="rev_cmt">${dto.re}
+	 									 </div>
+	 									
+	 									  <div class="review_object">
+	 									  		<pre class="rev_cmt">${dgo.re}
 	 									  		</pre>
 	 									  		<ul class="review_img_list">
 	 									  			<li>
-	 									  			<img src="${imagepath}${dto.img}"class="tutee_review_img" >
+	 									  			<img src="${imagepath}${dgo.img}"class="tutee_review_img" >
 	 									  			</li>
 	 									  		</ul>
 	 									  </div>
-	 									  </c:if>
-	 									   <c:if test="${dto.re_level eq 1}">
-	 									 	<ul class="tutor_cmt">
-	 									 		<li class="tutor_re">
-	 									 			<div class="tutor_info">
-	 									 				<span class="tutor_img">
-	 									 					<img src="${imagepath}${tutorpro}"class="tutor_pro_img">
-	 									 				</span>
-	 									 				<div class="rev_tutor_id">
-	 									 				     <span class="tutor_name">${tutorid}</span>
-	 									 					<p class="rev_date">${dto.reg_date}</p>
-	 									 				</div>		
-	 									 			</div> 		
-	 									 			<div class="tutor_rev_box">
-	 									 				<pre class="tutor_txt">${dto.re}</pre>
-	 									 			</div>							 		
-	 									 		</li>
-	 									 	</ul>
-	 									 	</c:if>
-	 									 	<c:if test="${dto.re_level eq 0 and dto.id ne tutorid}"> 
-	 									 	<ul class="tutor_cmt">
+	 										</c:if>
+	 									  
+	 									  							   
+	 									 	
+	 									 
+	 									 	
+	 									 	<!-- 강사의 리뷰 답글이 없을 경우 -->		 	
+	 									 	<c:if test="${dgo.re_level eq 0 and dgo.count eq 1}">
+	 									 	<ul class="tutor_cmt">	 									 	
 	 									 		<li class="tutor_re">
 	 									 		<form method="get" action="tutorReviewPro.do" name="form"${status.index}>	
-	 									 		<input type="hidden" name="gr" value="${dto.gr}">
-	 									 		<input type="hidden" name="lec_num" value="${dto.lec_num}">	 									 		 									 		
+	 									 		<input type="hidden" name="gr" value="${dgo.gr}">
+	 									 		<input type="hidden" name="lec_num" value="${dgo.lec_num}">	 									 		 									 		
 	 									 		<div id="re_box${status.index}">
 	 									 			<div class="tutor_rev_box">
-	 									 				<textarea name="re" class="tutor_txt" id="review_text${status.index}" style="display:none; background-color: #ffe5ec; width:100%;"></textarea>
-	 									 			</div>						
-	 									 		
-	 									 		<div class="tutor_btn_box">
+	 									 				<textarea name="re" class="tutor_txt" id="review_text${status.index}" style="display:none; background-color: #ffe5ec; width:100%; height:300;"placeholder="답글을 입력하세요."></textarea>
+	 									 			</div>	
+	 									 			
+	 									 			<div class="tutor_btn_box">					 			
 	 									 			<input type="button" id="review_btn${status.index}"name="review_btn${status.index}" value="답글작성">
 	 									 			<input type="button" onclick="submit()" id="review_ok${status.index}" style="display:none;"value="답글저장"/>
-	 									 		</div>
+	 									 			</div>				 									 				 					 				 									 		
 	 									 		</div>
 	 									 		</form>
 	 									 	  </li>
 	 									 	</ul>
 	 									 	</c:if>
+	 									 	<!-- 강사의 답글이 달려있을 경우 -->
+	 									 	<c:if test="${dgo.re_level eq 1 and dgo.count eq 2}">
+	 									 	<ul class="tutor_cmt">
+	 									 		<li class="tutor_re">
+	 									 			<div class="tutor_info">
+	 									 			
+	 									 				<span class="tutor_img">
+	 									 					<img src="${imagepath}${tutorpro}"class="tutor_pro_img">
+	 									 				</span>
+	 									 			
+	 									 				<div class="rev_tutor_id"> 			
+	 									 				     <span class="tutor_name">${tutorid}</span>
+	 									 				<c:if test="${ dgo.re_level eq 1}">
+	 									 					<p class="write_date">${dgo.reg_date}</p>
+	 									 				</c:if>
+	 									 				</div>		
+	 									 			</div> 			 									 			
+	 									 		</li>
+	 									 	</ul>
+	 									 	<ul class="tutor_cmt">	 								 	
+	 									 		<li class="tutor_re">
+	 									 		<form method="post" action="tutorReviewModifyPro.do" name="form"${status.index}>	
+	 									 		<input type="hidden" name="re_num" value="${dgo.re_num}"> 
+	 									 		<input type="hidden" name="lec_num" value="${dgo.lec_num}">								 									 		 									 		
+	 									 		<div id="re_box${status.index}">
+	 									 			<div class="tutor_rev_box">
+	 									 				<pre class="tutor_txt" id="review_txt${status.index}"style="background-color: #ffe5ec; height:150px;">${dgo.re}</pre>
+	 									 				<textarea name="re" class="tutor_txt" id="review_text${status.index}" style="display:none; background-color: #ffe5ec; width:100%; height:150;">${dgo.re}</textarea>
+	 									 			</div>			
+	 									 			<div class="tutor_btn_box">					 			
+	 									 			<input type="button" id="review_btn${status.index}"name="review_btn${status.index}" value="답글수정">
+	 									 			<input type="button" onclick="submit()" id="review_ok${status.index}" style="display:none;"value="답글저장"/>
+	 									 			</div>								 									 		
+	 									 		</div>
+	 									 		</form>
+	 									 	  </li>
+	 									 	</ul>
+	 										</c:if>
 >	 									</li>
 	 									</c:forEach>
 	 								</ul>
@@ -325,7 +359,8 @@ padding-right: 22px;
 	 									var num = $(this).attr('id'); 
 	 									var fullStr = num;
 	 									var lastChar = fullStr.charAt(fullStr.length-1);
-	 					
+	 										
+	 										$("#review_txt"+lastChar).hide();
 	 										$("#review_text"+lastChar).show();
 											 $("#review_ok"+lastChar).show();
 											 $(this).hide();
@@ -339,11 +374,7 @@ padding-right: 22px;
 		 									var lastChar = fullStr.charAt(fullStr.length-1);
 	 									  	document.forms["form"+lastChar].submit();
 	 									  
-	 								  }
-										 
-									
-	 							
-									
+	 								  }								
 									</script>
 	 							</div>
 	 						</div>

@@ -33,6 +33,9 @@
  	<update id="modifyTutor" parameterType="tutor.TutorDataBean">
  		update tutor set info=#{info, jdbcType=VARCHAR}, acc=#{acc, jdbcType=VARCHAR} where id=#{id}
  	</update>
+ 	<update id="modifyTutorReview" parameterType="review.ReviewDataBean">
+ 		update review	set re=#{re, jdbcType=VARCHAR}, reg_date=#{reg_date, jdbcType=VARCHAR} where re_num=#{re_num}
+ 	</update>
  	<insert id="insertTutor" parameterType="tutor.TutorDataBean">
  		insert into tutor values(#{id}, #{pro, jdbcType=VARCHAR}, #{info, jdbcType=VARCHAR},#{acc, jdbcType=VARCHAR})
  	</insert>
@@ -118,7 +121,7 @@
 		select *from review where id=#{id} and lec_num=#{lec_num}
 	</select>
 	<select id="getTuteeClass" parameterType="String" resultType="tuteelec.TuteeLecDataBean">
-		select t.lec_num, t.id, e.sub, r.re, r.reg_date, r.img, e.thu, t.re_num 
+		select t.lec_num, t.id, e.sub, r.re, r.reg_date, r.img, e.thu, t.re_num
 		from tutee t 
 		join lecture e 
 		on t.lec_num=e.lec_num
@@ -206,7 +209,7 @@
  	</select>
 
  	<delete id="deleteReview" parameterType="int">
- 		delete from review where re_num=#{re_num jdbcType=INTEGER}
+ 		delete from review where gr=#{gr jdbcType=INTEGER}
  	</delete>
  	<update id="resetTuteeReviewNum" parameterType="int">
  		update tutee set re_num=default where re_num=#{re_num, jdbcType=INTEGER}
@@ -248,7 +251,14 @@
  	<update id="updateRefund" parameterType="refund.RefundDataBean">
  		update refund set sta=1, fin_date=to_char(sysdate,'YYYY-MM-DD HH24:MI') where id=#{id} and lec_num=#{lec_num}
  	</update>
-
+		<select id="getTutorObj" parameterType="int" resultType="reviewlec.ReviewLecDataBean">
+		select lec_num,sub,(select count(*) from leclike where lec_num=#{lec_num}) as totlike, (select count(*) from review where lec_num=#{lec_num}) as totreview
+		from lecture
+		where lec_num=#{lec_num}
+	</select>
+	<select id="getGrCount" parameterType="int" resultType="int">
+	select count(*) as count from review  where gr in #{gr, jdbcType=INTEGER} group by gr
+	</select>
 </mapper>
 
 

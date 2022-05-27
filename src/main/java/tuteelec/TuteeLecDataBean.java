@@ -2,6 +2,7 @@ package tuteelec;
 
 public class TuteeLecDataBean {
 	private int lec_num;
+	private int gr;
 	private String id;
 	private String sub;
 	private String thu;
@@ -11,6 +12,12 @@ public class TuteeLecDataBean {
 	private String img;
 	
 	
+	public int getGr() {
+		return gr;
+	}
+	public void setGr(int gr) {
+		this.gr = gr;
+	}
 	public String getImg() {
 		return img;
 	}
