@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import lecde.LecdeDataBean;
+import lecdelike.LecdelikeDataBean;
 import leclike.LeclikeDataBean;
 import lecmem.LecmemDataBean;
 import tutee.TuteeDataBean;
@@ -152,10 +153,15 @@ public class LectureDBBean implements LectureDao{
 		// TODO Auto-generated method stub
 		return SqlMapClient.getSession().selectList("Lecture.getClassList");
 	}
+	@Override
+	public List<LecdelikeDataBean> getClassLikeList(String id) {
+		return SqlMapClient.getSession().selectList("Lecture.getClassLikeList",id);
+	}
 	public List<LectureDeDataBean> getClassListAll() {
 		// TODO Auto-generated method stub
 		return SqlMapClient.getSession().selectList("Lecture.getClassListAll");
 	}
+	
 	@Override
 
 	public LectureDataBean getLecture(int lec_num) {

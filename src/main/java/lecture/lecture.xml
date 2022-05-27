@@ -188,6 +188,14 @@
 	</select>
 	<select id="getLikeList" parameterType="String" resultType="leclike.LeclikeDataBean">
 		select * from leclike where id=#{id}
+	<select id="getClassLikeList" parameterType="String" resultType="lecdelike.LecdelikeDataBean">
+		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, 
+		d.lv, d.pri, d.cap, d.be, d.fin, k.id lid
+			from lecture l
+			full outer join (select * from leclike where id=#{id}) k
+			on l.lec_num=k.lec_num
+			join lecde d
+			on l.lec_num=d.lec_num
 	</select>
 	<delete id="deleteHeart" parameterType="leclike.LeclikeDataBean">
 		delete from leclike where id=#{id, jdbcType=VARCHAR} and lec_num=#{lec_num, jdbcType=INTEGER}

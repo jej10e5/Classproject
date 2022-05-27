@@ -167,7 +167,7 @@
 <!-- main lecture list section --> 
 	<div class="container" style="max-width:fit-content; margin:auto;"> 
 		<div class="row">   
-		<c:forEach var="dto" items="${dtos}">
+		<c:forEach var="dto" items="${dtos}" varStatus="sta">
 			<div class="col" style="margin:2% 0;" >
 				<div class="card" style="height:500px; width: 300px; margin:auto;">
 					<!-- 
@@ -221,42 +221,23 @@
 		                   		 -->
 		                   		
 						     	<c:if test="${memid ne null and memid ne '' }">
-						     	<c:if test="${not empty ldtos}">
-								 <c:forEach var="ldto" items="${ldtos}">
-			                   		<c:if test="${dto.lec_num eq ldto.lec_num}">
-			                   			<div id="likeresult">
-			                   			<form id="likeform">
+						     	<c:if test="${dto.lid ne null}">
+						     	<div id="likeresult_${dto.lec_num}">
+			                   			<form id="likeform_${dto.lec_num}">
 			                   				<input type="hidden" name="lec_num" value="${dto.lec_num}">
-			                   				<input type="hidden" name="id" value="${memid}">
-			                   				<input type="hidden" name="heart" value=1>
-								     	 	<i id="likeicon" class="hebox fa-solid fa-heart cc_pink" 
+								     	 	<i id="likeicon_full_${dto.lec_num}"class="hebox fa-solid fa-heart cc_pink" 
 								     	 	style="padding-top:5px; font-size:25px; "></i>
 								     	 </form>
 								     	 </div>
-							     	 </c:if>
-							     	 <c:if test="${dto.lec_num ne ldto.lec_num}">
-							     	 <div id="likeresult">
-			                   			<form id="likeform">
-			                   				<input type="hidden" name="lec_num" value="${dto.lec_num}">
-			                   				<input type="hidden" name="id" value="${memid}">
-			                   				<input type="hidden" name="heart" value=0>
-								     	 	<i id="likeicon" class="hebox fa-regular fa-heart cc_pink" 
-								     	 	style="padding-top:5px; font-size:25px; "></i>
-								     	 </form>
-								     	</div>
-							     	 </c:if>
-						     	</c:forEach>
 						     	</c:if>
-						     	<c:if test="${empty ldtos}">
-						     	<div id="likeresult">
-			                   			<form id="likeform">
+						     	<c:if test="${dto.lid eq null}">
+						     	<div id="likeresult_${dto.lec_num}">
+			                   			<form id="likeform_${dto.lec_num}">
 			                   				<input type="hidden" name="lec_num" value="${dto.lec_num}">
-			                   				<input type="hidden" name="id" value="${memid}">
-			                   				<input type="hidden" name="heart" value=0>
-								     	 	<i id="likeicon" class="hebox fa-regular fa-heart cc_pink" 
+								     	 	<i id="likeicon_empty_${dto.lec_num}"class="hebox fa-regular fa-heart cc_pink" 
 								     	 	style="padding-top:5px; font-size:25px; "></i>
 								     	 </form>
-								  </div>
+								     	 </div>
 						     	</c:if>
 						     	</c:if>
 						     	<c:if test="${memid eq null or memid eq '' }">
@@ -264,52 +245,6 @@
 								     	 	style="padding-top:5px; font-size:25px; "></i>
 						     	</c:if>
 						     	
-						     	<script src="/JQueryEx/jquery-3.6.0.js" type="text/javascript"></script>
-						     	<script type="text/javascript">
-								// <!--
-								$(document).ready(
-									function() {
-										$("#likeicon").on(
-											"click",
-											function( event ) {
-												// var params = "name=" + $("input[name=name]").val()
-												// 		+ "&age=" + $("input[name=age]").val();
-												
-												// var name = $("input[name=name]").val();
-												// var age = $("input[name=age]").val();
-												
-												$.ajax(
-													{
-														type : "POST",
-														url : "heart.do",
-														/*data : params,*/
-														/*data : {
-															name : name,
-															age : age
-														},*/
-														data : $("#likeform").serialize(),
-														dataType : "text",
-														success : function( data ) {
-															console.log(data);
-															
-															$("#likeform *").remove();
-															
-															$("#likeresult").html(data);
-															
-															
-														},
-														error : function( error ) {
-															$("#likeresult").html( error );
-														}
-													}		
-												)
-											}		
-										);
-										
-									}	
-								);	
-								//-->
-							</script>
 						     	
 						     	
 	
@@ -350,6 +285,96 @@
 	<div class="cb_purple" style="width:100%; height:500px; "></div>
 </div>
 	
+	<script src="/JQueryEx/jquery-3.6.0.js" type="text/javascript"></script>
+						     	<script type="text/javascript">
+								// <!--
+								$(document).ready(
+									function() {
+										$("i[id^='likeicon_full']").on(
+											"click",
+											function( event ) {
+												var idstr =$(this).attr('id');
+												var num=idstr.split('_')[2];
+												// var params = "name=" + $("input[name=name]").val()
+												// 		+ "&age=" + $("input[name=age]").val();
+												
+												// var name = $("input[name=name]").val();
+												// var age = $("input[name=age]").val();
+												$.ajax(
+													{
+														type : "POST",
+														url : "feheart.do",
+														/*data : params,*/
+														/*data : {
+															name : name,
+															age : age
+														},*/
+														data : $("#likeform_"+num).serialize(),
+														dataType : "text",
+														success : function( data ) {
+															console.log(data);
+															$("#likeform_"+num).remove();
+															$("#likeresult_"+num).html(data);
+															
+															
+														},
+														error : function(  ) {
+															alert("빈하트로 갱신 실패");
+														}
+													}		
+												)
+												}
+													
+										);
+										
+									}	
+								);	
+								
+								$(document).ready(
+										function() {
+											$("i[id^='likeicon_empty']").on(
+												"click",
+												function( event ) {
+													var idstr =$(this).attr('id');
+													var num=idstr.split('_')[2];
+													// var params = "name=" + $("input[name=name]").val()
+													// 		+ "&age=" + $("input[name=age]").val();
+													
+													// var name = $("input[name=name]").val();
+													// var age = $("input[name=age]").val();
+													$.ajax(
+														{
+															type : "POST",
+															url : "efheart.do",
+															/*data : params,*/
+															/*data : {
+																name : name,
+																age : age
+															},*/
+															data : $("#likeform_"+num).serialize(),
+															dataType : "text",
+															success : function( data ) {
+																console.log(data);
+																$("#likeform_"+num).remove();
+																$("#likeresult_"+num).html(data);
+																
+																
+															},
+															error : function( error ) {
+																alert("꽉찬하트로 갱신 실패");
+															}
+														}		
+													)
+													}
+														
+											);
+											
+										}	
+									);
+								
+								//-->
+							</script>
+						     	
 </section> 
 <!-- bootstrap ver4.6 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>

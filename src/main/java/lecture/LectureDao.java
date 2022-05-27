@@ -3,6 +3,7 @@ package lecture;
 import java.util.List;
 
 import lecde.LecdeDataBean;
+import lecdelike.LecdelikeDataBean;
 import leclike.LeclikeDataBean;
 import lecmem.LecmemDataBean;
 
@@ -37,6 +38,7 @@ public interface LectureDao {
 	public LectureDataBean getLecture(int lec_num);
 	public List<LectureDeDataBean> getClassList();
 	public List<LectureDeDataBean> getClassListAll();
+	public List<LecdelikeDataBean> getClassLikeList(String id);
 
 	public LecdeDataBean getLecde(int lec_num);
 	public int calcMonth(int lec_num);
