@@ -252,7 +252,11 @@ public class LectureDBBean implements LectureDao{
 	public String findId(String tel) {
 		return SqlMapClient.getSession().selectOne( "Lecture.findId", tel);
 	}
-
+	
+	public String findPasswd(String email) {
+		return SqlMapClient.getSession().selectOne( "Lecture.findPasswd", email);
+	}
+	
 	@Override
 	public int modifyTutorPro(TutorDataBean dto) {
 		return SqlMapClient.getSession().update("Lecture.updateTutorPro",dto);
@@ -284,7 +288,8 @@ public class LectureDBBean implements LectureDao{
 	public int modifyReview(ReviewDataBean dto) {
 		return SqlMapClient.getSession().update("Lecture.modifyReview",dto);
 	}
-
+	
+	
 
 	
 	@Override
@@ -384,5 +389,6 @@ public class LectureDBBean implements LectureDao{
 	public int calcLike(int lec_num) {
 		return SqlMapClient.getSession().selectOne("Lecture.calcLike",lec_num);
 	}
+	
 
 }

@@ -150,6 +150,10 @@
 	<select id="findId" parameterType="String" resultType="String">
 		select id from lecmem where tel = #{tel}
 	</select>	
+	<select id="findPasswd" parameterType="String" resultType="String">
+		select passwd from lecmem where email = #{email}
+	</select>
+	
 	<update id="updateTutorPro" parameterType="tutor.TutorDataBean">
 		update tutor set pro=#{pro, jdbcType=VARCHAR} where id=#{id}
 	</update>	

@@ -12,14 +12,7 @@
   <link href="${project}/login_style.css" rel="stylesheet" type="text/css"> 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script>
-	$(function(){
-		$("#loginBtn").click(function(){
-			location.href='loginForm.do';
-		})
-	})
-</script>
-<title>아이디 찾기</title>
+
 <style>
 .signup-form h2:before, .signup-form h2:after {
 	content: "";
@@ -30,40 +23,35 @@
 	top: 50%;
 	z-index: 2;
 }	
-</style>
 
+
+
+</style>
 </head>
 <body>
-	<jsp:include page="header.jsp"/>
+<jsp:include page="header.jsp"/>
 <div class="signup-form">
-       <form method="post">
-   
-			
-				
-				<h2> 아 이 디 찾 기 </h2>
+    <form method="post" action="findPasswd.do">
+		<h2>패 스 워 드 찾 기 </h2>
 		
         <div class="form-group">		      	
         </div>
-        
-		<div class="form-group">
-		</div>		
-				<h5> 아이디는 ${result} 입니다
-				</h5>
-				
-				
-				
-				<div class="form-group">
-					<button type="button" onclick="loginfForm.do" id=loginBtn class="btn btn-success btn-lg btn-block">로그인</button>
-					<button type="button" onclick="history.go(-1);" class="btn btn-success btn-lg btn-block">취소</button>
-				
-			</div>
-		</form>
-		</div>
+        <div class="form-group">
+        	<input type="email" class="form-control" name="email" placeholder="이메일 주소" required="required">
+        </div>
 		
+		<div class="form-group">
+		<!--TODO 로그인 action -->
+            <button type="submit" class="btn btn-success btn-lg btn-block">패스워드 찾기</button>
+            <button type="button" onclick="location='loginForm.do'" class="btn btn-success btn-lg btn-block">취소</button>
+					
+        </div>
+    </form>
 	
-	
-	<!-- bootstrap ver4.6 JS -->
+</div>
+<!-- bootstrap ver4.6 JS -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+ 
 </body>
 </html>

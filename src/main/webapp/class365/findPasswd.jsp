@@ -19,7 +19,7 @@
 		})
 	})
 </script>
-<title>아이디 찾기</title>
+<title>패스워드 찾기</title>
 <style>
 .signup-form h2:before, .signup-form h2:after {
 	content: "";
@@ -40,14 +40,14 @@
    
 			
 				
-				<h2> 아 이 디 찾 기 </h2>
+				<h2> 패 스 워 드 찾 기 </h2>
 		
         <div class="form-group">		      	
         </div>
         
 		<div class="form-group">
 		</div>		
-				<h5> 아이디는 ${result} 입니다
+				<h5> 패스워드는 ${result} 입니다
 				</h5>
 				
 				

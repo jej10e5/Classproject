@@ -61,7 +61,9 @@ public interface LectureDao {
 	public int insertRenum(TuteeDataBean dtt);
 
 	public String findId(String tel);
+	public String findPasswd(String email);
 
+	
 	public List<LectureDeDataBean> getTutorClass(String id);
 	public List<TuteeLecDataBean> getTuteeClass(String id);
 	public LectureDataBean getOriginClass(int lec_num);
@@ -101,5 +103,6 @@ public interface LectureDao {
 	public List<RefundDataBean> getRefundList();
 	public int refundConfirm(RefundDataBean dto);
 	public int calcLike(int lec_num);
+	
 
 }
