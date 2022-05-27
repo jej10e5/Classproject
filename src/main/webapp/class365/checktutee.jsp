@@ -19,9 +19,9 @@
 	<table class="table table-hover table-bordered">
 		<thead>
 		<tr>
-		<th>수강생아이디</th>
-		<th>수강생전화번호</th>
-		<th>수강생이메일</th>
+		<th>수강생 아이디</th>
+		<th>수강생 전화번호</th>
+		<th>수강생 이메일</th>
 		</tr>
 		</thead>
 	<c:forEach var="dto" items="${dtos}">
