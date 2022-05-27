@@ -61,7 +61,7 @@ public interface LectureDao {
 	public int insertRenum(TuteeDataBean dtt);
 
 	public String findId(String tel);
-	public String findPasswd(String email);
+	public String findPasswd(LecmemDataBean dto);
 
 	
 	public List<LectureDeDataBean> getTutorClass(String id);

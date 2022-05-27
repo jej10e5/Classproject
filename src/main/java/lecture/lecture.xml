@@ -150,8 +150,8 @@
 	<select id="findId" parameterType="String" resultType="String">
 		select id from lecmem where tel = #{tel}
 	</select>	
-	<select id="findPasswd" parameterType="String" resultType="String">
-		select passwd from lecmem where email = #{email}
+	<select id="findPasswd" parameterType="lecmem.LecmemDataBean" resultType="String">
+		select passwd from lecmem where email = #{email} and id=#{id}
 	</select>
 	
 	<update id="updateTutorPro" parameterType="tutor.TutorDataBean">

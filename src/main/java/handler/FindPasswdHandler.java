@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import lecmem.LecmemDataBean;
 import lecture.LectureDao;
 @Controller
 public class FindPasswdHandler implements CommandHandler{
@@ -24,8 +25,14 @@ public class FindPasswdHandler implements CommandHandler{
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse reponse) throws Exception {		 
 		
 		String email = request.getParameter("email");
+		String id = (String)request.getParameter("id");
 		
-		String result = lectureDao.findPasswd(email);
+		LecmemDataBean dto = new LecmemDataBean();
+	    dto.setEmail(email);
+	    dto.setId(id);
+	  
+		
+		String result = lectureDao.findPasswd(dto);
 		
 		
 	

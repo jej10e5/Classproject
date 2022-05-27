@@ -37,6 +37,7 @@
         <div class="form-group">		      	
         </div>
         <div class="form-group">
+        	<input type="text" class="form-control" name="id" placeholder="아이디를 입력하세요" required="required">
         	<input type="email" class="form-control" name="email" placeholder="이메일 주소" required="required">
         </div>
 		

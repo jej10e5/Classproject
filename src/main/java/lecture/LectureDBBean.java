@@ -253,8 +253,8 @@ public class LectureDBBean implements LectureDao{
 		return SqlMapClient.getSession().selectOne( "Lecture.findId", tel);
 	}
 	
-	public String findPasswd(String email) {
-		return SqlMapClient.getSession().selectOne( "Lecture.findPasswd", email);
+	public String findPasswd(LecmemDataBean dto) {
+		return SqlMapClient.getSession().selectOne( "Lecture.findPasswd", dto);
 	}
 	
 	@Override
