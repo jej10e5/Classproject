@@ -46,7 +46,7 @@ function setid( id ) {
   <div class="form-group">		      	
         </div>
 <c:if test="${result eq 0}">
-	<form method="post" action="signupPro.do">
+	<%-- <form method="post" action="signupPro.do">
 	<table>
 		<tr>
 			<th> <span>${id}</span>는 사용할 수 있습니다 </th>
@@ -60,12 +60,37 @@ function setid( id ) {
 			</td>
 		</tr>
 	</table>
-	</form>
+	</form> --%>
+
+
+<!-- 변경용 -->
+ <form method="post" action="findId.do">
+		<h2>아이디 중복확인 </h2>
+		<p class="hint-text"><span>${id}</span>는 사용할 수 있습니다</p>
+        <div class="form-group">		      	
+        </div>
+       
+		<div class="form-group">
+		<!--TODO 로그인 action -->
+            <button type="submit" class="btn btn-success btn-lg btn-block" onclick="setid( '${id}' )" >확인</button>
+           
+					
+        </div>
+    </form>
+<!-- 여기까지 -->
 </c:if>
+
+
+
+
+
+
+
+
 <c:if test="${result ne 0}">	
 	<form name="confirmform" method="post" action="confirmid.do"
 		onsubmit="return confirmcheck()">
-		<table>
+		<%-- <table>
 			<tr>
 				<th colspan="2">
 					<span>${id}</span>는 사용할 수 없습니다<br>
@@ -83,7 +108,22 @@ function setid( id ) {
 						onclick="window.close()">
 				</th> 
 			</tr>				
-		</table>		
+		</table>		 --%>
+		<h2>아이디 중복확인 </h2>
+		<p class="hint-text"><span>${id}</span>는 사용할 수 없습니다<br>
+		다른 아이디를 입력해주세요
+		
+		
+		</p>
+		 <div class="form-group">
+		<input class="form-control" style="display:inline-block;"  type="text" name="id" placeholder="다른 아이디를 입력해주세요" autofocus>
+		</div>
+		<input  class="btn btn-success btn-lg btn-block" type="submit" value="사용">
+					<input  class="btn btn-success btn-lg btn-block" type="button" value="취소"
+						onclick="window.close()">
+		
+		
+		
 	</form>		
 </c:if>				
 
