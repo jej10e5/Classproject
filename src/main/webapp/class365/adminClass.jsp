@@ -223,7 +223,8 @@ function checktutee(lec_num,id){
 							<th style="width:7%">${dto.lec_num}</th>
 							<th style="width:15%">${dto.sub}</th>
 							<th>${dto.id}</th>
-							<th>
+							<th id="staresult${dto.lec_num}">
+							<div id="sta${dto_lec_num}"></div>
 								<c:if test="${dto.sta eq 1}">
 								모집중
 								</c:if>
@@ -234,7 +235,7 @@ function checktutee(lec_num,id){
 								제한됨
 								</c:if>
 							</th>
-							<th>${dto.cate}</th> 
+							<th >${dto.cate}</th> 
 							<th>${dto.lv}</th>
 							<th>${dto.be}</th>
 							<th>${dto.fin}</th>
@@ -288,6 +289,8 @@ $(document).ready(
 								console.log(data);
 								$("#btnform"+num).remove();
 								$("#result"+num).html(data);
+								$("#sta"+num).remove();
+								$("#staresult"+num).html( (sta=='hide') ? '제한됨':'마감');
 	
 							},
 							error : function(  ) {
