@@ -1,7 +1,5 @@
 package handler;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,24 +8,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import lecde.LecdeDataBean;
 import lecture.LectureDao;
-import lecturede.LectureDeDataBean;
-import map.MapDataBean;
 
 @Controller
-public class mapFormHandler implements CommandHandler{
+public class reviewDeleteFormHandler implements CommandHandler{
+
 	@Resource
-	private LectureDao lectureDao;
-	@RequestMapping("mapForm")
+	LectureDao lectureDao;	
+	
+	@RequestMapping("/reviewDeleteForm")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		List<MapDataBean> dtos=lectureDao.getClassMapList();
-		//List<LecdeDataBean> dtos = lectureDao.getClassDeList();
-		request.setAttribute("dtos", dtos);
-		String p ="check";
-		request.setAttribute("p", p);
-		return new ModelAndView("class365/mapForm");
+		int re_num= Integer.parseInt(request.getParameter("re_num"));
+		int rs = 0;
+		lectureDao.deleteReview(re_num);		
+		rs =lectureDao.resetTuteeReviewNum(re_num);
 		
+		request.setAttribute("rs", rs);
+		return new ModelAndView("class365/reviewDeleteForm");
 	}
+
 }

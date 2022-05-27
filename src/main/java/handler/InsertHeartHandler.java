@@ -26,6 +26,6 @@ public class InsertHeartHandler implements CommandHandler {
 		lectureDao.insertHeart(dto);
 		String re=request.getHeader("Referer");
 		request.setAttribute("re", re);
-		return new ModelAndView("/class365/insertHeart");
+		return new ModelAndView("/class365/redirectPage");
 	}
 }

@@ -350,7 +350,7 @@ $(document).ready(function($) {
 	 									<div id="heart_div">
 	 										<i class="fa-solid fa-heart heart_color"></i>
 	 									</div>
-	 									<span id="like_amount">1234</span>
+	 									<span id="like_amount">${like}</span>
 	 								</button>
 	 								
 	 							</div>			

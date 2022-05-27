@@ -4,30 +4,24 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponse; 
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import lecde.LecdeDataBean;
 import lecture.LectureDao;
 import lecturede.LectureDeDataBean;
-import map.MapDataBean;
 
 @Controller
-public class mapFormHandler implements CommandHandler{
+public class AdminClassHandler implements CommandHandler{
 	@Resource
 	private LectureDao lectureDao;
-	@RequestMapping("mapForm")
+	@RequestMapping("adminClass")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		List<MapDataBean> dtos=lectureDao.getClassMapList();
-		//List<LecdeDataBean> dtos = lectureDao.getClassDeList();
+		List<LectureDeDataBean> dtos=lectureDao.getClassListAll();
 		request.setAttribute("dtos", dtos);
-		String p ="check";
-		request.setAttribute("p", p);
-		return new ModelAndView("class365/mapForm");
-		
+		return new ModelAndView("/class365/adminClass");
 	}
 }

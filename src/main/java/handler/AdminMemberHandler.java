@@ -10,24 +10,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import lecde.LecdeDataBean;
+import lecmem.LecmemDataBean;
 import lecture.LectureDao;
-import lecturede.LectureDeDataBean;
-import map.MapDataBean;
 
 @Controller
-public class mapFormHandler implements CommandHandler{
+public class AdminMemberHandler implements CommandHandler{
 	@Resource
 	private LectureDao lectureDao;
-	@RequestMapping("mapForm")
+	@RequestMapping("adminMember")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		List<MapDataBean> dtos=lectureDao.getClassMapList();
-		//List<LecdeDataBean> dtos = lectureDao.getClassDeList();
+		List<LecmemDataBean> dtos=lectureDao.getMemberAll();
 		request.setAttribute("dtos", dtos);
-		String p ="check";
-		request.setAttribute("p", p);
-		return new ModelAndView("class365/mapForm");
-		
+		return new ModelAndView("/class365/adminMember");
 	}
 }
