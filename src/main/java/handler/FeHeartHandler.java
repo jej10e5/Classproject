@@ -12,20 +12,20 @@ import leclike.LeclikeDataBean;
 import lecture.LectureDao;
 
 @Controller
-public class InsertHeartHandler implements CommandHandler {
+public class FeHeartHandler{
 	@Resource
 	private LectureDao lectureDao;
-	@RequestMapping("/insertHeart") 
-	@Override
+	@RequestMapping("feheart.do")
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String id = (String)request.getSession().getAttribute("memid");
 		int lec_num=Integer.parseInt(request.getParameter("lec_num"));
+		String id=(String)request.getSession().getAttribute("memid");
 		LeclikeDataBean dto = new LeclikeDataBean();
 		dto.setId(id);
 		dto.setLec_num(lec_num);
-		lectureDao.insertHeart(dto);
-		String re=request.getHeader("Referer");
-		request.setAttribute("re", re);
-		return new ModelAndView("/class365/redirectPage");
+			lectureDao.deleteHeart(dto);
+			request.setAttribute("lec_num", lec_num);
+			return new ModelAndView("/class365/heart_empty");
+
 	}
+	
 }
