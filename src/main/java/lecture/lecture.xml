@@ -276,7 +276,9 @@
  	<select id="calcLike" parameterType="int" resultType="int">
  		select count(*) from leclike where lec_num=#{lec_num}
  	</select>
-
+	<update id="hideClass" parameterType="int">
+		update lecture set sta=#{sta} where lec_num=#{lec_num}
+	</update>
 </mapper>
 
 

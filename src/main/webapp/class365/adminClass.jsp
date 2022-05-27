@@ -1,13 +1,11 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/class365/setting.jsp" %>    
-<link href="style.css" rel="stylesheet" type="text/css">  
+<link href="${project}/style.css" rel="stylesheet" type="text/css">  
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
  <link href="${project}/tutorMain_style.css" rel="stylesheet" type="text/css"> 
  <link href="${project}/style.css" rel="stylesheet" type="text/css"> 
 <script src="https://kit.fontawesome.com/811e29d39a.js" crossorigin="anonymous"></script>
-<script src="${project}/jquery-3.6.0.js"></script> 
 <script type="text/javascript">
 function checktutee(lec_num,id){
 	url="checktutee.do?lec_num="+lec_num;
@@ -226,14 +224,14 @@ function checktutee(lec_num,id){
 							<th style="width:15%">${dto.sub}</th>
 							<th>${dto.id}</th>
 							<th>
-								<c:if test="${dto.sta eq 0}">
-								작성중
-								</c:if>
 								<c:if test="${dto.sta eq 1}">
 								모집중
 								</c:if>
 								<c:if test="${dto.sta eq 2}">
 								마감
+								</c:if>
+								<c:if test="${dto.sta eq 3}">
+								제한됨
 								</c:if>
 							</th>
 							<th>${dto.cate}</th> 
@@ -243,20 +241,71 @@ function checktutee(lec_num,id){
 							<th>${dto.pri}</th>
 							<th>
 							<c:if test="${dto.sta ne 3}">
-							<input class="btn_sta1"type="button"
-							onclick="location='#.do?lec_num=${dto.lec_num}&id=${dto.id}'" 
-							value="숨기기">
+							<div id="result${dto.lec_num}"></div>
+							<form id="btnform${dto.lec_num}">
+								<input type="hidden" name="lec_num" value="${dto.lec_num}">
+								<input name="ACbtn/hide/${dto.lec_num}" class="btn_sta2"
+								type="button"value="숨기기">
+							</form>
 							</c:if>
 							<c:if test="${dto.sta eq 3}">
-							<input class="btn_sta2" type="button"
-							onclick="#.do?lec_num=${dto.lec_num}&id=${dto.id}'"
-							value="보이기">
+							<div id="result${dto.lec_num}"></div>
+							<form id="btnform${dto.lec_num}">
+								<input type="hidden" name="lec_num" value="${dto.lec_num}">
+								<input name="ACbtn/show/${dto.lec_num}" class="btn_sta1" 
+								type="button" value="보이기">
+							</form>
 							</c:if>
 							</th>
 						</tr>
 							
-						</c:forEach>						
+						</c:forEach>	
+				
 					</table>	
+					
+					<script src="/JQueryEx/jquery-3.6.0.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(
+		function() {
+			$("input[name^='ACbtn']").on(
+				"click",
+				function( event ) {
+					var idstr =$(this).attr('name');
+					var sta=idstr.split('/')[1];
+					var num=idstr.split('/')[2];
+					$.ajax(
+						{
+							type : "POST",
+							url : (sta=='hide') ? "hideClass.do" : "showClass.do",
+							/*data : params,*/
+							/*data : {
+								name : name,
+								age : age
+							},*/
+							data : $("#btnform"+num).serialize(),
+							dataType : "text",
+							success : function( data ) {
+								console.log(data);
+								$("#btnform"+num).remove();
+								$("#result"+num).html(data);
+	
+							},
+							error : function(  ) {
+								alert("강의 숨기기 실패");
+							}
+						}		
+					)
+					
+				}
+						
+			);
+			
+		}	
+	);	
+
+
+
+</script>	
 				</div>
 			</div>
 			
@@ -267,6 +316,12 @@ function checktutee(lec_num,id){
 </div>
 </div>
 
+
+
+
+
+
+
+
 <!-- bootstrap ver4.6 JS -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>

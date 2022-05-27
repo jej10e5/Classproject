@@ -395,6 +395,8 @@ public class LectureDBBean implements LectureDao{
 	public int calcLike(int lec_num) {
 		return SqlMapClient.getSession().selectOne("Lecture.calcLike",lec_num);
 	}
-	
-
+	@Override
+	public int changeClass(LectureDataBean dto) {
+		return SqlMapClient.getSession().update("Lecture.hideClass",dto);
+	}
 }
