@@ -40,7 +40,7 @@
    
 			
 				
-				<h2>아 이 디 찾 기 </h2>
+				<h2> 아 이 디 찾 기 </h2>
 		
         <div class="form-group">		      	
         </div>

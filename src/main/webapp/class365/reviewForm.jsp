@@ -204,7 +204,7 @@ float:right;
 					<div id="side_cate">
 						<div id="side_top_div">
 						 <div class="profile-card">
-               			 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" class="profile-photo">
+               			 
             			<h5 class="text-white">${memid} 님</h5>
             			<h5 class="text-white">안녕하세요</h5>
             	
@@ -230,6 +230,24 @@ float:right;
 							</div>
 					
 						
+						</div>
+						<!-- 취소 현황 -->
+						<div id="side_top_div" onclick="location='refundRequest.do'">
+						<div style="height: 4px; display : flex;">	</div>
+							<div class="cate_div">
+								<div class="cate_subject">
+									<div class="cate_space">
+										<span class="cate_icon">
+
+										<i class="fa fa-list-alt icon1 my_lec" style="color:red;"></i>
+									
+										</span>
+										<div class="cate_icon_space"></div>
+										<span class="cate_name_css">취소현황</span>
+									</div>
+								</div>
+							
+							</div>
 						</div>
 						<!-- 클래스 관리 -->
 							<div id="side_top_div" onclick="location='modifyForm.do'">

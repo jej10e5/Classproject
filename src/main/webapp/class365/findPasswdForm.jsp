@@ -31,18 +31,19 @@
 <body>
 <jsp:include page="header.jsp"/>
 <div class="signup-form">
-    <form method="post" action="findId.do">
-		<h2>아 이 디 찾 기 </h2>
+    <form method="post" action="findPasswd.do">
+		<h2>패 스 워 드 찾 기 </h2>
 		
         <div class="form-group">		      	
         </div>
         <div class="form-group">
-        	<input type="tel" class="form-control" name="tel" placeholder="전화번호를 입력하세요" required="required">
+        	<input type="text" class="form-control" name="id" placeholder="아이디를 입력하세요" required="required">
+        	<input type="email" class="form-control" name="email" placeholder="이메일 주소" required="required">
         </div>
 		
 		<div class="form-group">
 		<!--TODO 로그인 action -->
-            <button type="submit" class="btn btn-success btn-lg btn-block">아이디 찾기</button>
+            <button type="submit" class="btn btn-success btn-lg btn-block">패스워드 찾기</button>
             <button type="button" onclick="location='loginForm.do'" class="btn btn-success btn-lg btn-block">취소</button>
 					
         </div>

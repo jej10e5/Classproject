@@ -75,7 +75,7 @@ function setid( id ) {
     
  
 	<div class="text-center">
-	<span style="color:orange;">이미 가입되어있으신가요?</span> <a href="loginForm.do">Sign in</a></div>
+	<span style="color:orange;">이미 가입되어있으신가요?</span> <a href="loginForm.do">로그인</a></div>
 </div>
 </body>
 </html>

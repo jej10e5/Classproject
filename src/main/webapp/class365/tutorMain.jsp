@@ -177,7 +177,7 @@ function checktutee(lec_num){
 					
 				</div>
 				<div id="table_div" >
-					<table class="tutor_table">
+					<table class="tutor_table table table-hover">
 						<tr style="border-bottom:solid 1px lightgrey" >
 							<th style="width:15%">강좌명</th>
 							<th>상태</th>
