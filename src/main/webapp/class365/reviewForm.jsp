@@ -204,7 +204,7 @@ float:right;
 					<div id="side_cate">
 						<div id="side_top_div">
 						 <div class="profile-card">
-               			 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" class="profile-photo">
+               			 
             			<h5 class="text-white">${memid} 님</h5>
             			<h5 class="text-white">안녕하세요</h5>
             	
