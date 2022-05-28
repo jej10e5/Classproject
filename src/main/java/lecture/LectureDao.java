@@ -58,6 +58,7 @@ public interface LectureDao {
 	public int resetTuteeReviewNum(int re_num);
 	
 	public int finClass(int lec_num);
+	public int createFinClass(int lec_num);
 	public int createClass2(LecdeDataBean dto);
 	
 	public int getReCount(String id);
@@ -78,6 +79,7 @@ public interface LectureDao {
 	public int modifyClassde(LecdeDataBean dto);
 	public int checkOriginClassde(int lec_num);
 	public int deleteClass(int lec_num);
+	public int deleteDeClass(int lec_num);
 	public int inactiveClass(int lec_num);
 
 	public int modifyMember( LecmemDataBean dto );

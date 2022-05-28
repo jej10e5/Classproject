@@ -203,6 +203,11 @@ public class LectureDBBean implements LectureDao{
 		return SqlMapClient.getSession().update("Lecture.updateFinClass",lec_num);
 
 	}
+	public int createFinClass(int lec_num) {
+		// TODO Auto-generated method stub
+		return SqlMapClient.getSession().update("Lecture.updateCreateClass",lec_num);
+
+	}
 	@Override
 	public int insertTutee(TuteeDataBean dto) {
 
@@ -247,6 +252,10 @@ public class LectureDBBean implements LectureDao{
 	@Override
 	public int deleteClass(int lec_num) {
 		return SqlMapClient.getSession().delete("Lecture.deleteClass",lec_num);
+	}
+	@Override
+	public int deleteDeClass(int lec_num) {
+		return SqlMapClient.getSession().delete("Lecture.deleteDeClass",lec_num);
 	}
 	@Override
 	public int inactiveClass(int lec_num) {

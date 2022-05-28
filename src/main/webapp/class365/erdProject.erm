@@ -146,7 +146,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2022-05-02 16:32:08</creation_date>
-			<updated_date>2022-05-26 17:00:40</updated_date>
+			<updated_date>2022-05-28 12:18:56</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -1136,12 +1136,12 @@
 		</table>
 		<table>
 			<id>3</id>
-			<height>212</height>
+			<height>230</height>
 			<width>252</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>800</x>
-			<y>264</y>
+			<x>804</x>
+			<y>340</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
@@ -1584,7 +1584,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>24</word_id>
+					<word_id>25</word_id>
 					<id>22</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -2271,7 +2271,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>25</word_id>
+					<word_id>24</word_id>
 					<id>40</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
