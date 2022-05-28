@@ -7,7 +7,16 @@
 	<div id="h_top">  
 		<span class="c_font_content" id="htext">매일 매일 듣는 class 365!!</span> 
 	</div> 
-	 
+<c:if test="${sessionScope.memid eq 'class365'}">
+	<nav class="navbar navbar-expand-xl navbar-light bg-white">
+	<a class="navbar-brand c_font_main" href="adminMainForm.do" style="margin-right:30px;"> 
+  	<span class="cc_main">${page_main1}</span>
+  	<span class="cc_orange">${page_main2}</span> 
+  	<span class="cc_purple">&nbsp;&nbsp;&nbsp;관리자</span>   
+  	</a> 
+  	</nav>
+</c:if>
+<c:if test="${sessionScope.memid ne 'class365'}"> 
 <nav class="navbar navbar-expand-xl navbar-light bg-white">
   <a class="navbar-brand c_font_main" href="mainForm.do" style="margin-right:30px;"> 
   	<span class="cc_main">${page_main1}</span>
@@ -82,5 +91,6 @@
     </c:if>
   </div>
 </nav>
+</c:if>
 </div>
 </header>
