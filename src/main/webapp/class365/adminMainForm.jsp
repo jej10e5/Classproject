@@ -79,7 +79,7 @@
 </nav>
 </div>
 </header> 
-
+ 
 <div id="mid_div">
 	<!--  사이드바 -->
 	<div id="side_bar_div">
@@ -253,14 +253,6 @@
 				</div>
 			</div>
 			
-		</div>
-		</c:if>
-		<c:if test="${tutorInfo eq 0}">
-		<div style="padding:5%;">
-			<h5>Class만들기가 처음이신가요?</h5>
-			<h5>튜터 정보를 먼저 등록해주세요!</h5>
-			<input class="btn" type="button" value="튜터 정보 등록하기" onclick="location='tutorInfoForm.do'">
-
 		</div>
 		</c:if>
 			
