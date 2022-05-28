@@ -85,11 +85,11 @@ public class ClassFormHandler implements CommandHandler{
 		if(memid==null||memid=="") memid="guest";
 		if(memid.equals("class365")) {//admin
 			return new ModelAndView("class365/classForm");
-		}else if(check!=1) {
+		}else if(check!=1) { 
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out=response.getWriter();
 			out.println("<script type='text/javascript'>");
-			out.println("alert('Á¢±ÙÀÌ Á¦ÇÑµÈ ¿äÃ»ÀÔ´Ï´Ù.');");
+			out.println("alert('ì ‘ê·¼ì´ í—ˆìš©ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.');");
 			out.println("history.back();");
 			out.println("</script>");
 			out.flush();

@@ -1,5 +1,6 @@
 package handler;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -20,8 +21,25 @@ public class AdminRefundHandler implements CommandHandler{
 	@RequestMapping("adminMainForm")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		List<RefundDataBean> dtos=lectureDao.getRefundList();
-		request.setAttribute("dtos", dtos);
-		return new ModelAndView("/class365/adminMainForm");
+		
+		String id = (String)request.getSession().getAttribute("memid");
+		if(id==null) id="guest";
+		if(id.equals("class365")) {
+			List<RefundDataBean> dtos=lectureDao.getRefundList();
+			request.setAttribute("dtos", dtos);
+			return new ModelAndView("/class365/adminMainForm");
+		}else {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out=response.getWriter();
+			out.println("<script type='text/javascript'>");
+			out.println("alert('접근이 허용되지 않습니다.');");
+			out.println("history.back();");
+			out.println("</script>");
+			out.flush();
+			String re=request.getHeader("Referer");
+			request.setAttribute("re", re);
+			return new ModelAndView("/class365/redirectPage");
+		}
+		
 	}
 }
