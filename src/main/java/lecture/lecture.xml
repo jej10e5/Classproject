@@ -62,6 +62,14 @@
  		where l.sta=1 or l.sta=2 or l.sta=3
         order by l.lec_num desc
  	</select> 
+ 	<select id="getClassConfirm" resultType="lecturede.LectureDeDataBean">
+ 		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
+ 		from lecture l
+ 		join lecde d
+ 		on l.lec_num=d.lec_num
+ 		where l.sta=4 or l.sta=5
+        order by l.lec_num desc
+ 	</select>
  	<select id="getLecture" parameterType="int" resultType="lecture.LectureDataBean">
  	 	select * from lecture where lec_num=#{lec_num}
  	</select>
@@ -300,7 +308,7 @@
  	<select id="calcLike" parameterType="int" resultType="int">
  		select count(*) from leclike where lec_num=#{lec_num}
  	</select>
-	<update id="hideClass" parameterType="int">
+	<update id="changeClass" parameterType="int">
 		update lecture set sta=#{sta} where lec_num=#{lec_num}
 	</update>
 

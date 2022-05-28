@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/class365/setting.jsp" %>    
@@ -6,12 +7,7 @@
  <link href="${project}/tutorMain_style.css" rel="stylesheet" type="text/css"> 
  <link href="${project}/style.css" rel="stylesheet" type="text/css"> 
 <script src="https://kit.fontawesome.com/811e29d39a.js" crossorigin="anonymous"></script>
-<script type="text/javascript">
-function checktutee(lec_num,id){
-	url="checktutee.do?lec_num="+lec_num;
-	open( url, "checktutee", "scrollbar=no, menubar=no, status=no, width=600, height=600" ); //새창띄우기
-}
-</script> 
+
 <style>
 .btn_info{
 	border: none;
@@ -146,8 +142,25 @@ function checktutee(lec_num,id){
 					
 						
 						</div>
+						<!-- 강의생성 관리 -->
+							<div id="side_top_div" >
+						<div style="height: 4px; display : flex;">	</div>
+							<div class="cate_div" onclick="location='adminConfirm.do'">
+								<div class="cate_subject">
+									<div class="cate_space">
+										<span class="cate_icon">
+										<i class="fa-solid fa-check-to-slot icon_pos"></i>								
+										</span>
+										<div class="cate_icon_space"></div>
+										<span class="cate_name_css">강의생성 관리</span>
+									</div>
+								</div>
+							
+							</div>
+						
+						</div>
 						<!-- 리뷰 관리 -->
-							<div id="side_top_div">
+							<div id="side_top_div" >
 						<div style="height: 4px; display : flex;">	</div>
 							<div class="cate_div" onclick="location='adminReview.do'">
 								<div class="cate_subject">
@@ -162,10 +175,9 @@ function checktutee(lec_num,id){
 									</div>
 								</div>
 							
+							</div> 
 							</div>
 					
-						
-						</div>
 						<!-- 관리자 페이지 나가기 -->
 							<div id="side_top_div" >
 						<div style="height: 4px; display : flex;">	</div>
@@ -194,107 +206,80 @@ function checktutee(lec_num,id){
 	</div>
  <!-- 사이드바 -->	
 	<div id="tutor_div" >
-	<c:if test="${tutorInfo ne 0}">
 		<div id="tutor_main_article" >
 			<div id="tutor_main_margin">
 			
 				<div id="tutor_top_topic">
-					<h3 class="topic">강의 신청 현황</h3>
+					<h3 class="topic">강의 검토 현황</h3>
 					
 				</div>
 				<div id="table_div" >
 					<table class="tutor_table">
 						<tr style="border-bottom:solid 1px lightgrey" >
-							<th style="width:7%">강의번호</th>
-							<th style="width:15%">강좌명</th>
-							<th>튜터</th>
+							<th style="width:15%">강의번호</th>
+							<th>신청자</th>
+							<th>강의정보</th>
 							<th>상태</th>
-							<th >카테고리</th>
-							<th>난이도</th>
-							<th>시작일</th>
-							<th>마지막일</th>
-							<th>가격</th>
-							<th></th>
-							<th></th>
-							<th></th>
+							<th>요청</th>
 						</tr>
 						<c:forEach var="dto" items="${dtos}">
-						<tr>
-							<th style="width:7%">${dto.lec_num}</th>
-							<th style="width:15%">${dto.sub}</th>
+							<tr>
+							<th style="width:15%">${dto.lec_num}</th>
 							<th>${dto.id}</th>
-							<th id="staresult${dto.lec_num}">
-							<div id="sta${dto_lec_num}"></div>
-								<c:if test="${dto.sta eq 1}">
-								모집중
-								</c:if>
-								<c:if test="${dto.sta eq 2}">
-								마감
-								</c:if>
-								<c:if test="${dto.sta eq 3}">
-								제한됨
-								</c:if>
+							<th><input type="button" class="btn_info"value="더보기" onclick="location='classForm.do?lec_num=${dto.lec_num}'"></th>
+							<th>
+							<div id="sta${dto.lec_num}">
+							<c:if test="${dto.sta eq 4}">생성요청</c:if>
+							<c:if test="${dto.sta eq 5}">보류</c:if>
+							</div>
+							<div id="staresult${dto.lec_num}"></div>
 							</th>
-							<th >${dto.cate}</th> 
-							<th>${dto.lv}</th>
-							<th>${dto.be}</th>
-							<th>${dto.fin}</th>
-							<th>${dto.pri}</th>
-							<th style="padding-top:12px;">
-							<c:if test="${dto.sta ne 3}">
-							<div id="result${dto.lec_num}"></div>
-							<form id="btnform${dto.lec_num}">
-								<input type="hidden" name="lec_num" value="${dto.lec_num}">
-								<input name="ACbtn/hide/${dto.lec_num}" class="btn_sta2"
-								type="button"value="숨기기">
-							</form>
-							</c:if>
-							<c:if test="${dto.sta eq 3}">
-							<div id="result${dto.lec_num}"></div>
-							<form id="btnform${dto.lec_num}">
-								<input type="hidden" name="lec_num" value="${dto.lec_num}">
-								<input name="ACbtn/show/${dto.lec_num}" class="btn_sta1" 
-								type="button" value="보이기">
-							</form>
-							</c:if>
-							</th>
-						</tr>
+							<c:if test="${dto.sta eq 4}">
+								<form id="confirmform${dto.lec_num}">
+									<input type="hidden" name="lec_num" value="${dto.lec_num}">
+								</form>
+								<th><input name="btncon_ok_${dto.lec_num}" type="button" value="신청확인"></th>
+								<th><input name="btncon_re_${dto.lec_num}" type="button" value="신청보류"></th>
 							
-						</c:forEach>	
-				
+							</c:if>
+							<c:if test="${dto.sta eq 5}">
+							<th>
+							</th>
+							</c:if>
+							</tr>
+						</c:forEach>					
 					</table>	
-					
-					<script src="/JQueryEx/jquery-3.6.0.js" type="text/javascript"></script>
+				</div>
+			</div>
+			
+		</div>
+</div>
+</div>
+</div>
+<script src="/JQueryEx/jquery-3.6.0.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready(
 		function() {
-			$("input[name^='ACbtn']").on(
+			$("input[name^='btncon']").on(
 				"click",
 				function( event ) {
 					var idstr =$(this).attr('name');
-					var sta=idstr.split('/')[1];
-					var num=idstr.split('/')[2];
+					var sta=idstr.split('_')[1];
+					var num=idstr.split('_')[2];
 					$.ajax(
 						{
 							type : "POST",
-							url : (sta=='hide') ? "hideClass.do" : "showClass.do",
-							/*data : params,*/
-							/*data : {
-								name : name,
-								age : age
-							},*/
-							data : $("#btnform"+num).serialize(),
-							dataType : "text",
-							success : function( data ) {
-								console.log(data);
-								$("#btnform"+num).remove();
-								$("#result"+num).html(data);
+							url : (sta=='ok')?"accept.do":"deny.do",
+							data : $("#confirmform"+num).serialize(),
+							success : function() {
+								console.log('성공');
+								$("#confirmform"+num).remove();
 								$("#sta"+num).remove();
-								$("#staresult"+num).html( (sta=='hide') ? '제한됨':'마감');
+								$("#staresult"+num).html( (sta=='ok') ? '승인':'보류');
 	
 							},
 							error : function(  ) {
-								alert("강의 숨기기 실패");
+								alert("요청 및 보류 승인 실패");
 							}
 						}		
 					)
@@ -305,26 +290,9 @@ $(document).ready(
 			
 		}	
 	);	
-
-
-
 </script>	
-				</div>
-			</div>
-			
-		</div>
-		</c:if>
-		
-	</div>
-</div>
-</div>
-
-
-
-
-
-
-
 
 <!-- bootstrap ver4.6 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+ 
+							

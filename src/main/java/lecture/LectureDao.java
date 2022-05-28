@@ -115,5 +115,6 @@ public interface LectureDao {
 	public int refundConfirm(RefundDataBean dto);
 	public int calcLike(int lec_num);
 	
+	public List<LectureDeDataBean> getClassConfirm();
 	public int changeClass(LectureDataBean dto);
 }

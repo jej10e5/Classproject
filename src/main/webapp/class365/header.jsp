@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@include file="setting.jsp" %>  
  <link href="${project}/style.css" rel="stylesheet" type="text/css"> 
-
 <header id="header_nav">      
 <div id="header_top">   
 	<div id="h_top">  
@@ -84,4 +83,4 @@
   </div>
 </nav>
 </div>
-</header> 
+</header>

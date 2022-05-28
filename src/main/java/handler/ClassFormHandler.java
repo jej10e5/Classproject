@@ -1,5 +1,6 @@
 package handler;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,7 +76,30 @@ public class ClassFormHandler implements CommandHandler{
 		request.setAttribute("m_cost", m_cost);
 		request.setAttribute("now", now);
 		request.setAttribute("like", like);
-		return new ModelAndView("class365/classForm");
+		
+		int check;
+		if(dto.getSta()==1 || dto.getSta()==2) {
+			check=1;
+		}else 	check=0;
+		String memid=(String)request.getSession().getAttribute("memid");
+		if(memid==null||memid=="") memid="guest";
+		if(memid.equals("class365")) {//admin
+			return new ModelAndView("class365/classForm");
+		}else if(check!=1) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out=response.getWriter();
+			out.println("<script type='text/javascript'>");
+			out.println("alert('접근이 제한된 요청입니다.');");
+			out.println("history.back();");
+			out.println("</script>");
+			out.flush();
+			String re=request.getHeader("Referer");
+			request.setAttribute("re", re);
+			return new ModelAndView("/class365/redirectPage");
+		}else {//member guest
+			return new ModelAndView("class365/classForm");
+		
+		}
 	}
 
 }

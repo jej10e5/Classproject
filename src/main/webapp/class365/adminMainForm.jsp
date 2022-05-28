@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/class365/setting.jsp" %>    
-<link href="style.css" rel="stylesheet" type="text/css">  
+<link href="${project}/style.css" rel="stylesheet" type="text/css">  
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
  <link href="${project}/tutorMain_style.css" rel="stylesheet" type="text/css"> 
  <link href="${project}/style.css" rel="stylesheet" type="text/css"> 
@@ -79,7 +79,7 @@
 </nav>
 </div>
 </header> 
-
+ 
 <div id="mid_div">
 	<!--  사이드바 -->
 	<div id="side_bar_div">
@@ -145,6 +145,23 @@
 					
 						
 						</div>
+						<!-- 강의생성 관리 -->
+							<div id="side_top_div" >
+						<div style="height: 4px; display : flex;">	</div>
+							<div class="cate_div" onclick="location='adminConfirm.do'">
+								<div class="cate_subject">
+									<div class="cate_space">
+										<span class="cate_icon">
+										<i class="fa-solid fa-check-to-slot icon_pos"></i>								
+										</span>
+										<div class="cate_icon_space"></div>
+										<span class="cate_name_css">강의생성 관리</span>
+									</div>
+								</div>
+							
+							</div>
+						
+						</div>
 						<!-- 리뷰 관리 -->
 							<div id="side_top_div" >
 						<div style="height: 4px; display : flex;">	</div>
@@ -161,10 +178,9 @@
 									</div>
 								</div>
 							
+							</div> 
 							</div>
 					
-						
-						</div>
 						<!-- 관리자 페이지 나가기 -->
 							<div id="side_top_div" >
 						<div style="height: 4px; display : flex;">	</div>
@@ -237,14 +253,6 @@
 				</div>
 			</div>
 			
-		</div>
-		</c:if>
-		<c:if test="${tutorInfo eq 0}">
-		<div style="padding:5%;">
-			<h5>Class만들기가 처음이신가요?</h5>
-			<h5>튜터 정보를 먼저 등록해주세요!</h5>
-			<input class="btn" type="button" value="튜터 정보 등록하기" onclick="location='tutorInfoForm.do'">
-
 		</div>
 		</c:if>
 			

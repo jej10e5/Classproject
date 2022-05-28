@@ -209,6 +209,9 @@ function checktutee(lec_num){
 								<c:if test="${dto.sta eq 4}">
 								검토중
 								</c:if>
+								<c:if test="${dto.sta eq 5}">
+								보류됨
+								</c:if>
 							</th>
 							<th>${dto.cate}</th> 
 							<th>${dto.lv}</th>
@@ -224,7 +227,7 @@ function checktutee(lec_num){
 								value="삭제하기"></th>
 							</c:if>
 							
-							<c:if test="${dto.sta eq 4}">
+							<c:if test="${dto.sta eq 4 or dto.sta eq 5}">
 								<th>
 								<input class="btn_modify" type="button" value="수정하기" 
 								onclick="location='modifyClass.do?lec_num=${dto.lec_num}'">
@@ -235,6 +238,7 @@ function checktutee(lec_num){
 								value="삭제하기">
 								</th>
 							</c:if>
+							
 							
 							<c:if test="${dto.sta eq 1}">
 								<th><input class="btn_sta1" type="button"

@@ -159,9 +159,15 @@ public class LectureDBBean implements LectureDao{
 	public List<LecdelikeDataBean> getClassLikeList(String id) {
 		return SqlMapClient.getSession().selectList("Lecture.getClassLikeList",id);
 	}
+	@Override
 	public List<LectureDeDataBean> getClassListAll() {
 		// TODO Auto-generated method stub
 		return SqlMapClient.getSession().selectList("Lecture.getClassListAll");
+	}
+	@Override
+	public List<LectureDeDataBean> getClassConfirm() {
+		// TODO Auto-generated method stub
+		return SqlMapClient.getSession().selectList("Lecture.getClassConfirm");
 	}
 	
 	@Override
@@ -423,7 +429,7 @@ public class LectureDBBean implements LectureDao{
 	}
 	@Override
 	public int changeClass(LectureDataBean dto) {
-		return SqlMapClient.getSession().update("Lecture.hideClass",dto);
+		return SqlMapClient.getSession().update("Lecture.changeClass",dto);
 	}
 
 }
