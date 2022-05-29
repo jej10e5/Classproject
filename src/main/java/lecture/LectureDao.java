@@ -117,4 +117,6 @@ public interface LectureDao {
 	
 	public List<LectureDeDataBean> getClassConfirm();
 	public int changeClass(LectureDataBean dto);
+	public List<ReviewDataBean> getReviewAll();
+	public ReviewDataBean getReview(int re_num);
 }

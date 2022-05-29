@@ -431,5 +431,13 @@ public class LectureDBBean implements LectureDao{
 	public int changeClass(LectureDataBean dto) {
 		return SqlMapClient.getSession().update("Lecture.changeClass",dto);
 	}
+	@Override
+	public List<ReviewDataBean> getReviewAll() {
+		return SqlMapClient.getSession().selectList("Lecture.getReviewAll");
+	}
+	@Override
+	public ReviewDataBean getReview(int re_num) {
+		return SqlMapClient.getSession().selectOne("Lecture.getReviewOne",re_num);
+	}
 
 }

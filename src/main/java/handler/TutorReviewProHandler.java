@@ -27,7 +27,7 @@ public class TutorReviewProHandler implements CommandHandler{
 		int lec_num = Integer.parseInt(request.getParameter("lec_num"));
 		String re = (String)request.getParameter("re");
 		Date date = new Date(System.currentTimeMillis());
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh24:mm");
 		String reg_date = sdf.format(date);
 		
 		ReviewDataBean dto = new ReviewDataBean();

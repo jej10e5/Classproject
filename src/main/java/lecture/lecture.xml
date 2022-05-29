@@ -311,7 +311,18 @@
 	<update id="changeClass" parameterType="int">
 		update lecture set sta=#{sta} where lec_num=#{lec_num}
 	</update>
-
+	<select id="getReviewAll" resultType="review.ReviewDataBean">
+	select re_num,lec_num,id,re,img,
+		reg_date,re_level ,gr
+		from (select re_num,lec_num,id,re,img,reg_date
+		,re_level,gr from 
+		(select re_num,lec_num,id,re,img,reg_date,re_level,gr 
+		from review order by gr desc) 
+		order by gr desc)
+	</select>
+	<select id="getReviewOne" parameterType="int" resultType="review.ReviewDataBean">
+		select * from review where re_num=#{re_num}
+	</select>
 </mapper>
 
 

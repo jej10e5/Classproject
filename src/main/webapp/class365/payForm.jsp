@@ -41,6 +41,8 @@
             if ( rsp.success ) {
             	
            location.href='<%=request.getContextPath()%>/payFormPro.do?id=${dto.id}&lec_num=${lec_num}'
+        } else {//error
+        	location.href='<%=request.getContextPath()%>/payFormPro.do?id=${dto.id}&lec_num=${lec_num}'
         }
 
     });

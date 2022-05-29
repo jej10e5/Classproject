@@ -166,7 +166,7 @@
 						<!-- 관리자 페이지 나가기 -->
 							<div id="side_top_div" >
 						<div style="height: 4px; display : flex;">	</div>
-							<div class="cate_div" onclick="location='mainForm.do'">
+							<div class="cate_div" onclick="location='logout.do'">
 								<div class="cate_subject">
 									<div class="cate_space">
 										<span class="cate_icon">

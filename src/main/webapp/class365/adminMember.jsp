@@ -169,7 +169,7 @@
 						<!-- 관리자 페이지 나가기 -->
 							<div id="side_top_div" >
 						<div style="height: 4px; display : flex;">	</div>
-							<div class="cate_div" onclick="location='mainForm.do'">
+							<div class="cate_div" onclick="location='logout.do'">
 								<div class="cate_subject">
 									<div class="cate_space">
 										<span class="cate_icon">
@@ -209,7 +209,6 @@
 							<th>이메일</th>
 							<th>전화번호</th>
 							<th>계좌</th>
-							<th></th>
 						</tr>
 						<c:forEach var="dto" items="${dtos}">
 							<tr>
@@ -219,14 +218,10 @@
 							<th>
 							${dto.acc}
 							</th>
-							<th><input class="btn_confirm" type="button" value="수강제한하기" 
-							onclick="location='#.do?id=${dto.id}'">
+							<th>
 							</th>
-							<th><input class="btn_info" type="button" value="리뷰제한하기" 
-							onclick="location='#.do?id=${dto.id}'"></th>
-							<th><input class="btn_confirm" type="button" value="강의생성하기" 
-							onclick="location='#.do?id=${dto.id}'">
-							</th>
+							<th></th>
+							
 							</tr>
 						</c:forEach>					
 					</table>	

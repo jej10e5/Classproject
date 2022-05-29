@@ -170,7 +170,7 @@ function checktutee(lec_num,id){
 						<!-- 관리자 페이지 나가기 -->
 							<div id="side_top_div" >
 						<div style="height: 4px; display : flex;">	</div>
-							<div class="cate_div" onclick="location='mainForm.do'">
+							<div class="cate_div" onclick="location='logout.do'">
 								<div class="cate_subject">
 									<div class="cate_space">
 										<span class="cate_icon">
@@ -215,6 +215,7 @@ function checktutee(lec_num,id){
 							<th>시작일</th>
 							<th>마지막일</th>
 							<th>가격</th>
+							<th>수강생</th>
 							<th></th>
 							<th></th>
 							<th></th>
@@ -241,6 +242,9 @@ function checktutee(lec_num,id){
 							<th>${dto.be}</th>
 							<th>${dto.fin}</th>
 							<th>${dto.pri}</th>
+							<th><input class="btn_info" type="button"
+								onclick="checktutee(${dto.lec_num})"
+								value="수강생"></th>
 							<th style="padding-top:12px;">
 							<c:if test="${dto.sta ne 3}">
 							<div id="result${dto.lec_num}"></div>
