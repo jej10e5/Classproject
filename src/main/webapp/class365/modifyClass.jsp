@@ -121,7 +121,7 @@ function setThumbPreview(event) {
 		                <div class="col-12 col-sm-auto mb-3">
 		                  <div  class="mx-auto"  style="width: 600px;">
 		                   <div class="pro_img"id="image_container" style="height:400px;">
-		                   		<img class="profile" src="${imagepath}${dto.img}">
+		                   		<img id="classimg" class="profile" src="${imagepath}${dto.img}">
 		                   	</div>    
 		                    </div>
 		                  </div>
@@ -144,7 +144,7 @@ function setThumbPreview(event) {
 		                <div class="col-12 col-sm-auto mb-3">
 		                  <div  class="mx-auto"  style="width: 300px;">
 		                   <div class="pro_img" id="thumb_container" style="height:300px;">
-		                   		<img class="profile" src="${imagepath}${dto.thu}">
+		                   		<img id="thumbimg" class="profile" src="${imagepath}${dto.thu}">
 		                   	</div>    
 		                    </div>
 		                  </div> 

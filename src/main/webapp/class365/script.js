@@ -9,6 +9,8 @@ var passwderror ="입력하신 비밀번호가 다릅니다.\n다시 확인하�
 var modifyerror = "회원정보 수정에 실패했습니다.\n다시 확인하세요";
 //강의만들기
 function createcheck(){
+	var img=$("#classimg").attr("src");
+	var thumb=$("#thumbimg").attr("src");
 	if(!createform.lec_sub.value){
 		alert(substr);
 		createform.lec_sub.focus();
@@ -25,10 +27,10 @@ function createcheck(){
 		alert(catestr);
 		createform.category.focus();
 		return false;
-	}else if(!createform.img.value){
+	}else if(!createform.img.value && img==null){
 		  alert("클래스 사진파일을 업로드하세요");
 		  return false;
-	}else if(!createform.thumb.value){
+	}else if(!createform.thumb.value && thumb==null){
 		  alert("썸네일 사진파일을 업로드하세요");
 		  return false;
 	 }
