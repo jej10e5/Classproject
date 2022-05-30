@@ -439,5 +439,20 @@ public class LectureDBBean implements LectureDao{
 	public ReviewDataBean getReview(int re_num) {
 		return SqlMapClient.getSession().selectOne("Lecture.getReviewOne",re_num);
 	}
+	@Override
+	public int KidCheck(String id) {
+		return SqlMapClient.getSession().selectOne("Lecture.KidCheck",id);
+	}
+	@Override
+	public int insertKmem(LecmemDataBean dto) {
+		int count =SqlMapClient.getSession().insert("Lecture.insertKmem",dto);
+		int result = 0;
+		if(count !=0) {
+			result = 1;
+		} else {
+		 result = 0;	
+		}
+	return result;
+	}
 
 }

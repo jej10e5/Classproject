@@ -294,7 +294,7 @@ float:right;
 	 									 	<!-- 강사의 리뷰 답글이 없을 경우 -->		 	
 	 									 	<c:if test="${dgo.re_level eq 0 and dgo.count eq 1}">
 	 									 	<ul class="tutor_cmt">	 									 	
-	 									 		<li class="tutor_re">
+	 									 		<li class="tutor_re"style="border-bottom:none!important;">
 	 									 		<form method="get" action="tutorReviewPro.do" name="form"${status.index}>	
 	 									 		<input type="hidden" name="gr" value="${dgo.gr}">
 	 									 		<input type="hidden" name="lec_num" value="${dgo.lec_num}">	 									 		 									 		

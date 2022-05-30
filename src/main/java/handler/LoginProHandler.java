@@ -24,6 +24,8 @@ public class LoginProHandler implements CommandHandler{
 		String passwd = request.getParameter("passwd");
 	
 		
+	
+		
 		int result = lectureDao.check(id, passwd);
 	
 		request.setAttribute("result", result);

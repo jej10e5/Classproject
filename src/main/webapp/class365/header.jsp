@@ -85,7 +85,7 @@
         <a class="nav-link cc_purple c_font_category" href="myPage.do">${menu_mypage}</a>
       </li>
       <li class="nav-item my-2 my-lg-0"> 
-        <a class="nav-link cc_gray c_font_category" href="logout.do">${menu_logout}</a>
+        <a class="nav-link cc_gray c_font_category" onclick="kakaoLogout();"style="cursor: pointer;">${menu_logout}</a>
       </li> 
     </ul>
     </c:if>
@@ -94,3 +94,23 @@
 </c:if>
 </div>
 </header>
+
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+        window.Kakao.init('ba7439462d656bdc59c5331193480eaa');
+        
+    	function kakaoLogout() {
+    	
+        	if (!Kakao.Auth.getAccessToken()) {
+        		window.location.href='/ClassProject/logout.do'
+    		    return;
+    	    }
+    	    Kakao.Auth.logout(function(response) {
+    	    	window.location.href='/ClassProject/logout.do'
+    	    });
+    	
+    	
+    };
+    </script>
+
+

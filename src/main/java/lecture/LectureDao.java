@@ -117,6 +117,12 @@ public interface LectureDao {
 	
 	public List<LectureDeDataBean> getClassConfirm();
 	public int changeClass(LectureDataBean dto);
+
+	
+	public int KidCheck(String id);
+	public int insertKmem(LecmemDataBean dto);
+
 	public List<ReviewDataBean> getReviewAll();
 	public ReviewDataBean getReview(int re_num);
+
 }

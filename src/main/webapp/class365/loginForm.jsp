@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="setting.jsp" %>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
  <link href="${project}/style.css" rel="stylesheet" type="text/css"> 
   <link href="${project}/login_style.css" rel="stylesheet" type="text/css"> 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script src="/JQueryEx/jquery-3.6.0.js" type="text/javascript"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 
 
@@ -40,9 +43,66 @@
 	/
 	<a href="findPasswdForm.do">비밀번호</a>
 	</div>
+	      <a onclick="kakaoLogin();"style="cursor:pointer;"> <img src="https://www.gb.go.kr/Main/Images/ko/member/certi_kakao_login.png" style="padding-top: 30px;height:100px;padding-left:65px;"></a>
 </div>
+
+ <div id="naverIdLogin"></div>
+ <div id="htmltest"></div>
+  <!-- //네이버 로그인 버튼 노출 영역 -->
+   
+
+
+<script type="text/javascript">
+Kakao.init('ba7439462d656bdc59c5331193480eaa'); //발급받은 키 중 javascript키를 사용해준다.
+//카카오로그인
+function kakaoLogin() {
+	Kakao.Auth.login({
+    	scope:'account_email profile_nickname',
+    
+      success: function (authObj) {
+        Kakao.API.request({
+          url: '/v2/user/me',
+          success: function (response) {     	
+        	  const kakao_account = response.kakao_account.profile.nickname;
+        	 const kakao_email = response.kakao_account.email; 	 
+        	 console.log(kakao_account);
+        	 console.log(response.kakao_account.email);
+        	  $.ajax({	 
+      	 		url : "KloginPro.do",
+      	 		type: "POST",   	 		
+      	 		data : {account : kakao_account,
+      	 				email : kakao_email
+      	 		},
+      	 		dataType : "text",
+      	 		success : function(data){
+      	 			window.location.href='/ClassProject/mainForm.do'	 			
+      	 		},
+      	 		error : function () {
+      	 			alert("로그인 실패");
+      	 		}        			 
+           	 }
+      	 );       	 
+          }
+        })
+      },
+    })
+  }
+function kakaoLogout() {
+	Kakao.API.request({
+    	url: '/v1/user/unlink',
+    	success: function(response) {
+    		console.log(response);
+    		window.location.href='/ClassProject/mainForm.do'
+    	},
+    	fail: function(error) {
+    		console.log('탈퇴 미완료')
+    		console.log(error);
+    	},
+	});
+};
+</script>
 <!-- bootstrap ver4.6 JS -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
  
 </body>

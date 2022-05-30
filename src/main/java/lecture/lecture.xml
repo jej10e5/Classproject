@@ -311,6 +311,14 @@
 	<update id="changeClass" parameterType="int">
 		update lecture set sta=#{sta} where lec_num=#{lec_num}
 	</update>
+
+	<select id="KidCheck" parameterType="String" resultType="int">
+		select count(*) from lecmem where id=#{id}
+	</select>
+	<insert id="insertKmem" parameterType="lecmem.LecmemDataBean">
+		insert into lecmem (id,email) values(#{id}, #{email, jdbcType=VARCHAR})
+	</insert>
+
 	<select id="getReviewAll" resultType="review.ReviewDataBean">
 	select re_num,lec_num,id,re,img,
 		reg_date,re_level ,gr
@@ -323,6 +331,7 @@
 	<select id="getReviewOne" parameterType="int" resultType="review.ReviewDataBean">
 		select * from review where re_num=#{re_num}
 	</select>
+
 </mapper>
 
 

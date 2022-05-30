@@ -84,6 +84,7 @@ z-index : 10;
 }
 #pay_box{
 
+	display: flex;
 	position: sticky;
     top: 150px;
     max-height: 100vh;
@@ -443,7 +444,6 @@ overflow: hidden;
 }
 .review_list_no{
 	display: block;
-    padding: 22px 0;
     list-style : none;
 }
 .tutor_re{
