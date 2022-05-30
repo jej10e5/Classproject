@@ -331,7 +331,9 @@
 	<select id="getReviewOne" parameterType="int" resultType="review.ReviewDataBean">
 		select * from review where re_num=#{re_num}
 	</select>
-
+	<delete id="deleteAdminReview" parameterType="int">
+	delete from review where re_num=#{re_num}
+	</delete>
 </mapper>
 
 

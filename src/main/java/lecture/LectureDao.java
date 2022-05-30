@@ -124,5 +124,5 @@ public interface LectureDao {
 
 	public List<ReviewDataBean> getReviewAll();
 	public ReviewDataBean getReview(int re_num);
-
+	public void deleteAdminReview(int re_num);
 }

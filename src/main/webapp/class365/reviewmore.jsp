@@ -180,6 +180,8 @@ margin-top:20px;
 float:right;
 }
 </style>
+
+
 <div id="total_div">
 <div class="review_div">
 	<div id="rev_arti">
