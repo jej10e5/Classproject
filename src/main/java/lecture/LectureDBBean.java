@@ -454,5 +454,10 @@ public class LectureDBBean implements LectureDao{
 		}
 	return result;
 	}
+	@Override
+	public void deleteAdminReview(int re_num) {
+		SqlMapClient.getSession().delete("Lecture.deleteAdminReview",re_num);
+		
+	}
 
 }
