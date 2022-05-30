@@ -69,7 +69,7 @@ function setThumbPreview(event) {
                             <div class="form-group">
                               <label>강의명</label>
                               <input class="form-control" type="text" name="lec_sub" placeholder="강의명을 입력하세요."
-                              	maxlength="30">
+                              	maxlength="29">
                             </div>
                           </div>
                           <div class="col-md-6">
@@ -98,7 +98,7 @@ function setThumbPreview(event) {
                               <label>강의 내용</label>
                               <textarea class="form-control" rows="6" 
                               name="lec_con" placeholder="강의 내용을 입력하세요."
-                              maxlength="600"></textarea>
+                              maxlength="1500"></textarea>
                             </div>
                           </div>
                         </div>
