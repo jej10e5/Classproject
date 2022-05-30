@@ -25,8 +25,6 @@ public class mapFormHandler implements CommandHandler{
 		List<MapDataBean> dtos=lectureDao.getClassMapList();
 		//List<LecdeDataBean> dtos = lectureDao.getClassDeList();
 		request.setAttribute("dtos", dtos);
-		String p ="check";
-		request.setAttribute("p", p);
 		return new ModelAndView("class365/mapForm");
 		
 	}

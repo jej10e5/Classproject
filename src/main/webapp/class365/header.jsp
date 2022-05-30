@@ -47,7 +47,9 @@
       <li class="nav-item c_font_category">   
         <form class="form-inline my-2 my-lg-0" style="padding:5px;"
         	action="mainResultForm.do" method="post">
-      	<input class="form-control mr-sm-2 " type="search" name="p" style="width:300px;" placeholder="${str_search}" aria-label="Search">
+      	<input class="form-control mr-sm-2 " type="search" name="p" 
+      	style="width:300px;" placeholder="${str_search}" aria-label="Search"
+      	value="${p}">
       	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">${btn_search}</button>
       </form>
       </li>

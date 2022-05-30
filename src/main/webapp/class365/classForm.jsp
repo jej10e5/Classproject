@@ -296,7 +296,7 @@ function limitclass(){
 	 									<li class="review_list">
 	 									  <div class="rev_tute_info">
 	 										<span class="tute_img">
-	 											<img class = "tute_rev_img" src="${imagepath}tett_img.jpg"/>
+	 											<img class = "tute_rev_img" src="${imagepath}tutee_img.jpg"/>
 	 										</span>	
 	 									  <div class="tute">	
 	 										<div class ="rev_tut_name">
@@ -321,7 +321,7 @@ function limitclass(){
 	 									<li class="review_list_no">
 	 									  <div class="rev_tute_info">
 	 										<span class="tute_img">
-	 											<img class = "tute_rev_img" src="${imagepath}tett_img.jpg"/>
+	 											<img class = "tute_rev_img" src="${imagepath}tutee_img.jpg"/>
 	 										</span>	
 	 									  <div class="tute">	
 	 										<div class ="rev_tut_name">
