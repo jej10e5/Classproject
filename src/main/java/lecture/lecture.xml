@@ -27,8 +27,12 @@
  	<select id="getMember" parameterType="String" resultType="lecmem.LecmemDataBean">
  		  select * from lecmem where id = #{id}	
  	</select>
- 	<select id="getMemberAll" resultType="lecmem.LecmemDataBean">
- 		  select * from lecmem order by id
+ 	<select id="getMemberAll" resultType="mem.MemDataBean">
+ 		  select l.id, l.tel, l.email, t.acc 
+			from lecmem l
+			left join tutor t
+			on l.id=t.id
+			order by l.id desc
  	</select>
  	<select id="getTutor" parameterType="String" resultType="tutor.TutorDataBean">
  		select * from tutor where id = #{id}
@@ -58,6 +62,14 @@
  		where l.sta=1 or l.sta=2 or l.sta=3
         order by l.lec_num desc
  	</select> 
+ 	<select id="getClassConfirm" resultType="lecturede.LectureDeDataBean">
+ 		select l.lec_num, l.id, l.sub, l.cate, l.thu, l.intr, l.sta, d.lv, d.pri, d.cap, d.be, d.fin
+ 		from lecture l
+ 		join lecde d
+ 		on l.lec_num=d.lec_num
+ 		where l.sta=4 or l.sta=5
+        order by l.lec_num desc
+ 	</select>
  	<select id="getLecture" parameterType="int" resultType="lecture.LectureDataBean">
  	 	select * from lecture where lec_num=#{lec_num}
  	</select>
@@ -76,6 +88,9 @@
  	</insert>
  	<update id="updateFinClass" parameterType="int">
  		update lecture set sta=1 where lec_num=#{lec_num}
+ 	</update>
+ 	<update id="updateCreateClass" parameterType="int">
+ 		update lecture set sta=4 where lec_num=#{lec_num}
  	</update>
  	<insert id="insertTutee" parameterType="tutee.TuteeDataBean">
  		insert into tutee values(#{id},#{lec_num},default)
@@ -115,6 +130,9 @@
  		select count(*) from lecde where lec_num=#{lec_num}
  	</select>
  	<delete id="deleteClass" parameterType="int">
+ 		delete from lecture where lec_num=#{lec_num}
+ 	</delete>
+ 	<delete id="deleteDeClass" parameterType="int">
  		delete from lecture where lec_num=#{lec_num}
  	</delete>
  	<update id="updateInactive" parameterType="int">
@@ -173,7 +191,7 @@
  		from lecture l
  		join lecde d
  		on l.lec_num=d.lec_num
- 		WHERE sta!=0 and (l.sub LIKE '%'||#{p}||'%' or l.intr LIKE '%'||#{p}||'%' or l.id LIKE '%'||#{p}||'%'
+ 		WHERE (sta=1 or sta=2) and (l.sub LIKE '%'||#{p}||'%' or l.intr LIKE '%'||#{p}||'%' or l.id LIKE '%'||#{p}||'%'
  			or d.lv LIKE '%'||#{p}||'%' or l.cate LIKE '%'||#{p}||'%')
        		 order by l.lec_num desc
 	</select>
@@ -204,6 +222,7 @@
 			on l.lec_num=k.lec_num
 			join lecde d
 			on l.lec_num=d.lec_num
+			where l.sta=1
 		order by l.lec_num desc
 	</select>
 	<delete id="deleteHeart" parameterType="leclike.LeclikeDataBean">
@@ -289,15 +308,30 @@
  	<select id="calcLike" parameterType="int" resultType="int">
  		select count(*) from leclike where lec_num=#{lec_num}
  	</select>
-	<update id="hideClass" parameterType="int">
+	<update id="changeClass" parameterType="int">
 		update lecture set sta=#{sta} where lec_num=#{lec_num}
 	</update>
+
 	<select id="KidCheck" parameterType="String" resultType="int">
 		select count(*) from lecmem where id=#{id}
 	</select>
 	<insert id="insertKmem" parameterType="lecmem.LecmemDataBean">
 		insert into lecmem (id,email) values(#{id}, #{email, jdbcType=VARCHAR})
 	</insert>
+
+	<select id="getReviewAll" resultType="review.ReviewDataBean">
+	select re_num,lec_num,id,re,img,
+		reg_date,re_level ,gr
+		from (select re_num,lec_num,id,re,img,reg_date
+		,re_level,gr from 
+		(select re_num,lec_num,id,re,img,reg_date,re_level,gr 
+		from review order by gr desc) 
+		order by gr desc)
+	</select>
+	<select id="getReviewOne" parameterType="int" resultType="review.ReviewDataBean">
+		select * from review where re_num=#{re_num}
+	</select>
+
 </mapper>
 
 

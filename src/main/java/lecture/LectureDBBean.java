@@ -15,6 +15,7 @@ import tuteelec.TuteeLecDataBean;
 import tuteemem.TuteememDataBean;
 import lecturede.LectureDeDataBean;
 import map.MapDataBean;
+import mem.MemDataBean;
 import refund.RefundDataBean;
 import review.ReviewDataBean;
 import reviewlec.ReviewLecDataBean;
@@ -132,7 +133,7 @@ public class LectureDBBean implements LectureDao{
 	public LecmemDataBean getMember(String id) {	
 		return SqlMapClient.getSession().selectOne("Lecture.getMember",id);	
 	  }
-	public List<LecmemDataBean> getMemberAll() {	
+	public List<MemDataBean> getMemberAll() {	
 		return SqlMapClient.getSession().selectList("Lecture.getMemberAll");	
 	  }
 
@@ -158,9 +159,15 @@ public class LectureDBBean implements LectureDao{
 	public List<LecdelikeDataBean> getClassLikeList(String id) {
 		return SqlMapClient.getSession().selectList("Lecture.getClassLikeList",id);
 	}
+	@Override
 	public List<LectureDeDataBean> getClassListAll() {
 		// TODO Auto-generated method stub
 		return SqlMapClient.getSession().selectList("Lecture.getClassListAll");
+	}
+	@Override
+	public List<LectureDeDataBean> getClassConfirm() {
+		// TODO Auto-generated method stub
+		return SqlMapClient.getSession().selectList("Lecture.getClassConfirm");
 	}
 	
 	@Override
@@ -200,6 +207,11 @@ public class LectureDBBean implements LectureDao{
 	public int finClass(int lec_num) {
 		// TODO Auto-generated method stub
 		return SqlMapClient.getSession().update("Lecture.updateFinClass",lec_num);
+
+	}
+	public int createFinClass(int lec_num) {
+		// TODO Auto-generated method stub
+		return SqlMapClient.getSession().update("Lecture.updateCreateClass",lec_num);
 
 	}
 	@Override
@@ -246,6 +258,10 @@ public class LectureDBBean implements LectureDao{
 	@Override
 	public int deleteClass(int lec_num) {
 		return SqlMapClient.getSession().delete("Lecture.deleteClass",lec_num);
+	}
+	@Override
+	public int deleteDeClass(int lec_num) {
+		return SqlMapClient.getSession().delete("Lecture.deleteDeClass",lec_num);
 	}
 	@Override
 	public int inactiveClass(int lec_num) {
@@ -413,7 +429,15 @@ public class LectureDBBean implements LectureDao{
 	}
 	@Override
 	public int changeClass(LectureDataBean dto) {
-		return SqlMapClient.getSession().update("Lecture.hideClass",dto);
+		return SqlMapClient.getSession().update("Lecture.changeClass",dto);
+	}
+	@Override
+	public List<ReviewDataBean> getReviewAll() {
+		return SqlMapClient.getSession().selectList("Lecture.getReviewAll");
+	}
+	@Override
+	public ReviewDataBean getReview(int re_num) {
+		return SqlMapClient.getSession().selectOne("Lecture.getReviewOne",re_num);
 	}
 	@Override
 	public int KidCheck(String id) {

@@ -39,9 +39,6 @@ z-index : 10;
 
 }
 	
-a{
-
-}
 
  a:hover{
  	
@@ -86,6 +83,7 @@ a{
     float : left;
 }
 #pay_box{
+
 	display: flex;
 	position: sticky;
     top: 150px;
@@ -95,6 +93,7 @@ a{
     padding-right: 40px;
     margin-right: 5%;
     z-index : 1;
+    display:flex;
    
     
 }

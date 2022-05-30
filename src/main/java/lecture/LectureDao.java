@@ -15,6 +15,7 @@ import tuteemem.TuteememDataBean;
 
 import lecturede.LectureDeDataBean;
 import map.MapDataBean;
+import mem.MemDataBean;
 import refund.RefundDataBean;
 import review.ReviewDataBean;
 import reviewlec.ReviewLecDataBean;
@@ -30,7 +31,7 @@ public interface LectureDao {
 	public int check(String id,String passwd);
 	public int check(String id);
 	public LecmemDataBean getMember(String id);
-	public List<LecmemDataBean> getMemberAll();
+	public List<MemDataBean> getMemberAll();
 
 	public TutorDataBean getTutor(String id);
 	public int modifyTutor(TutorDataBean dto);
@@ -57,6 +58,7 @@ public interface LectureDao {
 	public int resetTuteeReviewNum(int re_num);
 	
 	public int finClass(int lec_num);
+	public int createFinClass(int lec_num);
 	public int createClass2(LecdeDataBean dto);
 	
 	public int getReCount(String id);
@@ -77,6 +79,7 @@ public interface LectureDao {
 	public int modifyClassde(LecdeDataBean dto);
 	public int checkOriginClassde(int lec_num);
 	public int deleteClass(int lec_num);
+	public int deleteDeClass(int lec_num);
 	public int inactiveClass(int lec_num);
 
 	public int modifyMember( LecmemDataBean dto );
@@ -112,8 +115,14 @@ public interface LectureDao {
 	public int refundConfirm(RefundDataBean dto);
 	public int calcLike(int lec_num);
 	
+	public List<LectureDeDataBean> getClassConfirm();
 	public int changeClass(LectureDataBean dto);
+
 	
 	public int KidCheck(String id);
 	public int insertKmem(LecmemDataBean dto);
+
+	public List<ReviewDataBean> getReviewAll();
+	public ReviewDataBean getReview(int re_num);
+
 }

@@ -2,13 +2,21 @@
     pageEncoding="UTF-8"%>
 <%@include file="setting.jsp" %>  
  <link href="${project}/style.css" rel="stylesheet" type="text/css"> 
-
 <header id="header_nav">      
 <div id="header_top">   
 	<div id="h_top">  
 		<span class="c_font_content" id="htext">매일 매일 듣는 class 365!!</span> 
 	</div> 
-	 
+<c:if test="${sessionScope.memid eq 'class365'}">
+	<nav class="navbar navbar-expand-xl navbar-light bg-white">
+	<a class="navbar-brand c_font_main" href="adminMainForm.do" style="margin-right:30px;"> 
+  	<span class="cc_main">${page_main1}</span>
+  	<span class="cc_orange">${page_main2}</span> 
+  	<span class="cc_purple">&nbsp;&nbsp;&nbsp;관리자</span>   
+  	</a> 
+  	</nav>
+</c:if>
+<c:if test="${sessionScope.memid ne 'class365'}"> 
 <nav class="navbar navbar-expand-xl navbar-light bg-white">
   <a class="navbar-brand c_font_main" href="mainForm.do" style="margin-right:30px;"> 
   	<span class="cc_main">${page_main1}</span>
@@ -83,10 +91,10 @@
     </c:if>
   </div>
 </nav>
+</c:if>
 </div>
 </header>
 
-  <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
         window.Kakao.init('ba7439462d656bdc59c5331193480eaa');

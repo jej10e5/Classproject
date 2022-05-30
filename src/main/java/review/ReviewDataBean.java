@@ -1,6 +1,5 @@
 package review;
 
-import java.sql.Timestamp;
 
 public class ReviewDataBean {
 	private int re_num;
@@ -8,9 +7,10 @@ public class ReviewDataBean {
 	private String id;
 	private String re;
 	private String img;
+	private String reg_date;
 	private int re_level;
 	private int gr;
-	private String reg_date;
+	
 	
 	public int getRe_num() {
 		return re_num;

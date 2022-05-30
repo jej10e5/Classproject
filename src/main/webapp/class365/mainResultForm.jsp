@@ -56,7 +56,7 @@
 	position:absolute; 
 	top:15px; 
 	right:15px;
-	z-index:100;
+	z-index:200;
 
 }
 .lv1{
@@ -95,6 +95,7 @@
 .card:hover img{
 	transform:scale(1.2);
 }
+
 </style>
 <body> 
 <%@ include file="header.jsp" %>  
@@ -103,13 +104,14 @@
 	<div class="container" style="max-width:fit-content; margin:auto;"> 
 		<div class="row">   
 		<c:forEach var="dto" items="${dtos}">
-			<div class="col-lg-3 col-md-6" style="margin:2% 0;" >
+			<div class="col" style="margin:2% 0;" >
 				<div class="card" style="height:500px; width: 300px; margin:auto;"
-					onclick="location.href='classForm.do?lec_num=${dto.lec_num}'">
+					>
 					<div class="row">
 		                  <div  class="mx-auto"  style="width: 300px;">
 		                   <div class="pro_img" id="thumb_container" style="height:300px; overflow:hidden;">
-		                   		<img class="profile" src="${imagepath}${dto.thu}" style="position:relative;">
+		                   		<img class="profile" src="${imagepath}${dto.thu}" style="position:relative;"
+		                   			onclick="location.href='classForm.do?lec_num=${dto.lec_num}'">
 		                   		<c:if test="${dto.lv eq '입문자'}">
 		                   		<span class="lvbox lv1">${dto.lv}</span>
 		                   		</c:if>
@@ -137,23 +139,40 @@
 		                   		<span class="sbox s2">마감</span>
 		                   		</c:if>
 		                   		<!-- 좋아요기능 -->
-		                   		<c:forEach var="ldto" items="${ldtos}">
-			                   		<c:if test="${dto.lec_num eq ldto.lec_num}">
-								     	<a class="hebox" style="z-index:200;" href="deleteHeart.do?lec_num=${dto.lec_num}">
-								     	 	<i class="fa-solid fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
-								     	 </a>
-							     	 </c:if>
-						     	</c:forEach>
-						     	<c:if test="${memid eq null or memid eq '' }">
+		                   		<c:if test="${memid eq null or memid eq '' }">
 						     	<a class="hebox" href="loginForm.do">
 								     <i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
 								 </a>
 								 </c:if>
-								 <c:if test="${memid ne null and memid ne '' }">
-								 <a class="hebox" href="insertHeart.do?lec_num=${dto.lec_num}">
-								     <i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
-								 </a>
-								 </c:if>
+		                   		 <c:if test="${memid ne null and memid ne '' }">
+		                   		 	<c:set var="like" value="0"/>
+			                   		 <c:forEach var="ldto" items="${ldtos}">
+				                   		 <c:if test="${dto.lec_num eq ldto.lec_num}">
+				                   		 	<c:set var="like" value="1"/> 
+				                   		 </c:if>
+			                   		 </c:forEach>
+			                   		 <c:if test="${like eq 1}">
+			                   		 	 <div id="likeresult_${dto.lec_num}">
+				                   			<form id="likeform_${dto.lec_num}">
+				                   				<input type="hidden" name="lec_num" value="${dto.lec_num}">
+									     	 	<i id="likeicon_full_${dto.lec_num}"class="hebox fa-solid fa-heart cc_pink" 
+									     	 	style="padding-top:5px; font-size:25px; "></i>
+									     	 </form>
+								     	 </div>
+										 
+									 </c:if>
+									 <c:if test="${like eq 0}">
+										<div id="likeresult_${dto.lec_num}">
+			                   			<form id="likeform_${dto.lec_num}">
+			                   				<input type="hidden" name="lec_num" value="${dto.lec_num}">
+								     	 	<i id="likeicon_empty_${dto.lec_num}"class="hebox fa-regular fa-heart cc_pink" 
+								     	 	style="padding-top:5px; font-size:25px; "></i>
+								     	 </form>
+								     	 </div>
+									 </c:if>
+								 
+		                   		</c:if>
+		
 		                   	</div>    
 		                    </div>
 		                </div>
@@ -174,12 +193,47 @@
 				</div>
 			</div>
 			</c:forEach>
-		
+		<script src="/JQueryEx/jquery-3.6.0.js" type="text/javascript"></script>
+						     	<script type="text/javascript">
+								$(document).ready(
+									function() {
+										$("i[id^='likeicon']").on(
+											"click",
+											function( event ) {
+												var idstr =$(this).attr('id');
+												var sta=idstr.split('_')[1];
+												var num=idstr.split('_')[2];
+												// var params = "name=" + $("input[name=name]").val()
+												// 		+ "&age=" + $("input[name=age]").val();
+												
+												// var name = $("input[name=name]").val();
+												// var age = $("input[name=age]").val();
+												$.ajax(
+													{
+														type : "POST",
+														url : (sta=='empty')?'efheart.do':'feheart.do',
+														data : $("#likeform_"+num).serialize(),
+														dataType : "text",
+														success : function( data ) {
+															console.log(data);
+															$("#likeform_"+num).remove();
+															$("#likeresult_"+num).html(data);
+															
+															
+														},
+														error : function(error) {
+															alert(error);
+														}
+													}		
+												)}
+										);
+									}	
+								);
+						</script>
 		</div>
 	</div>
 </section> 
 <!-- bootstrap ver4.6 JS -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
  </body>
 <footer> 

@@ -56,7 +56,7 @@
 	position:absolute; 
 	top:15px; 
 	right:15px;
-	z-index:100;
+	z-index:200;
 
 }
 .lv1{
@@ -204,23 +204,8 @@
 		                   		<c:if test="${dto.sta eq 2}">
 		                   		<span class="sbox s2">마감</span>
 		                   		</c:if>
-		                   		<!-- 좋아요기능 -->
-		                   		<!-- 
-		                   		<c:forEach var="ldto" items="${ldtos}">
-			                   		<c:if test="${dto.lec_num eq ldto.lec_num}">
-								     	<a class="hebox" style="z-index:200;" href="deleteHeart.do?lec_num=${dto.lec_num}">
-								     	 	<i class="fa-solid fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
-								     	 </a>
-							     	 </c:if>
-							     <c:if test="${memid ne null and memid ne '' }">
-								 <a class="hebox" href="insertHeart.do?lec_num=${dto.lec_num}">
-								     <i class="fa-regular fa-heart cc_pink" style="padding-top:5px; font-size:25px;"></i>
-								 </a>
-								 </c:if>
-						     	</c:forEach>
-		                   		
-		                   		 -->
-		                   		
+								
+								<!-- LIKE -->
 						     	<c:if test="${memid ne null and memid ne '' }">
 						     	<c:if test="${dto.lid ne null}">
 						     	<div id="likeresult_${dto.lec_num}">
@@ -284,28 +269,18 @@
 	
 	<script src="/JQueryEx/jquery-3.6.0.js" type="text/javascript"></script>
 						     	<script type="text/javascript">
-								// <!--
 								$(document).ready(
 									function() {
-										$("i[id^='likeicon_full']").on(
+										$("i[id^='likeicon']").on(
 											"click",
 											function( event ) {
 												var idstr =$(this).attr('id');
+												var sta=idstr.split('_')[1];
 												var num=idstr.split('_')[2];
-												// var params = "name=" + $("input[name=name]").val()
-												// 		+ "&age=" + $("input[name=age]").val();
-												
-												// var name = $("input[name=name]").val();
-												// var age = $("input[name=age]").val();
 												$.ajax(
 													{
 														type : "POST",
-														url : "feheart.do",
-														/*data : params,*/
-														/*data : {
-															name : name,
-															age : age
-														},*/
+														url : (sta=='empty')?'efheart.do':'feheart.do',
 														data : $("#likeform_"+num).serialize(),
 														dataType : "text",
 														success : function( data ) {
@@ -315,61 +290,14 @@
 															
 															
 														},
-														error : function(  ) {
-															alert("빈하트로 갱신 실패");
+														error : function(error) {
+															alert(error);
 														}
 													}		
-												)
-												}
-													
+												)}
 										);
-										
 									}	
-								);	
-								 
-								$(document).ready(
-										function() {
-											$("i[id^='likeicon_empty']").on(
-												"click",
-												function( event ) {
-													var idstr =$(this).attr('id');
-													var num=idstr.split('_')[2];
-													// var params = "name=" + $("input[name=name]").val()
-													// 		+ "&age=" + $("input[name=age]").val();
-													
-													// var name = $("input[name=name]").val();
-													// var age = $("input[name=age]").val();
-													$.ajax(
-														{
-															type : "POST",
-															url : "efheart.do",
-															/*data : params,*/
-															/*data : {
-																name : name,
-																age : age
-															},*/
-															data : $("#likeform_"+num).serialize(),
-															dataType : "text",
-															success : function( data ) {
-																console.log(data);
-																$("#likeform_"+num).remove();
-																$("#likeresult_"+num).html(data);
-																
-																
-															},
-															error : function( error ) {
-																alert("꽉찬하트로 갱신 실패");
-															}
-														}		
-													)
-													}
-														
-											);
-											
-										}	
-									);
-								
-								//-->
+								);
 							</script>
 						     	
 </section> 

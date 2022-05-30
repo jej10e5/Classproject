@@ -12,30 +12,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import lecture.LectureDao;
-import refund.RefundDataBean;
+import lecture.LectureDataBean;
+import review.ReviewDataBean;
 
 @Controller
-public class AdminRefundHandler implements CommandHandler{
+public class AdminReviewHandler implements CommandHandler{
 	@Resource
 	private LectureDao lectureDao;
-	@RequestMapping("adminMainForm")
+	@RequestMapping("adminReview")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		String id = (String)request.getSession().getAttribute("memid");
 		if(id==null) id="guest";
 		if(id.equals("class365")) {
-			List<RefundDataBean> dtos=lectureDao.getRefundList();
+			List<ReviewDataBean> dtos=lectureDao.getReviewAll();
 			request.setAttribute("dtos", dtos);
-			return new ModelAndView("/class365/adminMainForm");
+			return new ModelAndView("/class365/adminReview");
 		}else {
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out=response.getWriter();
 			out.println("<script type='text/javascript'>");
-			out.println("alert('접근이 허용되지 않습니다.');");
+			out.println("alert('접근이 제한된 요청입니다.);");
 			out.println("history.back();");
 			out.println("</script>");
 			out.flush();
+			//history.back()�븣臾몄뿉 �븘�슂�뾾�뒗 遺�遺꾩씠吏�留� return媛믩븣臾몄뿉 �꽔�뼱以�
 			String re=request.getHeader("Referer");
 			request.setAttribute("re", re);
 			return new ModelAndView("/class365/redirectPage");

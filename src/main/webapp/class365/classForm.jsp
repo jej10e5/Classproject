@@ -79,7 +79,9 @@ $(document).ready(function($) {
         });
 });
 
-
+function limitclass(){
+	alert("신청이 불가능한 강의입니다.");
+}
 //-->
 </script>
 
@@ -413,7 +415,11 @@ $(document).ready(function($) {
  							<h2 id="box_title">[${dto.sub}]</h2>
  							<div id="class_state">
  								<div id="state_box">
- 									<div id="state_open">모집중</div>
+ 									<div id="state_open">
+ 									<c:if test="${dto.sta eq 1}">모집중</c:if>
+ 									<c:if test="${dto.sta eq 2}">마감</c:if>
+ 									<c:if test="${dto.sta eq 3}">제한됨</c:if>
+ 									</div>
  								</div>		
  							</div>
  							<div id="box_mid">
@@ -498,14 +504,24 @@ $(document).ready(function($) {
 	 							<input type="hidden" name="month" value="" id="pay_month">
 	 							<input type="hidden" name="cost" value="${m_cost}" id="cost">
 	 							<input type="hidden" name="lec_num" value="${lec_num}">
-	 							<input type="submit" id="buy_btn" value="결제하기">	 							 						
+	 							<c:if test="${dto.sta ne 1}">
+	 							<input type="button"id="buy_btn" value="결제하기" onclick="limitclass()">
+	 							</c:if>	
+	 							<c:if test="${dto.sta eq 1}">
+	 							<input type="submit" id="buy_btn" value="결제하기">	 
+	 							</c:if>							 						
 	 							</form>
 	 							</c:if>
 	 							<c:if test="${month le 1}">
 	 							<form action="payForm.do" method="post">
 	 							<input type="hidden" name="cost" value="${dcd.pri}">
 	 							<input type="hidden" name="lec_num" value="${dto.lec_num}">
-	 							<input type="submit" id="buy_btn" value="결제하기">
+	 							<c:if test="${dto.sta ne 1}">
+	 							<input type="button"id="buy_btn" value="결제하기" onclick="limitclass()">
+	 							</c:if>	
+	 							<c:if test="${dto.sta eq 1}">
+	 							<input type="submit" id="buy_btn" value="결제하기">	 
+	 							</c:if>
 	 							</form>	
 	 							</c:if>	
 	 							</c:if> 
@@ -513,7 +529,8 @@ $(document).ready(function($) {
 	 							<input type="hidden" name="month" value="" id="pay_month">
 	 							<input type="hidden" name="cost" value="${m_cost}" id="cost">
 	 							<input type="hidden" name="lec_num" value="${lec_num}">
-	 							<input type="button" class="btn" value="수강 인원이 마감되었습니다.">	 							 						
+	 							<input type="button" class="btn" value="수강 인원이 마감되었습니다.">	 	
+	 												 						
 	 							</c:if>							
 	 						</c:if>
 	 					 		 <script type="text/javascript">

@@ -157,7 +157,7 @@ function checktutee(lec_num){
  <!-- 사이드바 -->	
 	<div id="tutor_div" >
 	<c:if test="${tutorInfo ne 0}">
-		<div id="tutor_main_article" style="overflow-x:scroll;" >
+		<div id="tutor_main_article" >
 			<div id="tutor_main_margin">
 			
 				<div id="tutor_top_topic">
@@ -206,40 +206,61 @@ function checktutee(lec_num){
 								<c:if test="${dto.sta eq 3}">
 								제한됨
 								</c:if>
+								<c:if test="${dto.sta eq 4}">
+								검토중
+								</c:if>
+								<c:if test="${dto.sta eq 5}">
+								보류됨
+								</c:if>
 							</th>
 							<th>${dto.cate}</th> 
 							<th>${dto.lv}</th>
 							<th>${dto.be}</th>
 							<th>${dto.fin}</th>
 							<th>${dto.pri}</th>
-							<th><input class="btn_modify" type="button" value="수정하기" 
-							onclick="location='modifyClass.do?lec_num=${dto.lec_num}'"></th>
-							<th>
+							
 							<c:if test="${dto.sta eq 0}">
-							<input class="btn_delete"type="button"
-							onclick="location='deleteClass.do?lec_num=${dto.lec_num}'" 
-							value="삭제하기">
+								<th><input class="btn_modify" type="button" value="수정하기" 
+								onclick="location='modifyClass.do?lec_num=${dto.lec_num}'"></th>
+								<th><input class="btn_delete"type="button"
+								onclick="location='deleteClass.do?lec_num=${dto.lec_num}'" 
+								value="삭제하기"></th>
 							</c:if>
+							
+							<c:if test="${dto.sta eq 4 or dto.sta eq 5}">
+								<th>
+								<input class="btn_modify" type="button" value="수정하기" 
+								onclick="location='modifyClass.do?lec_num=${dto.lec_num}'">
+								</th>
+								<th>
+								<input class="btn_delete"type="button"
+								onclick="location='deleteClass.do?lec_num=${dto.lec_num}'" 
+								value="삭제하기">
+								</th>
+							</c:if>
+							
+							
 							<c:if test="${dto.sta eq 1}">
-							<input class="btn_sta1" type="button"
-							onclick="location='inactiveClass.do?lec_num=${dto.lec_num}'"
-							value="마감하기">
-							<input class="btn_sta1" type="button"
-							onclick="checktutee(${dto.lec_num})"
-							value="수강생">
+								<th><input class="btn_sta1" type="button"
+								onclick="location='inactiveClass.do?lec_num=${dto.lec_num}'"
+								value="마감하기"></th>
+								<th><input class="btn_sta1" type="button"
+								onclick="checktutee(${dto.lec_num})"
+								value="수강생"></th>
 							</c:if>
 							<c:if test="${dto.sta eq 2}">
-							<input class="btn_sta2" type="button"
-							onclick="location='activeClass.do?lec_num=${dto.lec_num}'"
-							value="모집하기">
-							<input class="btn_sta1" type="button"
-							onclick="checktutee(${dto.lec_num})"
-							value="수강생">
+								<th><input class="btn_sta2" type="button"
+								onclick="location='activeClass.do?lec_num=${dto.lec_num}'"
+								value="모집하기"></th>
+								<th><input class="btn_sta1" type="button"
+								onclick="checktutee(${dto.lec_num})"
+								value="수강생"></th>
 							</c:if>
 							<c:if test="${dto.sta eq 3}">
-							제제됨
+								<th></th>
+								<th>제제됨</th>
 							</c:if>
-							</th>
+
 						</tr>
 							
 						</c:forEach>					

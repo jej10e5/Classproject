@@ -325,25 +325,25 @@ color: #fff!important;
 					<table class="tutor_table">
 						<tr style="border-bottom:solid 1px lightgrey" >
 							<th style="width:15%">접수번호</th>
-							<th>강의번호</th>
+							<th>강의정보</th>
 							<th>취소 신청일</th>
+							<th>처리 완료일</th>
 							<th>상태</th>
-							<th>더보기</th>
 						</tr>
 						<c:forEach var="dto" items="${dtos}">
 							<tr>
 							<th style="width:15%">${dto.ref_num}</th>
-							<th>${dto.lec_num}</th>
+							<th><input type="button" value="더보기" onclick="location='classForm.do?lec_num=${dto.lec_num}'"></th>
 							<th>${dto.reg_date}</th>
-							<th>
 								<c:if test="${dto.sta eq 0}">
-								<span>신청접수</span>
+								<th></th>
+								<th><span>신청접수</span></th>
 								</c:if>
 								<c:if test="${dto.sta eq 1}">
-								<span>신청완료</span>
+								<th>${dto.fin_date}</th>
+								<th><span>신청완료</span></th>
+								
 								</c:if>
-							</th>
-							<th><input type="button" value="더보기" onclick="location='classForm.do?lec_num=${dto.lec_num}'"></th>
 							</tr>
 						</c:forEach>					
 					</table>	
@@ -357,6 +357,6 @@ color: #fff!important;
 </div>
 
 <!-- bootstrap ver4.6 JS -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
  
+								

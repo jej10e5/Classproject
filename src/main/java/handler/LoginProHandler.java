@@ -29,7 +29,9 @@ public class LoginProHandler implements CommandHandler{
 		int result = lectureDao.check(id, passwd);
 	
 		request.setAttribute("result", result);
-		request.setAttribute("id", id);	
-		return new ModelAndView("class365/loginPro");
+		request.setAttribute("id", id);
+		request.getSession().setAttribute("memid", id);
+		if(id.equals("class365")) return new ModelAndView("class365/adminMainForm");
+		else return new ModelAndView("class365/loginPro");
 	}
 }
