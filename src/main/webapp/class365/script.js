@@ -25,7 +25,13 @@ function createcheck(){
 		alert(catestr);
 		createform.category.focus();
 		return false;
-	}
+	}else if(!createform.img.value){
+		  alert("클래스 사진파일을 업로드하세요");
+		  return false;
+	}else if(!createform.thumb.value){
+		  alert("썸네일 사진파일을 업로드하세요");
+		  return false;
+	 }
 }
 //로그인
 function erroralert(msg){

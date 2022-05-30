@@ -70,13 +70,13 @@ function setThumbPreview(event) {
                             <div class="form-group">
                               <label>강의명</label>
                               <input class="form-control" type="text" name="lec_sub" 
-                              placeholder="강의명을 입력하세요." maxlength="10"
+                              placeholder="강의명을 입력하세요." maxlength="29"
                               	value="${dto.sub}">
                             </div>
                           </div>
                           <div class="col-md-6">
                           	<label>카테고리*</label>
-									<select name="category" class="form-control">
+									<select name="category" class="form-control" required="required">
   										<c:if test="${dto.cate eq '요리'}">
   										<option value="요리" selected="selected">요리</option>
  										<option value="운동">운동</option>
@@ -101,7 +101,7 @@ function setThumbPreview(event) {
                               <label>강의 요약</label>
                               <textarea class="form-control" rows="3" 
                               name="lec_intr" placeholder="강의 요약 내용을 입력하세요."
-                              maxlength="51">${dto.intr}</textarea>
+                              maxlength="51" required="required">${dto.intr}</textarea>
                             </div>
                           </div>
                         </div>
@@ -111,7 +111,7 @@ function setThumbPreview(event) {
                               <label>강의 내용</label>
                               <textarea class="form-control" rows="6" 
                               name="lec_con" placeholder="강의 내용을 입력하세요."
-                              maxlength="600">${dto.con}</textarea>
+                              maxlength="1500" required="required">${dto.con}</textarea>
                             </div>
                           </div>
                         </div>
