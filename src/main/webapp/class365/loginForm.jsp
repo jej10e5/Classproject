@@ -47,67 +47,9 @@
 </div>
 
  <div id="naverIdLogin"></div>
+ <div id="htmltest"></div>
   <!-- //네이버 로그인 버튼 노출 영역 -->
    
-<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
-<script type="text/javascript">
-const naverLogin = new naver.LoginWithNaverId(
-		{
-			clientId: "C1yBfNY1lo0PzPWD2NIK", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
-			callbackUrl: "http://localhost:8080/ClassProject/loginForm.do", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
-			
-			 loginButton: {color: "green", type: 3, height: 60}
-	
-
-		}
-);
-	naverLogin.init();
-   
-		naverLogin.getLoginStatus(function (status) {
-			if (status) {
-				var n_email = naverLogin.user.getEmail(); 
-	    		var n_id = naverLogin.user.getName();
-				console.log(n_email); 
-				console.log(naverLogin.user); 
-				  $.ajax({	 
-		      	 		url : "NloginPro.do",
-		      	 		type: "POST",   	 		
-		      	 		data : {id : n_id,
-		      	 				email : n_email
-		      	 		},
-		      	 		dataType : "text",
-		      	 		success : function(data){  	 		
-		      	 			window.location.href='/ClassProject/mainForm.do'	 			
-		      	 		},
-		      	 		error : function () {
-		      	 			alert("로그인 실패");
-		      	 		}        			 
-		           	 }
-		      	 );       	 
-				
-	            if( n_email == undefined || n_email == null) {
-					alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
-					naverLogin.reprompt();
-					return;
-				
-			} else {
-				console.log("callback 처리에 실패하였습니다.");
-			}
-		}
-		});
-	
- 
-
-
-</script>
-
-
-
-
-
-
- 
-
 
 
 <script type="text/javascript">

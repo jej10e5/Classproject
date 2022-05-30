@@ -5,6 +5,5 @@
 <script src="${project}/script.js"></script>
 
 	
-<c:if test="${result eq 1}">
+
 	${sessionScope.memid = id}
-</c:if>

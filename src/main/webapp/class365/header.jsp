@@ -92,14 +92,7 @@
         window.Kakao.init('ba7439462d656bdc59c5331193480eaa');
         
     	function kakaoLogout() {
-    		var fullStr = window.sessionStorage.getItem("memid");
-				var lastChar = fullStr.charAt(fullStr.length-1);
-    		if(lastChar=='N'){
-    			window.open("https://nid.naver.com/nidlogin.logout");
-        		window.localStorage.clear();
-    			
-    			
-    		}else{
+    	
         	if (!Kakao.Auth.getAccessToken()) {
         		window.location.href='/ClassProject/logout.do'
     		    return;
@@ -108,7 +101,7 @@
     	    	window.location.href='/ClassProject/logout.do'
     	    });
     	
-    		}
+    	
     };
     </script>
 
