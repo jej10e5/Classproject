@@ -206,7 +206,7 @@ color: #fff!important;
 									<div class="cate_space">
 										<span class="cate_icon">
 
-										<i class="fa-solid fa-heart cc_pink" style="padding-top:5px; font-size:20px;"></i>
+										<i class="fa-solid fa-heart cc_pink icon4 my_lec"></i>
 									
 										</span>
 										<div class="cate_icon_space"></div>
