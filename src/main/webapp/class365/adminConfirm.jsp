@@ -261,7 +261,7 @@ $(document).ready(
 								$("#confirmform"+num).remove();
 								$("#sta"+num).remove();
 								$("#staresult"+num).html( (sta=='ok') ? '승인':'보류');
-	
+								window.document.location.reload();
 							},
 							error : function(  ) {
 								alert("요청 및 보류 승인 실패");

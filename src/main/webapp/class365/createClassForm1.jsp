@@ -125,7 +125,7 @@ function setThumbPreview(event) {
 		                        <i class="fa fa-fw fa-camera"></i>               
 		                        <span>사진 업로드</span>
 		                     </label>
-		                      <input style="visibility:hidden;" accept="image/*" type="file" id="file1"name="img"
+		                      <input style="visibility:hidden;" accept="image/*" type="file" id="file1"name="img" required="required"
 		                     
 		                       onchange="setImagePreview(event);">
 		                    </div>
@@ -154,7 +154,7 @@ function setThumbPreview(event) {
 		                        <i class="fa fa-fw fa-camera"></i>               
 		                        <span>썸네일 업로드</span>
 		                     </label>
-		                      <input style="visibility:hidden;"accept="image/*" type="file" id="file2"name="thumb"
+		                      <input style="visibility:hidden;"accept="image/*" type="file" id="file2"name="thumb" required="required"
 		                       onchange="setThumbPreview(event);">
 		                    </div>
 		                  </div>

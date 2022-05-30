@@ -130,14 +130,14 @@ function limitclass(){
 	 						<dt class= "class_dt">강의 기간 </dt>
 	 						
 	 						<c:if test="${month gt 1}">
-	 						<dd class="class_dd">${month}</dd>
+	 						<dd class="class_dd">${month}개월</dd>
 	 						</c:if>
 	 						<c:if test="${month le 1}">
 	 						<dd class="class_dd">1개월 미만</dd>
 	 						</c:if>
 	 						 
 	 						<dt class="class_dt">최대 인원 </dt>
-	 						<dd class="class_dd">${dcd.cap}</dd>
+	 						<dd class="class_dd">${dcd.cap}명</dd>
 	 						<dt class= "class_dt">강의 난이도 </dt>
 	 						<dd class="class_dd">${dcd.lv} </dd>	 					
 	 					</dl>
