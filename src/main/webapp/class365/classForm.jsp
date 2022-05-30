@@ -66,6 +66,10 @@ width:100%;
 	padding: 17px 19px;
     border-radius: 0 10px 10px 10px;
 }
+#header_nav{
+    position: fixed!important;
+    width: 100%!important;
+}
 </style>
 
 			
@@ -130,14 +134,14 @@ function limitclass(){
 	 						<dt class= "class_dt">강의 기간 </dt>
 	 						
 	 						<c:if test="${month gt 1}">
-	 						<dd class="class_dd">${month}</dd>
+	 						<dd class="class_dd">${month}개월</dd>
 	 						</c:if>
 	 						<c:if test="${month le 1}">
 	 						<dd class="class_dd">1개월 미만</dd>
 	 						</c:if>
 	 						 
 	 						<dt class="class_dt">최대 인원 </dt>
-	 						<dd class="class_dd">${dcd.cap}</dd>
+	 						<dd class="class_dd">${dcd.cap}명</dd>
 	 						<dt class= "class_dt">강의 난이도 </dt>
 	 						<dd class="class_dd">${dcd.lv} </dd>	 					
 	 					</dl>
@@ -302,8 +306,11 @@ function limitclass(){
 	 										<div class = "rev_write_date">
 	 											<p class = "write_date">${dgo.reg_date}</p> 
 	 										</div>
+	 										
 	 									  </div>	
-	 									 
+	 									 	<div class="tutee_rev_images">
+	 											<img class="tute_rev_picture" src="${imagepath}${dgo.img}">
+	 										</div>
 	 									 </div>	
 	 									  <div class="rev_object">
 	 									  		<pre class="rev_cmt">${dgo.re}</pre>
@@ -323,8 +330,11 @@ function limitclass(){
 	 										<div class = "rev_write_date">
 	 											<p class = "write_date">${dgo.reg_date}</p> 
 	 										</div>
+	 										
 	 									  </div>	
-	 									 
+	 									 	<div class="tutee_rev_images">
+	 											<img class="tute_rev_picture" src="${imagepath}${dgo.img}">
+	 										</div>
 	 									 </div>	
 	 									  <div class="rev_object">
 	 									  		<pre class="rev_cmt">${dgo.re}</pre>
@@ -566,9 +576,7 @@ function limitclass(){
  	
  <!-- 풋 블록 -->
 	 <footer id="footer_div">
-	 풋터입니다
-	 
-	  
+ 
 	 
 	 </footer>
  </div>
