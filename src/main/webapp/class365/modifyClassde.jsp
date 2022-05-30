@@ -11,6 +11,8 @@
  <%@include file="setting.jsp"%>
 <script type="text/Javascript" src="${project}/script.js" charset="UTF-8"></script>
 <link href="${project}/style.css" rel="stylesheet" type="text/css"> 
+<script src="/JQueryEx/jquery-3.6.0.js" type="text/javascript"></script>
+
 </head>
 <style>
 body{
@@ -34,7 +36,7 @@ body{
                           <div class="col-md-4">
                             <div class="form-group">
                               <label>가격*</label>
-                              <input class="form-control" type="number" name="pri" placeholder="가격을 입력하세요."
+                              <input class="form-control" type="number" name="pri" placeholder="가격을 입력하세요." 
                                required value="${dto.pri}">
                             </div>
                           </div>
@@ -89,6 +91,12 @@ body{
 							</div>
 
                          </div>
+                          
+                         
+                         
+                         
+                         
+                         
                          <div class="row">
                          	<div class="col-md-4">
                          	<label>강의 열리는 곳*</label>
@@ -116,20 +124,73 @@ body{
                          </div>
 						<div class="row">
                    			<div class="col d-flex justify-content-end">
-                   			 <button class="btn btn-primary" type="submit">Save Class</button>
+                   			 <button class="btn btn-primary" id="create" type="button">Save Class</button>
                    			 </div>
                    		</div>
                       </div> 
                      </div>
 				</form>
-				
+				  <script type="text/javascript">
+                         $('#create').on('click',function(e){	
+                        	  var dateFrom = $('Input[name="be"]').val();	//시작일
+                        	  
+                        	  var dateTo = $('Input[name="fin"]').val();	//종료일
+                        	
+                        	  var today = new Date();				//오늘 날짜
+
+                        	  dateFrom = new Date(dateFrom);
+                        	  var fromYear = dateFrom.getFullYear();
+                        	  var fromMonth = dateFrom.getMonth() + 1;
+                        	  var fromDay = dateFrom.getDate();
+
+                        	  //날짜 지정을 하지 않았을 때 NaN이 발생하여 0으로 처리
+                        	  if (isNaN(fromYear) || isNaN(fromMonth) || isNaN(fromDay)){
+                        	    fromYear  = 0;
+                        	    fromMonth = 0;
+                        	    fromDay   = 0;
+                        	  }
+
+                        		dateFrom = fromYear +'-'+ fromMonth +'-'+fromDay; 
+
+                        	  dateTo = new Date(dateTo);
+                        	  var toYear  = dateTo.getFullYear();
+                        	  var toMonth = dateTo.getMonth() + 1;
+                        	  var toDay   = dateTo.getDate();
+
+                        	  //날짜 지정을 하지 않았을 때 NaN이 발생하여 0으로 처리
+                        	  if (isNaN(toYear) || isNaN(toMonth) || isNaN(toDay)){
+                        	  toYear  = 0;
+                        	  toMonth = 0;
+                        	  toDay   = 0;
+                        	  }
+
+                        	    dateTo = toYear +'-'+ toMonth +'-'+toDay;
+
+                        	  //오늘날짜 날짜 형식으로 지정
+                        	  var todayYear  = today.getFullYear(); 	//2020
+                        	  var todayMonth = today.getMonth() + 1;    	//06
+                        	  var todayDay   = today.getDate();  		//11
+                        	  today = todayYear +'-'+ todayMonth +'-'+todayDay;  // 2020/06/11 (형식 지정은 본인 자유)
+                        	  console.log(dateFrom,dateTo,today)
+                        	  //날짜 조회 시, 시작일이 오늘 날짜보다는 크고, 종료일이 시작일보다는 커야하기 때문에 조건을 걸어줌
+                        	  if((dateFrom >= today) && (dateTo >= dateFrom)){
+                        		  document.forms["createform"].submit();	
+                        		  return true;
+                        	  } else if(dateFrom<today){
+                        	 	 alert("강의 시작일이 현재시간 전입니다 다시 확인해주세요.");
+                        	 	$('Input[name="be"]').focus();
+                        	  } else if(dateTo<dateFrom){
+                        		  alert("강의 종료일이 강의시작일 전입니다 다시 확인해주세요.")
+                        		  $('Input[name="fin"]').focus();
+                        	  }
+                        	});         	                       
+                         </script>
 			</div>				
 		</div>
 	</div>
 </div>
 
 <!-- bootstrap ver4.6 JS -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
  </body>
 </html>
