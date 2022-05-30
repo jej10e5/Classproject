@@ -8,7 +8,6 @@
 <!-- bootstrap ver4.6 css -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
  <%@include file="setting.jsp"%>
-<script type="text/Javascript" src="${project}/script.js" charset="UTF-8"></script>
 <link href="${project}/style.css" rel="stylesheet" type="text/css"> 
 </head>
 <style>
@@ -23,6 +22,7 @@ body{
 	object-fit:cover;
 }
 </style> 
+<script type="text/javascript" src="${project}/script.js" charset="utf-8"></script>
 <script type="text/javascript">
 //사진미리보기
 function setImagePreview(event) {
@@ -51,6 +51,7 @@ function setThumbPreview(event) {
 	
     reader.readAsDataURL(event.target.files[0]);
   } 
+
 </script>
 <body>
 <jsp:include page="header.jsp"/>
@@ -69,12 +70,13 @@ function setThumbPreview(event) {
                             <div class="form-group">
                               <label>강의명</label>
                               <input class="form-control" type="text" name="lec_sub" placeholder="강의명을 입력하세요."
-                              	maxlength="29">
+                              	maxlength="29" required="required">
                             </div>
                           </div>
                           <div class="col-md-6">
                           	<label>카테고리*</label>
-									<select name="category" class="form-control" aria-label="Default select example">
+									<select name="category" class="form-control" aria-label="Default select example"
+										required="required">
   										<option value="">카테고리를 선택하세요</option>
   										<option value="요리">요리</option>
  										<option value="운동">운동</option>
@@ -88,7 +90,7 @@ function setThumbPreview(event) {
                               <label>강의 요약</label>
                               <textarea class="form-control" rows="3" 
                               name="lec_intr" placeholder="강의 요약 내용을 입력하세요." 
-                              maxlength="51"></textarea>
+                              maxlength="51" required="required"></textarea>
                             </div>
                           </div>
                         </div>
@@ -98,7 +100,7 @@ function setThumbPreview(event) {
                               <label>강의 내용</label>
                               <textarea class="form-control" rows="6" 
                               name="lec_con" placeholder="강의 내용을 입력하세요."
-                              maxlength="1500"></textarea>
+                              maxlength="1500" required="required"></textarea>
                             </div>
                           </div>
                         </div>
@@ -121,12 +123,11 @@ function setThumbPreview(event) {
 		                <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
 		                  <div class="text-center text-sm-left mb-2 mb-sm-0">
 		                    <div class="mt-2">
-		                     <label class="btn btn-primary" for="file1">             
+		                     <label id="imgfile" class="btn btn-primary" for="file1">             
 		                        <i class="fa fa-fw fa-camera"></i>               
 		                        <span>사진 업로드</span>
 		                     </label>
 		                      <input style="visibility:hidden;" accept="image/*" type="file" id="file1"name="img"
-		                     
 		                       onchange="setImagePreview(event);">
 		                    </div>
 		                  </div>
@@ -152,9 +153,9 @@ function setThumbPreview(event) {
 		                    <div class="mt-2">
 		                     <label class="btn btn-primary" for="file2">             
 		                        <i class="fa fa-fw fa-camera"></i>               
-		                        <span>썸네일 업로드</span>
+		                        <span >썸네일 업로드</span>
 		                     </label>
-		                      <input style="visibility:hidden;"accept="image/*" type="file" id="file2"name="thumb"
+		                      <input style="visibility:hidden;" accept="image/*" type="file" id="file2"name="thumb"
 		                       onchange="setThumbPreview(event);">
 		                    </div>
 		                  </div>
