@@ -66,6 +66,10 @@ width:100%;
 	padding: 17px 19px;
     border-radius: 0 10px 10px 10px;
 }
+#header_nav{
+    position: fixed!important;
+    width: 100%!important;
+}
 </style>
 
 			
@@ -302,8 +306,11 @@ function limitclass(){
 	 										<div class = "rev_write_date">
 	 											<p class = "write_date">${dgo.reg_date}</p> 
 	 										</div>
+	 										
 	 									  </div>	
-	 									 
+	 									 	<div class="tutee_rev_images">
+	 											<img class="tute_rev_picture" src="${imagepath}${dgo.img}">
+	 										</div>
 	 									 </div>	
 	 									  <div class="rev_object">
 	 									  		<pre class="rev_cmt">${dgo.re}</pre>
@@ -323,8 +330,11 @@ function limitclass(){
 	 										<div class = "rev_write_date">
 	 											<p class = "write_date">${dgo.reg_date}</p> 
 	 										</div>
+	 										
 	 									  </div>	
-	 									 
+	 									 	<div class="tutee_rev_images">
+	 											<img class="tute_rev_picture" src="${imagepath}${dgo.img}">
+	 										</div>
 	 									 </div>	
 	 									  <div class="rev_object">
 	 									  		<pre class="rev_cmt">${dgo.re}</pre>
@@ -566,9 +576,7 @@ function limitclass(){
  	
  <!-- 풋 블록 -->
 	 <footer id="footer_div">
-	 풋터입니다
-	 
-	  
+ 
 	 
 	 </footer>
  </div>

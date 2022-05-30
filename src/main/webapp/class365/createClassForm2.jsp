@@ -104,19 +104,24 @@ body{
                       </div> 
                      </div>
 				</form>
-				<script type="text/javascript">
+					  <script type="text/javascript">
                          $('#create').on('click',function(e){	
                         	  var dateFrom = $('Input[name="be"]').val();	//시작일
                         	  
                         	  var dateTo = $('Input[name="fin"]').val();	//종료일
                         	
                         	  var today = new Date();				//오늘 날짜
-
+							  var today2 = new Date();
                         	  dateFrom = new Date(dateFrom);
-                        	  var fromYear = dateFrom.getFullYear();
+                        	  dateFrom2 = new Date(dateFrom);
+                        	  
+                        	  var fromYear = dateFrom.getFullYear();                      	               	  
                         	  var fromMonth = dateFrom.getMonth() + 1;
                         	  var fromDay = dateFrom.getDate();
-
+                               
+                        	  
+                        	  
+                        	  
                         	  //날짜 지정을 하지 않았을 때 NaN이 발생하여 0으로 처리
                         	  if (isNaN(fromYear) || isNaN(fromMonth) || isNaN(fromDay)){
                         	    fromYear  = 0;
@@ -125,9 +130,14 @@ body{
                         	  }
 
                         		dateFrom = fromYear +'-'+ fromMonth +'-'+fromDay; 
-
-                        	  dateTo = new Date(dateTo);
+								
+                        	 
+							   
+								dateTo = new Date(dateTo);
+								dateTo2 = new Date(dateTo);
                         	  var toYear  = dateTo.getFullYear();
+                        	
+                        	  
                         	  var toMonth = dateTo.getMonth() + 1;
                         	  var toDay   = dateTo.getDate();
 
@@ -139,24 +149,28 @@ body{
                         	  }
 
                         	    dateTo = toYear +'-'+ toMonth +'-'+toDay;
-
+						
                         	  //오늘날짜 날짜 형식으로 지정
                         	  var todayYear  = today.getFullYear(); 	//2020
+                        		
+                        	  
                         	  var todayMonth = today.getMonth() + 1;    	//06
                         	  var todayDay   = today.getDate();  		//11
                         	  today = todayYear +'-'+ todayMonth +'-'+todayDay;  // 2020/06/11 (형식 지정은 본인 자유)
+                        	
                         	  console.log(dateFrom,dateTo,today)
+                        	  
                         	  //날짜 조회 시, 시작일이 오늘 날짜보다는 크고, 종료일이 시작일보다는 커야하기 때문에 조건을 걸어줌
-                        	  if((dateFrom >= today) && (dateTo >= dateFrom)){
+                        	  if((dateFrom2.getTime() >= today2.getTime()) && (dateTo2.getTime() >= dateFrom2.getTime())){
                         		  document.forms["createform"].submit();	
                         		  return true;
-                        	  } else if(dateFrom<today){
-                        	 	 alert("강의 시작일이 현재시간 전입니다 다시 확인해주세요.");
+                        	  } else if(dateFrom2.getTime()<=today2.getTime()){
+                        	 	 alert("강의 시작날짜가 현재보다 작습니다. 다시 확인해주세요.");
                         	 	$('Input[name="be"]').focus();
-                        	  } else if(dateTo<dateFrom){
-                        		  alert("강의 종료일이 강의시작일 전입니다 다시 확인해주세요.")
+                        	  }else if(dateFrom2.getTime()>=dateTo2.getTime()){
+                        		  alert("강의 종료날짜가 강의 시작날짜보다 작습니다. 다시 확인해주세요.");
                         		  $('Input[name="fin"]').focus();
-                        	  }
+                        	  } 
                         	});         	                       
                          </script>
 			</div>				
