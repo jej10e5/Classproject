@@ -24,11 +24,12 @@ public class LoginProHandler implements CommandHandler{
 		String passwd = request.getParameter("passwd");
 	
 		
+	
+		
 		int result = lectureDao.check(id, passwd);
 	
 		request.setAttribute("result", result);
-		request.setAttribute("id", id);
-		
+		request.setAttribute("id", id);	
 		return new ModelAndView("class365/loginPro");
 	}
 }

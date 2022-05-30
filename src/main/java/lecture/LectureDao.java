@@ -113,4 +113,7 @@ public interface LectureDao {
 	public int calcLike(int lec_num);
 	
 	public int changeClass(LectureDataBean dto);
+	
+	public int KidCheck(String id);
+	public int insertKmem(LecmemDataBean dto);
 }

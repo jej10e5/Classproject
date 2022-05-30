@@ -292,7 +292,12 @@
 	<update id="hideClass" parameterType="int">
 		update lecture set sta=#{sta} where lec_num=#{lec_num}
 	</update>
-
+	<select id="KidCheck" parameterType="String" resultType="int">
+		select count(*) from lecmem where id=#{id}
+	</select>
+	<insert id="insertKmem" parameterType="lecmem.LecmemDataBean">
+		insert into lecmem (id,email) values(#{id}, #{email, jdbcType=VARCHAR})
+	</insert>
 </mapper>
 
 

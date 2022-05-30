@@ -60,6 +60,12 @@ width:100%;
     display: flex;
     flex-direction: column;
 }
+.tutor_rev_box{
+	background-color: #ffe5ec;
+	margin: 8px 0 8px 72px;
+	padding: 17px 19px;
+    border-radius: 0 10px 10px 10px;
+}
 </style>
 
 			
@@ -344,7 +350,7 @@ $(document).ready(function($) {
 	 									 				
 	 									 				</div>	
 	 									 				<div class="tutor_rev_box">
-	 									 				<pre class="tutor_txt" id="review_txt"style="background-color: #ffe5ec; height:150px;">${dgo.re}</pre>	 									 				
+	 									 				<pre class="tutor_txt" id="review_txt"style="font-size: 14px; line-height: 23px; word-break: break-all;">${dgo.re}</pre>	 									 				
 	 									 			</div>		
 	 									 			</div> 			 									 			
 	 									 		</li>
