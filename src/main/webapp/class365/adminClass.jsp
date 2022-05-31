@@ -215,6 +215,7 @@ function checktutee(lec_num,id){
 							<th>시작일</th>
 							<th>마지막일</th>
 							<th>가격</th>
+							<th>강의정보</th>
 							<th>수강생</th>
 							<th></th>
 							<th></th>
@@ -242,6 +243,8 @@ function checktutee(lec_num,id){
 							<th>${dto.be}</th>
 							<th>${dto.fin}</th>
 							<th>${dto.pri}</th>
+							<th><input type="button" class="btn_info"value="더보기" 
+							onclick="location='classForm.do?lec_num=${dto.lec_num}'"></th>
 							<th><input class="btn_info" type="button"
 								onclick="checktutee(${dto.lec_num})"
 								value="수강생"></th>
