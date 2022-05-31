@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lecture.LectureDao;
 import lecturede.LectureDeDataBean;
-import refund.RefundDataBean;
 
 @Controller
 public class AdminConfirmHandler implements CommandHandler{
@@ -25,7 +24,6 @@ public class AdminConfirmHandler implements CommandHandler{
 		String id = (String)request.getSession().getAttribute("memid");
 		if(id==null) id="guest";
 		if(id.equals("class365")) {
-			int sta=4;
 			List<LectureDeDataBean> dtos=lectureDao.getClassConfirm();
 			request.setAttribute("dtos", dtos);
 			return new ModelAndView("/class365/adminConfirm");
