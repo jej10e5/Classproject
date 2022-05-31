@@ -260,11 +260,7 @@
 		
 		</div>
 	</div>
-	<div class="cb_orange" style="width:100%; height:500px; ">
-		<span class="c_font_main cc_white">메인 페이지입니다.</span> 
-	</div>
-	<div class="cb_main" style="width:100%; height:500px; "></div>
-	<div class="cb_purple" style="width:100%; height:500px; "></div>
+
 </div>
 	
 	<script src="/JQueryEx/jquery-3.6.0.js" type="text/javascript"></script>
@@ -304,8 +300,3 @@
 <!-- bootstrap ver4.6 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
  </body>
-<footer> 
-<a href='https://kr.freepik.com/photos/woman'>Woman 사진는 freepik - kr.freepik.com가 제작함</a>
-<a href='https://kr.freepik.com/photos/hand'>Hand 사진는 pressfoto - kr.freepik.com가 제작함</a>
-<a href='https://kr.freepik.com/photos/woman'>Woman 사진는 freepik - kr.freepik.com가 제작함</a>
-</footer> 
