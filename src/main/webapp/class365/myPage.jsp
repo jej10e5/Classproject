@@ -296,9 +296,7 @@ color: #fff!important;
 								</div>
 							
 							</div>						
-						</div>
-						</c:if>
-						
+						</div>				
 					</div>
 				</div>
 				<div id="side_line">				
