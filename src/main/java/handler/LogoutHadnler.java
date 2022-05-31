@@ -20,7 +20,7 @@ public class LogoutHadnler implements CommandHandler{
 		@RequestMapping( "/logout" )
 		@Override
 		public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-			
+			request.getSession().removeAttribute("kid");
 			request.getSession().removeAttribute( "memid" );
 			List<LectureDeDataBean> dtos = lectureDao.getClassList();
 			request.setAttribute("dtos", dtos);

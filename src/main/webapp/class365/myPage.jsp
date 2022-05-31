@@ -277,8 +277,10 @@ color: #fff!important;
 					
 						
 						</div>
+
 						<!--찜목록 -->	
 							<div id="side_top_div" onclick="location='likeListForm.do'">
+
 						<div style="height: 4px; display : flex;">	</div>
 							<div class="cate_div">
 								<div class="cate_subject">
@@ -293,11 +295,9 @@ color: #fff!important;
 									</div>
 								</div>
 							
-							</div>
-					
-						
+							</div>						
 						</div>
-						
+						</c:if>
 						
 					</div>
 				</div>
