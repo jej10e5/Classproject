@@ -297,7 +297,6 @@ color: #fff!important;
 							
 							</div>						
 						</div>
-						</c:if>
 						
 					</div>
 				</div>
