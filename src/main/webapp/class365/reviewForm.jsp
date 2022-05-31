@@ -286,19 +286,19 @@ float:right;
 					
 						
 						</div>
-						<!-- 회원 탈퇴 -->	
-							<div id="side_top_div" onclick="location='deleteForm.do'">
+						<!--찜목록 -->	
+							<div id="side_top_div" onclick="location='likeListForm.do'">
 						<div style="height: 4px; display : flex;">	</div>
 							<div class="cate_div">
 								<div class="cate_subject">
 									<div class="cate_space">
 										<span class="cate_icon">
 
-										<i class="fa fa-user icon4 my_lec"></i>
+										<i class="fa-solid fa-heart cc_pink icon4 my_lec"></i>
 									
 										</span>
 										<div class="cate_icon_space"></div>
-										<span class="cate_name_css">회원 탈퇴</span>
+										<span class="cate_name_css">찜목록</span>
 									</div>
 								</div>
 							
@@ -306,7 +306,7 @@ float:right;
 					
 						
 						</div>
-						
+
 						
 					</div>
 				</div>

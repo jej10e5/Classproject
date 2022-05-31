@@ -69,23 +69,7 @@ function checktutee(lec_num){
 			<div id="side_bar_pos">
 				<div id="side_menu">
 					<div id="side_cate">
-						<div id="side_top_div">
-						<div style="height: 4px; display : flex;">	</div>
-							<div class="cate_div">
-								<div class="cate_subject">
-									<div class="cate_space">
-										<span class="cate_icon">
-										<i class="fa-solid fa-bell icon_pos"></i>
-										</span>
-										<div class="cate_icon_space"></div>
-										<span class="cate_name_css">공지사항</span>
-									</div>
-								</div>
-							
-							</div>
-					
 						
-						</div>
 						<!-- 강사 정보 -->
 						<div id="side_top_div" onclick="location='tutorInfoForm.do'">
 						<div style="height: 4px; display : flex;">	</div>

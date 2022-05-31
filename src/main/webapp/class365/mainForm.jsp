@@ -121,9 +121,9 @@
         <div class="container" > 
         <!-- 왼쪽정렬 --> 
           <div class="carousel-caption text-left" > 
-            <h1>Example headline.</h1> 
+            <h1>Welcome!!</h1> 
             <p>Some representative placeholder content for the first slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary " href="#">Sign up today</a></p>
+            <p><a class="btn btn-lg btn-primary " href="mainResultForm.do?c=금융">Sign up today</a></p>
           </div> 
         </div>
       </div>  
@@ -133,9 +133,9 @@
         <div class="container">
          <!-- 가운데 정렬 --> 
           <div class="carousel-caption">
-            <h1>Another example headline.</h1> 
+            <h1>Class</h1> 
             <p>Some representative placeholder content for the second slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+            <p><a class="btn btn-lg btn-primary" href="mainResultForm.do?c=요리">Learn more</a></p>
           </div>
         </div> 
       </div>
@@ -145,9 +145,9 @@
         <div class="container">
          <!-- 오른쪽정렬 -->
           <div class="carousel-caption text-right">
-            <h1>One more for good measure.</h1>
+            <h1>365</h1>
             <p>Some representative placeholder content for the third slide of this carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+            <p><a class="btn btn-lg btn-primary" href="mainResultForm.do?c=운동">Browse gallery</a></p>
           </div>
         </div>
       </div>
