@@ -153,6 +153,9 @@ float:right;
     flex-direction: row;
     align-items: center;
 }
+.rev_tutor_info{
+	list-style: none;
+}
 </style>
 <div id="total_div">
 <jsp:include page="header.jsp"/>
@@ -299,7 +302,7 @@ float:right;
 	 									 	<!-- 강사의 답글이 달려있을 경우 -->
 	 									 	<c:if test="${dgo.re_level eq 1 and dgo.count eq 2}">
 	 									 	<ul class="tutor_cmt">
-	 									 		<li class="tutor_re">
+	 									 		<li class="rev_tutor_info">
 	 									 			<div class="tutor_info">
 	 									 			
 	 									 				<span class="tutor_img">

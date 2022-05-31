@@ -460,8 +460,9 @@ public class LectureDBBean implements LectureDao{
 		
 	}
 	@Override
-	public void deleteReReview(RefundDataBean dto) {
-		SqlMapClient.getSession().delete("Lecture.deleteReReview",dto);
+	public int deleteReReview(RefundDataBean dto) {		
+	int gr_num=SqlMapClient.getSession().selectOne("Lecture.findReReview",dto);
+	return SqlMapClient.getSession().delete("Lecture.deleteReReview",gr_num);
 	}
 
 }

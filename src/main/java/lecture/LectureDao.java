@@ -97,7 +97,7 @@ public interface LectureDao {
 	public int getGrCount(int gr);
 	public int modifyTutorReview(ReviewDataBean dto);
 	
-	public void deleteReReview(RefundDataBean dto);
+	public int deleteReReview(RefundDataBean dto);
 	public List<LeclikeDataBean> getLikeList(String id);
 	public int deleteHeart(LeclikeDataBean dto);
 	public int insertHeart(LeclikeDataBean dto);
