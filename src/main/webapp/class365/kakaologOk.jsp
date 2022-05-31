@@ -7,4 +7,5 @@
 	
 <c:if test="${result eq 1}">
 	${sessionScope.memid = id}
+	${sessionScope.kid= "1" }
 </c:if>

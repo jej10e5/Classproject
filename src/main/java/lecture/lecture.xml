@@ -292,12 +292,16 @@
  	<delete id="deleteTutee" parameterType="refund.RefundDataBean">
  		delete from tutee where id=#{id} and lec_num=#{lec_num}
  	</delete>
+ 	<delete id="deleteReReview" parameterType="refund.RefundDataBean">
+ 		delete from review where id=#{id} and lec_num=#{lec_num}
+ 	</delete>
+ 	
  	<update id="updateRefund" parameterType="refund.RefundDataBean">
  		update refund set sta=1, fin_date=to_char(sysdate,'YYYY-MM-DD HH24:MI') where id=#{id} and lec_num=#{lec_num}
  	</update>
 
 		<select id="getTutorObj" parameterType="int" resultType="reviewlec.ReviewLecDataBean">
-		select lec_num,sub,(select count(*) from leclike where lec_num=#{lec_num}) as totlike, (select count(*) from review where lec_num=#{lec_num}) as totreview
+		select lec_num,sub,(select count(*) from leclike where lec_num=#{lec_num}) as totlike, (select count(*) from review where NOT(re_level=1) and lec_num=#{lec_num}) as totreview
 		from lecture
 		where lec_num=#{lec_num}
 	</select>

@@ -40,7 +40,7 @@ public class ReviewWriteProHandler implements CommandHandler{
 		int lec_num = Integer.parseInt(multi.getParameter("lec_num"));
 		
 		Date date = new Date(System.currentTimeMillis());
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh24:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	
 		
 		ReviewDataBean dto = new ReviewDataBean();

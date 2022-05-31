@@ -33,7 +33,7 @@ public class ReviewModifyProHandler implements CommandHandler{
 				request, path, 1024*1024*5, "utf-8", new DefaultFileRenamePolicy());
 		
 		Date date = new Date(System.currentTimeMillis());
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh24:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		
 		ReviewDataBean dto = new ReviewDataBean();
 		

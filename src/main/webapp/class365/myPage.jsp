@@ -278,6 +278,7 @@ color: #fff!important;
 						
 						</div>
 						<!-- 회원 탈퇴 -->	
+						<c:if test="${kid ne 1 }">					
 							<div id="side_top_div" onclick="location='deleteForm.do'">
 						<div style="height: 4px; display : flex;">	</div>
 							<div class="cate_div">
@@ -293,11 +294,9 @@ color: #fff!important;
 									</div>
 								</div>
 							
-							</div>
-					
-						
+							</div>						
 						</div>
-						
+						</c:if>
 						
 					</div>
 				</div>
