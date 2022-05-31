@@ -15,8 +15,34 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ba7439462d656bdc59c5331193480eaa&libraries=services"></script>
 	
 <style>
+
+.progressTag {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        display: block;
+        width: 100%px;
+        height: 5px;
+        border-radius: 7px;
+        color: #35495e;
+      }
+      progress::-webkit-progress-bar {
+        background-color: #eee;
+        border-radius: 8px;
+      }
+      progress::-webkit-progress-value {
+        background-color: #35495e;
+        border-radius: 8px;
+      }
+      progress::-moz-progress-bar {
+        background-color: #eee;
+        border-radius: 8px;
+      }
+
+
+
 #slide_div{
-padding-top:10px;
+padding-top:20px;
 
 padding-bottom:10px;
 }
@@ -86,6 +112,10 @@ $(document).ready(function($) {
 function limitclass(){
 	alert("신청이 불가능한 강의입니다.");
 }
+
+
+
+
 //-->
 </script>
 
@@ -470,6 +500,9 @@ function limitclass(){
 	 						
 	 						<div id="slide_div">
 	 						
+	 						<progress class="progressTag" value=0 max=100></progress>
+							
+	 						<!-- 
 	 						<c:if test="${month gt 1 }">
 	 						  <input class="range-slider_range" type="range" value="${month}" min="1" max="${month}">
 	 						  <span class="result" style="font-wight:500; color:#fd3049;">${month}개월</span>
@@ -478,10 +511,12 @@ function limitclass(){
 
 	 						<span class="result" style="font-wight:500; color:#fd3049;">${days}일</span>
 	 						</c:if>
+	 						 -->
 	 						  <!-- 여기 -->
 	 						  
 	 						  
-	 						</div>							
+	 						</div>				
+	 						<span id=tut_now_div" style="color:gray; font-weight:700; left:0px;" >현재${now}명</span>			
  							<div id="total_div">
  							
  						
@@ -490,13 +525,9 @@ function limitclass(){
  								</div>
  								
 	 							<div id="box_total">
-	 								<span style="color:gray; font-weight:700; left:0px;" >현재${now}명</span>
-	 							<c:if test="${month gt 1 }">
-	 								<span color="#fd3049" font-weight="700" id="total_price">${dcd.pri*month}원</span>
-	 							</c:if>
-	 							<c:if test="${month le 1}">
-	 								<span color="#fd3049" font-weight="700" id="total_price">${dcd.pri}원</span>
-	 							</c:if>
+	 							
+	 							 <span color="#fd3049" font-weight="700" id="total_price">${dcd.pri}원</span>
+	 							
 	 							
 	 							</div>
 	 						</div>	
@@ -509,20 +540,7 @@ function limitclass(){
 	 						</c:if>
 	 							<c:if test="${memid ne  null  and memid ne ''}">
 	 							<c:if test="${now lt dcd.cap}">
-	 							<c:if test="${month gt 1}">
-	 							<form action="payForm.do" method="post">
-	 							<input type="hidden" name="month" value="" id="pay_month">
-	 							<input type="hidden" name="cost" value="${m_cost}" id="cost">
-	 							<input type="hidden" name="lec_num" value="${lec_num}">
-	 							<c:if test="${dto.sta ne 1}">
-	 							<input type="button"id="buy_btn" value="결제하기" onclick="limitclass()">
-	 							</c:if>	
-	 							<c:if test="${dto.sta eq 1}">
-	 							<input type="submit" id="buy_btn" value="결제하기">	 
-	 							</c:if>							 						
-	 							</form>
-	 							</c:if>
-	 							<c:if test="${month le 1}">
+	 							
 	 							<form action="payForm.do" method="post">
 	 							<input type="hidden" name="cost" value="${dcd.pri}">
 	 							<input type="hidden" name="lec_num" value="${dto.lec_num}">
@@ -533,7 +551,7 @@ function limitclass(){
 	 							<input type="submit" id="buy_btn" value="결제하기">	 
 	 							</c:if>
 	 							</form>	
-	 							</c:if>	
+	 							
 	 							</c:if> 
 	 							<c:if test="${now eq dcd.cap}">
 	 							<input type="hidden" name="month" value="" id="pay_month">
@@ -558,6 +576,32 @@ function limitclass(){
 									  cost.attr('value',$(this).val()*${dcd.pri});						
 							      	  month.attr('value',$(this).val());
 							      });
+							      
+							      function tag () {
+							    	  let progress = document.querySelector('.progressTag')
+							    	  let interval = 1
+							    	  let updatesPerSecond = 1000 / 60
+							    	  let end = progress.max*( ${now} / ${dcd.cap} )
+
+							    	  function animator () {
+							    	    progress.value = progress.value+interval
+							    	    if ( progress.value+interval< end){
+							    	      setTimeout(animator, updatesPerSecond);
+							    	    } else { 
+							    	      progress.value = end;
+							    	  
+							    	    }
+							    	  }
+
+							    	  setTimeout(() => {
+							    	    animator()
+							    	  }, updatesPerSecond)
+							    	}
+
+							    	tag()
+							      
+							      
+							      
 								//-->
 								</script>
 	 						</section>
@@ -571,7 +615,6 @@ function limitclass(){
  	
  	</div>
  <!-- bootstrap ver4.6 JS -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
  	
  <!-- 풋 블록 -->
