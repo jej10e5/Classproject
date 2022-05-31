@@ -9,11 +9,16 @@
 	</div> 
 <c:if test="${sessionScope.memid eq 'class365'}">
 	<nav class="navbar navbar-expand-xl navbar-light bg-white">
-	<a class="navbar-brand c_font_main" href="adminMainForm.do" style="margin-right:30px;"> 
+	<a class="navbar-brand c_font_main" href="adminConfirm.do" style="margin-right:30px;"> 
   	<span class="cc_main">${page_main1}</span>
   	<span class="cc_orange">${page_main2}</span> 
-  	<span class="cc_purple">&nbsp;&nbsp;&nbsp;관리자</span>   
+  	<span class="cc_purple">&nbsp;&nbsp;&nbsp;관리자&nbsp;&nbsp;&nbsp;</span>   
   	</a> 
+  	<ul class="navbar-nav"> 
+      <li class="nav-item my-2 my-lg-0">
+        <a class="nav-link cc_purple c_font_category" href="mainForm.do">메인</a>
+      </li>
+     </ul>
   	</nav>
 </c:if>
 <c:if test="${sessionScope.memid ne 'class365'}"> 

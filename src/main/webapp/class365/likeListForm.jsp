@@ -260,7 +260,7 @@ color: #fff!important;
 						
 						</div>
 						<!-- 리뷰 관리 -->
-							<div id="side_top_div" onclick="location=''">
+							<div id="side_top_div" onclick="location='reviewForm.do'">
 						<div style="height: 4px; display : flex;">	</div>
 							<div class="cate_div">
 								<div class="cate_subject">

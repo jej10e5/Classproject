@@ -38,7 +38,7 @@ public class ReviewFormHandler implements CommandHandler{
 		String pageNum = null;
 		int currentPage = 0;
 		int pageSize = 5;
-		
+		 
 		count = lectureDao.getReCount(id);
 		
 		pageNum = request.getParameter( "pageNum" );

@@ -154,9 +154,9 @@
 		from tutee t 
 		join lecture e 
 		on t.lec_num=e.lec_num
-		full outer join review r
-		on t.lec_num=r.lec_num	 
-		where t.id=#{id} 
+		join review r
+		on t.lec_num=r.lec_num	and t.id=r.id 
+		where t.id=#{id}
 		order by t.lec_num desc
 	</select>
 	<insert id="insertReview" parameterType="review.ReviewDataBean">
