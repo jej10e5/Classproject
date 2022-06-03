@@ -38,10 +38,10 @@ public class ModifyClassDeProHandler implements CommandHandler{
 		int result;
 		int check=lectureDao.checkOriginClassde(lec_num);
 		if(check==0) {
-			lectureDao.finClass(lec_num);
+			lectureDao.createFinClass(lec_num);
 			result = lectureDao.createClass2(dto);
 		}else {
-			lectureDao.finClass(lec_num);
+			lectureDao.createFinClass(lec_num);
 			result = lectureDao.modifyClassde(dto);
 		}
 		request.setAttribute("result", result);

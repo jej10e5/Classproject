@@ -15,8 +15,34 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ba7439462d656bdc59c5331193480eaa&libraries=services"></script>
 	
 <style>
+
+.progressTag {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        display: block;
+        width: 100%px;
+        height: 5px;
+        border-radius: 7px;
+        color: #35495e;
+      }
+      progress::-webkit-progress-bar {
+        background-color: #eee;
+        border-radius: 8px;
+      }
+      progress::-webkit-progress-value {
+        background-color: #35495e;
+        border-radius: 8px;
+      }
+      progress::-moz-progress-bar {
+        background-color: #eee;
+        border-radius: 8px;
+      }
+
+
+
 #slide_div{
-padding-top:10px;
+padding-top:20px;
 
 padding-bottom:10px;
 }
@@ -25,6 +51,50 @@ background-color:#d7dcdf;
 border-radius: 5px;
 width:100%;
 
+}
+.tue_rev{
+	width: 100%;
+    padding: 48px 0px;
+}
+.tutor_img{
+	display: table-cell;
+    width: 30px;
+    height: 30px;
+
+}
+.tutor_pro_img {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.tutor_info {
+   display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+}
+}
+.tut_rev_div {
+    margin-left: 200px;
+}
+.tutor_cmt{
+	list-style: none!important; 
+    margin-left: 100px;
+}
+.rev_box{
+    display: flex;
+    flex-direction: column;
+}
+.tutor_rev_box{
+	background-color: #ffe5ec;
+	margin: 8px 0 8px 72px;
+	padding: 17px 19px;
+    border-radius: 0 10px 10px 10px;
+}
+#header_nav{
+    position: fixed!important;
+    width: 100%!important;
 }
 </style>
 
@@ -38,6 +108,12 @@ $(document).ready(function($) {
                 $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
         });
 });
+
+function limitclass(){
+	alert("신청이 불가능한 강의입니다.");
+}
+
+
 
 
 //-->
@@ -88,14 +164,14 @@ $(document).ready(function($) {
 	 						<dt class= "class_dt">강의 기간 </dt>
 	 						
 	 						<c:if test="${month gt 1}">
-	 						<dd class="class_dd">${month}</dd>
+	 						<dd class="class_dd">${month}개월</dd>
 	 						</c:if>
 	 						<c:if test="${month le 1}">
 	 						<dd class="class_dd">1개월 미만</dd>
 	 						</c:if>
 	 						 
 	 						<dt class="class_dt">최대 인원 </dt>
-	 						<dd class="class_dd">${dcd.cap}</dd>
+	 						<dd class="class_dd">${dcd.cap}명</dd>
 	 						<dt class= "class_dt">강의 난이도 </dt>
 	 						<dd class="class_dd">${dcd.lv} </dd>	 					
 	 					</dl>
@@ -235,38 +311,94 @@ $(document).ready(function($) {
 	 					</section>	 				
 	 				</div>
 	 				<div id="review_div" style="padding-top:150px;">
-	 					<section class="tut_intro">
+	 					<section class="tut_rev">
 	 						<div class="name_div">
 	 							<h3 class="tut_name">수강생 리뷰 </h3>
 	 						</div>
+	 						<div class="rev_box">
+	 						<!-- 여기 -->
+	 						<c:forEach var="dgo" items="${dgos}">
+	 						<c:if test="${dgo.re_level eq 0}">
 	 						<div class="tut_rev_div">
 	 							<div class="review_text">
 	 								<ul>
+	 									<c:if test="${dgo.count eq 1}">
 	 									<li class="review_list">
 	 									  <div class="rev_tute_info">
 	 										<span class="tute_img">
-	 											<img class = "tute_rev_img" src="/Test/images/tut_img.jpg"/>
+	 											<img class = "tute_rev_img" src="${imagepath}tutee_img.jpg"/>
 	 										</span>	
 	 									  <div class="tute">	
 	 										<div class ="rev_tut_name">
-	 											<span class="tut_names">김밥</span>
+	 											<span class="tut_names">${dgo.id}</span>
+	 											
 	 										</div>	
 	 										<div class = "rev_write_date">
-	 											<p class = "write_date">2022-05-30 11:00:56</p> 
+	 											<p class = "write_date">${dgo.reg_date}</p> 
 	 										</div>
+	 										
 	 									  </div>	
-	 									 
+	 									 	<div class="tutee_rev_images">
+	 											<img class="tute_rev_picture" src="${imagepath}${dgo.img}">
+	 										</div>
 	 									 </div>	
 	 									  <div class="rev_object">
-	 									  		<p class="rev_cmt">가나다라 마바사 ABCD
-	 									  			<br>
-	 									  			어렵지만 재밌게 읽었습니다. 사주를 재미겸 많이 봤던편인데 많이 봐서 그런지 지금까지 들었던 이야기들이 들어있었습니다.
-그래도 좋았던건 뭔가 진심으로 봐주시려하는 느낌이 글 한 자 한 자에 녹아있던 것 같습니다. 마지막에 사주를 마무리하며 남겨주신 이야기도 마음에 와 닿았습니다.
-	 									  		</p>
+	 									  		<pre class="rev_cmt">${dgo.re}</pre>
 	 									  </div>	
 	 									</li>
+	 									</c:if>
+	 									<c:if test="${dgo.count ne 1}">
+	 									<li class="review_list_no">
+	 									  <div class="rev_tute_info">
+	 										<span class="tute_img">
+	 											<img class = "tute_rev_img" src="${imagepath}tutee_img.jpg"/>
+	 										</span>	
+	 									  <div class="tute">	
+	 										<div class ="rev_tut_name">
+	 											<span class="tut_names">${dgo.id}</span>
+	 										</div>	
+	 										<div class = "rev_write_date">
+	 											<p class = "write_date">${dgo.reg_date}</p> 
+	 										</div>
+	 										
+	 									  </div>	
+	 									 	<div class="tutee_rev_images">
+	 											<img class="tute_rev_picture" src="${imagepath}${dgo.img}">
+	 										</div>
+	 									 </div>	
+	 									  <div class="rev_object">
+	 									  		<pre class="rev_cmt">${dgo.re}</pre>
+	 									  </div>	
+	 									</li>
+	 									</c:if>	
+	 								
 	 								</ul>
 	 							</div>
+	 						</div>
+	 						</c:if>
+	 						<c:if test="${dgo.re_level eq 1}">
+	 						 <ul class="tutor_cmt">
+	 									 		<li class="tutor_re">
+	 									 			<div class="tutor_info">
+	 									 			
+	 									 				<span class="tutor_img">
+	 									 					<img src="${imagepath}${dtt.pro}"class="tutor_pro_img">
+	 									 				</span>
+	 									 			
+	 									 				<div class="rev_tutor_id"> 			
+	 									 				     <span class="tutor_name">${dtt.id}</span>
+	 									 				
+	 									 					<p class="write_date">${dgo.reg_date}</p>
+	 									 				
+	 									 				</div>	
+	 									 				<div class="tutor_rev_box">
+	 									 				<pre class="tutor_txt" id="review_txt"style="font-size: 14px; line-height: 23px; word-break: break-all;">${dgo.re}</pre>	 									 				
+	 									 			</div>		
+	 									 			</div> 			 									 			
+	 									 		</li>
+	 									 	</ul>			
+	 						</c:if>
+	 						</c:forEach>
 	 						</div>
 	 					</section>
 	 				</div>
@@ -323,7 +455,11 @@ $(document).ready(function($) {
  							<h2 id="box_title">[${dto.sub}]</h2>
  							<div id="class_state">
  								<div id="state_box">
- 									<div id="state_open">모집중</div>
+ 									<div id="state_open">
+ 									<c:if test="${dto.sta eq 1}">모집중</c:if>
+ 									<c:if test="${dto.sta eq 2}">마감</c:if>
+ 									<c:if test="${dto.sta eq 3}">제한됨</c:if>
+ 									</div>
  								</div>		
  							</div>
  							<div id="box_mid">
@@ -364,6 +500,9 @@ $(document).ready(function($) {
 	 						
 	 						<div id="slide_div">
 	 						
+	 						<progress class="progressTag" value=0 max=100></progress>
+							
+	 						<!-- 
 	 						<c:if test="${month gt 1 }">
 	 						  <input class="range-slider_range" type="range" value="${month}" min="1" max="${month}">
 	 						  <span class="result" style="font-wight:500; color:#fd3049;">${month}개월</span>
@@ -372,10 +511,12 @@ $(document).ready(function($) {
 
 	 						<span class="result" style="font-wight:500; color:#fd3049;">${days}일</span>
 	 						</c:if>
+	 						 -->
 	 						  <!-- 여기 -->
 	 						  
 	 						  
-	 						</div>							
+	 						</div>				
+	 						<span id=tut_now_div" style="color:gray; font-weight:700; left:0px;" >현재${now}명</span>			
  							<div id="total_div">
  							
  						
@@ -384,13 +525,9 @@ $(document).ready(function($) {
  								</div>
  								
 	 							<div id="box_total">
-	 								<span style="color:gray; font-weight:700; left:0px;" >현재${now}명</span>
-	 							<c:if test="${month gt 1 }">
-	 								<span color="#fd3049" font-weight="700" id="total_price">${dcd.pri*month}원</span>
-	 							</c:if>
-	 							<c:if test="${month le 1}">
-	 								<span color="#fd3049" font-weight="700" id="total_price">${dcd.pri}원</span>
-	 							</c:if>
+	 							
+	 							 <span color="#fd3049" font-weight="700" id="total_price">${dcd.pri}원</span>
+	 							
 	 							
 	 							</div>
 	 						</div>	
@@ -403,27 +540,25 @@ $(document).ready(function($) {
 	 						</c:if>
 	 							<c:if test="${memid ne  null  and memid ne ''}">
 	 							<c:if test="${now lt dcd.cap}">
-	 							<c:if test="${month gt 1}">
-	 							<form action="payForm.do" method="post">
-	 							<input type="hidden" name="month" value="" id="pay_month">
-	 							<input type="hidden" name="cost" value="${m_cost}" id="cost">
-	 							<input type="hidden" name="lec_num" value="${lec_num}">
-	 							<input type="submit" id="buy_btn" value="결제하기">	 							 						
-	 							</form>
-	 							</c:if>
-	 							<c:if test="${month le 1}">
+	 							
 	 							<form action="payForm.do" method="post">
 	 							<input type="hidden" name="cost" value="${dcd.pri}">
 	 							<input type="hidden" name="lec_num" value="${dto.lec_num}">
-	 							<input type="submit" id="buy_btn" value="결제하기">
-	 							</form>	
+	 							<c:if test="${dto.sta ne 1}">
+	 							<input type="button"id="buy_btn" value="결제하기" onclick="limitclass()">
 	 							</c:if>	
+	 							<c:if test="${dto.sta eq 1}">
+	 							<input type="submit" id="buy_btn" value="결제하기">	 
+	 							</c:if>
+	 							</form>	
+	 							
 	 							</c:if> 
 	 							<c:if test="${now eq dcd.cap}">
 	 							<input type="hidden" name="month" value="" id="pay_month">
 	 							<input type="hidden" name="cost" value="${m_cost}" id="cost">
 	 							<input type="hidden" name="lec_num" value="${lec_num}">
-	 							<input type="button" class="btn" value="수강 인원이 마감되었습니다.">	 							 						
+	 							<input type="button" class="btn" value="수강 인원이 마감되었습니다.">	 	
+	 												 						
 	 							</c:if>							
 	 						</c:if>
 	 					 		 <script type="text/javascript">
@@ -441,6 +576,32 @@ $(document).ready(function($) {
 									  cost.attr('value',$(this).val()*${dcd.pri});						
 							      	  month.attr('value',$(this).val());
 							      });
+							      
+							      function tag () {
+							    	  let progress = document.querySelector('.progressTag')
+							    	  let interval = 1
+							    	  let updatesPerSecond = 1000 / 60
+							    	  let end = progress.max*( ${now} / ${dcd.cap} )
+
+							    	  function animator () {
+							    	    progress.value = progress.value+interval
+							    	    if ( progress.value+interval< end){
+							    	      setTimeout(animator, updatesPerSecond);
+							    	    } else { 
+							    	      progress.value = end;
+							    	  
+							    	    }
+							    	  }
+
+							    	  setTimeout(() => {
+							    	    animator()
+							    	  }, updatesPerSecond)
+							    	}
+
+							    	tag()
+							      
+							      
+							      
 								//-->
 								</script>
 	 						</section>
@@ -454,14 +615,11 @@ $(document).ready(function($) {
  	
  	</div>
  <!-- bootstrap ver4.6 JS -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
  	
  <!-- 풋 블록 -->
 	 <footer id="footer_div">
-	 풋터입니다
-	 
-	  
+ 
 	 
 	 </footer>
  </div>

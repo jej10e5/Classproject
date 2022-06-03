@@ -116,14 +116,13 @@ color: #fff!important;
 					<div id="side_cate">
 						<div id="side_top_div">
 						 <div class="profile-card">
-               			 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" class="profile-photo">
-            			<h5 class="text-white">${memid} 님</h5>
-            			<h5 class="text-white">안녕하세요</h5>
+            			<h3 class="text-white">${memid} 님</h3>
+            			<h5 class="text-white">안녕하세요</h5> 
             	
             			</div><!--profile card ends-->
 
 						</div>
-						<!-- 내 정보 -->
+						<!-- 강의 정보 -->
 						<div id="side_top_div" onclick="location='myPage.do'">
 						<div style="height: 4px; display : flex;">	</div>
 							<div class="cate_div">
@@ -140,10 +139,26 @@ color: #fff!important;
 								</div>
 							
 							</div>
-					
-						
 						</div>
-						<!-- 클래스 관리 -->
+						<!-- 강의 정보 -->
+						<div id="side_top_div" onclick="location='refundRequest.do'">
+						<div style="height: 4px; display : flex;">	</div>
+							<div class="cate_div">
+								<div class="cate_subject">
+									<div class="cate_space">
+										<span class="cate_icon">
+
+										<i class="fa fa-list-alt icon1 my_lec" style="color:red;"></i>
+									
+										</span>
+										<div class="cate_icon_space"></div>
+										<span class="cate_name_css">취소현황</span>
+									</div>
+								</div>
+							
+							</div>
+						</div>
+						<!-- 내정보 관리 -->
 							<div id="side_top_div" onclick="location='modifyForm.do'">
 						<div style="height: 4px; display : flex;">	</div>
 							<div class="cate_div">
@@ -164,7 +179,7 @@ color: #fff!important;
 						
 						</div>
 						<!-- 리뷰 관리 -->
-							<div id="side_top_div" onclick="location=''">
+							<div id="side_top_div" onclick="location='reviewForm.do'">
 						<div style="height: 4px; display : flex;">	</div>
 							<div class="cate_div">
 								<div class="cate_subject">
@@ -183,19 +198,19 @@ color: #fff!important;
 					
 						
 						</div>
-						<!-- 회원 탈퇴 -->	
-							<div id="side_top_div" onclick="location='deleteForm.do'">
+						<!--찜목록 -->	
+							<div id="side_top_div" onclick="location='likeListForm.do'">
 						<div style="height: 4px; display : flex;">	</div>
 							<div class="cate_div">
 								<div class="cate_subject">
 									<div class="cate_space">
 										<span class="cate_icon">
 
-										<i class="fa fa-user icon4 my_lec"></i>
+										<i class="fa-solid fa-heart cc_pink icon4 my_lec"></i>
 									
 										</span>
 										<div class="cate_icon_space"></div>
-										<span class="cate_name_css">회원 탈퇴</span>
+										<span class="cate_name_css">찜목록</span>
 									</div>
 								</div>
 							
@@ -203,6 +218,7 @@ color: #fff!important;
 					
 						
 						</div>
+						
 						
 						
 					</div>
@@ -246,7 +262,7 @@ color: #fff!important;
 			</div>
 			
 		</div>
-		
+	</div>	
 		
 			
 	  <div id="tutor_div_space"></div>

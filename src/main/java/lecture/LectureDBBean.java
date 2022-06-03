@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import lecde.LecdeDataBean;
+import lecdelike.LecdelikeDataBean;
 import leclike.LeclikeDataBean;
 import lecmem.LecmemDataBean;
 import tutee.TuteeDataBean;
@@ -14,8 +15,10 @@ import tuteelec.TuteeLecDataBean;
 import tuteemem.TuteememDataBean;
 import lecturede.LectureDeDataBean;
 import map.MapDataBean;
+import mem.MemDataBean;
 import refund.RefundDataBean;
 import review.ReviewDataBean;
+import reviewlec.ReviewLecDataBean;
 import tutor.TutorDataBean;
 
 public class LectureDBBean implements LectureDao{
@@ -123,13 +126,17 @@ public class LectureDBBean implements LectureDao{
 		e.printStackTrace();
 	}
 
-	return days;
+	return days; 
 	}
 	
 	
 	public LecmemDataBean getMember(String id) {	
 		return SqlMapClient.getSession().selectOne("Lecture.getMember",id);	
 	  }
+	public List<MemDataBean> getMemberAll() {	
+		return SqlMapClient.getSession().selectList("Lecture.getMemberAll");	
+	  }
+
 
 	public TutorDataBean getTutor(String id) {
 		return SqlMapClient.getSession().selectOne("Lecture.getTutor",id);
@@ -148,6 +155,21 @@ public class LectureDBBean implements LectureDao{
 		// TODO Auto-generated method stub
 		return SqlMapClient.getSession().selectList("Lecture.getClassList");
 	}
+	@Override
+	public List<LecdelikeDataBean> getClassLikeList(String id) {
+		return SqlMapClient.getSession().selectList("Lecture.getClassLikeList",id);
+	}
+	@Override
+	public List<LectureDeDataBean> getClassListAll() {
+		// TODO Auto-generated method stub
+		return SqlMapClient.getSession().selectList("Lecture.getClassListAll");
+	}
+	@Override
+	public List<LectureDeDataBean> getClassConfirm() {
+		// TODO Auto-generated method stub
+		return SqlMapClient.getSession().selectList("Lecture.getClassConfirm");
+	}
+	
 	@Override
 
 	public LectureDataBean getLecture(int lec_num) {
@@ -185,6 +207,11 @@ public class LectureDBBean implements LectureDao{
 	public int finClass(int lec_num) {
 		// TODO Auto-generated method stub
 		return SqlMapClient.getSession().update("Lecture.updateFinClass",lec_num);
+
+	}
+	public int createFinClass(int lec_num) {
+		// TODO Auto-generated method stub
+		return SqlMapClient.getSession().update("Lecture.updateCreateClass",lec_num);
 
 	}
 	@Override
@@ -233,6 +260,10 @@ public class LectureDBBean implements LectureDao{
 		return SqlMapClient.getSession().delete("Lecture.deleteClass",lec_num);
 	}
 	@Override
+	public int deleteDeClass(int lec_num) {
+		return SqlMapClient.getSession().delete("Lecture.deleteDeClass",lec_num);
+	}
+	@Override
 	public int inactiveClass(int lec_num) {
 		return SqlMapClient.getSession().update("Lecture.updateInactive",lec_num);
 	}
@@ -244,7 +275,11 @@ public class LectureDBBean implements LectureDao{
 	public String findId(String tel) {
 		return SqlMapClient.getSession().selectOne( "Lecture.findId", tel);
 	}
-
+	
+	public String findPasswd(LecmemDataBean dto) {
+		return SqlMapClient.getSession().selectOne( "Lecture.findPasswd", dto);
+	}
+	
 	@Override
 	public int modifyTutorPro(TutorDataBean dto) {
 		return SqlMapClient.getSession().update("Lecture.updateTutorPro",dto);
@@ -276,7 +311,8 @@ public class LectureDBBean implements LectureDao{
 	public int modifyReview(ReviewDataBean dto) {
 		return SqlMapClient.getSession().update("Lecture.modifyReview",dto);
 	}
-
+	
+	
 
 	
 	@Override
@@ -320,8 +356,8 @@ public class LectureDBBean implements LectureDao{
 		return SqlMapClient.getSession().selectList("Lecture.getMemberLikeList",id);
 	}
 	@Override
-	public int deleteReview(int re_num) {
-		return SqlMapClient.getSession().delete("Lecture.deleteReview",re_num);
+	public int deleteReview(int gr) {
+		return SqlMapClient.getSession().delete("Lecture.deleteReview",gr);
 	}
 	@Override
 	public int resetTuteeReviewNum(int re_num) {
@@ -373,8 +409,60 @@ public class LectureDBBean implements LectureDao{
 		return SqlMapClient.getSession().update("Lecture.updateRefund",dto);
 	}
 	@Override
+
+	public ReviewLecDataBean getTutorObj(int lec_num) {
+
+		return SqlMapClient.getSession().selectOne("Lecture.getTutorObj",lec_num);
+	}
+	@Override
+	public int getGrCount(int gr) {
+		return SqlMapClient.getSession().selectOne("Lecture.getGrCount",gr);
+	}
+	@Override
+	public int modifyTutorReview(ReviewDataBean dto) {
+		return SqlMapClient.getSession().update("Lecture.modifyTutorReview",dto);
+	}
+
+
 	public int calcLike(int lec_num) {
 		return SqlMapClient.getSession().selectOne("Lecture.calcLike",lec_num);
+	}
+	@Override
+	public int changeClass(LectureDataBean dto) {
+		return SqlMapClient.getSession().update("Lecture.changeClass",dto);
+	}
+	@Override
+	public List<ReviewDataBean> getReviewAll() {
+		return SqlMapClient.getSession().selectList("Lecture.getReviewAll");
+	}
+	@Override
+	public ReviewDataBean getReview(int re_num) {
+		return SqlMapClient.getSession().selectOne("Lecture.getReviewOne",re_num);
+	}
+	@Override
+	public int KidCheck(String id) {
+		return SqlMapClient.getSession().selectOne("Lecture.KidCheck",id);
+	}
+	@Override
+	public int insertKmem(LecmemDataBean dto) {
+		int count =SqlMapClient.getSession().insert("Lecture.insertKmem",dto);
+		int result = 0;
+		if(count !=0) {
+			result = 1;
+		} else {
+		 result = 0;	
+		}
+	return result;
+	}
+	@Override
+	public void deleteAdminReview(int re_num) {
+		SqlMapClient.getSession().delete("Lecture.deleteAdminReview",re_num);
+		
+	}
+	@Override
+	public int deleteReReview(RefundDataBean dto) {		
+	int gr_num=SqlMapClient.getSession().selectOne("Lecture.findReReview",dto);
+	return SqlMapClient.getSession().delete("Lecture.deleteReReview",gr_num);
 	}
 
 }

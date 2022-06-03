@@ -40,7 +40,7 @@ public class ReviewWriteProHandler implements CommandHandler{
 		int lec_num = Integer.parseInt(multi.getParameter("lec_num"));
 		
 		Date date = new Date(System.currentTimeMillis());
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	
 		
 		ReviewDataBean dto = new ReviewDataBean();
@@ -50,7 +50,7 @@ public class ReviewWriteProHandler implements CommandHandler{
 		dto.setImg( multi.getFilesystemName("img"));
 		dto.setReg_date(sdf.format(date) );
 		dto.setRe_level( Integer.parseInt(multi.getParameter("re_level"))); 
-		//dto.setGr( Integer.parseInt(multi.getParameter("Gr"))); ±×·ìÈ­¾ÆÀÌµð ½ÃÄö½º·Î º¯°æ 
+		//dto.setGr( Integer.parseInt(multi.getParameter("Gr"))); ï¿½×·ï¿½È­ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 		
 		int result = lectureDao.insertReview(dto);
 		

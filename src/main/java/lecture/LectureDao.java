@@ -3,6 +3,7 @@ package lecture;
 import java.util.List;
 
 import lecde.LecdeDataBean;
+import lecdelike.LecdelikeDataBean;
 import leclike.LeclikeDataBean;
 import lecmem.LecmemDataBean;
 
@@ -14,8 +15,10 @@ import tuteemem.TuteememDataBean;
 
 import lecturede.LectureDeDataBean;
 import map.MapDataBean;
+import mem.MemDataBean;
 import refund.RefundDataBean;
 import review.ReviewDataBean;
+import reviewlec.ReviewLecDataBean;
 import tutor.TutorDataBean;
 public interface LectureDao {
 	public int createClass(LectureDataBean dto);
@@ -28,6 +31,7 @@ public interface LectureDao {
 	public int check(String id,String passwd);
 	public int check(String id);
 	public LecmemDataBean getMember(String id);
+	public List<MemDataBean> getMemberAll();
 
 	public TutorDataBean getTutor(String id);
 	public int modifyTutor(TutorDataBean dto);
@@ -35,6 +39,8 @@ public interface LectureDao {
 	public int tutorCheck(String id);
 	public LectureDataBean getLecture(int lec_num);
 	public List<LectureDeDataBean> getClassList();
+	public List<LectureDeDataBean> getClassListAll();
+	public List<LecdelikeDataBean> getClassLikeList(String id);
 
 	public LecdeDataBean getLecde(int lec_num);
 	public int calcMonth(int lec_num);
@@ -48,10 +54,11 @@ public interface LectureDao {
 	public int insertReview(ReviewDataBean dto);
 	public ReviewDataBean getReview(ReviewDataBean dto); 
 	public ReviewDataBean getRe(int re_num); 
-	public int deleteReview(int re_num);
+	public int deleteReview(int gr);
 	public int resetTuteeReviewNum(int re_num);
 	
 	public int finClass(int lec_num);
+	public int createFinClass(int lec_num);
 	public int createClass2(LecdeDataBean dto);
 	
 	public int getReCount(String id);
@@ -59,7 +66,9 @@ public interface LectureDao {
 	public int insertRenum(TuteeDataBean dtt);
 
 	public String findId(String tel);
+	public String findPasswd(LecmemDataBean dto);
 
+	
 	public List<LectureDeDataBean> getTutorClass(String id);
 	public List<TuteeLecDataBean> getTuteeClass(String id);
 	public LectureDataBean getOriginClass(int lec_num);
@@ -70,10 +79,13 @@ public interface LectureDao {
 	public int modifyClassde(LecdeDataBean dto);
 	public int checkOriginClassde(int lec_num);
 	public int deleteClass(int lec_num);
+	public int deleteDeClass(int lec_num);
 	public int inactiveClass(int lec_num);
 
 	public int modifyMember( LecmemDataBean dto );
 	public int modifyTutorPro(TutorDataBean dto);
+	
+	
 	
 	public List<LectureDeDataBean> getCategory(String c);
 	public List<LectureDeDataBean> getSearchResult(String p);
@@ -81,8 +93,11 @@ public interface LectureDao {
 	public List<LectureDeDataBean> getTuteeClassList(String id);
 	public LectureDataBean getLectureId(String id);
 	public int insertTutorReview(ReviewDataBean dto);
+	public ReviewLecDataBean getTutorObj(int lec_num);
+	public int getGrCount(int gr);
+	public int modifyTutorReview(ReviewDataBean dto);
 	
-	
+	public int deleteReReview(RefundDataBean dto);
 	public List<LeclikeDataBean> getLikeList(String id);
 	public int deleteHeart(LeclikeDataBean dto);
 	public int insertHeart(LeclikeDataBean dto);
@@ -99,5 +114,15 @@ public interface LectureDao {
 	public List<RefundDataBean> getRefundList();
 	public int refundConfirm(RefundDataBean dto);
 	public int calcLike(int lec_num);
+	
+	public List<LectureDeDataBean> getClassConfirm();
+	public int changeClass(LectureDataBean dto);
 
+	
+	public int KidCheck(String id);
+	public int insertKmem(LecmemDataBean dto);
+
+	public List<ReviewDataBean> getReviewAll();
+	public ReviewDataBean getReview(int re_num);
+	public void deleteAdminReview(int re_num);
 }

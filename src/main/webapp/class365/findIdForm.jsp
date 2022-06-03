@@ -37,7 +37,7 @@
         <div class="form-group">		      	
         </div>
         <div class="form-group">
-        	<input type="tel" class="form-control" name="tel" placeholder="전화번호" required="required">
+        	<input type="tel" class="form-control" name="tel" placeholder="전화번호를 입력하세요" required="required">
         </div>
 		
 		<div class="form-group">

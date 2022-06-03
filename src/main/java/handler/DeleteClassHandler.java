@@ -22,6 +22,7 @@ public class DeleteClassHandler implements CommandHandler{
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int lec_num=Integer.parseInt(request.getParameter("lec_num"));
 		lectureDao.deleteClass(lec_num);
+		lectureDao.deleteDeClass(lec_num);
 		String id = (String)request.getSession().getAttribute("memid");
 		int tutorInfo = lectureDao.getCreateTutor(id); 
 		request.setAttribute("tutorInfo", tutorInfo);

@@ -2,13 +2,26 @@
     pageEncoding="UTF-8"%>
 <%@include file="setting.jsp" %>  
  <link href="${project}/style.css" rel="stylesheet" type="text/css"> 
-
 <header id="header_nav">      
 <div id="header_top">   
 	<div id="h_top">  
 		<span class="c_font_content" id="htext">매일 매일 듣는 class 365!!</span> 
 	</div> 
-	 
+<c:if test="${sessionScope.memid eq 'class365'}">
+	<nav class="navbar navbar-expand-xl navbar-light bg-white">
+	<a class="navbar-brand c_font_main" href="adminConfirm.do" style="margin-right:30px;"> 
+  	<span class="cc_main">${page_main1}</span>
+  	<span class="cc_orange">${page_main2}</span> 
+  	<span class="cc_purple">&nbsp;&nbsp;&nbsp;관리자&nbsp;&nbsp;&nbsp;</span>   
+  	</a> 
+  	<ul class="navbar-nav"> 
+      <li class="nav-item my-2 my-lg-0">
+        <a class="nav-link cc_purple c_font_category" href="mainForm.do">메인</a>
+      </li>
+     </ul>
+  	</nav>
+</c:if>
+<c:if test="${sessionScope.memid ne 'class365'}"> 
 <nav class="navbar navbar-expand-xl navbar-light bg-white">
   <a class="navbar-brand c_font_main" href="mainForm.do" style="margin-right:30px;"> 
   	<span class="cc_main">${page_main1}</span>
@@ -39,7 +52,9 @@
       <li class="nav-item c_font_category">   
         <form class="form-inline my-2 my-lg-0" style="padding:5px;"
         	action="mainResultForm.do" method="post">
-      	<input class="form-control mr-sm-2 " type="search" name="p" style="width:300px;" placeholder="${str_search}" aria-label="Search">
+      	<input class="form-control mr-sm-2 " type="search" name="p" 
+      	style="width:300px;" placeholder="${str_search}" aria-label="Search"
+      	value="${p}">
       	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">${btn_search}</button>
       </form>
       </li>
@@ -77,11 +92,32 @@
         <a class="nav-link cc_purple c_font_category" href="myPage.do">${menu_mypage}</a>
       </li>
       <li class="nav-item my-2 my-lg-0"> 
-        <a class="nav-link cc_gray c_font_category" href="logout.do">${menu_logout}</a>
+        <a class="nav-link cc_gray c_font_category" onclick="kakaoLogout();"style="cursor: pointer;">${menu_logout}</a>
       </li> 
     </ul>
     </c:if>
   </div>
 </nav>
+</c:if>
 </div>
-</header> 
+</header>
+
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+        window.Kakao.init('ba7439462d656bdc59c5331193480eaa');
+        
+    	function kakaoLogout() {
+    	
+        	if (!Kakao.Auth.getAccessToken()) {
+        		window.location.href='/ClassProject/logout.do'
+    		    return;
+    	    }
+    	    Kakao.Auth.logout(function(response) {
+    	    	window.location.href='/ClassProject/logout.do'
+    	    });
+    	
+    	
+    };
+    </script>
+
+

@@ -29,13 +29,13 @@ public class CreateClassPro2Handler implements CommandHandler{
 		request.setCharacterEncoding("utf-8");
 		LecdeDataBean dto = new LecdeDataBean();
 		int lec_num=Integer.parseInt(request.getParameter("lec_num"));
-//		String lv="³­ÀÌµµ";
+//		String lv="ï¿½ï¿½ï¿½Ìµï¿½";
 //		int pri=1000;
 //		int cap=10;
-//		String adr="ÁÖ¼Ò";
+//		String adr="ï¿½Ö¼ï¿½";
 //		
-//		String be="½ÃÀÛÀÏ";
-//		String fin="¸¶Áö¸·ÀÏ";
+//		String be="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
+//		String fin="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 //		
 		String lv=request.getParameter("lv");
 		int pri=Integer.parseInt(request.getParameter("pri"));
@@ -53,7 +53,7 @@ public class CreateClassPro2Handler implements CommandHandler{
 		dto.setBe(be);
 		dto.setFin(fin);
 		
-		int result=lectureDao.createClass2(dto)+ lectureDao.finClass(lec_num);
+		int result=lectureDao.createClass2(dto)+ lectureDao.createFinClass(lec_num);
 		request.setAttribute("result", result);
 		
 		return new ModelAndView("class365/createClassPro2");

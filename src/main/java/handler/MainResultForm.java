@@ -39,7 +39,7 @@ public class MainResultForm implements CommandHandler{
 				request.setAttribute("dtos", dtos);
 			}
 		}else {
-			p="검색결과 없음";
+			p="";
 			request.setAttribute("p", p);
 		}
 		if(id!=null) {

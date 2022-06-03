@@ -28,6 +28,7 @@ z-index : 10;
 }
 #middle_div
 {
+	width: 100%;
 	padding-top: 24px;
 	background-color : white;
 	position: static;
@@ -38,9 +39,6 @@ z-index : 10;
 
 }
 	
-a{
-
-}
 
  a:hover{
  	
@@ -85,6 +83,8 @@ a{
     float : left;
 }
 #pay_box{
+
+	display: flex;
 	position: sticky;
     top: 150px;
     max-height: 100vh;
@@ -93,6 +93,7 @@ a{
     padding-right: 40px;
     margin-right: 5%;
     z-index : 1;
+    display:flex;
    
     
 }
@@ -424,12 +425,12 @@ font-weight: 500;
 }
 .tut_text{
 overflow: hidden;
-    height: 600px;
+    height: 300px;
     -webkit-transition: all 0.2s ease-in;
     transition: all 0.2s ease-in;
 }
 .tut_text_area{	
-	    font-size: 15px;
+	font-size: 15px;
     line-height: 24px;
     font-weight: normal;
     letter-spacing: -0.22px;
@@ -438,13 +439,29 @@ overflow: hidden;
 .review_list{
 	display: block;
     padding: 22px 0;
-    border-bottom: 1px solid #ddd;
+   border-bottom: 1px solid #ddd;
     list-style : none;
 }
+.review_list_no{
+	display: block;
+    list-style : none;
+}
+.tutor_re{
+	  list-style : none;
+    border-bottom: 1px solid #ddd;	
+}
 .rev_tute_info{
-    display: table;
+	display: flex;
     table-layout: fixed;
 
+}
+.tutee_rev_images{
+	margin-left: 50px;
+	width: 200px;		 
+}
+.tute_rev_picture{
+	width: 100%;
+    object-position: center;
 }
 .tut_pro_img{
 	display: table-cell;

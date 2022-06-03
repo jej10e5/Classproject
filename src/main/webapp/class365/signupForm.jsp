@@ -21,7 +21,7 @@ function confirmid() {
 		signupform.id.focus();		
 	} else {
 		url = "confirmid.do?id=" + signupform.id.value;
-		open( url, "confirm", "scrollbar=no, menubar=no, status=no, width=400, height=200" );
+		open( url, "confirm", "scrollbar=no, menubar=no, status=no, width=600, height=500" );
 	}		
 }
 function confirmcheck() {
@@ -75,7 +75,7 @@ function setid( id ) {
     
  
 	<div class="text-center">
-	<span style="color:orange;">이미 가입되어있으신가요?</span> <a href="loginForm.do">Sign in</a></div>
+	<span style="color:orange;">이미 가입되어있으신가요?</span> <a href="loginForm.do">로그인</a></div>
 </div>
 </body>
 </html>

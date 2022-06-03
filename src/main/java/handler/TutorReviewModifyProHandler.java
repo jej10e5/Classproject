@@ -14,33 +14,33 @@ import org.springframework.web.servlet.ModelAndView;
 import lecture.LectureDao;
 import review.ReviewDataBean;
 @Controller
-public class TutorReviewPro implements CommandHandler{
-	
+public class TutorReviewModifyProHandler implements CommandHandler{
 	@Resource
-	LectureDao lectureDao;
+	LectureDao lectureDao; 
 	
-	@RequestMapping("/tutorReviewPro")
+	
+	@RequestMapping("tutorReviewModifyPro")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String id = (String)request.getSession().getAttribute("memid");	
-		int gr = Integer.parseInt(request.getParameter("gr"));
+		int re_num = Integer.parseInt(request.getParameter("re_num"));
 		int lec_num = Integer.parseInt(request.getParameter("lec_num"));
-		String re = (String)request.getParameter("re");
+		String re = request.getParameter("re");
 		Date date = new Date(System.currentTimeMillis());
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		String reg_date = sdf.format(date);
 		
+		
+		
 		ReviewDataBean dto = new ReviewDataBean();
-		dto.setLec_num(lec_num);
-		dto.setId(id);
+		dto.setRe_num(re_num);
 		dto.setRe(re);
 		dto.setReg_date(reg_date);
-		dto.setGr(gr);
 		
-		int result = lectureDao.insertTutorReview(dto);
+		int result = lectureDao.modifyTutorReview(dto);
 		
+		request.setAttribute("lec_num", lec_num);
 		request.setAttribute("result", result);
-		return new ModelAndView("class365/tutorReviewPro");
+		return new ModelAndView("class365/tutorReviewModifyPro");
 	}
 
 }

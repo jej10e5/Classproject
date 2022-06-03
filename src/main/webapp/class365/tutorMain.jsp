@@ -69,23 +69,7 @@ function checktutee(lec_num){
 			<div id="side_bar_pos">
 				<div id="side_menu">
 					<div id="side_cate">
-						<div id="side_top_div">
-						<div style="height: 4px; display : flex;">	</div>
-							<div class="cate_div">
-								<div class="cate_subject">
-									<div class="cate_space">
-										<span class="cate_icon">
-										<i class="fa-solid fa-bell icon_pos"></i>
-										</span>
-										<div class="cate_icon_space"></div>
-										<span class="cate_name_css">공지사항</span>
-									</div>
-								</div>
-							
-							</div>
-					
 						
-						</div>
 						<!-- 강사 정보 -->
 						<div id="side_top_div" onclick="location='tutorInfoForm.do'">
 						<div style="height: 4px; display : flex;">	</div>
@@ -127,7 +111,7 @@ function checktutee(lec_num){
 						
 						</div>
 						<!-- 리뷰 관리 -->
-							<div id="side_top_div"onclick="location='tutorReviewForm.do?'">
+							<div id="side_top_div"onclick="location='tutorReviewMain.do'">
 						<div style="height: 4px; display : flex;">	</div>
 							<div class="cate_div">
 								<div class="cate_subject">
@@ -157,7 +141,7 @@ function checktutee(lec_num){
  <!-- 사이드바 -->	
 	<div id="tutor_div" >
 	<c:if test="${tutorInfo ne 0}">
-		<div id="tutor_main_article" style="overflow-x:scroll;" >
+		<div id="tutor_main_article" >
 			<div id="tutor_main_margin">
 			
 				<div id="tutor_top_topic">
@@ -177,7 +161,7 @@ function checktutee(lec_num){
 					
 				</div>
 				<div id="table_div" >
-					<table class="tutor_table">
+					<table class="tutor_table table table-hover">
 						<tr style="border-bottom:solid 1px lightgrey" >
 							<th style="width:15%">강좌명</th>
 							<th>상태</th>
@@ -203,37 +187,64 @@ function checktutee(lec_num){
 								<c:if test="${dto.sta eq 2}">
 								마감
 								</c:if>
+								<c:if test="${dto.sta eq 3}">
+								제한됨
+								</c:if>
+								<c:if test="${dto.sta eq 4}">
+								검토중
+								</c:if>
+								<c:if test="${dto.sta eq 5}">
+								보류됨
+								</c:if>
 							</th>
 							<th>${dto.cate}</th> 
 							<th>${dto.lv}</th>
 							<th>${dto.be}</th>
 							<th>${dto.fin}</th>
 							<th>${dto.pri}</th>
-							<th><input class="btn_modify" type="button" value="수정하기" 
-							onclick="location='modifyClass.do?lec_num=${dto.lec_num}'"></th>
-							<th>
+							
 							<c:if test="${dto.sta eq 0}">
-							<input class="btn_delete"type="button"
-							onclick="location='deleteClass.do?lec_num=${dto.lec_num}'" 
-							value="삭제하기">
+								<th><input class="btn_modify" type="button" value="수정하기" 
+								onclick="location='modifyClass.do?lec_num=${dto.lec_num}'"></th>
+								<th><input class="btn_delete"type="button"
+								onclick="location='deleteClass.do?lec_num=${dto.lec_num}'" 
+								value="삭제하기"></th>
 							</c:if>
+							
+							<c:if test="${dto.sta eq 4 or dto.sta eq 5}">
+								<th>
+								<input class="btn_modify" type="button" value="수정하기" 
+								onclick="location='modifyClass.do?lec_num=${dto.lec_num}'">
+								</th>
+								<th>
+								<input class="btn_delete"type="button"
+								onclick="location='deleteClass.do?lec_num=${dto.lec_num}'" 
+								value="삭제하기">
+								</th>
+							</c:if>
+							
+							
 							<c:if test="${dto.sta eq 1}">
-							<input class="btn_sta1" type="button"
-							onclick="location='inactiveClass.do?lec_num=${dto.lec_num}'"
-							value="마감하기">
-							<input class="btn_sta1" type="button"
-							onclick="checktutee(${dto.lec_num})"
-							value="수강생">
+								<th><input class="btn_sta1" type="button"
+								onclick="location='inactiveClass.do?lec_num=${dto.lec_num}'"
+								value="마감하기"></th>
+								<th><input class="btn_sta1" type="button"
+								onclick="checktutee(${dto.lec_num})"
+								value="수강생"></th>
 							</c:if>
 							<c:if test="${dto.sta eq 2}">
-							<input class="btn_sta2" type="button"
-							onclick="location='activeClass.do?lec_num=${dto.lec_num}'"
-							value="모집하기">
-							<input class="btn_sta1" type="button"
-							onclick="checktutee(${dto.lec_num})"
-							value="수강생">
+								<th><input class="btn_sta2" type="button"
+								onclick="location='activeClass.do?lec_num=${dto.lec_num}'"
+								value="모집하기"></th>
+								<th><input class="btn_sta1" type="button"
+								onclick="checktutee(${dto.lec_num})"
+								value="수강생"></th>
 							</c:if>
-							</th>
+							<c:if test="${dto.sta eq 3}">
+								<th></th>
+								<th>제제됨</th>
+							</c:if>
+
 						</tr>
 							
 						</c:forEach>					

@@ -22,11 +22,13 @@ public class MyPageHandler implements CommandHandler {
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		String id=(String) request.getSession().getAttribute("memid");
+		String kid = (String) request.getSession().getAttribute("kid");
 		List<LectureDeDataBean> dtos = lectureDao.getTuteeClassList(id);
 		request.setAttribute("dtos", dtos);
 		List<LeclikeDataBean> ldtos = lectureDao.getLikeList(id);
 		request.setAttribute("ldtos", ldtos);
 
+		request.setAttribute("kid", kid);
 		return new ModelAndView("class365/myPage");
 	}
 }
