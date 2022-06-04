@@ -464,5 +464,8 @@ public class LectureDBBean implements LectureDao{
 	int gr_num=SqlMapClient.getSession().selectOne("Lecture.findReReview",dto);
 	return SqlMapClient.getSession().delete("Lecture.deleteReReview",gr_num);
 	}
-
+	@Override
+	public int findTuteeReview(RefundDataBean dto) {
+		return SqlMapClient.getSession().selectOne("Lecture.findTuteeReview",dto);
+	}
 }

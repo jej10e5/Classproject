@@ -292,6 +292,9 @@
  	<delete id="deleteTutee" parameterType="refund.RefundDataBean">
  		delete from tutee where id=#{id} and lec_num=#{lec_num}
  	</delete>
+ 	<select id="findTuteeReview" parameterType="refund.RefundDataBean" resultType="int">
+ 		select re_num from tutee where id=#{id} and lec_num=#{lec_num}
+ 	</select>
  	<select id="findReReview" parameterType="refund.RefundDataBean" resultType="int">
  		select gr from review where id=#{id} and lec_num=#{lec_num}
  	</select>

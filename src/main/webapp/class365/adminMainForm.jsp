@@ -23,39 +23,29 @@
 	background-color:gray;
 	
 }
-.btn_confirm{
+.btn_reject{
 	border: none;
 	border-radius:2px;
 	background-color:#ff968a;
 }
-.btn_confirm:hover{
+.btn_reject:hover{
 	border: none;
 	border-radius:2px;
 	background-color:#ff6f61;
 	
 }
-.btn_sta1{
+.btn_confirm{
 	border: none;
 	border-radius:2px;
-	background-color:#ff8ec7;
+	background-color:#FFB2D9;
 }
-.btn_sta1:hover{
+.btn_confirm:hover{
 	border: none;
 	border-radius:2px;
-	background-color:#ff0080;
+	background-color:#EDA0C7;
 	
 }
-.btn_sta2{
-	border: none;
-	border-radius:2px;
-	background-color:#c67d9f;
-}
-.btn_sta2:hover{
-	border: none;
-	border-radius:2px;
-	background-color:#9c446e;
-	
-}
+
 .cate_div{
 	font-size: 1rem;
 }
@@ -222,11 +212,19 @@
 							<th>
 								접수
 							</th>
-							<th><input class="btn_confirm" type="button" value="신청확인" onclick="location='refundConfirm.do?lec_num=${dto.lec_num}&id=${dto.id}'"></th>
+							<th>
+							<input class="btn_confirm" type="button" value="신청확인" onclick="location='refundConfirm.do?lec_num=${dto.lec_num}&id=${dto.id}'">
+							<input class="btn_reject" type="button" value="신청거부" onclick="location='refundReject.do?lec_num=${dto.lec_num}&id=${dto.id}'"></th>
 							</c:if>
 							<c:if test="${dto.sta eq 1}">
 							<th>
-								처리완료
+								신청완료
+							</th>
+							<th>${dto.fin_date}</th>
+							</c:if>
+							<c:if test="${dto.sta eq 2}">
+							<th>
+								신청거부
 							</th>
 							<th>${dto.fin_date}</th>
 							</c:if>

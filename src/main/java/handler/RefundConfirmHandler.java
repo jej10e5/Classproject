@@ -23,8 +23,15 @@ public class RefundConfirmHandler implements CommandHandler{
 		RefundDataBean dto = new RefundDataBean();
 		dto.setId(id);
 		dto.setLec_num(lec_num);
-		lectureDao.deleteReReview(dto);
-		lectureDao.refundConfirm(dto);
+		int re_num=lectureDao.findTuteeReview(dto);
+		if(re_num==0) {//review없음
+			lectureDao.refundConfirm(dto);
+		}else {//review있음
+			lectureDao.deleteReReview(dto);
+			lectureDao.refundConfirm(dto);
+			
+		}
+
 		
 		String re=request.getHeader("Referer");
 		request.setAttribute("re", re);

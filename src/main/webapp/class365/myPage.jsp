@@ -391,14 +391,14 @@ color: #fff!important;
 				    -->
 				    <script>
 				    
-				    function refund(){
-				    	if(confirm("강의를 정말 취소 하시겠습니까?")==true){
+				    function refund(sub){
+				    	if(confirm("강의 취소시 관련 리뷰가 모두 삭제됩니다.\n["+sub+"] 강의를 정말 취소 하시겠습니까?")==true){
 				    	}else return false;
 				    }
 				    </script>
 				    <!-- 취소버튼 -->
 				    <a  class="btn btn-primary" href="refundRequest.do?lec_num=${dto.lec_num}"
-				    style="float:right;" onclick="return refund()">취소 요청하기</a>
+				    style="float:right;" onclick="return refund('${dto.sub}')">취소 요청하기</a>
 					</div>
 				    <!-- classForm.jsp?classNum=${classNum} -->
 				  </div>
