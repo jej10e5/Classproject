@@ -40,7 +40,7 @@ function setid( id ) {
 </script>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<%@ include file="header.jsp" %>  
 <div class="signup-form">
     <form name = "signupform" action="signupPro.do" method="post"
     onsubmit="return inputcheck()">

@@ -310,7 +310,7 @@ color: #fff!important;
  <!-- 사이드바 -->	
  <script type="text/javascript">
  	if(${check}===0){
- 		alert('이미 접수되었습니다.');
+ 		alert('이미 접수되었습니다.'); 
  	}else if(${check}===1){
  		alert('신청이 완료되었습니다.');
  	}

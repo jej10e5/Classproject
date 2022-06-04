@@ -63,6 +63,11 @@
     <!-- guest -->
     <c:if test="${sessionScope.memid eq null}">
     <ul class="navbar-nav"> 
+    <li class="nav-item my-2 my-lg-0">
+     	 <a class="nav-link" href="mapForm.do">
+        	<i class="fa-solid fa-map-location-dot" style="padding-top:5px; font-size:20px;color:#9c446e;"></i>
+        </a>
+      </li>
       <li class="nav-item my-2 my-lg-0">
         <a class="nav-link cc_purple c_font_category" href="signupForm.do">${menu_signup}</a>
       </li>

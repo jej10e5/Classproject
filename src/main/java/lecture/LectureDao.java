@@ -100,7 +100,7 @@ public interface LectureDao {
 	public int deleteReReview(RefundDataBean dto);
 	public List<LeclikeDataBean> getLikeList(String id);
 	public int deleteHeart(LeclikeDataBean dto);
-	public int insertHeart(LeclikeDataBean dto);
+	public int insertHeart(LeclikeDataBean dto); 
 	public int getNowTutee(int lec_num);
 	public List<TuteememDataBean> getTutee(int lec_num);
 	public List<LectureDeDataBean> getMemberLikeList(String id);
